@@ -1,0 +1,26 @@
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+sqlalchemy>=2.0,<3
+pydantic-settings>=2.5,<3
+python-jose[cryptography]>=3.3,<4
+passlib[bcrypt]>=1.7,<2
+jinja2>=3.1,<4
+playwright>=1.48,<2
+alembic>=1.13,<2
+pydantic[email]>=2.0,<3
+
+# NLP for bullet-quality analysis (Phase 2)
+# After install, run: python -m spacy download en_core_web_sm
+spacy>=3.7,<4
+
+# Resume upload & parsing (Phase 3)
+pymupdf>=1.24,<2          # PDF text extraction
+python-docx>=1.1,<2       # DOCX text extraction
+python-multipart>=0.0.9   # FastAPI file uploads
+rapidfuzz>=3.9,<4         # fuzzy section-header matching
+pytesseract>=0.3,<1       # OCR fallback (requires Tesseract binary on PATH)
+Pillow>=10,<12            # image handling for OCR
+
+# Optional: TF-IDF keyword analysis (scikit-learn)
+# Install with: pip install scikit-learn
+# scikit-learn>=1.3,<2

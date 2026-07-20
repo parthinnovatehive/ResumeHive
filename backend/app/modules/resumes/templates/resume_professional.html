@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ resume.full_name }} - Resume</title>
+<style>
+  /* ATS-safe: single column, no tables/images/icons, standard headers.
+     Executive look via navy accents and serif display type. */
+  @page { size: A4; margin: 17mm 17mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+    font-size: 10.5pt;
+    color: #1f2937;
+    line-height: 1.45;
+    background: #fff;
+  }
+  h1 {
+    font-family: 'Cambria', Georgia, serif;
+    font-size: 23pt;
+    font-weight: 700;
+    color: #1e3a5f;
+    letter-spacing: 0.5px;
+  }
+  .contact {
+    font-size: 9.5pt;
+    color: #4b5563;
+    margin-top: 3px;
+    padding-bottom: 8px;
+    border-bottom: 2.5px solid #1e3a5f;
+    margin-bottom: 10px;
+  }
+  .contact span { margin-right: 14px; white-space: nowrap; }
+  .section { margin-bottom: 11px; }
+  .section-title {
+    font-family: 'Cambria', Georgia, serif;
+    font-size: 12pt;
+    font-weight: 700;
+    color: #1e3a5f;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .entry { margin-bottom: 7px; }
+  .entry-row { display: flex; justify-content: space-between; align-items: baseline; }
+  .entry-title { font-weight: 700; font-size: 10.5pt; color: #111827; }
+  .entry-date { font-size: 9.5pt; color: #6b7280; white-space: nowrap; margin-left: 12px; }
+  .entry-sub { font-size: 10pt; color: #4b5563; margin-top: 1px; font-style: italic; }
+  .entry-body { font-size: 10pt; margin-top: 2px; line-height: 1.4; }
+  .skills-line { font-size: 10pt; line-height: 1.6; }
+  .cert-list { margin-left: 16px; }
+  .cert-list li { margin-bottom: 1px; font-size: 10pt; }
+</style>
+</head>
+<body>
+
+<h1>{{ resume.full_name }}</h1>
+<div class="contact">
+  {% if resume.email %}<span>{{ resume.email }}</span>{% endif %}
+  {% if resume.phone %}<span>{{ resume.phone }}</span>{% endif %}
+  {% if resume.location %}<span>{{ resume.location }}</span>{% endif %}
+  {% if resume.linkedin_url %}<span>{{ resume.linkedin_url }}</span>{% endif %}
+</div>
+
+{% set order = resume.section_order %}
+{% if order is string %}
+  {% set order = resume.section_order | fromjson %}
+{% endif %}
+
+{% for section in order %}
+  {% if section == "summary" and resume.summary %}
+  <div class="section">
+    <div class="section-title">Professional Summary</div>
+    <div class="entry-body">{{ resume.summary }}</div>
+  </div>
+  {% endif %}
+
+  {% if section == "experience" %}
+    {% set exp_list = resume.experience %}
+    {% if exp_list is string %}{% set exp_list = exp_list | fromjson %}{% endif %}
+    {% if exp_list and exp_list|length > 0 %}
+    <div class="section">
+      <div class="section-title">Experience</div>
+      {% for exp in exp_list %}
+      <div class="entry">
+        <div class="entry-row">
+          <span class="entry-title">{{ exp.title }}</span>
+          <span class="entry-date">{{ exp.start_date }} – {{ exp.end_date }}{% if exp.is_current %} (Present){% endif %}</span>
+        </div>
+        <div class="entry-sub">{{ exp.company }}</div>
+        {% if exp.description %}<div class="entry-body">{{ exp.description }}</div>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  {% endif %}
+
+  {% if section == "education" %}
+    {% set edu_list = resume.education %}
+    {% if edu_list is string %}{% set edu_list = edu_list | fromjson %}{% endif %}
+    {% if edu_list and edu_list|length > 0 %}
+    <div class="section">
+      <div class="section-title">Education</div>
+      {% for edu in edu_list %}
+      <div class="entry">
+        <div class="entry-row">
+          <span class="entry-title">{{ edu.institution }}</span>
+          <span class="entry-date">{{ edu.start_date }} – {{ edu.end_date }}</span>
+        </div>
+        <div class="entry-sub">{{ edu.degree }}{% if edu.field_of_study %} in {{ edu.field_of_study }}{% endif %}{% if edu.gpa %} | GPA: {{ edu.gpa }}{% endif %}</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  {% endif %}
+
+  {% if section == "projects" %}
+    {% set proj_list = resume.projects %}
+    {% if proj_list is string %}{% set proj_list = proj_list | fromjson %}{% endif %}
+    {% if proj_list and proj_list|length > 0 %}
+    <div class="section">
+      <div class="section-title">Projects</div>
+      {% for proj in proj_list %}
+      <div class="entry">
+        <div class="entry-row">
+          <span class="entry-title">{{ proj.name }}</span>
+          {% if proj.link %}<span class="entry-date">{{ proj.link }}</span>{% endif %}
+        </div>
+        {% if proj.technologies %}<div class="entry-sub">{{ proj.technologies }}</div>{% endif %}
+        {% if proj.description %}<div class="entry-body">{{ proj.description }}</div>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  {% endif %}
+
+  {% if section == "skills" %}
+    {% set skill_list = resume.skills %}
+    {% if skill_list is string %}{% set skill_list = skill_list | fromjson %}{% endif %}
+    {% if skill_list and skill_list|length > 0 %}
+    <div class="section">
+      <div class="section-title">Skills</div>
+      <div class="skills-line">{{ skill_list | join(', ') }}</div>
+    </div>
+    {% endif %}
+  {% endif %}
+
+  {% if section == "certifications" %}
+    {% set cert_list = resume.certifications %}
+    {% if cert_list is string %}{% set cert_list = cert_list | fromjson %}{% endif %}
+    {% if cert_list and cert_list|length > 0 %}
+    <div class="section">
+      <div class="section-title">Certifications</div>
+      <ul class="cert-list">
+        {% for cert in cert_list %}<li>{{ cert }}</li>{% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+</body>
+</html>

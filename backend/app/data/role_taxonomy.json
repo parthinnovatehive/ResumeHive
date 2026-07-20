@@ -1,0 +1,471 @@
+{
+  "roles": {
+    "sde": {
+      "name": "Software Development Engineer",
+      "skills": ["Python", "Java", "C++", "JavaScript", "TypeScript", "Go", "Rust", "SQL", "Git", "REST API", "GraphQL", "Microservices", "System Design", "Data Structures", "Algorithms", "OOP", "Design Patterns", "Docker", "Kubernetes", "CI/CD", "AWS", "GCP", "Azure", "Linux", "Testing", "Unit Testing", "Agile", "Scrum"],
+      "certifications": ["AWS Certified Developer", "AWS Solutions Architect", "Azure Developer Associate", "Google Cloud Professional", "Oracle Java Certification"],
+      "projects": ["Web Application", "REST API", "Mobile App", "CLI Tool", "Database Design", "System Design Project", "Open Source Contribution"],
+      "soft_skills": ["Communication", "Teamwork", "Problem Solving", "Time Management", "Leadership"]
+    },
+    "frontend": {
+      "name": "Frontend Developer",
+      "skills": ["JavaScript", "TypeScript", "HTML", "CSS", "React", "Angular", "Vue", "Next.js", "Redux", "Tailwind CSS", "SASS", "Webpack", "Vite", "Responsive Design", "Accessibility", "SEO", "Testing", "Jest", "Cypress", "Storybook", "Figma", "Git", "REST API", "GraphQL", "Performance Optimization"],
+      "certifications": ["Google Mobile Web Specialist", "AWS Certified Developer", "Meta Frontend Developer"],
+      "projects": ["Responsive Web App", "PWA", "E-commerce Frontend", "Dashboard UI", "Component Library", "Design System"],
+      "soft_skills": ["Communication", "Collaboration", "Attention to Detail", "Problem Solving", "Creativity"]
+    },
+    "backend": {
+      "name": "Backend Developer",
+      "skills": ["Python", "Java", "Go", "Node.js", "Express", "Django", "Flask", "FastAPI", "Spring Boot", "SQL", "PostgreSQL", "MongoDB", "Redis", "REST API", "GraphQL", "Microservices", "Docker", "Kubernetes", "AWS", "GCP", "Message Queues", "Caching", "Security", "Testing", "CI/CD"],
+      "certifications": ["AWS Certified Developer", "AWS Solutions Architect", "Oracle Java Certification", "MongoDB Certified Developer"],
+      "projects": ["REST API", "Microservice Architecture", "Real-time Chat System", "Payment Integration", "Authentication System"],
+      "soft_skills": ["Communication", "Problem Solving", "Teamwork", "Time Management", "Analytical Thinking"]
+    },
+    "fullstack": {
+      "name": "Full Stack Developer",
+      "skills": ["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express", "Python", "Django", "SQL", "PostgreSQL", "MongoDB", "REST API", "GraphQL", "Docker", "AWS", "Git", "HTML", "CSS", "Tailwind CSS", "Testing", "CI/CD", "Agile"],
+      "certifications": ["AWS Certified Developer", "AWS Solutions Architect", "Meta Full Stack Developer"],
+      "projects": ["Full Stack Web App", "E-commerce Platform", "Social Media App", "Real-time Dashboard", "SaaS Application"],
+      "soft_skills": ["Communication", "Problem Solving", "Teamwork", "Adaptability", "Time Management"]
+    },
+    "data_analyst": {
+      "name": "Data Analyst",
+      "skills": ["Python", "R", "SQL", "Excel", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Tableau", "Power BI", "Statistics", "Data Visualization", "Data Cleaning", "ETL", "Google Analytics", "A/B Testing", "Hypothesis Testing", "Regression", "Dashboard", "KPI", "Business Intelligence"],
+      "certifications": ["Google Data Analytics", "Microsoft Certified: Data Analyst", "Tableau Desktop Specialist", "IBM Data Analyst"],
+      "projects": ["Sales Dashboard", "Customer Segmentation", "A/B Test Analysis", "Financial Reporting", "Marketing Analytics"],
+      "soft_skills": ["Communication", "Analytical Thinking", "Attention to Detail", "Problem Solving", "Presentation"]
+    },
+    "data_scientist": {
+      "name": "Data Scientist",
+      "skills": ["Python", "R", "SQL", "Pandas", "NumPy", "Scikit-learn", "TensorFlow", "PyTorch", "Machine Learning", "Deep Learning", "NLP", "Computer Vision", "Statistics", "Feature Engineering", "Model Evaluation", "Data Visualization", "SQL", "Spark", "Docker", "Git", "Jupyter", "MLOps"],
+      "certifications": ["AWS Machine Learning Specialty", "Google Professional ML Engineer", "TensorFlow Developer Certificate"],
+      "projects": ["Prediction Model", "NLP Text Classifier", "Recommendation System", "Image Recognition", "Time Series Forecasting"],
+      "soft_skills": ["Communication", "Analytical Thinking", "Problem Solving", "Research", "Presentation"]
+    },
+    "devops": {
+      "name": "DevOps Engineer",
+      "skills": ["AWS", "GCP", "Azure", "Docker", "Kubernetes", "Terraform", "Ansible", "CI/CD", "Jenkins", "GitHub Actions", "Linux", "Bash", "Python", "Prometheus", "Grafana", "ELK Stack", "Nginx", "Git", "Monitoring", "Logging", "Security", "Networking", "Shell Scripting", "Automation", "Infrastructure as Code"],
+      "certifications": ["AWS SysOps Administrator", "AWS DevOps Professional", "Certified Kubernetes Administrator", "Terraform Associate", "Docker Certified Associate"],
+      "projects": ["CI/CD Pipeline", "Infrastructure Automation", "Container Orchestration", "Monitoring Dashboard", "Cloud Migration"],
+      "soft_skills": ["Communication", "Problem Solving", "Teamwork", "Incident Response", "Time Management"]
+    },
+    "mlops": {
+      "name": "MLOps Engineer",
+      "skills": ["Python", "Docker", "Kubernetes", "AWS", "GCP", "MLflow", "Kubeflow", "Airflow", "Terraform", "CI/CD", "Git", "FastAPI", "Flask", "SQL", "Redis", "Monitoring", "Prometheus", "Grafana", "Feature Store", "Model Registry", "A/B Testing"],
+      "certifications": ["AWS Machine Learning Specialty", "Google Professional ML Engineer", "Certified Kubernetes Administrator"],
+      "projects": ["ML Pipeline", "Model Deployment System", "Feature Store", "Model Monitoring", "AutoML Pipeline"],
+      "soft_skills": ["Communication", "Problem Solving", "Teamwork", "Analytical Thinking", "Time Management"]
+    },
+    "mobile": {
+      "name": "Mobile App Developer",
+      "skills": ["Kotlin", "Swift", "Java", "React Native", "Flutter", "Dart", "iOS", "Android", "UI/UX", "REST API", "GraphQL", "Firebase", "SQLite", "Git", "Testing", "CI/CD", "App Store", "Push Notifications", "Responsive Design", "Performance Optimization"],
+      "certifications": ["Google Associate Android Developer", "Apple Certified iOS Developer", "Meta React Native Specialist"],
+      "projects": ["Cross-platform App", "E-commerce App", "Social Media App", "Health Tracking App", "Real-time Chat App"],
+      "soft_skills": ["Communication", "Creativity", "Problem Solving", "Attention to Detail", "User Empathy"]
+    },
+    "cloud": {
+      "name": "Cloud Engineer",
+      "skills": ["AWS", "GCP", "Azure", "Terraform", "CloudFormation", "Docker", "Kubernetes", "Linux", "Networking", "Security", "IAM", "VPC", "Load Balancing", "Auto Scaling", "Serverless", "Lambda", "EC2", "S3", "RDS", "Monitoring", "Cost Optimization", "Disaster Recovery"],
+      "certifications": ["AWS Solutions Architect", "AWS SysOps Administrator", "Azure Solutions Architect", "Google Cloud Professional Architect", "Certified Cloud Security Professional"],
+      "projects": ["Cloud Migration", "Serverless Application", "Multi-region Deployment", "Cost Optimization", "Disaster Recovery Plan"],
+      "soft_skills": ["Communication", "Problem Solving", "Planning", "Analytical Thinking", "Time Management"]
+    },
+    "security": {
+      "name": "Cybersecurity Engineer",
+      "skills": ["Network Security", "Penetration Testing", "Vulnerability Assessment", "SIEM", "Firewall", "IDS/IPS", "Encryption", "PKI", "Identity Management", "OWASP", "Linux", "Python", "Bash", "Wireshark", "Metasploit", "Nmap", "Security Auditing", "Incident Response", "Compliance", "Risk Assessment"],
+      "certifications": ["CompTIA Security+", "Certified Ethical Hacker", "CISSP", "OSCP", "CEH"],
+      "projects": ["Security Audit", "Penetration Test Report", "SIEM Implementation", "Incident Response Plan", "Vulnerability Scanner"],
+      "soft_skills": ["Attention to Detail", "Analytical Thinking", "Communication", "Problem Solving", "Ethics"]
+    },
+    "ai_engineer": {
+      "name": "AI Engineer",
+      "skills": ["Python", "TensorFlow", "PyTorch", "Keras", "NLP", "Computer Vision", "LLM", "Transformers", "Hugging Face", "LangChain", "RAG", "Vector Databases", "Embeddings", "FastAPI", "Docker", "Git", "Machine Learning", "Deep Learning", "Data Structures", "Algorithms"],
+      "certifications": ["AWS Machine Learning Specialty", "Google Professional ML Engineer", "TensorFlow Developer Certificate"],
+      "projects": ["Chatbot", "Image Classification", "Text Summarizer", "Recommendation System", "AI-powered Search"],
+      "soft_skills": ["Communication", "Problem Solving", "Research", "Analytical Thinking", "Creativity"]
+    },
+    "product_manager": {
+      "name": "Product Manager",
+      "skills": ["Product Strategy", "Roadmapping", "User Research", "A/B Testing", "SQL", "Data Analysis", "Agile", "Scrum", "Jira", "Confluence", "Figma", "Wireframing", "PRD", "OKR", "KPI", "Stakeholder Management", "Market Research", "Competitive Analysis", "Go-to-Market", "Metrics"],
+      "certifications": ["Product Management Certificate", "Pragmatic Institute", "Scrum Product Owner", "Google Analytics"],
+      "projects": ["Product Roadmap", "User Research Study", "Go-to-Market Strategy", "Feature Prioritization", "Product Launch"],
+      "soft_skills": ["Communication", "Leadership", "Empathy", "Negotiation", "Strategic Thinking"]
+    },
+    "ux_designer": {
+      "name": "UX Designer",
+      "skills": ["Figma", "Sketch", "Adobe XD", "User Research", "Wireframing", "Prototyping", "Usability Testing", "Information Architecture", "Interaction Design", "Visual Design", "Design Systems", "Accessibility", "HTML", "CSS", "Responsive Design", "User Flows", "Personas", "Journey Mapping"],
+      "certifications": ["Google UX Design Certificate", "Nielsen Norman Group UX Certification", "Interaction Design Foundation"],
+      "projects": ["Mobile App Redesign", "Design System", "E-commerce UX Audit", "User Research Report", "Interactive Prototype"],
+      "soft_skills": ["Empathy", "Communication", "Creativity", "Problem Solving", "Attention to Detail"]
+    },
+    "qa_engineer": {
+      "name": "QA Engineer",
+      "skills": ["Manual Testing", "Automation Testing", "Selenium", "Cypress", "Playwright", "Jest", "Pytest", "Test Cases", "Test Plans", "Bug Tracking", "JIRA", "API Testing", "Performance Testing", "Load Testing", "SQL", "Python", "Java", "CI/CD", "Git", "Agile"],
+      "certifications": ["ISTQB Certified Tester", "AWS Certified Developer", "Selenium Certification"],
+      "projects": ["Automation Framework", "Test Plan Suite", "Performance Testing", "API Test Suite", "Bug Report Dashboard"],
+      "soft_skills": ["Attention to Detail", "Analytical Thinking", "Communication", "Problem Solving", "Time Management"]
+    },
+    "data_engineer": {
+      "name": "Data Engineer",
+      "skills": ["Python", "SQL", "Spark", "Hadoop", "Airflow", "ETL", "Data Pipeline", "Kafka", "Hive", "Snowflake", "BigQuery", "Redshift", "AWS", "GCP", "Terraform", "Docker", "Git", "Linux", "Bash", "Data Modeling", "Data Warehouse", "Data Lake", "Schema Design"],
+      "certifications": ["AWS Data Analytics Specialty", "Google Professional Data Engineer", "Databricks Certified Data Engineer"],
+      "projects": ["Data Pipeline", "Data Warehouse", "Real-time Streaming", "ETL Framework", "Data Quality Dashboard"],
+      "soft_skills": ["Problem Solving", "Analytical Thinking", "Communication", "Time Management", "Attention to Detail"]
+    },
+    "blockchain": {
+      "name": "Blockchain Developer",
+      "skills": ["Solidity", "Rust", "Web3.js", "Ethers.js", "Ethereum", "Smart Contracts", "DApps", "IPFS", "Hardhat", "Truffle", "DeFi", "NFT", "Tokenomics", "Cryptography", "Git", "JavaScript", "TypeScript", "Node.js", "Python", "Testing"],
+      "certifications": ["Certified Blockchain Developer", "Ethereum Developer Certification", "Hyperledger Fabric Certified"],
+      "projects": ["DeFi Protocol", "NFT Marketplace", "Smart Contract Audit", "Token Launch", "DApp"],
+      "soft_skills": ["Problem Solving", "Analytical Thinking", "Communication", "Innovation", "Attention to Detail"]
+    },
+    "embedded": {
+      "name": "Embedded Systems Engineer",
+      "skills": ["C", "C++", "Assembly", "ARM", "RTOS", "Microcontrollers", "Arduino", "Raspberry Pi", "PCB Design", "Linux", "Device Drivers", "Firmware", "RTOS", "I2C", "SPI", "UART", "Git", "Debugging", "Testing", "Power Optimization"],
+      "certifications": ["Embedded Systems Certificate", "ARM Accredited Engineer", "Certified LabVIEW Developer"],
+      "projects": ["IoT Device", "Firmware Development", "Sensor Integration", "Power Management System", "Real-time Control System"],
+      "soft_skills": ["Problem Solving", "Attention to Detail", "Analytical Thinking", "Communication", "Time Management"]
+    },
+    "game_dev": {
+      "name": "Game Developer",
+      "skills": ["Unity", "Unreal Engine", "C#", "C++", "Game Design", "3D Modeling", "Physics", "AI", "Networking", "Multiplayer", "Shader Programming", "Animation", "UI/UX", "Git", "Version Control", "Optimization", "Testing"],
+      "certifications": ["Unity Certified Developer", "Unreal Engine Certified", "Microsoft Certified: C#"],
+      "projects": ["2D Game", "3D Game", "Multiplayer Game", "Mobile Game", "Game Portfolio"],
+      "soft_skills": ["Creativity", "Problem Solving", "Teamwork", "Communication", "Time Management"]
+    },
+    "ml_engineer": {
+      "name": "Machine Learning Engineer",
+      "skills": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Machine Learning", "Deep Learning", "Feature Engineering", "Model Deployment", "Docker", "Kubernetes", "FastAPI", "MLflow", "AWS", "GCP", "SQL", "Git", "Linux", "Data Structures", "Algorithms", "Statistics"],
+      "certifications": ["AWS Machine Learning Specialty", "Google Professional ML Engineer", "TensorFlow Developer Certificate"],
+      "projects": ["ML Pipeline", "Model Serving API", "Feature Store", "A/B Testing Framework", "AutoML System"],
+      "soft_skills": ["Communication", "Problem Solving", "Analytical Thinking", "Research", "Teamwork"]
+    },
+    "site_reliability": {
+      "name": "Site Reliability Engineer",
+      "skills": ["Linux", "Python", "Go", "AWS", "GCP", "Kubernetes", "Docker", "Terraform", "Monitoring", "Prometheus", "Grafana", "Alerting", "Incident Management", "Post-mortem", "CI/CD", "Networking", "Security", "Performance", "Scalability", "Automation"],
+      "certifications": ["AWS SysOps Administrator", "Certified Kubernetes Administrator", "Google Cloud Professional DevOps"],
+      "projects": ["Monitoring System", "Incident Response", "Capacity Planning", "Automation Framework", "Disaster Recovery"],
+      "soft_skills": ["Communication", "Problem Solving", "Time Management", "Teamwork", "Analytical Thinking"]
+    },
+    "technical_writer": {
+      "name": "Technical Writer",
+      "skills": ["Technical Writing", "Documentation", "API Documentation", "Markdown", "Git", "Confluence", "MadCap Flare", "HTML", "CSS", "XML", "DITA", "Content Strategy", "Information Architecture", "Editing", "Proofreading", "Version Control", "Agile"],
+      "certifications": ["Certified Professional Technical Communicator", "Google Technical Writing"],
+      "projects": ["API Documentation", "User Guide", "Knowledge Base", "Release Notes", "Training Materials"],
+      "soft_skills": ["Communication", "Attention to Detail", "Empathy", "Research", "Time Management"]
+    },
+    "scrum_master": {
+      "name": "Scrum Master",
+      "skills": ["Scrum", "Kanban", "Agile", "Sprint Planning", "Backlog Grooming", "Retrospectives", "JIRA", "Confluence", "Stakeholder Management", "Facilitation", "Conflict Resolution", "Coaching", "Metrics", "Risk Management", "Team Building"],
+      "certifications": ["Certified ScrumMaster", "Professional Scrum Master", "SAFe Scrum Master", "ICAgile Certified Professional"],
+      "projects": ["Agile Transformation", "Scrum Implementation", "Team Formation", "Process Improvement", "Coaching Program"],
+      "soft_skills": ["Communication", "Leadership", "Facilitation", "Conflict Resolution", "Empathy"]
+    },
+    "solutions_architect": {
+      "name": "Solutions Architect",
+      "skills": ["AWS", "GCP", "Azure", "System Design", "Microservices", "API Design", "SQL", "NoSQL", "Docker", "Kubernetes", "Terraform", "Security", "Networking", "Performance", "Scalability", "Cost Optimization", "Stakeholder Management", "Technical Leadership"],
+      "certifications": ["AWS Solutions Architect Professional", "Azure Solutions Architect", "Google Cloud Professional Architect", "TOGAF"],
+      "projects": ["Cloud Architecture", "System Design", "Migration Planning", "Architecture Review", "Technical Strategy"],
+      "soft_skills": ["Communication", "Leadership", "Strategic Thinking", "Problem Solving", "Negotiation"]
+    },
+    "database_admin": {
+      "name": "Database Administrator",
+      "skills": ["SQL", "PostgreSQL", "MySQL", "Oracle", "SQL Server", "MongoDB", "Redis", "Backup", "Recovery", "Performance Tuning", "Replication", "Clustering", "Security", "Monitoring", "Automation", "Python", "Shell Scripting", "Linux", "Networking"],
+      "certifications": ["Oracle Certified Professional", "Microsoft Certified: Azure Database", "AWS Database Specialty", "MongoDB Certified DBA"],
+      "projects": ["Database Migration", "Performance Optimization", "Backup Strategy", "High Availability Setup", "Security Audit"],
+      "soft_skills": ["Attention to Detail", "Problem Solving", "Communication", "Time Management", "Analytical Thinking"]
+    },
+    "network_engineer": {
+      "name": "Network Engineer",
+      "skills": ["TCP/IP", "DNS", "DHCP", "BGP", "OSPF", "MPLS", "VPN", "Firewall", "Switching", "Routing", "Wireless", "Load Balancing", "Network Monitoring", "Wireshark", "Cisco", "Juniper", "Linux", "Python", "Automation", "Security"],
+      "certifications": ["CCNA", "CCNP", "CompTIA Network+", "Juniper Networks Certified", "Palo Alto Certified"],
+      "projects": ["Network Design", "VPN Implementation", "Network Migration", "Security Hardening", "Monitoring Setup"],
+      "soft_skills": ["Problem Solving", "Communication", "Analytical Thinking", "Time Management", "Attention to Detail"]
+    },
+    "systems_admin": {
+      "name": "Systems Administrator",
+      "skills": ["Linux", "Windows Server", "Active Directory", "DNS", "DHCP", "VMware", "Virtualization", "Backup", "Monitoring", "Security", "Scripting", "Python", "PowerShell", "Bash", "Networking", "Storage", "Cloud", "AWS", "Azure"],
+      "certifications": ["Red Hat Certified System Administrator", "Microsoft Certified: Windows Server", "CompTIA Server+", "VMware Certified Professional"],
+      "projects": ["Server Migration", "Active Directory Setup", "Backup System", "Monitoring Dashboard", "Security Hardening"],
+      "soft_skills": ["Problem Solving", "Communication", "Time Management", "Attention to Detail", "Teamwork"]
+    },
+    "it_support": {
+      "name": "IT Support Specialist",
+      "skills": ["Windows", "macOS", "Linux", "Active Directory", "Networking", "Hardware", "Troubleshooting", "Ticketing Systems", "Remote Support", "Security", "Office 365", "Google Workspace", "Scripting", "Documentation", "Customer Service"],
+      "certifications": ["CompTIA A+", "CompTIA Network+", "ITIL Foundation", "Microsoft 365 Certified"],
+      "projects": ["Help Desk System", "Knowledge Base", "Security Training", "Device Management", "Process Improvement"],
+      "soft_skills": ["Communication", "Patience", "Problem Solving", "Customer Service", "Time Management"]
+    },
+    "analytics_engineer": {
+      "name": "Analytics Engineer",
+      "skills": ["SQL", "Python", "dbt", "Snowflake", "BigQuery", "Airflow", "Data Modeling", "ETL", "Data Warehouse", "Terraform", "Docker", "Git", "Testing", "CI/CD", "Looker", "Tableau", "Stakeholder Management"],
+      "certifications": ["dbt Certified Developer", "Snowflake SnowPro Core", "Google Professional Data Engineer"],
+      "projects": ["Data Warehouse", "Analytics Pipeline", "dbt Project", "Dashboard", "Data Quality Framework"],
+      "soft_skills": ["Communication", "Analytical Thinking", "Problem Solving", "Stakeholder Management", "Attention to Detail"]
+    },
+    "growth_engineer": {
+      "name": "Growth Engineer",
+      "skills": ["Python", "JavaScript", "SQL", "A/B Testing", "Analytics", "Google Analytics", "Mixpanel", "Amplitude", "Frontend", "Backend", "API", "Experimentation", "Conversion Optimization", "SEO", "Performance", "Docker", "CI/CD", "Git"],
+      "certifications": ["Google Analytics Certified", "AWS Certified Developer"],
+      "projects": ["A/B Testing Framework", "Growth Dashboard", "Conversion Funnel", "SEO Optimization", "Performance Improvement"],
+      "soft_skills": ["Analytical Thinking", "Communication", "Creativity", "Problem Solving", "Data-driven Decision Making"]
+    },
+    "platform_engineer": {
+      "name": "Platform Engineer",
+      "skills": ["Kubernetes", "Docker", "Terraform", "Go", "Python", "AWS", "GCP", "CI/CD", "GitOps", "ArgoCD", "Helm", "Service Mesh", "Istio", "Monitoring", "Prometheus", "Grafana", "Linux", "Networking", "Security", "Automation"],
+      "certifications": ["Certified Kubernetes Administrator", "AWS Solutions Architect", "HashiCorp Terraform Associate"],
+      "projects": ["Developer Platform", "CI/CD Pipeline", "Service Mesh", "Infrastructure Automation", "Monitoring Stack"],
+      "soft_skills": ["Communication", "Problem Solving", "Teamwork", "Documentation", "Analytical Thinking"]
+    },
+    "iot_engineer": {
+      "name": "IoT Engineer",
+      "skills": ["Python", "C", "C++", "Arduino", "Raspberry Pi", "MQTT", "IoT Protocols", "Sensors", "Embedded", "Linux", "AWS IoT", "Azure IoT", "Docker", "Networking", "Security", "Data Processing", "MQTT", "CoAP", "Bluetooth", "WiFi"],
+      "certifications": ["AWS IoT Specialty", "Azure IoT Developer", "Certified IoT Professional"],
+      "projects": ["Smart Home System", "Industrial IoT", "Sensor Network", "Edge Computing", "IoT Dashboard"],
+      "soft_skills": ["Problem Solving", "Analytical Thinking", "Communication", "Creativity", "Teamwork"]
+    },
+    "quantitative_analyst": {
+      "name": "Quantitative Analyst",
+      "skills": ["Python", "R", "MATLAB", "Statistics", "Machine Learning", "Time Series", "Stochastic Calculus", "Risk Modeling", "SQL", "Excel", "VBA", "Bloomberg", "Derivatives", "Options Pricing", "Portfolio Optimization", "Monte Carlo Simulation"],
+      "certifications": ["CFA", "FRM", "PRM", "Quantitative Finance Certificate"],
+      "projects": ["Trading Strategy", "Risk Model", "Portfolio Optimization", "Market Analysis", "Backtesting Framework"],
+      "soft_skills": ["Analytical Thinking", "Communication", "Problem Solving", "Attention to Detail", "Time Management"]
+    },
+    "animation": {
+      "name": "Animation Artist",
+      "skills": ["Maya", "Blender", "3ds Max", "After Effects", "Cinema 4D", "ZBrush", "Substance Painter", "UV Mapping", "Rigging", "Modeling", "Texturing", "Lighting", "Rendering", "Compositing", "Storytelling", "Drawing"],
+      "certifications": ["Autodesk Maya Certified", "Adobe Certified Expert"],
+      "projects": ["Character Animation", "Motion Graphics", "3D Short Film", "Game Asset", "Commercial"],
+      "soft_skills": ["Creativity", "Communication", "Time Management", "Teamwork", "Attention to Detail"]
+    },
+    "content_creator": {
+      "name": "Content Creator",
+      "skills": ["Content Writing", "SEO", "Social Media", "Video Editing", "Photography", "Copywriting", "Storytelling", "Analytics", "WordPress", "Adobe Creative Suite", "Canva", "Email Marketing", "Content Strategy", "Branding", "Audience Engagement"],
+      "certifications": ["Google Digital Marketing", "HubSpot Content Marketing", "Meta Social Media Marketing"],
+      "projects": ["Content Strategy", "Blog Series", "Social Media Campaign", "Video Series", "Email Newsletter"],
+      "soft_skills": ["Creativity", "Communication", "Time Management", "Adaptability", "Storytelling"]
+    },
+    "hr_specialist": {
+      "name": "HR Specialist",
+      "skills": ["Recruitment", "Onboarding", "Employee Relations", "Performance Management", "Compensation", "Benefits", "HRIS", "Workday", "BambooHR", "Compliance", "Labor Law", "Training", "Diversity", "Inclusion", "Conflict Resolution", "Payroll"],
+      "certifications": ["SHRM Certified Professional", "PHR", "HRCI Certified"],
+      "projects": ["Recruitment Process", "Onboarding Program", "Employee Handbook", "Training Program", "Performance System"],
+      "soft_skills": ["Communication", "Empathy", "Conflict Resolution", "Leadership", "Organization"]
+    },
+    "marketing_manager": {
+      "name": "Marketing Manager",
+      "skills": ["Digital Marketing", "SEO", "SEM", "PPC", "Social Media Marketing", "Email Marketing", "Content Marketing", "Google Analytics", "HubSpot", "Salesforce", "Marketing Automation", "A/B Testing", "Brand Management", "Campaign Management", "Budget Management"],
+      "certifications": ["Google Ads Certified", "HubSpot Inbound Marketing", "Meta Marketing Science"],
+      "projects": ["Marketing Campaign", "Brand Strategy", "Lead Generation", "Content Calendar", "Market Research"],
+      "soft_skills": ["Communication", "Creativity", "Leadership", "Analytical Thinking", "Negotiation"]
+    },
+    "finance_analyst": {
+      "name": "Financial Analyst",
+      "skills": ["Excel", "Financial Modeling", "Valuation", "Accounting", "SQL", "Python", "VBA", "Bloomberg", "FactSet", "Power BI", "Tableau", "Budgeting", "Forecasting", "Risk Analysis", "GAAP", "IFRS", "P&L Analysis"],
+      "certifications": ["CFA", "CPA", "Financial Modeling Certification", "Bloomberg Market Concepts"],
+      "projects": ["Financial Model", "Valuation Report", "Budget Analysis", "Risk Assessment", "Investment Research"],
+      "soft_skills": ["Analytical Thinking", "Communication", "Attention to Detail", "Problem Solving", "Time Management"]
+    },
+    "operations_manager": {
+      "name": "Operations Manager",
+      "skills": ["Process Improvement", "Lean", "Six Sigma", "Supply Chain", "Inventory Management", "ERP", "SAP", "Data Analysis", "Excel", "SQL", "Project Management", "KPI", "Budgeting", "Vendor Management", "Quality Control", "Automations"],
+      "certifications": ["Six Sigma Green Belt", "PMP", "Certified Supply Chain Professional", "Lean Management"],
+      "projects": ["Process Optimization", "Supply Chain Redesign", "Cost Reduction", "Quality Improvement", "Automation Project"],
+      "soft_skills": ["Leadership", "Communication", "Problem Solving", "Analytical Thinking", "Time Management"]
+    },
+    "consultant": {
+      "name": "Management Consultant",
+      "skills": ["Strategy", "Problem Solving", "Data Analysis", "Excel", "PowerPoint", "SQL", "Python", "Market Research", "Competitive Analysis", "Financial Modeling", "Stakeholder Management", "Presentation", "Workshop Facilitation", "Change Management", "Project Management"],
+      "certifications": ["PMP", "Six Sigma", "Certified Management Consultant", "Tableau"],
+      "projects": ["Strategy Assessment", "Market Entry", "Due Diligence", "Process Redesign", "Digital Transformation"],
+      "soft_skills": ["Communication", "Leadership", "Analytical Thinking", "Negotiation", "Problem Solving"]
+    },
+    "sales_engineer": {
+      "name": "Sales Engineer",
+      "skills": ["Technical Sales", "Demo", "Presentation", "API", "SQL", "Linux", "Cloud", "AWS", "Networking", "Security", "Solution Design", "RFP", "Proposal", "CRM", "Salesforce", "Stakeholder Management", "Negotiation"],
+      "certifications": ["AWS Cloud Practitioner", "Salesforce Certified", "Technical Sales Certification"],
+      "projects": ["Technical Proposal", "Solution Architecture", "Product Demo", "Customer Workshop", "RFP Response"],
+      "soft_skills": ["Communication", "Presentation", "Negotiation", "Problem Solving", "Relationship Building"]
+    },
+    "web3_developer": {
+      "name": "Web3 Developer",
+      "skills": ["Solidity", "Rust", "TypeScript", "JavaScript", "Ethereum", "Solana", "Web3.js", "Ethers.js", "Hardhat", "Smart Contracts", "DApps", "DeFi", "NFT", "IPFS", "The Graph", "GraphQL", "React", "Node.js", "Testing"],
+      "certifications": ["Certified Blockchain Developer", "Ethereum Developer Certification"],
+      "projects": ["DeFi Protocol", "NFT Marketplace", "DAO", "Token Launch", "Cross-chain Bridge"],
+      "soft_skills": ["Problem Solving", "Analytical Thinking", "Communication", "Innovation", "Self-learning"]
+    },
+    "ai_researcher": {
+      "name": "AI Research Scientist",
+      "skills": ["Python", "PyTorch", "TensorFlow", "Machine Learning", "Deep Learning", "NLP", "Computer Vision", "Reinforcement Learning", "Statistics", "Linear Algebra", "Research", "Paper Writing", "Experiment Design", "A/B Testing", "Data Analysis"],
+      "certifications": ["Google Professional ML Engineer", "AWS Machine Learning Specialty"],
+      "projects": ["Research Paper", "Novel Algorithm", "Benchmark", "Open Source Library", "Conference Presentation"],
+      "soft_skills": ["Research", "Communication", "Analytical Thinking", "Creativity", "Persistence"]
+    },
+    "technical_lead": {
+      "name": "Technical Lead",
+      "skills": ["Python", "Java", "JavaScript", "System Design", "Architecture", "Code Review", "Mentoring", "Agile", "Scrum", "Git", "CI/CD", "Docker", "AWS", "SQL", "NoSQL", "API Design", "Microservices", "Team Leadership", "Technical Debt"],
+      "certifications": ["AWS Solutions Architect", "Oracle Java Certification", "PMP"],
+      "projects": ["Architecture Design", "Tech Debt Reduction", "Team Formation", "Migration Planning", "Technical Strategy"],
+      "soft_skills": ["Leadership", "Communication", "Mentoring", "Problem Solving", "Decision Making"]
+    },
+    "automation_engineer": {
+      "name": "Automation Engineer",
+      "skills": ["Python", "Selenium", "Cypress", "Playwright", "Robot Framework", "Jenkins", "Git", "API Testing", "Shell Scripting", "Docker", "Linux", "SQL", "JIRA", "Agile", "CI/CD", "Test Automation", "BDD", "Cucumber"],
+      "certifications": ["ISTQB Certified Tester", "Selenium Certification", "AWS Certified Developer"],
+      "projects": ["Automation Framework", "CI/CD Pipeline", "API Test Suite", "Performance Testing", "Test Dashboard"],
+      "soft_skills": ["Problem Solving", "Attention to Detail", "Communication", "Analytical Thinking", "Time Management"]
+    },
+    "robotics_engineer": {
+      "name": "Robotics Engineer",
+      "skills": ["C++", "Python", "ROS", "MATLAB", "Simulink", "Computer Vision", "Sensor Fusion", "PLC", "Embedded", "Control Systems", "Kinematics", "Path Planning", "SLAM", "Arduino", "Raspberry Pi", "Git", "Linux"],
+      "certifications": ["ROS Certification", "Certified Robotics Engineer", "PLC Programming"],
+      "projects": ["Autonomous Robot", "Pick and Place System", "Path Planning Algorithm", "Sensor Integration", "ROS Package"],
+      "soft_skills": ["Problem Solving", "Analytical Thinking", "Communication", "Teamwork", "Creativity"]
+    },
+    "cloud_native": {
+      "name": "Cloud Native Developer",
+      "skills": ["Kubernetes", "Docker", "Helm", "Istio", "Envoy", "gRPC", "Go", "Java", "Python", "Service Mesh", "Observability", "Prometheus", "Grafana", "OpenTelemetry", "ArgoCD", "GitOps", "Terraform", "AWS", "GCP"],
+      "certifications": ["Certified Kubernetes Application Developer", "AWS Solutions Architect", "CNCF Certified"],
+      "projects": ["Cloud Native App", "Service Mesh", "Observability Stack", "GitOps Pipeline", "Microservices Migration"],
+      "soft_skills": ["Communication", "Problem Solving", "Teamwork", "Documentation", "Analytical Thinking"]
+    },
+    "data_architect": {
+      "name": "Data Architect",
+      "skills": ["SQL", "Data Modeling", "Data Warehouse", "Data Lake", "ETL", "Spark", "Hadoop", "Snowflake", "BigQuery", "Redshift", "AWS", "GCP", "Terraform", "Python", "Java", "Data Governance", "Data Quality", "Schema Design", "Performance Tuning"],
+      "certifications": ["AWS Data Analytics Specialty", "Google Professional Data Engineer", "TOGAF", "IBM Data Architect"],
+      "projects": ["Data Architecture", "Data Migration", "Data Governance Framework", "Data Warehouse", "Data Lake"],
+      "soft_skills": ["Communication", "Analytical Thinking", "Problem Solving", "Leadership", "Strategic Thinking"]
+    },
+    "penetration_tester": {
+      "name": "Penetration Tester",
+      "skills": ["Kali Linux", "Metasploit", "Burp Suite", "Nmap", "Wireshark", "OWASP", "Web App Testing", "Network Testing", "Social Engineering", "Python", "Bash", "Reporting", "Vulnerability Assessment", "Privilege Escalation", "Wireless Testing"],
+      "certifications": ["OSCP", "CEH", "CompTIA Security+", "GPEN", "PNPT"],
+      "projects": ["Penetration Test Report", "Vulnerability Assessment", "Security Audit", "Red Team Exercise", "Bug Bounty"],
+      "soft_skills": ["Attention to Detail", "Communication", "Analytical Thinking", "Ethics", "Report Writing"]
+    },
+    "solutions_engineer": {
+      "name": "Solutions Engineer",
+      "skills": ["Solution Design", "Technical Presales", "API", "Cloud", "AWS", "Azure", "Integration", "Architecture", "SQL", "Linux", "Docker", "Networking", "Security", "CRM", "Salesforce", "Stakeholder Management", "Presentation"],
+      "certifications": ["AWS Solutions Architect", "Azure Solutions Architect", "Salesforce Certified"],
+      "projects": ["Solution Architecture", "Technical Proposal", "Customer Demo", "Integration Design", "POC"],
+      "soft_skills": ["Communication", "Presentation", "Problem Solving", "Negotiation", "Relationship Building"]
+    },
+    "release_engineer": {
+      "name": "Release Engineer",
+      "skills": ["CI/CD", "Jenkins", "GitHub Actions", "GitLab CI", "Docker", "Kubernetes", "Terraform", "Ansible", "Git", "Linux", "Python", "Shell Scripting", "Version Control", "Release Management", "Build Systems", "Maven", "Gradle"],
+      "certifications": ["AWS DevOps Professional", "Certified Kubernetes Administrator", "Docker Certified Associate"],
+      "projects": ["CI/CD Pipeline", "Release Automation", "Build System", "Deployment Pipeline", "Rollback System"],
+      "soft_skills": ["Attention to Detail", "Communication", "Problem Solving", "Time Management", "Teamwork"]
+    },
+    "integration_engineer": {
+      "name": "Integration Engineer",
+      "skills": ["API", "REST", "SOAP", "GraphQL", "MuleSoft", "Dell Boomi", "Apache Camel", "Kafka", "RabbitMQ", "ETL", "SQL", "XML", "JSON", "Java", "Python", "Docker", "AWS", "Monitoring", "Security"],
+      "certifications": ["MuleSoft Certified Developer", "Dell Boomi Associate", "AWS Certified Developer"],
+      "projects": ["Integration Platform", "API Gateway", "Data Sync", "Partner Integration", "Legacy Migration"],
+      "soft_skills": ["Problem Solving", "Communication", "Analytical Thinking", "Attention to Detail", "Time Management"]
+    },
+    "apm_engineer": {
+      "name": "Application Performance Engineer",
+      "skills": ["APM", "New Relic", "Datadog", "Dynatrace", "Splunk", "Performance Testing", "Load Testing", "JMeter", "Gatling", "Profiling", "SQL Optimization", "Caching", "CDN", "Java", "Python", "Linux", "Networking", "Monitoring"],
+      "certifications": ["New Relic Certified", "Datadog Certified", "Performance Engineering Certificate"],
+      "projects": ["Performance Optimization", "APM Implementation", "Load Testing Suite", "Caching Strategy", "Monitoring Dashboard"],
+      "soft_skills": ["Analytical Thinking", "Problem Solving", "Communication", "Attention to Detail", "Time Management"]
+    },
+    "billing_engineer": {
+      "name": "Billing Systems Engineer",
+      "skills": ["SQL", "Java", "Python", "ETL", "Billing Systems", "Revenue Recognition", "Payment Processing", "Stripe", "PayPal", "REST API", "Microservices", "Docker", "AWS", "Testing", "Agile", "Data Modeling", "Compliance"],
+      "certifications": ["AWS Certified Developer", "Stripe Certified", "PMP"],
+      "projects": ["Billing System", "Payment Integration", "Revenue Report", "Invoice System", "Subscription Management"],
+      "soft_skills": ["Attention to Detail", "Communication", "Problem Solving", "Analytical Thinking", "Time Management"]
+    },
+    "search_engineer": {
+      "name": "Search Engineer",
+      "skills": ["Elasticsearch", "Solr", "Lucene", "Python", "Java", "NLP", "Information Retrieval", "Ranking", "Indexing", "Query Optimization", "Machine Learning", "Data Pipelines", "Docker", "Kubernetes", "AWS", "Monitoring", "A/B Testing"],
+      "certifications": ["Elastic Certified Engineer", "AWS Certified Developer", "Google Cloud Professional"],
+      "projects": ["Search Engine", "Recommendation System", "NLP Pipeline", "Ranking Algorithm", "Search Analytics"],
+      "soft_skills": ["Analytical Thinking", "Problem Solving", "Communication", "Research", "Attention to Detail"]
+    },
+    "simulation_engineer": {
+      "name": "Simulation Engineer",
+      "skills": ["MATLAB", "Simulink", "ANSYS", "COMSOL", "Python", "C++", "Finite Element Analysis", "CFD", "Data Analysis", "Modeling", "Optimization", "CAD", "Signal Processing", "Control Systems", "Statistics"],
+      "certifications": ["MATLAB Certified", "ANSYS Certified", "PE License"],
+      "projects": ["Simulation Model", "FEA Analysis", "CFD Simulation", "Optimization Study", "Digital Twin"],
+      "soft_skills": ["Analytical Thinking", "Problem Solving", "Communication", "Teamwork", "Attention to Detail"]
+    },
+    "geospatial_engineer": {
+      "name": "Geospatial Engineer",
+      "skills": ["GIS", "ArcGIS", "QGIS", "Python", "Remote Sensing", "Spatial Analysis", "GPS", "Geodatabase", "Cartography", "SQL", "PostGIS", "Google Earth Engine", "Image Processing", "Spatial Statistics", "Data Visualization"],
+      "certifications": ["Esri Certified Professional", "GIS Professional (GISP)"],
+      "projects": ["GIS Application", "Spatial Analysis", "Map Service", "Remote Sensing Analysis", "Geodatabase Design"],
+      "soft_skills": ["Analytical Thinking", "Communication", "Problem Solving", "Attention to Detail", "Teamwork"]
+    },
+    "bioinformatics": {
+      "name": "Bioinformatics Scientist",
+      "skills": ["Python", "R", "Bioconductor", "BLAST", "Genomics", "Proteomics", "NGS", "Sequence Analysis", "Phylogenetics", "SQL", "Linux", "Docker", "Machine Learning", "Statistics", "Data Visualization", "Git"],
+      "certifications": ["Bioinformatics Certificate", "AWS Cloud Practitioner"],
+      "projects": ["Genome Analysis Pipeline", "Variant Calling", "RNA-seq Analysis", "Drug Discovery", "Protein Structure Prediction"],
+      "soft_skills": ["Research", "Analytical Thinking", "Communication", "Problem Solving", "Teamwork"]
+    },
+    "nlp_engineer": {
+      "name": "NLP Engineer",
+      "skills": ["Python", "NLP", "Transformers", "BERT", "GPT", "Hugging Face", "spaCy", "NLTK", "TensorFlow", "PyTorch", "Text Classification", "NER", "Sentiment Analysis", "Machine Translation", "Vector Databases", "FastAPI", "Docker"],
+      "certifications": ["Google Professional ML Engineer", "AWS Machine Learning Specialty"],
+      "projects": ["Chatbot", "Text Classifier", "Sentiment Analyzer", "Named Entity Recognition", "Document Summarizer"],
+      "soft_skills": ["Research", "Communication", "Problem Solving", "Analytical Thinking", "Creativity"]
+    },
+    "recommendation_engineer": {
+      "name": "Recommendation Systems Engineer",
+      "skills": ["Python", "Collaborative Filtering", "Content-Based Filtering", "Deep Learning", "TensorFlow", "PyTorch", "Spark", "SQL", "Redis", "A/B Testing", "Feature Engineering", "Matrix Factorization", "Embeddings", "FastAPI", "Docker"],
+      "certifications": ["AWS Machine Learning Specialty", "Google Professional ML Engineer"],
+      "projects": ["Recommendation Engine", "A/B Testing Framework", "Feature Store", "Model Serving API", "Real-time Recommendations"],
+      "soft_skills": ["Analytical Thinking", "Communication", "Problem Solving", "Data-driven Decision Making", "Teamwork"]
+    },
+    "visualization_engineer": {
+      "name": "Data Visualization Engineer",
+      "skills": ["D3.js", "JavaScript", "TypeScript", "React", "Python", "Tableau", "Power BI", "SVG", "Canvas", "Data Modeling", "SQL", "REST API", "CSS", "HTML", "Storytelling", "A/B Testing"],
+      "certifications": ["Tableau Desktop Certified", "Power BI Certified", "Google Data Analytics"],
+      "projects": ["Interactive Dashboard", "Data Visualization Library", "Real-time Dashboard", "Infographic", "Report Automation"],
+      "soft_skills": ["Communication", "Creativity", "Storytelling", "Attention to Detail", "Problem Solving"]
+    },
+    "cuda_engineer": {
+      "name": "GPU/CUDA Engineer",
+      "skills": ["CUDA", "C++", "Python", "GPU Computing", "Parallel Computing", "OpenCL", "TensorRT", "cuDNN", "Thrust", "OpenMP", "MPI", "Performance Optimization", "Linear Algebra", "Deep Learning", "TensorFlow", "PyTorch"],
+      "certifications": ["NVIDIA CUDA Certified", "AWS Certified Developer"],
+      "projects": ["GPU Accelerated Application", "Deep Learning Inference", "Parallel Computing Framework", "Performance Benchmark", "CUDA Library"],
+      "soft_skills": ["Problem Solving", "Analytical Thinking", "Communication", "Research", "Attention to Detail"]
+    },
+    "eth_hacker": {
+      "name": "Ethical Hacker",
+      "skills": ["Kali Linux", "Metasploit", "Burp Suite", "Nmap", "Wireshark", "SQLMap", "OWASP", "Web App Testing", "Network Penetration", "Social Engineering", "Python", "Bash", "Ruby", "Reporting", "Vulnerability Research"],
+      "certifications": ["CEH", "OSCP", "CompTIA Security+", "GPEN", "eJPT"],
+      "projects": ["Penetration Test Report", "Vulnerability Assessment", "Bug Bounty", "Security Audit", "Red Team Report"],
+      "soft_skills": ["Ethics", "Communication", "Analytical Thinking", "Attention to Detail", "Report Writing"]
+    },
+    "terraform_engineer": {
+      "name": "Terraform/Infrastructure Engineer",
+      "skills": ["Terraform", "Pulumi", "CloudFormation", "AWS", "GCP", "Azure", "Ansible", "Docker", "Kubernetes", "Linux", "Python", "Bash", "Git", "CI/CD", "Monitoring", "Security", "Networking", "IAM", "Version Control"],
+      "certifications": ["HashiCorp Terraform Associate", "AWS Solutions Architect", "Certified Kubernetes Administrator"],
+      "projects": ["Infrastructure as Code", "Multi-cloud Setup", "Module Library", "Migration Automation", "Security Hardening"],
+      "soft_skills": ["Problem Solving", "Communication", "Documentation", "Analytical Thinking", "Teamwork"]
+    },
+    "observability_engineer": {
+      "name": "Observability Engineer",
+      "skills": ["Prometheus", "Grafana", "Jaeger", "OpenTelemetry", "ELK Stack", "Datadog", "New Relic", "Distributed Tracing", "Log Analysis", "Metrics", "Alerting", "Kubernetes", "Docker", "Go", "Python", "Linux", "Networking"],
+      "certifications": ["Datadog Certified", "New Relic Certified", "Certified Kubernetes Administrator"],
+      "projects": ["Observability Stack", "Distributed Tracing", "Alerting System", "Log Pipeline", "Performance Dashboard"],
+      "soft_skills": ["Analytical Thinking", "Problem Solving", "Communication", "Documentation", "Teamwork"]
+    }
+  },
+  "role_categories": {
+    "Engineering": ["sde", "frontend", "backend", "fullstack", "mobile", "embedded", "game_dev", "blockchain", "web3_developer", "iot_engineer", "robotics_engineer", "cuda_engineer"],
+    "Data & AI": ["data_analyst", "data_scientist", "data_engineer", "data_architect", "mlops", "ml_engineer", "ai_engineer", "ai_researcher", "nlp_engineer", "recommendation_engineer", "bioinformatics", "quantitative_analyst"],
+    "DevOps & Cloud": ["devops", "cloud", "cloud_native", "site_reliability", "platform_engineer", "terraform_engineer", "observability_engineer", "release_engineer", "integration_engineer", "apm_engineer"],
+    "Security": ["security", "penetration_tester", "eth_hacker"],
+    "Design & Creative": ["ux_designer", "animation", "content_creator"],
+    "Product & Management": ["product_manager", "technical_lead", "solutions_architect", "scrum_master", "consultant", "operations_manager"],
+    "Quality & Testing": ["qa_engineer", "automation_engineer"],
+    "Business": ["finance_analyst", "marketing_manager", "hr_specialist", "sales_engineer"],
+    "Writing & Communication": ["technical_writer", "visualization_engineer"],
+    "Specialized Engineering": ["database_admin", "network_engineer", "systems_admin", "it_support", "analytics_engineer", "growth_engineer", "search_engineer", "simulation_engineer", "geospatial_engineer", "billing_engineer"]
+  }
+}

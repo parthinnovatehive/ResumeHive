@@ -1,0 +1,1 @@
+# TODO: LinkedIn integration feature — coming later

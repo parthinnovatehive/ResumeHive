@@ -1,0 +1,158 @@
+{
+  "roles": {
+    "sde": {
+      "label": "Software Development Engineer",
+      "keywords": [
+        "python", "java", "javascript", "typescript", "c++", "c#", "go", "rust", "ruby",
+        "react", "angular", "vue", "nextjs", "nodejs", "express", "django", "flask", "fastapi", "spring",
+        "sql", "mysql", "postgresql", "mongodb", "redis", "elasticsearch", "dynamodb",
+        "aws", "gcp", "azure", "docker", "kubernetes", "terraform", "ci/cd", "jenkins", "github actions",
+        "rest api", "graphql", "grpc", "microservices", "distributed systems",
+        "git", "agile", "scrum", "jira", "confluence",
+        "data structures", "algorithms", "system design", "oop", "design patterns",
+        "machine learning", "deep learning", "nlp", "computer vision",
+        "linux", "bash", "shell scripting", "regex",
+        "html", "css", "tailwind", "sass", "webpack", "vite",
+        "testing", "unit testing", "integration testing", "jest", "pytest", "selenium",
+        "redis", "kafka", "rabbitmq", "celery", "threading", "concurrency",
+        "api design", "backend", "frontend", "full stack", "fullstack",
+        "performance optimization", "caching", "load balancing", "scalability"
+      ]
+    },
+    "data_analyst": {
+      "label": "Data Analyst",
+      "keywords": [
+        "python", "r", "sql", "excel", "google sheets",
+        "pandas", "numpy", "scipy", "matplotlib", "seaborn", "plotly",
+        "tableau", "power bi", "looker", "google data studio",
+        "mysql", "postgresql", "bigquery", "snowflake", "redshift",
+        "excel", "vlookup", "pivot tables", "conditional formatting", "data validation",
+        "statistics", "statistical analysis", "hypothesis testing", "regression", "a/b testing",
+        "data visualization", "dashboard", "reporting", "kpi", "metrics",
+        "etl", "data pipeline", "data cleaning", "data wrangling", "data mining",
+        "machine learning", "predictive analytics", "forecasting",
+        "sql queries", "stored procedures", "window functions", "cte",
+        "google analytics", "mixpanel", "amplitude", "segment",
+        "airflow", "dbt", "spark", "hadoop",
+        "data governance", "data quality", "data modeling",
+        "business intelligence", "business analysis", "requirements gathering",
+        "presentation", "stakeholder management", "communication"
+      ]
+    },
+    "product_manager": {
+      "label": "Product Manager",
+      "keywords": [
+        "product strategy", "product roadmap", "product vision", "product lifecycle",
+        "user research", "user interviews", "usability testing", "a/b testing",
+        "market research", "competitive analysis", "market analysis",
+        "agile", "scrum", "kanban", "sprint planning", "backlog grooming",
+        "stakeholder management", "cross-functional", "cross-functional teams",
+        "kpi", "metrics", "okr", "north star metric",
+        "jira", "confluence", "notion", "figma", "miro",
+        "sql", "data analysis", "data-driven", "analytics",
+        "user stories", "prd", "product requirements document",
+        "mvp", "minimum viable product", "prototyping",
+        "growth", "retention", "engagement", "conversion", "funnel",
+        "monetization", "pricing", "revenue", "burn rate",
+        "go-to-market", "gtm", "launch", "positioning",
+        "empathy", "communication", "leadership", "influence",
+        "design thinking", "customer discovery", "jobs to be done",
+        "technical", "api", "frontend", "backend", "infrastructure"
+      ]
+    },
+    "devops": {
+      "label": "DevOps Engineer",
+      "keywords": [
+        "aws", "gcp", "azure", "cloud", "cloud computing",
+        "docker", "kubernetes", "helm", "istio", "container",
+        "terraform", "pulumi", "cloudformation", "infrastructure as code", "iac",
+        "ci/cd", "jenkins", "github actions", "gitlab ci", "circleci", "argocd",
+        "linux", "bash", "shell scripting", "python", "go",
+        "ansible", "puppet", "chef", "salt",
+        "monitoring", "prometheus", "grafana", "datadog", "new relic", "splunk",
+        "logging", "elk stack", "elasticsearch", "logstash", "kibana",
+        "nginx", "apache", "load balancer", "reverse proxy",
+        "dns", "ssl", "tls", "certificate",
+        "sql", "mysql", "postgresql", "mongodb", "redis",
+        "git", "github", "gitlab", "bitbucket",
+        "security", "vault", "secrets management", "iam",
+        "microservices", "api gateway", "service mesh",
+        "automation", "scripting", "infrastructure",
+        "sre", "site reliability", "incident management", "on-call",
+        "performance", "optimization", "scalability", "high availability"
+      ]
+    },
+    "frontend": {
+      "label": "Frontend Developer",
+      "keywords": [
+        "javascript", "typescript", "html", "css", "sass", "less",
+        "react", "angular", "vue", "svelte", "nextjs", "nuxtjs", "gatsby",
+        "redux", "zustand", "mobx", "recoil", "jotai",
+        "tailwind", "bootstrap", "material ui", "chakra ui", "ant design",
+        "webpack", "vite", "parcel", "rollup", "esbuild",
+        "graphql", "rest api", "axios", "fetch",
+        "responsive design", "mobile first", "adaptive", "cross-browser",
+        "accessibility", "a11y", "wcag", "aria", "screen reader",
+        "seo", "meta tags", "structured data", "ssr", "ssg", "isr",
+        "testing", "jest", "cypress", "playwright", "storybook",
+        "performance", "core web vitals", "lighthouse", "lazy loading",
+        "git", "github", "code review", "pull request",
+        "figma", "sketch", "adobe xd", "design system",
+        "web components", "pwa", "service worker", "web worker",
+        "dom", "browser api", "canvas", "webgl", "svg",
+        "animation", "css animation", "framer motion", "gsap"
+      ]
+    },
+    "data_scientist": {
+      "label": "Data Scientist",
+      "keywords": [
+        "python", "r", "sql", "julia",
+        "pandas", "numpy", "scipy", "scikit-learn", "tensorflow", "pytorch", "keras",
+        "machine learning", "deep learning", "nlp", "natural language processing",
+        "computer vision", "reinforcement learning", "transfer learning",
+        "regression", "classification", "clustering", "dimensionality reduction",
+        "neural networks", "cnn", "rnn", "lstm", "transformer", "bert", "gpt",
+        "feature engineering", "feature selection", "model evaluation",
+        "cross-validation", "hyperparameter tuning", "grid search",
+        "statistical analysis", "hypothesis testing", "bayesian",
+        "a/b testing", "experimental design",
+        "data visualization", "matplotlib", "seaborn", "plotly", "tableau",
+        "sql", "mysql", "postgresql", "bigquery", "spark", "hadoop",
+        "etl", "data pipeline", "airflow", "dbt",
+        "jupyter", "notebook", "colab",
+        "git", "docker", "mlflow", "weights & biases", "wandb",
+        "mlops", "model deployment", "api", "fastapi", "flask",
+        "time series", "forecasting", "anomaly detection",
+        "recommendation systems", "search", "ranking",
+        "research", "publications", "paper", "arxiv",
+        "communication", "presentation", "storytelling"
+      ]
+    }
+  },
+  "action_verbs": [
+    "achieved", "administered", "analyzed", "automated", "built",
+    "collaborated", "coordinated", "created", "decreased", "delivered",
+    "demonstrated", "designed", "developed", "directed", "drove",
+    "established", "evaluated", "executed", "expanded", "facilitated",
+    "generated", "grew", "identified", "implemented", "improved",
+    "increased", "initiated", "integrated", "introduced", "launched",
+    "led", "maintained", "managed", "mentored", "migrated",
+    "negotiated", "optimized", "orchestrated", "organized", "overhauled",
+    "performed", "planned", "produced", "proposed", "reduced",
+    "refactored", "reorganized", "resolved", "revamped", "scaled",
+    "spearheaded", "standardized", "streamlined", "strengthened",
+    "supervised", "spearheaded", "transformed", "troubleshot", "unified",
+    "upgraded", "validated", "drove", "pioneered", "spearheaded"
+  ],
+  "quantification_patterns": [
+    "\\d+%", "\\$\\d+", "\\d+\\+",
+    "\\b\\d{1,3}(,\\d{3})+\\b",
+    "\\b\\d+x\\b", "\\bfold\\b",
+    "\\b\\d+ (users|customers|clients|team members|engineers|developers)\\b",
+    "\\b\\d+ (minutes|hours|days|weeks|months|years)\\b",
+    "\\b\\$\\d+[kmb]?\\b",
+    "\\b\\d+ (projects|features|releases|deployments)\\b",
+    "\\breduced.*\\d+", "\\bincreased.*\\d+",
+    "\\bimproved.*\\d+", "\\bgrew.*\\d+"
+  ]
+}
