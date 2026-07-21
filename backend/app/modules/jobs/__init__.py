@@ -1,1 +1,3 @@
-# TODO: Job search / tracking feature — coming later
+from app.modules.jobs.router import router as jobs_router
+
+__all__ = ["jobs_router"]

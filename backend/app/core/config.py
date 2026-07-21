@@ -11,5 +11,8 @@ class Settings(BaseSettings):
 
     STORAGE_DIR: str = "app/storage"
 
+    ADZUNA_APP_ID: str = ""
+    ADZUNA_APP_KEY: str = ""
+
 
 settings = Settings()
