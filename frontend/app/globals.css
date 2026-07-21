@@ -2,6 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-gray-50 text-gray-900;
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans antialiased min-h-screen relative overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.5);
+    @apply backdrop-blur-2xl border shadow-glass;
+  }
+  .glass-card {
+    background-color: rgba(255, 255, 255, 0.65);
+    @apply backdrop-blur-xl border border-white/60 shadow-premium hover:shadow-premium-hover transition-all duration-500 ease-out;
+  }
+  .glass-pill {
+    background-color: rgba(255, 255, 255, 0.7);
+    @apply backdrop-blur-2xl border border-white/70 shadow-sm transition-all duration-300;
+  }
+  .glass-input {
+    background-color: rgba(255, 255, 255, 0.5);
+    @apply backdrop-blur-lg border border-white/50 shadow-inner transition-all duration-300;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200/80 rounded-full transition-colors;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-300;
 }

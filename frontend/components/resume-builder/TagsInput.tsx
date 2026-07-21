@@ -48,23 +48,23 @@ export function TagsInput({
   };
 
   return (
-    <div>
+    <div className="relative group">
       {label && (
-        <label className="mb-1 block text-sm font-medium text-gray-700">
+        <label className="mb-1.5 block text-sm font-semibold tracking-wide text-slate-700 transition-colors group-focus-within:text-premium-blue">
           {label}
         </label>
       )}
-      <div className="flex flex-wrap gap-2 rounded-lg border border-gray-300 bg-white p-2 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200">
+      <div className="flex flex-wrap gap-2.5 rounded-xl bg-white/50 backdrop-blur-md px-4 py-3 border border-slate-200/60 shadow-sm transition-all duration-300 focus-within:bg-white focus-within:border-premium-blue/40 focus-within:ring-4 focus-within:ring-premium-blue/10 hover:border-slate-300">
         {value.map((tag, i) => (
           <span
             key={i}
-            className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-800"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-premium-blueLight/50 px-3 py-1.5 text-sm font-medium text-premium-blue shadow-sm border border-premium-blue/10"
           >
             {tag}
             <button
               type="button"
               onClick={() => removeTag(i)}
-              className="ml-0.5 rounded-full hover:bg-blue-200"
+              className="ml-1 rounded-full p-0.5 hover:bg-premium-blue/10 transition-colors"
               aria-label={`Remove ${tag}`}
             >
               &times;
@@ -81,12 +81,12 @@ export function TagsInput({
           onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
           onKeyDown={handleKeyDown}
           placeholder={value.length === 0 ? placeholder : ""}
-          className="min-w-[120px] flex-1 bg-transparent text-sm outline-none"
+          className="min-w-[140px] flex-1 bg-transparent text-sm outline-none text-slate-900 placeholder:text-slate-400"
           aria-label={label || "Add tag"}
         />
       </div>
       {showSuggestions && filtered.length > 0 && (
-        <ul className="mt-1 max-h-40 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-sm">
+        <ul className="absolute z-50 w-full mt-2 max-h-48 overflow-y-auto rounded-xl border border-white/60 bg-white/80 backdrop-blur-xl shadow-premium">
           {filtered.slice(0, 8).map((s) => (
             <li key={s}>
               <button
@@ -95,7 +95,7 @@ export function TagsInput({
                   e.preventDefault();
                   addTag(s);
                 }}
-                className="w-full px-3 py-2 text-left text-sm hover:bg-blue-50"
+                className="w-full px-4 py-2.5 text-left text-sm font-medium text-slate-700 hover:bg-premium-blueLight/30 hover:text-premium-blue transition-colors"
               >
                 {s}
               </button>

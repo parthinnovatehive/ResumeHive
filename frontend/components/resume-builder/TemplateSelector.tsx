@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import type { TemplateName } from "@/types/resume";
 import { TEMPLATE_CONFIG, TEMPLATE_NAMES } from "@/types/resume";
 
@@ -16,30 +17,42 @@ export function TemplateSelector({ selected, onChange }: Props) {
         const cfg = TEMPLATE_CONFIG[key];
         const isActive = selected === key;
         return (
-          <button
+          <motion.button
+            whileHover={{ y: -6, scale: 1.03 }}
+            whileTap={{ scale: 0.95 }}
             key={key}
             onClick={() => onChange(key)}
-            className={`group flex flex-col items-center rounded-lg border-2 p-2 transition ${
+            className={`group relative flex flex-col items-center rounded-2xl border p-4 transition-all duration-400 ${
               isActive
-                ? "border-blue-600 bg-blue-50 shadow-sm"
-                : "border-gray-200 hover:border-gray-400 hover:bg-gray-50"
+                ? "border-premium-blue/0 shadow-[0_8px_30px_rgba(37,99,235,0.12)]"
+                : "border-slate-200/50 bg-white/40 hover:border-premium-blue/20 hover:bg-white/80 hover:shadow-lg"
             }`}
           >
+            {/* Active Glow & Gradient Ring Effect */}
+            {isActive && (
+              <>
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-premium-blue to-premium-purple p-[2px]">
+                  <div className="h-full w-full rounded-[14px] bg-white/90 backdrop-blur-md" />
+                </div>
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-premium-blue/10 to-premium-purple/10 opacity-60" />
+              </>
+            )}
+            
             {/* Mini preview thumbnail — all layouts are single-column (ATS-safe) */}
-            <div className="mb-1.5 h-[80px] w-[56px] overflow-hidden rounded border border-gray-100 bg-white p-1 shadow-inner">
+            <div className="relative z-10 mb-2.5 h-[84px] w-[60px] overflow-hidden rounded-md border border-slate-200/80 bg-white p-1.5 shadow-sm transition-transform duration-300 group-hover:shadow-md">
               <TemplateThumb template={key} />
             </div>
             <span
-              className={`text-xs font-medium ${
-                isActive ? "text-blue-700" : "text-gray-700"
+              className={`relative z-10 text-xs font-bold tracking-wide transition-colors ${
+                isActive ? "text-premium-blue drop-shadow-sm" : "text-slate-600 group-hover:text-slate-900"
               }`}
             >
               {cfg.label}
             </span>
-            <span className="mt-0.5 max-w-[80px] text-center text-[10px] leading-tight text-gray-400">
+            <span className="relative z-10 mt-1 max-w-[80px] text-center text-[10px] leading-tight font-medium text-slate-400">
               {cfg.description}
             </span>
-          </button>
+          </motion.button>
         );
       })}
     </div>

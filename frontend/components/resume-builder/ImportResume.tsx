@@ -56,23 +56,38 @@ export function ImportResume({ onParsed }: Props) {
   };
 
   return (
-    <div className="rounded-lg border border-dashed border-gray-300 bg-white p-4">
-      <div className="flex items-center justify-between gap-3">
-        <div>
-          <p className="text-sm font-medium text-gray-800">
-            Have a resume already?
-          </p>
-          <p className="text-xs text-gray-500">
-            Upload a PDF or DOCX and we&apos;ll pre-fill the form for you.
-          </p>
+    <div className="relative group overflow-hidden rounded-2xl bg-white/40 backdrop-blur-xl border border-white/60 p-5 shadow-sm transition-all hover:shadow-md hover:bg-white/60">
+      {/* Soft gradient border effect via pseudo-element illusion */}
+      <div className="absolute inset-0 z-[-1] rounded-2xl bg-gradient-to-br from-premium-blue/10 to-premium-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      <div className="flex flex-col gap-4">
+        <div className="flex items-start gap-4">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.04)] border border-slate-100 group-hover:scale-105 transition-transform duration-300">
+            <svg className="w-5 h-5 text-premium-blue" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
+          </div>
+          <div className="flex-1 pt-0.5">
+            <p className="text-[14px] font-bold tracking-wide text-slate-800 group-hover:text-premium-blue transition-colors">
+              Have a resume already?
+            </p>
+            <p className="mt-1 text-[13px] leading-relaxed font-medium text-slate-500">
+              Upload a PDF or DOCX and we&apos;ll pre-fill the form instantly.
+            </p>
+          </div>
         </div>
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
           disabled={uploading}
-          className="shrink-0 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-40"
+          className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-[13px] font-bold tracking-wide uppercase text-white shadow-md transition-all hover:bg-slate-800 hover:-translate-y-0.5 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-40"
         >
-          {uploading ? "Parsing..." : "Upload resume"}
+          {uploading ? (
+            <>
+              <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeDasharray="32" strokeDashoffset="0" className="opacity-30" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="opacity-100" /></svg>
+              Parsing...
+            </>
+          ) : (
+            "Upload Resume"
+          )}
         </button>
         <input
           ref={inputRef}
