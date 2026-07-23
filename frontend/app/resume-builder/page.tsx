@@ -81,6 +81,14 @@ function ResumeBuilder() {
   const [template, setTemplate] = useState<TemplateName>("classic");
   const [showGapAnalysis, setShowGapAnalysis] = useState(false);
   const initialLoadDone = useRef(false);
+  const atsPanelRef = useRef<HTMLDivElement>(null);
+
+  /* ── Scroll to ATS panel when score is computed ───────────────── */
+  useEffect(() => {
+    if (atsResult && atsPanelRef.current) {
+      atsPanelRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [atsResult]);
 
   /* ── Restore template preference ──────────────────────────────── */
 
@@ -518,6 +526,7 @@ function ResumeBuilder() {
             {/* ATS Result Inline */}
             {atsResult && (
               <motion.div 
+                ref={atsPanelRef}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-8 glass-card p-6 rounded-3xl border border-premium-blue/20 bg-white/80 backdrop-blur-xl"

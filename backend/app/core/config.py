@@ -13,6 +13,7 @@ class Settings(BaseSettings):
 
     ADZUNA_APP_ID: str = ""
     ADZUNA_APP_KEY: str = ""
+    JOB_SEARCH_CACHE_TTL_HOURS: int = 6
 
 
 settings = Settings()

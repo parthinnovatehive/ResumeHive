@@ -40,8 +40,8 @@ export interface CountryOption {
 }
 
 export interface JobSearchParams {
-  what: string;
-  where?: string;
+  what: string | string[];
+  where?: string | string[];
   country?: string;
   page?: number;
   results_per_page?: number;

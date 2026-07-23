@@ -1,16 +1,87 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
-import { Search, MapPin, ExternalLink, Briefcase, Clock, DollarSign, ChevronLeft, ChevronRight, Loader2, ArrowRight } from "lucide-react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { Search, MapPin, ExternalLink, Briefcase, Clock, DollarSign, ChevronLeft, ChevronRight, Loader2, ArrowRight, Heart, HeartOff, X } from "lucide-react";
 import { searchJobs, getCountries } from "@/lib/api/jobs";
 import type { JobListing, CountryOption, JobSearchParams } from "@/types/job";
 import { motion, AnimatePresence } from "framer-motion";
+import { TagsInput } from "@/components/resume-builder/TagsInput";
+
+type JobStatus = "none" | "applied" | "interview" | "offer" | "rejected";
 
 const SORT_OPTIONS = [
   { value: "relevance", label: "Relevance" },
   { value: "date", label: "Date" },
   { value: "salary", label: "Salary" },
 ] as const;
+
+const JOB_TITLE_SUGGESTIONS = [
+  "Software Developer",
+  "Frontend Developer",
+  "Backend Developer",
+  "Full Stack Developer",
+  "Data Scientist",
+  "Product Manager",
+  "UX Designer",
+  "QA Engineer",
+  "DevOps Engineer",
+  "Cloud Engineer",
+];
+
+const LOCATION_SUGGESTIONS_BY_COUNTRY: Record<string, string[]> = {
+  in: [
+    "Bangalore, India",
+    "Mumbai, India",
+    "Delhi, India",
+    "Hyderabad, India",
+    "Chennai, India",
+    "Pune, India",
+    "Kolkata, India",
+    "Gurugram, India",
+    "Noida, India",
+  ],
+  gb: [
+    "London, United Kingdom",
+    "Manchester, United Kingdom",
+    "Birmingham, United Kingdom",
+    "Edinburgh, United Kingdom",
+    "Leeds, United Kingdom",
+  ],
+  us: [
+    "New York, United States",
+    "San Francisco, United States",
+    "Seattle, United States",
+    "Austin, United States",
+    "Chicago, United States",
+    "Los Angeles, United States",
+  ],
+  de: [
+    "Berlin, Germany",
+    "Munich, Germany",
+    "Hamburg, Germany",
+    "Frankfurt, Germany",
+  ],
+  fr: [
+    "Paris, France",
+    "Lyon, France",
+    "Marseille, France",
+  ],
+  br: [
+    "Sao Paulo, Brazil",
+    "Rio de Janeiro, Brazil",
+    "Belo Horizonte, Brazil",
+  ],
+  ca: [
+    "Toronto, Canada",
+    "Vancouver, Canada",
+    "Montreal, Canada",
+  ],
+  au: [
+    "Sydney, Australia",
+    "Melbourne, Australia",
+    "Brisbane, Australia",
+  ],
+};
 
 const JOB_TAGLINES = [
   { text: "Discover careers built for your ", highlight: "future." },
@@ -28,6 +99,20 @@ const JOB_TAGLINES = [
   { text: "Empower your career with intelligent job ", highlight: "discovery." },
   { text: "Unlock opportunities with ", highlight: "ResumeHive." },
 ];
+
+function buildSearchCombos(titles: string[], locations: string[]) {
+  if (titles.length === 0) return [];
+  if (locations.length === 0) {
+    return titles.map((title) => ({ what: title, where: undefined }));
+  }
+  const combos: Array<{ what: string; where: string | undefined }> = [];
+  for (const title of titles) {
+    for (const location of locations) {
+      combos.push({ what: title, where: location });
+    }
+  }
+  return combos;
+}
 
 function AnimatedJobsHero() {
   const [index, setIndex] = useState(0);
@@ -124,14 +209,20 @@ export default function JobsPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const [what, setWhat] = useState("");
-  const [where, setWhere] = useState("");
+  const [whatTags, setWhatTags] = useState<string[]>(["Software Developer"]);
+  const [whereTags, setWhereTags] = useState<string[]>([]);
   const [country, setCountry] = useState("in");
   const [page, setPage] = useState(1);
-  const [sortBy, setSortBy] = useState<JobSearchParams["sort_by"]>("relevance");
+  const [sortBy, setSortBy] = useState<JobSearchParams["sort_by"]>("date");
   const [salaryMin, setSalaryMin] = useState("");
   const [fullTimeOnly, setFullTimeOnly] = useState(false);
   const [permanentOnly, setPermanentOnly] = useState(false);
+  const [selectedJob, setSelectedJob] = useState<JobListing | null>(null);
+  const [favorites, setFavorites] = useState<string[]>([]);
+
+  const [jobStatuses, setJobStatuses] = useState<Record<string, JobStatus>>({});
+  const [viewFavorites, setViewFavorites] = useState(false);
+  const [statusFilter, setStatusFilter] = useState<JobStatus | "all">("all");
 
   const resultsPerPage = 20;
   const totalPages = Math.ceil(totalCount / resultsPerPage);
@@ -141,21 +232,52 @@ export default function JobsPage() {
       .then(setCountries)
       .catch(() => setCountries([{ code: "in", name: "India" }]));
 
-    setLoading(true);
-    searchJobs({ what: "software developer", country: "in", sort_by: "date", results_per_page: 20 })
-      .then((res) => { setJobs(res.results); setTotalCount(res.count); })
-      .catch(() => {})
-      .finally(() => setLoading(false));
+    const storedFavorites = window.localStorage.getItem("resumeHiveJobFavorites");
+    if (storedFavorites) {
+      try {
+        setFavorites(JSON.parse(storedFavorites));
+      } catch {
+        setFavorites([]);
+      }
+    }
+
+    const storedStatuses = window.localStorage.getItem("resumeHiveJobStatuses");
+    if (storedStatuses) {
+      try {
+        setJobStatuses(JSON.parse(storedStatuses));
+      } catch {
+        setJobStatuses({});
+      }
+    }
+
+    doSearch(1);
   }, []);
 
+  useEffect(() => {
+    if (favorites.length > 0) {
+      window.localStorage.setItem("resumeHiveJobFavorites", JSON.stringify(favorites));
+    } else {
+      window.localStorage.removeItem("resumeHiveJobFavorites");
+    }
+  }, [favorites]);
+
+  useEffect(() => {
+    const hasTracked = Object.keys(jobStatuses).length > 0;
+    if (hasTracked) {
+      window.localStorage.setItem("resumeHiveJobStatuses", JSON.stringify(jobStatuses));
+    } else {
+      window.localStorage.removeItem("resumeHiveJobStatuses");
+    }
+  }, [jobStatuses]);
+
   const doSearch = useCallback(async (p: number) => {
-    if (!what.trim()) return;
+    if (whatTags.length === 0) return;
     setLoading(true);
     setError(null);
     try {
       const res = await searchJobs({
-        what: what.trim(),
-        where: where.trim() || undefined,
+        what: whatTags,
+        where: whereTags.length > 0 ? whereTags : undefined,
         country,
         page: p,
         results_per_page: resultsPerPage,
@@ -168,18 +290,47 @@ export default function JobsPage() {
       setTotalCount(res.count);
       setPage(p);
     } catch (err: any) {
-      const msg = err?.response?.data?.detail || err?.message || "Failed to fetch jobs";
+      const detail = err?.response?.data?.detail;
+      let msg = "Failed to fetch jobs";
+      if (typeof detail === "string") {
+        msg = detail;
+      } else if (Array.isArray(detail) && detail.length > 0) {
+        msg = detail.map((d: any) => d.msg).join(", ");
+      } else if (err?.message) {
+        msg = err.message;
+      }
       setError(msg);
       setJobs([]);
       setTotalCount(0);
     } finally {
       setLoading(false);
     }
-  }, [what, where, country, sortBy, salaryMin, fullTimeOnly, permanentOnly]);
+  }, [whatTags, whereTags, country, sortBy, salaryMin, fullTimeOnly, permanentOnly]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     doSearch(1);
+  };
+
+  const toggleFavorite = (jobId: string) => {
+    setFavorites((prev) =>
+      prev.includes(jobId) ? prev.filter((id) => id !== jobId) : [...prev, jobId]
+    );
+  };
+
+  const setJobStatus = (jobId: string, status: JobStatus) => {
+    setJobStatuses((prev) => ({
+      ...prev,
+      [jobId]: status,
+    }));
+  };
+
+  const showJobDetails = (job: JobListing) => {
+    setSelectedJob(job);
+  };
+
+  const closeJobDetails = () => {
+    setSelectedJob(null);
   };
 
   const formatSalary = (min: number | null, max: number | null) => {
@@ -195,10 +346,36 @@ export default function JobsPage() {
     return `Up to ${fmt(max!)}`;
   };
 
+  const statusLabels: Record<JobStatus, string> = {
+    none: "No status",
+    applied: "Applied",
+    interview: "Interview",
+    offer: "Offer",
+    rejected: "Rejected",
+  };
+
+  const statusColors: Record<JobStatus, string> = {
+    none: "bg-slate-100 text-slate-600",
+    applied: "bg-sky-100 text-sky-700",
+    interview: "bg-amber-100 text-amber-700",
+    offer: "bg-emerald-100 text-emerald-700",
+    rejected: "bg-rose-100 text-rose-700",
+  };
+
+  const statusCount = (status: JobStatus) =>
+    Object.values(jobStatuses).filter((value) => value === status).length;
+
+  const filteredJobs = jobs
+    .filter((job) => !viewFavorites || favorites.includes(job.id))
+    .filter((job) => statusFilter === "all" || jobStatuses[job.id] === statusFilter);
+
   const timeAgo = (dateStr: string) => {
     if (!dateStr) return "";
-    const diff = Date.now() - new Date(dateStr).getTime();
+    const ts = typeof dateStr === "number" ? dateStr * 1000 : Date.parse(dateStr);
+    if (isNaN(ts)) return "";
+    const diff = Date.now() - ts;
     const days = Math.floor(diff / 86400000);
+    if (days < 0) return "Just now";
     if (days === 0) return "Today";
     if (days === 1) return "Yesterday";
     if (days < 7) return `${days}d ago`;
@@ -226,24 +403,23 @@ export default function JobsPage() {
         >
           <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
             <motion.div whileTap={{ scale: 0.99 }} className="relative md:col-span-2 group">
-              <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-premium-blue transition-colors duration-300" />
-              <input
-                type="text"
-                placeholder="Job title or keywords (e.g. software developer)"
-                value={what}
-                onChange={(e) => setWhat(e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-white/50 py-3 pl-11 pr-4 text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:border-premium-blue/50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-premium-blue/10 transition-all duration-300 shadow-sm"
-                required
+              <Search size={18} className="absolute left-4 top-4 text-slate-400 group-focus-within:text-premium-blue transition-colors duration-300" />
+              <TagsInput
+                value={whatTags}
+                onChange={setWhatTags}
+                placeholder="Add one or more job titles"
+                suggestions={JOB_TITLE_SUGGESTIONS}
+                label="Job titles"
               />
             </motion.div>
             <motion.div whileTap={{ scale: 0.99 }} className="relative group">
-              <MapPin size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-premium-purple transition-colors duration-300" />
-              <input
-                type="text"
-                placeholder="Location"
-                value={where}
-                onChange={(e) => setWhere(e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-white/50 py-3 pl-11 pr-4 text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:border-premium-purple/50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-premium-purple/10 transition-all duration-300 shadow-sm"
+              <MapPin size={18} className="absolute left-4 top-4 text-slate-400 group-focus-within:text-premium-purple transition-colors duration-300" />
+              <TagsInput
+                value={whereTags}
+                onChange={setWhereTags}
+                placeholder="Add one or more locations"
+                suggestions={LOCATION_SUGGESTIONS_BY_COUNTRY[country] ?? []}
+                label="Locations"
               />
             </motion.div>
             <motion.select
@@ -315,7 +491,7 @@ export default function JobsPage() {
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              disabled={loading || !what.trim()}
+              disabled={loading || whatTags.length === 0}
               className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-premium-blue to-premium-purple px-6 py-2.5 text-sm font-bold text-white shadow-[0_4px_14px_rgba(37,99,235,0.25)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.4)] disabled:opacity-50 transition-all duration-300"
             >
               {loading ? (
@@ -348,7 +524,7 @@ export default function JobsPage() {
           )}
         </AnimatePresence>
 
-        {!loading && jobs.length === 0 && !error && what.trim() && (
+        {!loading && jobs.length === 0 && !error && whatTags.length > 0 && (
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             className="py-16 text-center"
@@ -361,7 +537,7 @@ export default function JobsPage() {
           </motion.div>
         )}
 
-        {!loading && jobs.length === 0 && !error && !what.trim() && (
+        {!loading && jobs.length === 0 && !error && whatTags.length === 0 && (
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             className="py-24 text-center"
@@ -375,17 +551,52 @@ export default function JobsPage() {
           </motion.div>
         )}
 
-        {jobs.length > 0 && (
+        {(jobs.length > 0 || Object.values(jobStatuses).some((status) => status !== "none")) && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-bold text-slate-800">Latest Opportunities</h2>
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 bg-white/60 px-3 py-1 rounded-full border border-slate-200/60 backdrop-blur-sm">
-                {totalCount.toLocaleString()} Matches
-              </p>
+            <div className="mb-6 grid gap-4 md:grid-cols-5">
+              <button
+                type="button"
+                onClick={() => setStatusFilter("all")}
+                className={`col-span-2 rounded-3xl border px-4 py-4 text-left shadow-sm transition ${statusFilter === "all" ? "border-slate-300 bg-slate-900 text-white" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"}`}
+              >
+                <p className="text-sm font-semibold">All applications</p>
+                <p className="mt-2 text-2xl font-bold text-slate-900">{Object.values(jobStatuses).filter((value) => value !== "none").length}</p>
+              </button>
+              {(["applied", "interview", "offer", "rejected"] as JobStatus[]).map((status) => (
+                <button
+                  key={status}
+                  type="button"
+                  onClick={() => setStatusFilter(status)}
+                  className={`rounded-3xl border px-4 py-4 text-left shadow-sm transition ${statusFilter === status ? "border-slate-300 bg-slate-900 text-white" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"}`}
+                >
+                  <p className="text-sm font-semibold capitalize">{statusLabels[status]}</p>
+                  <p className="mt-2 text-2xl font-bold text-slate-900">{statusCount(status)}</p>
+                </button>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+              <div>
+                <h2 className="text-lg font-bold text-slate-800">Latest Opportunities</h2>
+                <p className="text-sm text-slate-500">Explore jobs with rich details, save favorites, and keep track of every application stage.</p>
+              </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setViewFavorites((prev) => !prev)}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50"
+                >
+                  {viewFavorites ? "View all jobs" : "View favorites"}
+                  {viewFavorites ? <HeartOff size={16} /> : <Heart size={16} />}
+                </button>
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 bg-white/60 px-3 py-1 rounded-full border border-slate-200/60 backdrop-blur-sm">
+                  {filteredJobs.length.toLocaleString()} Shown
+                </p>
+              </div>
             </div>
 
             <motion.div 
@@ -400,7 +611,7 @@ export default function JobsPage() {
                 }
               }}
             >
-              {jobs.map((job) => (
+              {filteredJobs.map((job) => (
                 <motion.div
                   key={job.id}
                   variants={{
@@ -416,6 +627,14 @@ export default function JobsPage() {
                         <h3 className="text-lg font-bold text-slate-900 group-hover:text-premium-blue transition-colors">
                           {job.title}
                         </h3>
+                        <button
+                          type="button"
+                          onClick={() => toggleFavorite(job.id)}
+                          className="inline-flex items-center justify-center rounded-full p-2 text-slate-500 transition hover:text-premium-red hover:bg-red-50"
+                          aria-label={favorites.includes(job.id) ? "Remove favorite" : "Add favorite"}
+                        >
+                          {favorites.includes(job.id) ? <Heart size={18} className="text-premium-red" /> : <HeartOff size={18} />}
+                        </button>
                       </div>
                       <p className="text-sm font-semibold text-slate-500 mb-4">{job.company.display_name}</p>
 
@@ -448,7 +667,9 @@ export default function JobsPage() {
                             {job.category.label}
                           </span>
                         )}
-                        
+                        <span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${statusColors[jobStatuses[job.id] || "none"]}`}>
+                          {statusLabels[jobStatuses[job.id] || "none"]}
+                        </span>
                         <span className="text-[11px] font-medium text-slate-400 ml-auto flex items-center">
                           {timeAgo(job.created)}
                         </span>
@@ -458,9 +679,30 @@ export default function JobsPage() {
                         className="line-clamp-2 text-sm leading-relaxed text-slate-500"
                         dangerouslySetInnerHTML={{ __html: job.description }}
                       />
+                      <div className="mt-4 flex flex-wrap items-center gap-3">
+                        <button
+                          type="button"
+                          onClick={() => showJobDetails(job)}
+                          className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-white"
+                        >
+                          View details
+                        </button>
+                        <div className="flex items-center gap-2">
+                          {(["applied", "interview", "offer", "rejected"] as JobStatus[]).map((status) => (
+                            <button
+                              key={status}
+                              type="button"
+                              onClick={() => setJobStatus(job.id, status)}
+                              className={`rounded-full px-3 py-1 text-[11px] font-semibold transition ${jobStatuses[job.id] === status ? "border border-slate-300 bg-slate-900 text-white" : "border border-slate-200 bg-white text-slate-600 hover:bg-slate-100"}`}
+                            >
+                              {statusLabels[status]}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="shrink-0 pt-1">
+                    <div className="shrink-0 pt-1 flex flex-col items-end gap-3">
                       <a
                         href={job.redirect_url}
                         target="_blank"
@@ -502,6 +744,131 @@ export default function JobsPage() {
           </motion.div>
         )}
       </div>
+
+      <AnimatePresence>
+        {selectedJob && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 px-4 py-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              initial={{ y: 20, opacity: 0, scale: 0.98 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 20, opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="relative w-full max-w-3xl overflow-hidden rounded-[32px] bg-white shadow-2xl ring-1 ring-slate-200"
+            >
+              <div className="flex items-start justify-between gap-4 border-b border-slate-200 px-6 py-5">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Job details</p>
+                  <h3 className="mt-2 text-2xl font-bold text-slate-900">{selectedJob.title}</h3>
+                  <p className="mt-1 text-sm text-slate-500">{selectedJob.company.display_name}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={closeJobDetails}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500 transition hover:bg-slate-100"
+                  aria-label="Close details"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <div className="grid gap-6 px-6 py-6 lg:grid-cols-[1.5fr_0.9fr]">
+                <div className="space-y-6">
+                  <section className="space-y-3 rounded-3xl bg-slate-50 p-5">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
+                        <MapPin size={14} />
+                        {selectedJob.location.display_name || "Remote"}
+                      </span>
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
+                        <DollarSign size={14} />
+                        {formatSalary(selectedJob.salary_min, selectedJob.salary_max) || "Competitive"}
+                      </span>
+                      {selectedJob.contract_time && (
+                        <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200 capitalize">
+                          <Clock size={14} />
+                          {selectedJob.contract_time.replace("_", " ")}
+                        </span>
+                      )}
+                      {selectedJob.contract_type && (
+                        <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200 capitalize">
+                          {selectedJob.contract_type}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="space-y-2">
+                      <h4 className="text-sm font-semibold text-slate-900">Company overview</h4>
+                      <p className="text-sm leading-6 text-slate-600">
+                        {selectedJob.company.display_name || "Company details are limited for this listing."}
+                      </p>
+                    </div>
+                  </section>
+
+                  <section className="space-y-3 rounded-3xl bg-slate-50 p-5">
+                    <div className="flex items-center justify-between gap-4">
+                      <div>
+                        <h4 className="text-sm font-semibold text-slate-900">Job description</h4>
+                        <p className="text-sm text-slate-500">Read the full posting and discover what matters most.</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => toggleFavorite(selectedJob.id)}
+                        className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+                      >
+                        {favorites.includes(selectedJob.id) ? "Favorited" : "Save job"}
+                        {favorites.includes(selectedJob.id) ? <Heart size={16} className="text-rose-500" /> : <HeartOff size={16} />}
+                      </button>
+                    </div>
+                    <div className="max-h-[340px] overflow-y-auto rounded-3xl bg-white p-5 text-sm leading-6 text-slate-700 shadow-sm">
+                      <div dangerouslySetInnerHTML={{ __html: selectedJob.description }} />
+                    </div>
+                  </section>
+                </div>
+
+                <aside className="space-y-6 rounded-3xl bg-slate-50 p-5">
+                  <section className="space-y-3">
+                    <h4 className="text-sm font-semibold text-slate-900">Required skills</h4>
+                    <p className="text-sm text-slate-600">Based on the role and category, focus on the core skills below.</p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">{selectedJob.category?.label || "Job expertise"}</span>
+                      <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">{selectedJob.contract_time ? selectedJob.contract_time.replace("_", " ") : "Flexible"}</span>
+                      <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">{selectedJob.contract_type || "Any type"}</span>
+                    </div>
+                  </section>
+
+                  <section className="space-y-3">
+                    <h4 className="text-sm font-semibold text-slate-900">Application steps</h4>
+                    <ol className="space-y-3 text-sm leading-6 text-slate-600">
+                      <li className="flex gap-3"><span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-[11px] font-bold text-slate-700">1</span> Review the job details and salary range.</li>
+                      <li className="flex gap-3"><span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-[11px] font-bold text-slate-700">2</span> Tailor your resume and cover letter for this role.</li>
+                      <li className="flex gap-3"><span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-[11px] font-bold text-slate-700">3</span> Click apply to open the employer application page.</li>
+                    </ol>
+                  </section>
+
+                  <section className="space-y-3 rounded-3xl bg-white p-5 shadow-sm">
+                    <h4 className="text-sm font-semibold text-slate-900">Apply now</h4>
+                    <p className="text-sm text-slate-600">Jump to the external application and keep a note of next steps.</p>
+                    <a
+                      href={selectedJob.redirect_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+                    >
+                      Go to application
+                      <ExternalLink size={16} />
+                    </a>
+                  </section>
+                </aside>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

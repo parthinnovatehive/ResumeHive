@@ -1,8 +1,8 @@
 import logging
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException
 
-from app.core.config import Settings, settings
+from app.core.config import settings
 from app.core.security import get_current_user_id
 from app.modules.jobs.schemas import (
     CountryOption,
@@ -19,31 +19,23 @@ router = APIRouter(prefix="/jobs", tags=["jobs"])
 
 @router.get("/search", response_model=ApiResponse[JobSearchResponse])
 async def search_jobs_endpoint(
-    what: str = Query(..., min_length=1, description="Job title or keywords"),
-    where: str = Query(default="", description="Location filter"),
-    country: str = Query(default="in", description="Country code"),
-    page: int = Query(default=1, ge=1),
-    results_per_page: int = Query(default=20, ge=1, le=50),
-    salary_min: int | None = Query(default=None, ge=0),
-    full_time: bool | None = Query(default=None),
-    permanent: bool | None = Query(default=None),
-    sort_by: str = Query(default="relevance", pattern="^(relevance|salary|date)$"),
+    params: JobSearchRequest = Depends(),
     user_id: int = Depends(get_current_user_id),
 ):
-    req = JobSearchRequest(
-        what=what,
-        where=where,
-        country=country,
-        page=page,
-        results_per_page=results_per_page,
-        salary_min=salary_min,
-        full_time=full_time,
-        permanent=permanent,
-        sort_by=sort_by,
-    )
-
     try:
-        result = await search_jobs(req)
+        roles = [r.strip() for r in params.what.split(",") if r.strip()]
+        locations = [l.strip() for l in params.where.split(",") if l.strip()] if params.where else None
+        result = await search_jobs(
+            roles=roles,
+            locations=locations,
+            country=params.country,
+            page=params.page,
+            results_per_page=params.results_per_page,
+            salary_min=params.salary_min,
+            full_time=params.full_time,
+            permanent=params.permanent,
+            sort_by=params.sort_by,
+        )
     except ValueError as e:
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:

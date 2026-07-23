@@ -2,8 +2,8 @@ from pydantic import BaseModel, Field
 
 
 class JobSearchRequest(BaseModel):
-    what: str = Field(..., min_length=1, description="Job title or keywords")
-    where: str = Field(default="", description="Location filter")
+    what: str = Field(..., min_length=1, description="Job title or keyword(s), comma-separated")
+    where: str | None = Field(default=None, description="Location filter(s), comma-separated")
     country: str = Field(default="in", description="Country code (in, gb, us, de, fr, br, ca, au)")
     page: int = Field(default=1, ge=1)
     results_per_page: int = Field(default=20, ge=1, le=50)

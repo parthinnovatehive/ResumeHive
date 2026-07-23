@@ -1,9 +1,11 @@
+import json
 import os
 import asyncio
 from jinja2 import Environment, FileSystemLoader
 
 _TEMPLATE_DIR = os.path.join(os.path.dirname(__file__), "templates")
 _env = Environment(loader=FileSystemLoader(_TEMPLATE_DIR))
+_env.filters["fromjson"] = lambda s: json.loads(s) if isinstance(s, str) else s
 
 VALID_TEMPLATES = {"classic", "modern", "minimal", "professional", "compact"}
 
@@ -31,4 +33,11 @@ def generate_pdf(resume_data: dict, *, template: str = "classic") -> bytes:
     tpl = _env.get_template(f"resume_{template}.html")
     html = tpl.render(resume=resume_data)
 
-    return asyncio.run(_render_pdf(html))
+    try:
+        return asyncio.run(_render_pdf(html))
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        try:
+            return loop.run_until_complete(_render_pdf(html))
+        finally:
+            loop.close()
