@@ -14,3 +14,4 @@ class User(Base):
     created_at = Column(DateTime, server_default=func.now())
 
     resumes = relationship("Resume", back_populates="user", cascade="all, delete-orphan")
+    linkedin_analyses = relationship("LinkedinAnalysis", back_populates="user", cascade="all, delete-orphan")

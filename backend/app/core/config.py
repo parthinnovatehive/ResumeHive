@@ -15,5 +15,10 @@ class Settings(BaseSettings):
     ADZUNA_APP_KEY: str = ""
     JOB_SEARCH_CACHE_TTL_HOURS: int = 6
 
+    # Ollama LLM for rewrite suggestions
+    OLLAMA_BASE_URL: str = "http://localhost:11434"
+    OLLAMA_MODEL: str = "llama3.2"
+    OLLAMA_TIMEOUT: int = 60
+
 
 settings = Settings()

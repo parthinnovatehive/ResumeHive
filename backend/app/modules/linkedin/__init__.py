@@ -1,1 +1,1 @@
-# TODO: LinkedIn integration feature — coming later
+# LinkedIn profile analysis feature

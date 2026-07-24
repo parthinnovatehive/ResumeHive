@@ -7,6 +7,7 @@ from app.db.session import engine, SessionLocal
 from app.modules.auth.router import router as auth_router
 from app.modules.resumes.router import router as resumes_router
 from app.modules.jobs.router import router as jobs_router
+from app.modules.linkedin.router import router as linkedin_router
 
 app = FastAPI(title="ResumeHive API", version="0.1.0")
 
@@ -21,6 +22,7 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(resumes_router)
 app.include_router(jobs_router)
+app.include_router(linkedin_router)
 
 
 @app.on_event("startup")
