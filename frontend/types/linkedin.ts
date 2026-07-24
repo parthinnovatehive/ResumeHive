@@ -75,3 +75,20 @@ export interface LinkedinRole {
   key: string;
   name: string;
 }
+
+export type LinkedinProfileFieldName =
+  | "linkedin_url"
+  | "linkedin_id"
+  | "headline"
+  | "about"
+  | "top_skills"
+  | "certifications"
+  | "experience"
+  | "education";
+
+export interface LinkedinProfileField {
+  field: LinkedinProfileFieldName;
+  label: string;
+  value: string | string[] | Record<string, unknown>[] | null;
+  saved: boolean;
+}

@@ -6,6 +6,8 @@ import type {
   LinkedinRewriteResult,
   LinkedinScoreResult,
   LinkedinRole,
+  LinkedinProfileField,
+  LinkedinProfileFieldName,
 } from "@/types/linkedin";
 
 export const linkedinApi = {
@@ -35,6 +37,21 @@ export const linkedinApi = {
     return api
       .delete<ApiResponse<null>>(`/linkedin/${id}`)
       .then(() => undefined);
+  },
+
+  getProfilePreview: (id: number): Promise<LinkedinProfileField[]> => {
+    return api
+      .get<ApiResponse<{ fields: LinkedinProfileField[] }>>(`/linkedin/${id}/profile-preview`)
+      .then((r) => r.data.data!.fields);
+  },
+
+  storeProfile: (id: number, fields: LinkedinProfileFieldName[]): Promise<LinkedinProfileFieldName[]> => {
+    return api
+      .post<ApiResponse<{ stored_fields: LinkedinProfileFieldName[] }>>(
+        `/linkedin/${id}/store-profile`,
+        { fields },
+      )
+      .then((r) => r.data.data!.stored_fields);
   },
 
   score: (id: number, role?: string | null): Promise<LinkedinScoreResult> => {

@@ -23,6 +23,8 @@ import {
   Check,
   X,
   RotateCcw,
+  Database,
+  Save,
 } from "lucide-react";
 import { linkedinApi } from "@/lib/api/linkedin";
 import type {
@@ -33,6 +35,8 @@ import type {
   LinkedinRewriteResult,
   LinkedinScoreResult,
   LinkedinRole,
+  LinkedinProfileField,
+  LinkedinProfileFieldName,
 } from "@/types/linkedin";
 
 /* -------------------------------------------------------------------------- */
@@ -52,6 +56,11 @@ export default function LinkedinPage() {
   const [aboutRewrite, setAboutRewrite] = useState<LinkedinRewriteResult | null>(null);
   const [rewritingHeadline, setRewritingHeadline] = useState(false);
   const [rewritingAbout, setRewritingAbout] = useState(false);
+  const [profileFields, setProfileFields] = useState<LinkedinProfileField[]>([]);
+  const [selectedProfileFields, setSelectedProfileFields] = useState<LinkedinProfileFieldName[]>([]);
+  const [loadingProfileFields, setLoadingProfileFields] = useState(false);
+  const [savingProfile, setSavingProfile] = useState(false);
+  const [profileSaveMessage, setProfileSaveMessage] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -80,6 +89,19 @@ export default function LinkedinPage() {
     }
   };
 
+  const loadProfileFields = async (analysisId: number) => {
+    setLoadingProfileFields(true);
+    setProfileSaveMessage(null);
+    setSelectedProfileFields([]);
+    try {
+      setProfileFields(await linkedinApi.getProfilePreview(analysisId));
+    } catch {
+      setProfileFields([]);
+    } finally {
+      setLoadingProfileFields(false);
+    }
+  };
+
   const handleUpload = async (file: File | undefined) => {
     if (!file) return;
     setError(null);
@@ -87,6 +109,7 @@ export default function LinkedinPage() {
     try {
       const result = await linkedinApi.parseUpload(file);
       setActive(result);
+      loadProfileFields(result.id);
       loadHistory();
     } catch (err: unknown) {
       const detail =
@@ -103,6 +126,7 @@ export default function LinkedinPage() {
     try {
       const result = await linkedinApi.get(id);
       setActive(result);
+      loadProfileFields(result.id);
       if (result.scores?.role) setSelectedRole(result.scores.role);
     } catch {
       setError("Failed to load analysis.");
@@ -185,6 +209,38 @@ export default function LinkedinPage() {
       prev ? { ...prev, sections: { ...prev.sections, about: aboutRewrite.rewritten } } : prev,
     );
     setAboutRewrite(null);
+  };
+
+  const toggleProfileField = (field: LinkedinProfileFieldName) => {
+    setSelectedProfileFields((current) =>
+      current.includes(field)
+        ? current.filter((item) => item !== field)
+        : [...current, field],
+    );
+  };
+
+  const saveSelectedProfileFields = async () => {
+    if (!active || selectedProfileFields.length === 0) return;
+    setSavingProfile(true);
+    setError(null);
+    setProfileSaveMessage(null);
+    try {
+      const stored = await linkedinApi.storeProfile(active.id, selectedProfileFields);
+      setProfileFields((current) =>
+        current.map((item) =>
+          stored.includes(item.field) ? { ...item, saved: true } : item,
+        ),
+      );
+      setSelectedProfileFields([]);
+      setProfileSaveMessage(`${stored.length} attribute${stored.length === 1 ? "" : "s"} saved to your profile.`);
+    } catch (err: unknown) {
+      const detail =
+        (err as { response?: { data?: { detail?: string } } })?.response?.data
+          ?.detail ?? "Could not save the selected attributes.";
+      setError(detail);
+    } finally {
+      setSavingProfile(false);
+    }
   };
 
   return (
@@ -292,6 +348,16 @@ export default function LinkedinPage() {
 
           {/* Score Result */}
           {active.scores && <ScorePanel result={active.scores} />}
+
+          <ProfileStorageCard
+            fields={profileFields}
+            selectedFields={selectedProfileFields}
+            loading={loadingProfileFields}
+            saving={savingProfile}
+            message={profileSaveMessage}
+            onToggle={toggleProfileField}
+            onSave={saveSelectedProfileFields}
+          />
 
           {/* Parsed Sections */}
           <AnalysisResult
@@ -510,6 +576,111 @@ function ScorePanel({ result }: { result: LinkedinScoreResult }) {
         </div>
       )}
     </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                           Profile Storage                                  */
+/* -------------------------------------------------------------------------- */
+
+function ProfileStorageCard({
+  fields,
+  selectedFields,
+  loading,
+  saving,
+  message,
+  onToggle,
+  onSave,
+}: {
+  fields: LinkedinProfileField[];
+  selectedFields: LinkedinProfileFieldName[];
+  loading: boolean;
+  saving: boolean;
+  message: string | null;
+  onToggle: (field: LinkedinProfileFieldName) => void;
+  onSave: () => void;
+}) {
+  const availableFields = fields.filter((field) => {
+    if (Array.isArray(field.value)) return field.value.length > 0;
+    return Boolean(field.value?.toString().trim());
+  });
+
+  if (loading) {
+    return (
+      <div className="mb-6 flex items-center gap-2 rounded-2xl border border-white/60 bg-white/60 p-4 text-sm text-slate-500 shadow-sm">
+        <Loader2 className="h-4 w-4 animate-spin" />
+        Loading extracted profile attributes…
+      </div>
+    );
+  }
+
+  if (availableFields.length === 0) return null;
+
+  return (
+    <section className="mb-6 rounded-2xl border border-[#0A66C2]/20 bg-[#0A66C2]/[0.04] p-5 shadow-sm">
+      <div className="flex items-start gap-3">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#0A66C2]/10 text-[#0A66C2]">
+          <Database className="h-4 w-4" />
+        </div>
+        <div>
+          <h2 className="text-sm font-semibold text-slate-800">Save extracted profile attributes?</h2>
+          <p className="mt-1 text-xs leading-relaxed text-slate-500">
+            Choose exactly what you want to keep in your ResumeHive profile. Nothing is saved unless you select it and confirm below.
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-4 grid gap-2 sm:grid-cols-2">
+        {availableFields.map((field) => {
+          const selected = selectedFields.includes(field.field);
+          return (
+            <label
+              key={field.field}
+              className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 transition-colors ${
+                selected
+                  ? "border-[#0A66C2] bg-white"
+                  : "border-slate-200 bg-white/60 hover:border-[#0A66C2]/50"
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={selected}
+                onChange={() => onToggle(field.field)}
+                className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#0A66C2] focus:ring-[#0A66C2]"
+              />
+              <span className="min-w-0">
+                <span className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                  {field.label}
+                  {field.saved && (
+                    <span className="rounded-full bg-green-100 px-1.5 py-0.5 text-[10px] font-medium text-green-700">
+                      Saved
+                    </span>
+                  )}
+                </span>
+                <span className="mt-1 block line-clamp-2 text-xs text-slate-500">
+                  {Array.isArray(field.value)
+                    ? `${field.value.length} item${field.value.length === 1 ? "" : "s"} extracted`
+                    : field.value}
+                </span>
+              </span>
+            </label>
+          );
+        })}
+      </div>
+
+      <div className="mt-4 flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          onClick={onSave}
+          disabled={selectedFields.length === 0 || saving}
+          className="flex items-center gap-2 rounded-xl bg-[#0A66C2] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#004182] disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          {saving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Save className="h-3.5 w-3.5" />}
+          {saving ? "Saving…" : `Save ${selectedFields.length || "selected"} attribute${selectedFields.length === 1 ? "" : "s"}`}
+        </button>
+        {message && <p className="text-xs font-medium text-green-700">{message}</p>}
+      </div>
+    </section>
   );
 }
 

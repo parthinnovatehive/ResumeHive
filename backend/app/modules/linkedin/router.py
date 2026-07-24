@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 
 from app.core.security import get_current_user_id
 from app.db.session import get_db
+from app.modules.auth.models import User
 from app.modules.linkedin import service
 from app.shared.schemas import ApiResponse
 
@@ -56,6 +57,166 @@ async def parse_upload(
         success=True,
         data=service._to_response_dict(analysis),
         message="LinkedIn profile parsed and stored",
+    )
+
+
+# ---------------------------------------------------------------------------
+# GET /linkedin/{analysis_id}/profile-preview — Get extracted data with save status
+# ---------------------------------------------------------------------------
+
+
+class ProfileFieldStatus(BaseModel):
+    field: str
+    label: str
+    value: str | list | None
+    saved: bool
+
+
+@router.get("/{analysis_id}/profile-preview")
+def get_profile_preview(
+    analysis_id: int,
+    user_id: int = Depends(get_current_user_id),
+    db: Session = Depends(get_db),
+):
+    """Get parsed LinkedIn data with per-field save status for UI checkboxes."""
+    try:
+        analysis = service.get_analysis(analysis_id, user_id, db)
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Analysis not found.")
+
+    sections = service._get_sections(analysis)
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found.")
+
+    import json
+
+    def get_saved(field: str, default=None):
+        val = getattr(user, field, default)
+        if val is None:
+            return default
+        if isinstance(val, str) and val.startswith('['):
+            try:
+                return json.loads(val)
+            except:
+                return default
+        return val
+
+    fields = [
+        ProfileFieldStatus(
+            field="linkedin_url",
+            label="LinkedIn URL",
+            value=sections.get("linkedin_url", ""),
+            saved=bool(user.linkedin_url),
+        ),
+        ProfileFieldStatus(
+            field="linkedin_id",
+            label="LinkedIn ID",
+            value=sections.get("linkedin_id", ""),
+            saved=bool(user.linkedin_id),
+        ),
+        ProfileFieldStatus(
+            field="headline",
+            label="Headline",
+            value=sections.get("headline", ""),
+            saved=bool(user.headline),
+        ),
+        ProfileFieldStatus(
+            field="about",
+            label="About",
+            value=sections.get("about", ""),
+            saved=bool(user.about),
+        ),
+        ProfileFieldStatus(
+            field="top_skills",
+            label="Top Skills",
+            value=sections.get("skills", []),
+            saved=bool(get_saved("top_skills", [])),
+        ),
+        ProfileFieldStatus(
+            field="certifications",
+            label="Certifications",
+            value=sections.get("certifications", []),
+            saved=bool(get_saved("certifications", [])),
+        ),
+        ProfileFieldStatus(
+            field="experience",
+            label="Experience",
+            value=sections.get("experience", []),
+            saved=bool(get_saved("experience", [])),
+        ),
+        ProfileFieldStatus(
+            field="education",
+            label="Education",
+            value=sections.get("education", []),
+            saved=bool(get_saved("education", [])),
+        ),
+    ]
+
+    return ApiResponse(success=True, data={"fields": [f.model_dump() for f in fields]}, message="Profile preview fetched")
+
+
+# ---------------------------------------------------------------------------
+# POST /linkedin/{analysis_id}/store-profile — Store selected fields to user profile
+# ---------------------------------------------------------------------------
+
+
+class StoreProfileBody(BaseModel):
+    fields: list[str]  # List of field names to store
+
+
+@router.post("/{analysis_id}/store-profile")
+def store_linkedin_profile(
+    analysis_id: int,
+    body: StoreProfileBody,
+    user_id: int = Depends(get_current_user_id),
+    db: Session = Depends(get_db),
+):
+    """Store selected parsed LinkedIn profile fields to the user's profile.
+
+    Pass a list of field names to save. Only those fields will be updated.
+    Field names: linkedin_url, linkedin_id, headline, about, top_skills, certifications, experience, education
+    """
+    try:
+        analysis = service.get_analysis(analysis_id, user_id, db)
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Analysis not found.")
+
+    sections = service._get_sections(analysis)
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found.")
+
+    import json
+
+    field_map = {
+        "linkedin_url": ("linkedin_url", lambda: sections.get("linkedin_url", user.linkedin_url)),
+        "linkedin_id": ("linkedin_id", lambda: sections.get("linkedin_id", user.linkedin_id)),
+        "headline": ("headline", lambda: sections.get("headline", user.headline)),
+        "about": ("about", lambda: sections.get("about", user.about)),
+        "top_skills": ("top_skills", lambda: json.dumps(sections.get("skills", [])) if sections.get("skills") else user.top_skills),
+        "certifications": ("certifications", lambda: json.dumps(sections.get("certifications", [])) if sections.get("certifications") else user.certifications),
+        "experience": ("experience", lambda: json.dumps(sections.get("experience", [])) if sections.get("experience") else user.experience),
+        "education": ("education", lambda: json.dumps(sections.get("education", [])) if sections.get("education") else user.education),
+    }
+
+    for field in body.fields:
+        if field in field_map:
+            attr, getter = field_map[field]
+            setattr(user, attr, getter())
+
+    user.linkedin_profile_stored = 1
+
+    db.commit()
+    db.refresh(user)
+
+    return ApiResponse(
+        success=True,
+        data={
+            "stored_fields": body.fields,
+            "message": f"Saved {len(body.fields)} field(s) to your profile",
+        },
+        message="Selected fields stored to your profile",
     )
 
 
