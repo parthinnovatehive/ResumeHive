@@ -181,7 +181,26 @@ def _extract_contact_from_pdf(data: bytes) -> dict[str, str]:
     combined_text = left_text + "\n" + main_text
     normalized_contact_text = re.sub(r"[\s\u00ad\u2010-\u2015\ufeff\ufffe]+", "", combined_text)
 
-    email_match = re.search(r"[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}", normalized_contact_text)
+    email_match = re.search(r"[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}", combined_text)
+    if not email_match:
+        lines = combined_text.splitlines()
+        at_idx = -1
+        for i, ln in enumerate(lines):
+            if "@" in ln:
+                at_idx = i
+                break
+        if at_idx >= 0:
+            buf = lines[at_idx].strip()
+            best = None
+            for j in range(at_idx + 1, len(lines)):
+                nxt = lines[j].strip()
+                if not nxt or not re.fullmatch(r"[\w.-]+", nxt):
+                    break
+                buf += nxt
+                m = re.search(r"[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}", buf)
+                if m:
+                    best = m
+            email_match = best
     linkedin_match = re.search(
         r"(?:https?://)?(?:www\.)?linkedin\.com/in/[\w%-]+/?",
         normalized_contact_text,
@@ -202,6 +221,40 @@ def _extract_contact_from_pdf(data: bytes) -> dict[str, str]:
         "email": email_match.group(0) if email_match else "",
         "phone": phone_match.group(0).strip() if phone_match else "",
         "linkedin_url": linkedin_match.group(0) if linkedin_match else "",
+    }
+
+
+def _extract_sidebar_profile_fields(data: bytes) -> dict[str, str]:
+    """Extract the sidebar-only Top Skills and Certifications values."""
+    import fitz
+
+    sidebar_lines: list[str] = []
+    with fitz.open(stream=data, filetype="pdf") as doc:
+        for page in doc:
+            left_text, _main_text = _extract_ordered_columns(page)
+            sidebar_lines.extend(line.strip() for line in left_text.splitlines() if line.strip())
+
+    sections: dict[str, list[str]] = {"top_skills": [], "certifications": []}
+    current: str | None = None
+    for line in sidebar_lines:
+        normalized = line.lower().strip().strip(":")
+        if normalized == "top skills":
+            current = "top_skills"
+            continue
+        if normalized in {"certifications", "licenses & certifications", "licenses and certifications"}:
+            current = "certifications"
+            continue
+        if normalized in {"contact", "contact info", "contact information"}:
+            current = None
+            continue
+        if current:
+            sections[current].append(line)
+
+    top_skills = _extract_skills("\n".join(sections["top_skills"]))
+    certifications = _extract_certifications("\n".join(sections["certifications"]))
+    return {
+        "top_skills": ", ".join(top_skills),
+        "certifications_csv": ", ".join(certifications),
     }
 
 
@@ -546,10 +599,11 @@ def _extract_certifications(cert_text: str) -> list[str]:
     """Extract individual certifications."""
     if not cert_text.strip():
         return []
+    page_re = re.compile(r"^page\s+\d+\s+of\s+\d+$", re.I)
     certs: list[str] = []
     for line in cert_text.splitlines():
         line = line.strip()
-        if line and len(line) <= 120:
+        if line and len(line) <= 120 and not page_re.match(line):
             certs.append(line)
     return certs
 
@@ -616,6 +670,7 @@ def parse_linkedin_pdf(data: bytes, filename: str) -> dict[str, Any]:
     header_text = raw_sections.get("_header", "")
     headline, location = _extract_headline_location(header_text)
     contact = _extract_contact_from_pdf(data)
+    sidebar_fields = _extract_sidebar_profile_fields(data)
     if not contact["full_name"]:
         contact["full_name"] = next(
             (line.strip() for line in header_text.splitlines() if line.strip()), ""
@@ -633,6 +688,7 @@ def parse_linkedin_pdf(data: bytes, filename: str) -> dict[str, Any]:
         "raw_text": raw_text,
         "sections": {
             **contact,
+            **sidebar_fields,
             "headline": headline,
             "location": location,
             "about": about,

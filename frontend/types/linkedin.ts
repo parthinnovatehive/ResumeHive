@@ -15,6 +15,8 @@ export interface LinkedinSections {
   email: string;
   phone: string;
   linkedin_url: string;
+  top_skills: string;
+  certifications_csv: string;
   headline: string;
   about: string;
   experience: LinkedinExperienceEntry[];

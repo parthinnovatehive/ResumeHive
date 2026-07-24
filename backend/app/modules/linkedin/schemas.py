@@ -6,6 +6,8 @@ class LinkedinSections(BaseModel):
     email: str = ""
     phone: str = ""
     linkedin_url: str = ""
+    top_skills: str = ""
+    certifications_csv: str = ""
     headline: str = ""
     location: str = ""
     about: str = ""

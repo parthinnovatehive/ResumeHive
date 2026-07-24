@@ -558,6 +558,26 @@ function AnalysisResult({
         </div>
       )}
 
+      {/* Profile details */}
+      {(sections.email || sections.linkedin_url || sections.top_skills || sections.certifications_csv) && (
+        <SectionCard title="Profile Details" icon={<User className="w-4 h-4" />}>
+          <div className="grid gap-2 text-sm text-slate-700 sm:grid-cols-2">
+            {sections.email && (
+              <p><span className="font-semibold text-slate-500">Email:</span> {sections.email}</p>
+            )}
+            {sections.linkedin_url && (
+              <p className="break-all"><span className="font-semibold text-slate-500">LinkedIn:</span> {sections.linkedin_url}</p>
+            )}
+            {sections.top_skills && (
+              <p className="sm:col-span-2"><span className="font-semibold text-slate-500">Top skills:</span> {sections.top_skills}</p>
+            )}
+            {sections.certifications_csv && (
+              <p className="sm:col-span-2"><span className="font-semibold text-slate-500">Certifications:</span> {sections.certifications_csv}</p>
+            )}
+          </div>
+        </SectionCard>
+      )}
+
       {/* Detected Sections */}
       <div className="flex flex-wrap gap-1.5">
         {detected_sections.map((s) => (
