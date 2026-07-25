@@ -9,6 +9,9 @@ from app.modules.resumes.router import router as resumes_router
 from app.modules.jobs.router import router as jobs_router
 from app.modules.linkedin.router import router as linkedin_router
 
+# Import models to ensure tables are created
+import app.modules.llm.models
+
 app = FastAPI(title="ResumeHive API", version="0.1.0")
 
 app.add_middleware(

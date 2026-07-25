@@ -312,28 +312,24 @@ class _RewriteBody(BaseModel):
 
 
 @router.post("/{analysis_id}/rewrite-headline")
-def rewrite_headline(
+async def rewrite_headline(
     analysis_id: int,
     body: _RewriteBody = _RewriteBody(),
     user_id: int = Depends(get_current_user_id),
     db: Session = Depends(get_db),
 ):
-    """Generate an improved headline using Ollama.
+    """Generate an improved headline using Groq.
 
-    Rate-limited to one request per 30 seconds per user.
+    Rate-limited to 15 requests per user per day.
     The rewritten headline is persisted in the scores JSON.
     """
-    from app.services.linkedin_rewriter import (
-        OllamaError,
-        check_rate_limit,
-        mark_used,
-        rewrite_headline as do_rewrite,
-    )
+    from app.llm.linkedin_llm import rewrite_headline as do_rewrite
+    from app.llm.rate_limit import check_and_increment_rate_limit, log_llm_usage
+    from app.llm.groq_client import LLMServiceError
 
     # Rate limit
-    rl_msg = check_rate_limit(user_id, "headline")
-    if rl_msg:
-        raise HTTPException(status_code=429, detail=rl_msg)
+    if not check_and_increment_rate_limit(user_id, db):
+        raise HTTPException(status_code=429, detail="Daily LLM request limit reached (15/day). Please try again tomorrow.")
 
     try:
         analysis = service.get_analysis(analysis_id, user_id, db)
@@ -346,11 +342,11 @@ def rewrite_headline(
         raise HTTPException(status_code=422, detail="No headline found in the parsed profile.")
 
     try:
-        rewritten = do_rewrite(current_headline, target_role=body.role)
-    except OllamaError as exc:
+        rewritten, tokens = await do_rewrite(current_headline, target_role=body.role or "", missing_keywords=[])
+        log_llm_usage(user_id, "rewrite-headline", tokens, db)
+    except LLMServiceError as exc:
         raise HTTPException(status_code=503, detail=str(exc))
 
-    mark_used(user_id, "headline")
     service.persist_rewrite(analysis, "headline", current_headline, rewritten, db)
 
     return ApiResponse(
@@ -366,27 +362,23 @@ def rewrite_headline(
 
 
 @router.post("/{analysis_id}/rewrite-about")
-def rewrite_about(
+async def rewrite_about(
     analysis_id: int,
     body: _RewriteBody = _RewriteBody(),
     user_id: int = Depends(get_current_user_id),
     db: Session = Depends(get_db),
 ):
-    """Generate an improved About section using Ollama.
+    """Generate an improved About section using Groq.
 
-    Rate-limited to one request per 30 seconds per user.
+    Rate-limited to 15 requests per user per day.
     The rewritten About is persisted in the scores JSON.
     """
-    from app.services.linkedin_rewriter import (
-        OllamaError,
-        check_rate_limit,
-        mark_used,
-        rewrite_about as do_rewrite,
-    )
+    from app.llm.linkedin_llm import rewrite_about as do_rewrite
+    from app.llm.rate_limit import check_and_increment_rate_limit, log_llm_usage
+    from app.llm.groq_client import LLMServiceError
 
-    rl_msg = check_rate_limit(user_id, "about")
-    if rl_msg:
-        raise HTTPException(status_code=429, detail=rl_msg)
+    if not check_and_increment_rate_limit(user_id, db):
+        raise HTTPException(status_code=429, detail="Daily LLM request limit reached (15/day). Please try again tomorrow.")
 
     try:
         analysis = service.get_analysis(analysis_id, user_id, db)
@@ -399,17 +391,56 @@ def rewrite_about(
         raise HTTPException(status_code=422, detail="No About section found in the parsed profile.")
 
     try:
-        rewritten = do_rewrite(current_about, target_role=body.role)
-    except OllamaError as exc:
+        rewritten, tokens = await do_rewrite(current_about, target_role=body.role or "", missing_keywords=[])
+        log_llm_usage(user_id, "rewrite-about", tokens, db)
+    except LLMServiceError as exc:
         raise HTTPException(status_code=503, detail=str(exc))
 
-    mark_used(user_id, "about")
     service.persist_rewrite(analysis, "about", current_about, rewritten, db)
 
     return ApiResponse(
         success=True,
         data={"original": current_about, "rewritten": rewritten, "rewrite_type": "about"},
         message="About section rewritten",
+    )
+
+# ---------------------------------------------------------------------------
+# POST /linkedin/{analysis_id}/suggestions — LLM Prioritized Suggestions
+# ---------------------------------------------------------------------------
+
+@router.post("/{analysis_id}/suggestions")
+async def generate_suggestions(
+    analysis_id: int,
+    user_id: int = Depends(get_current_user_id),
+    db: Session = Depends(get_db),
+):
+    """Generate prioritized suggestions using Groq based on profile scores."""
+    from app.llm.linkedin_llm import generate_prioritized_suggestions
+    from app.llm.rate_limit import check_and_increment_rate_limit, log_llm_usage
+    from app.llm.groq_client import LLMServiceError
+
+    if not check_and_increment_rate_limit(user_id, db):
+        raise HTTPException(status_code=429, detail="Daily LLM request limit reached (15/day). Please try again tomorrow.")
+
+    try:
+        analysis = service.get_analysis(analysis_id, user_id, db)
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Analysis not found.")
+        
+    scores = service._get_scores(analysis)
+    if not scores:
+        raise HTTPException(status_code=422, detail="Profile must be scored before generating suggestions. Call /score first.")
+
+    try:
+        suggestions, tokens = await generate_prioritized_suggestions(scores)
+        log_llm_usage(user_id, "suggestions", tokens, db)
+    except LLMServiceError as exc:
+        raise HTTPException(status_code=503, detail=str(exc))
+
+    return ApiResponse(
+        success=True,
+        data={"suggestions": suggestions},
+        message="Suggestions generated",
     )
 
 

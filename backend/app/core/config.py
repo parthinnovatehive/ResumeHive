@@ -20,5 +20,9 @@ class Settings(BaseSettings):
     OLLAMA_MODEL: str = "llama3.2"
     OLLAMA_TIMEOUT: int = 60
 
+    # Groq LLM for LinkedIn suggestions
+    GROQ_API_KEY: str = ""
+    GROQ_MODEL: str = "llama-3.1-8b-instant"
+
 
 settings = Settings()
