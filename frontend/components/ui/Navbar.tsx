@@ -130,9 +130,13 @@ export function Navbar() {
                       <div className="px-3 py-2 border-b border-slate-100 mb-2">
                         <p className="truncate text-sm font-medium text-slate-900">{email}</p>
                       </div>
-                      <button className="w-full rounded-xl px-3 py-2 text-left text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-900">
+                      <Link
+                        href="/profile"
+                        onClick={() => setProfileDropdownOpen(false)}
+                        className="block w-full rounded-xl px-3 py-2 text-left text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-900"
+                      >
                         Profile
-                      </button>
+                      </Link>
                       <button className="w-full rounded-xl px-3 py-2 text-left text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-900">
                         Settings
                       </button>

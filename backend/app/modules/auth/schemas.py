@@ -46,3 +46,34 @@ class LinkedInProfileResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class UserProfileResponse(BaseModel):
+    id: int
+    email: EmailStr
+    college_name: str = ""
+    created_at: str
+    linkedin_url: Opt[str] = None
+    linkedin_id: Opt[str] = None
+    headline: Opt[str] = None
+    about: Opt[str] = None
+    top_skills: List[str] = []
+    certifications: List[str] = []
+    experience: List[dict] = []
+    education: List[dict] = []
+    linkedin_profile_stored: bool = False
+
+    class Config:
+        from_attributes = True
+
+
+class ProfileUpdateRequest(BaseModel):
+    college_name: Opt[str] = None
+    linkedin_url: Opt[str] = None
+    linkedin_id: Opt[str] = None
+    headline: Opt[str] = None
+    about: Opt[str] = None
+    top_skills: Opt[List[str]] = None
+    certifications: Opt[List[str]] = None
+    experience: Opt[List[dict]] = None
+    education: Opt[List[dict]] = None

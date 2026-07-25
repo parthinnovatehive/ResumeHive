@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from app.db.session import get_db
 from app.core.security import get_current_user_id
-from app.modules.auth.schemas import SignupRequest, LoginRequest, AuthResponse, LinkedInProfileUpdate, LinkedInProfileResponse
+from app.modules.auth.schemas import SignupRequest, LoginRequest, AuthResponse, LinkedInProfileUpdate, LinkedInProfileResponse, UserProfileResponse, ProfileUpdateRequest
 from app.modules.auth import service
 from app.modules.auth.models import User
 
@@ -26,6 +26,23 @@ def get_linkedin_profile(
     db: Session = Depends(get_db),
 ):
     return service.get_user_profile(current_user, db)
+
+
+@router.get("/me/profile", response_model=UserProfileResponse)
+def get_full_profile(
+    current_user: User = Depends(get_current_user_id),
+    db: Session = Depends(get_db),
+):
+    return service.get_full_user_profile(current_user, db)
+
+
+@router.put("/me/profile", response_model=UserProfileResponse)
+def update_full_profile(
+    req: ProfileUpdateRequest,
+    current_user: int = Depends(get_current_user_id),
+    db: Session = Depends(get_db),
+):
+    return service.update_user_profile(current_user, req, db)
 
 
 @router.put("/me/linkedin", response_model=LinkedInProfileResponse)
