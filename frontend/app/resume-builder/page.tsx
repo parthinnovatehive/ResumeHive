@@ -22,10 +22,10 @@ import {
   resumeFormSchema,
   type ResumeFormData,
 } from "@/lib/validations/resume.schema";
-import { resumesApi, type AtsScoreResult, type ParseUploadResult } from "@/lib/api/resumes";
+import { resumesApi, type AtsScoreResult, type ParseUploadResult, type RewriteResult } from "@/lib/api/resumes";
 import { useAutoSave } from "@/hooks/useAutoSave";
 import { useToast } from "@/components/ui/Toast";
-import { FormStep } from "@/components/resume-builder/FormStep";
+import { FormStep, type RewriteCallbacks } from "@/components/resume-builder/FormStep";
 import { ImportResume } from "@/components/resume-builder/ImportResume";
 import {
   ResumePreview,
@@ -82,6 +82,16 @@ function ResumeBuilder() {
   const [showGapAnalysis, setShowGapAnalysis] = useState(false);
   const initialLoadDone = useRef(false);
   const atsPanelRef = useRef<HTMLDivElement>(null);
+
+  // LLM rewrite state
+  const [rewritingSummary, setRewritingSummary] = useState(false);
+  const [rewritingExperience, setRewritingExperience] = useState(false);
+  const [rewritingProject, setRewritingProject] = useState(false);
+  const [rewriteModal, setRewriteModal] = useState<{
+    show: boolean;
+    data: RewriteResult | null;
+    fieldPath: string; // e.g. "summary", "experience.0.description", "projects.1.description"
+  }>({ show: false, data: null, fieldPath: "" });
 
   /* ── Scroll to ATS panel when score is computed ───────────────── */
   useEffect(() => {
@@ -351,6 +361,82 @@ function ResumeBuilder() {
     toast(`Added "${skill}" to skills.`, "success");
   };
 
+  /* ── LLM Rewrite handlers ────────────────────────────────────── */
+
+  const handleRewriteSummary = async () => {
+    if (!resumeId) return;
+    setRewritingSummary(true);
+    try {
+      const result = await resumesApi.rewriteSummary(resumeId);
+      setRewriteModal({ show: true, data: result, fieldPath: "summary" });
+    } catch {
+      toast("Failed to rewrite summary. Is the LLM service running?", "error");
+    } finally {
+      setRewritingSummary(false);
+    }
+  };
+
+  const handleRewriteExperience = async (index: number) => {
+    if (!resumeId) return;
+    setRewritingExperience(true);
+    try {
+      const result = await resumesApi.rewriteExperience(resumeId, index);
+      setRewriteModal({ show: true, data: result, fieldPath: `experience.${index}.description` });
+    } catch {
+      toast("Failed to rewrite experience. Is the LLM service running?", "error");
+    } finally {
+      setRewritingExperience(false);
+    }
+  };
+
+  const handleRewriteProject = async (index: number) => {
+    if (!resumeId) return;
+    setRewritingProject(true);
+    try {
+      const result = await resumesApi.rewriteProject(resumeId, index);
+      setRewriteModal({ show: true, data: result, fieldPath: `projects.${index}.description` });
+    } catch {
+      toast("Failed to rewrite project. Is the LLM service running?", "error");
+    } finally {
+      setRewritingProject(false);
+    }
+  };
+
+  const handleAcceptRewrite = () => {
+    if (!rewriteModal.data || !rewriteModal.fieldPath) return;
+    const { fieldPath } = rewriteModal;
+    const { rewritten } = rewriteModal.data;
+
+    if (fieldPath === "summary") {
+      form.setValue("summary", rewritten, { shouldDirty: true });
+    } else if (fieldPath.startsWith("experience.")) {
+      const parts = fieldPath.split(".");
+      const index = parseInt(parts[1]);
+      const experience = form.getValues("experience") || [];
+      if (experience[index]) {
+        const updated = [...experience];
+        updated[index] = { ...updated[index], description: rewritten };
+        form.setValue("experience", updated, { shouldDirty: true });
+      }
+    } else if (fieldPath.startsWith("projects.")) {
+      const parts = fieldPath.split(".");
+      const index = parseInt(parts[1]);
+      const projects = form.getValues("projects") || [];
+      if (projects[index]) {
+        const updated = [...projects];
+        updated[index] = { ...updated[index], description: rewritten };
+        form.setValue("projects", updated, { shouldDirty: true });
+      }
+    }
+
+    setRewriteModal({ show: false, data: null, fieldPath: "" });
+    toast("Rewrite applied!", "success");
+  };
+
+  const handleDiscardRewrite = () => {
+    setRewriteModal({ show: false, data: null, fieldPath: "" });
+  };
+
   const SaveBadge = ({ status }: { status: SaveStatus }) => {
     if (status === "idle") return null;
     const icon = {
@@ -380,6 +466,15 @@ function ResumeBuilder() {
       </div>
     );
   }
+
+  const rewriteCallbacks: RewriteCallbacks = {
+    onRewriteSummary: handleRewriteSummary,
+    onRewriteExperience: handleRewriteExperience,
+    onRewriteProject: handleRewriteProject,
+    rewritingSummary,
+    rewritingExperience,
+    rewritingProject,
+  };
 
   return (
     <FormProvider {...form}>
@@ -484,7 +579,7 @@ function ResumeBuilder() {
                 transition={{ duration: 0.2 }}
                 className="glass-card rounded-3xl p-8 mb-8 flex-1 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
               >
-                <FormStep step={step} />
+                <FormStep step={step} rewriteCallbacks={rewriteCallbacks} />
               </motion.div>
             </AnimatePresence>
             
@@ -610,6 +705,66 @@ function ResumeBuilder() {
           </div>
         </aside>
       </div>
+
+      {/* ── AI Rewrite Comparison Modal ─────────────────────────── */}
+      {rewriteModal.show && rewriteModal.data && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 overflow-hidden">
+            <div className="p-6 border-b border-slate-100">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                  <Sparkles className="text-premium-blue" size={20} />
+                  AI Rewrite
+                </h3>
+                <button
+                  onClick={handleDiscardRewrite}
+                  className="p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+              <p className="text-sm text-slate-500 mt-1">
+                Review the AI suggestion below. Accept to apply it to your resume.
+              </p>
+            </div>
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 block">
+                  Original
+                </label>
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-700 whitespace-pre-wrap">
+                  {rewriteModal.data.original}
+                </div>
+              </div>
+              <div className="flex justify-center">
+                <ArrowRight className="text-premium-blue" size={20} />
+              </div>
+              <div>
+                <label className="text-xs font-bold uppercase tracking-wider text-premium-blue mb-2 block">
+                  AI Suggestion
+                </label>
+                <div className="p-4 rounded-xl bg-premium-blueLight/10 border border-premium-blue/20 text-sm text-slate-900 whitespace-pre-wrap">
+                  {rewriteModal.data.rewritten}
+                </div>
+              </div>
+            </div>
+            <div className="p-6 border-t border-slate-100 flex items-center justify-end gap-3">
+              <button
+                onClick={handleDiscardRewrite}
+                className="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-colors"
+              >
+                Discard
+              </button>
+              <button
+                onClick={handleAcceptRewrite}
+                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-premium-blue to-premium-purple text-white text-sm font-semibold hover:shadow-md transition-all"
+              >
+                Accept & Apply
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </FormProvider>
   );
 }

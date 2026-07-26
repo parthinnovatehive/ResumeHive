@@ -147,6 +147,16 @@ export interface GapRolesData {
   categories: { [category: string]: string[] };
 }
 
+export interface RewriteResult {
+  original: string;
+  rewritten: string;
+  rewrite_type: string;
+}
+
+export interface AiSuggestionsResult {
+  suggestions: string[];
+}
+
 export const resumesApi = {
   create: (data?: Record<string, unknown>) =>
     api.post<ApiResponse<Resume>>("/resumes", data ?? {}).then((r) => r.data.data),
@@ -257,5 +267,39 @@ export const resumesApi = {
   gapRoles: () =>
     api
       .get<ApiResponse<GapRolesData>>("/resumes/gap-roles")
+      .then((r) => r.data.data),
+
+  /** LLM rewrite of professional summary. */
+  rewriteSummary: (id: number, role?: string) =>
+    api
+      .post<ApiResponse<RewriteResult>>(`/resumes/${id}/rewrite-summary`, {
+        role: role || null,
+      })
+      .then((r) => r.data.data),
+
+  /** LLM rewrite of experience bullets for a specific entry. */
+  rewriteExperience: (id: number, index: number, role?: string) =>
+    api
+      .post<ApiResponse<RewriteResult>>(`/resumes/${id}/rewrite-experience`, {
+        index,
+        role: role || null,
+      })
+      .then((r) => r.data.data),
+
+  /** LLM rewrite of project description for a specific entry. */
+  rewriteProject: (id: number, index: number, role?: string) =>
+    api
+      .post<ApiResponse<RewriteResult>>(`/resumes/${id}/rewrite-project`, {
+        index,
+        role: role || null,
+      })
+      .then((r) => r.data.data),
+
+  /** AI-powered resume improvement suggestions. */
+  getAiSuggestions: (id: number, role?: string) =>
+    api
+      .post<ApiResponse<AiSuggestionsResult>>(`/resumes/${id}/ai-suggestions`, {
+        role: role || null,
+      })
       .then((r) => r.data.data),
 };

@@ -19,6 +19,8 @@ interface DynamicListProps<T extends Record<string, unknown>> {
   fields: FieldConfig[];
   emptyMessage?: string;
   addButtonLabel?: string;
+  /** Optional render function for extra content after each entry (e.g., AI rewrite button). */
+  renderExtra?: (index: number, item: T) => React.ReactNode;
 }
 
 export function DynamicList<T extends Record<string, unknown>>({
@@ -27,6 +29,7 @@ export function DynamicList<T extends Record<string, unknown>>({
   fields,
   emptyMessage = "No entries yet.",
   addButtonLabel = "Add entry",
+  renderExtra,
 }: DynamicListProps<T>) {
   const add = () => {
     const blank = Object.fromEntries(
@@ -96,6 +99,8 @@ export function DynamicList<T extends Record<string, unknown>>({
               />
             ))}
           </div>
+
+          {renderExtra && renderExtra(idx, item)}
           </motion.div>
         ))}
       </AnimatePresence>

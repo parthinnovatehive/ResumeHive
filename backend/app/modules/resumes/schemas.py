@@ -345,3 +345,42 @@ class GapAnalysisResponse(BaseModel):
     coverage_pct: int
     present: list[GapItem]
     missing: list[GapMissingItem]
+
+
+# ---------------------------------------------------------------------------
+# LLM rewrite schemas
+# ---------------------------------------------------------------------------
+
+
+class RewriteRequest(BaseModel):
+    """Request body for LLM rewrite endpoints."""
+
+    role: str | None = None
+
+
+class ExperienceRewriteRequest(BaseModel):
+    """Request body for experience bullet rewrite."""
+
+    index: int
+    role: str | None = None
+
+
+class ProjectRewriteRequest(BaseModel):
+    """Request body for project description rewrite."""
+
+    index: int
+    role: str | None = None
+
+
+class RewriteResponse(BaseModel):
+    """Response for LLM rewrite endpoints."""
+
+    original: str
+    rewritten: str
+    rewrite_type: str
+
+
+class AiSuggestionsResponse(BaseModel):
+    """Response for AI suggestions endpoint."""
+
+    suggestions: list[str]

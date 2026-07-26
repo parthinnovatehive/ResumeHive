@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, Sparkles, Loader2, X, ArrowRight } from "lucide-react";
 import { useFormContext, Controller } from "react-hook-form";
 import type { ResumeFormData } from "@/lib/validations/resume.schema";
 import { ResumeFormStep } from "./ResumeFormStep";
@@ -39,8 +39,18 @@ const SKILL_SUGGESTIONS = [
 
 const TOTAL_STEPS = 7;
 
+export interface RewriteCallbacks {
+  onRewriteSummary: () => void;
+  onRewriteExperience: (index: number) => void;
+  onRewriteProject: (index: number) => void;
+  rewritingSummary: boolean;
+  rewritingExperience: boolean;
+  rewritingProject: boolean;
+}
+
 interface Props {
   step: number;
+  rewriteCallbacks?: RewriteCallbacks;
 }
 
 const HERO_TAGLINES = [
@@ -156,7 +166,7 @@ function AnimatedBuilderHero() {
   );
 }
 
-export function FormStep({ step }: Props) {
+export function FormStep({ step, rewriteCallbacks }: Props) {
   const { register, control, watch } = useFormContext<ResumeFormData>();
   const summary = watch("summary");
 
@@ -230,6 +240,21 @@ export function FormStep({ step }: Props) {
               <span>Aim for 50-200 words</span>
               <span>{summary?.length || 0} characters</span>
             </div>
+            {summary && summary.length > 10 && rewriteCallbacks && (
+              <button
+                type="button"
+                onClick={rewriteCallbacks.onRewriteSummary}
+                disabled={rewriteCallbacks.rewritingSummary}
+                className="mt-3 flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-premium-blue to-premium-purple text-white text-sm font-semibold hover:shadow-md transition-all disabled:opacity-50"
+              >
+                {rewriteCallbacks.rewritingSummary ? (
+                  <Loader2 size={14} className="animate-spin" />
+                ) : (
+                  <Sparkles size={14} />
+                )}
+                {rewriteCallbacks.rewritingSummary ? "Rewriting..." : "AI Rewrite Summary"}
+              </button>
+            )}
           </div>
         </ResumeFormStep>
       );
@@ -292,6 +317,29 @@ export function FormStep({ step }: Props) {
                   { name: "is_current", placeholder: "Currently working here", type: "checkbox" },
                   { name: "description", placeholder: "Describe your role, achievements, and impact...", type: "textarea", span: "full", bulletFeedback: true },
                 ]}
+                renderExtra={
+                  rewriteCallbacks
+                    ? (index, item) => {
+                        const desc = (item as Record<string, unknown>).description as string;
+                        if (!desc || desc.length < 10) return null;
+                        return (
+                          <button
+                            type="button"
+                            onClick={() => rewriteCallbacks.onRewriteExperience(index)}
+                            disabled={rewriteCallbacks.rewritingExperience}
+                            className="mt-2 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-premium-blue to-premium-purple text-white text-xs font-semibold hover:shadow-md transition-all disabled:opacity-50"
+                          >
+                            {rewriteCallbacks.rewritingExperience ? (
+                              <Loader2 size={12} className="animate-spin" />
+                            ) : (
+                              <Sparkles size={12} />
+                            )}
+                            {rewriteCallbacks.rewritingExperience ? "Rewriting..." : "AI Rewrite Bullets"}
+                          </button>
+                        );
+                      }
+                    : undefined
+                }
               />
             )}
           />
@@ -322,6 +370,29 @@ export function FormStep({ step }: Props) {
                   { name: "description", placeholder: "What does this project do? What was your contribution?", type: "textarea", span: "full", bulletFeedback: true },
                   { name: "link", placeholder: "https://github.com/...", span: "full" },
                 ]}
+                renderExtra={
+                  rewriteCallbacks
+                    ? (index, item) => {
+                        const desc = (item as Record<string, unknown>).description as string;
+                        if (!desc || desc.length < 10) return null;
+                        return (
+                          <button
+                            type="button"
+                            onClick={() => rewriteCallbacks.onRewriteProject(index)}
+                            disabled={rewriteCallbacks.rewritingProject}
+                            className="mt-2 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-premium-blue to-premium-purple text-white text-xs font-semibold hover:shadow-md transition-all disabled:opacity-50"
+                          >
+                            {rewriteCallbacks.rewritingProject ? (
+                              <Loader2 size={12} className="animate-spin" />
+                            ) : (
+                              <Sparkles size={12} />
+                            )}
+                            {rewriteCallbacks.rewritingProject ? "Rewriting..." : "AI Rewrite Description"}
+                          </button>
+                        );
+                      }
+                    : undefined
+                }
               />
             )}
           />

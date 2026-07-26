@@ -13,8 +13,11 @@ from app.core.security import get_current_user_id
 from app.db.session import get_db
 from app.modules.resumes.schemas import (
     AnalyzeBulletsRequest,
+    ExperienceRewriteRequest,
+    ProjectRewriteRequest,
     ResumeCreate,
     ResumeFullUpdate,
+    RewriteRequest,
     ResumeUpdate,
     ScoreRequest,
     TailorRequest,
@@ -425,6 +428,247 @@ def gap_analysis(
     data = service._to_plain_dict(resume)
     result = analyze_resume(data, role_key)
     return ApiResponse(success=True, data=result, message="Gap analysis complete")
+
+
+# ---------------------------------------------------------------------------
+# POST /resumes/{resume_id}/rewrite-summary — LLM summary rewrite
+# ---------------------------------------------------------------------------
+
+
+@router.post("/{resume_id}/rewrite-summary")
+async def rewrite_summary(
+    resume_id: int,
+    body: RewriteRequest = RewriteRequest(),
+    user_id: int = Depends(get_current_user_id),
+    db: Session = Depends(get_db),
+):
+    """Generate an improved professional summary using LLM.
+
+    Rate-limited to 15 requests per user per day.
+    The rewritten summary is NOT persisted — frontend shows diff for user to accept.
+    """
+    from app.llm.resume_llm import rewrite_summary as do_rewrite
+    from app.llm.rate_limit import check_and_increment_rate_limit, log_llm_usage
+    from app.llm.groq_client import LLMServiceError
+
+    if not check_and_increment_rate_limit(user_id, db):
+        raise HTTPException(status_code=429, detail="Daily LLM request limit reached (15/day). Please try again tomorrow.")
+
+    try:
+        resume = service._get_owned_resume(resume_id, user_id, db)
+    except HTTPException:
+        raise HTTPException(status_code=404, detail="Resume not found.")
+
+    current_summary = resume.summary or ""
+    if not current_summary.strip():
+        raise HTTPException(status_code=422, detail="No summary found. Add a professional summary first.")
+
+    skills = []
+    if resume.skills:
+        try:
+            import json
+            skills = json.loads(resume.skills) if isinstance(resume.skills, str) else resume.skills
+        except (json.JSONDecodeError, TypeError):
+            skills = []
+
+    try:
+        rewritten, tokens = await do_rewrite(
+            current_summary,
+            target_role=body.role or "",
+            skills=skills,
+        )
+        log_llm_usage(user_id, "rewrite-summary", tokens, db)
+    except LLMServiceError as exc:
+        raise HTTPException(status_code=503, detail=str(exc))
+
+    return ApiResponse(
+        success=True,
+        data={"original": current_summary, "rewritten": rewritten, "rewrite_type": "summary"},
+        message="Summary rewritten",
+    )
+
+
+# ---------------------------------------------------------------------------
+# POST /resumes/{resume_id}/rewrite-experience — LLM experience bullets rewrite
+# ---------------------------------------------------------------------------
+
+
+@router.post("/{resume_id}/rewrite-experience")
+async def rewrite_experience(
+    resume_id: int,
+    body: ExperienceRewriteRequest,
+    user_id: int = Depends(get_current_user_id),
+    db: Session = Depends(get_db),
+):
+    """Generate improved experience bullets for a specific entry using LLM.
+
+    Pass the index of the experience entry to rewrite (0-based).
+    Rate-limited to 15 requests per user per day.
+    """
+    from app.llm.resume_llm import rewrite_experience_bullets as do_rewrite
+    from app.llm.rate_limit import check_and_increment_rate_limit, log_llm_usage
+    from app.llm.groq_client import LLMServiceError
+
+    if not check_and_increment_rate_limit(user_id, db):
+        raise HTTPException(status_code=429, detail="Daily LLM request limit reached (15/day). Please try again tomorrow.")
+
+    try:
+        resume = service._get_owned_resume(resume_id, user_id, db)
+    except HTTPException:
+        raise HTTPException(status_code=404, detail="Resume not found.")
+
+    experience = []
+    if resume.experience:
+        try:
+            import json
+            experience = json.loads(resume.experience) if isinstance(resume.experience, str) else resume.experience
+        except (json.JSONDecodeError, TypeError):
+            experience = []
+
+    if body.index < 0 or body.index >= len(experience):
+        raise HTTPException(status_code=422, detail=f"Experience index {body.index} out of range (0-{len(experience)-1}).")
+
+    entry = experience[body.index]
+    current_description = entry.get("description", "")
+    if not current_description.strip():
+        raise HTTPException(status_code=422, detail="No description found for this experience entry.")
+
+    try:
+        rewritten, tokens = await do_rewrite(
+            current_description,
+            job_title=entry.get("title", ""),
+            company=entry.get("company", ""),
+            target_role=body.role or "",
+        )
+        log_llm_usage(user_id, "rewrite-experience", tokens, db)
+    except LLMServiceError as exc:
+        raise HTTPException(status_code=503, detail=str(exc))
+
+    return ApiResponse(
+        success=True,
+        data={"original": current_description, "rewritten": rewritten, "rewrite_type": "experience"},
+        message="Experience bullets rewritten",
+    )
+
+
+# ---------------------------------------------------------------------------
+# POST /resumes/{resume_id}/rewrite-project — LLM project description rewrite
+# ---------------------------------------------------------------------------
+
+
+@router.post("/{resume_id}/rewrite-project")
+async def rewrite_project(
+    resume_id: int,
+    body: ProjectRewriteRequest,
+    user_id: int = Depends(get_current_user_id),
+    db: Session = Depends(get_db),
+):
+    """Generate an improved project description using LLM.
+
+    Pass the index of the project entry to rewrite (0-based).
+    Rate-limited to 15 requests per user per day.
+    """
+    from app.llm.resume_llm import rewrite_project_description as do_rewrite
+    from app.llm.rate_limit import check_and_increment_rate_limit, log_llm_usage
+    from app.llm.groq_client import LLMServiceError
+
+    if not check_and_increment_rate_limit(user_id, db):
+        raise HTTPException(status_code=429, detail="Daily LLM request limit reached (15/day). Please try again tomorrow.")
+
+    try:
+        resume = service._get_owned_resume(resume_id, user_id, db)
+    except HTTPException:
+        raise HTTPException(status_code=404, detail="Resume not found.")
+
+    projects = []
+    if resume.projects:
+        try:
+            import json
+            projects = json.loads(resume.projects) if isinstance(resume.projects, str) else resume.projects
+        except (json.JSONDecodeError, TypeError):
+            projects = []
+
+    if body.index < 0 or body.index >= len(projects):
+        raise HTTPException(status_code=422, detail=f"Project index {body.index} out of range (0-{len(projects)-1}).")
+
+    project = projects[body.index]
+    current_description = project.get("description", "")
+    if not current_description.strip():
+        raise HTTPException(status_code=422, detail="No description found for this project.")
+
+    try:
+        rewritten, tokens = await do_rewrite(
+            current_description,
+            project_name=project.get("name", ""),
+            technologies=project.get("technologies", ""),
+            target_role=body.role or "",
+        )
+        log_llm_usage(user_id, "rewrite-project", tokens, db)
+    except LLMServiceError as exc:
+        raise HTTPException(status_code=503, detail=str(exc))
+
+    return ApiResponse(
+        success=True,
+        data={"original": current_description, "rewritten": rewritten, "rewrite_type": "project"},
+        message="Project description rewritten",
+    )
+
+
+# ---------------------------------------------------------------------------
+# POST /resumes/{resume_id}/ai-suggestions — AI-powered improvement tips
+# ---------------------------------------------------------------------------
+
+
+@router.post("/{resume_id}/ai-suggestions")
+async def ai_suggestions(
+    resume_id: int,
+    body: RewriteRequest = RewriteRequest(),
+    user_id: int = Depends(get_current_user_id),
+    db: Session = Depends(get_db),
+):
+    """Generate AI-powered improvement suggestions based on the full resume.
+
+    Optionally pass a target role for role-specific advice.
+    Rate-limited to 15 requests per user per day.
+    """
+    from app.llm.resume_llm import generate_resume_suggestions as do_suggestions
+    from app.llm.rate_limit import check_and_increment_rate_limit, log_llm_usage
+    from app.llm.groq_client import LLMServiceError
+
+    if not check_and_increment_rate_limit(user_id, db):
+        raise HTTPException(status_code=429, detail="Daily LLM request limit reached (15/day). Please try again tomorrow.")
+
+    try:
+        resume = service._get_owned_resume(resume_id, user_id, db)
+    except HTTPException:
+        raise HTTPException(status_code=404, detail="Resume not found.")
+
+    resume_data = service._to_plain_dict(resume)
+
+    # Get ATS score if available
+    ats_score = None
+    if resume.ats_score is not None:
+        try:
+            from app.services.ats_scorer import score_resume
+            ats_score = score_resume(resume_data)
+        except Exception:
+            pass
+
+    try:
+        suggestions, tokens = await do_suggestions(
+            resume_data,
+            ats_score=ats_score,
+            target_role=body.role or "",
+        )
+        log_llm_usage(user_id, "ai-suggestions", tokens, db)
+    except LLMServiceError as exc:
+        raise HTTPException(status_code=503, detail=str(exc))
+
+    return ApiResponse(
+        success=True,
+        data={"suggestions": suggestions},
+        message="AI suggestions generated",
+    )
 
 
 # ---------------------------------------------------------------------------
