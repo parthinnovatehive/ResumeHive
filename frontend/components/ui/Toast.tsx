@@ -29,6 +29,16 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     }, 3000);
   }, []);
 
+  React.useEffect(() => {
+    const handleToast = (e: any) => {
+      if (e.detail && e.detail.msg) {
+        toast(e.detail.msg, e.detail.type || 'info');
+      }
+    };
+    window.addEventListener('toast', handleToast);
+    return () => window.removeEventListener('toast', handleToast);
+  }, [toast]);
+
   return (
     <ToastContext.Provider value={{ toast }}>
       {children}
