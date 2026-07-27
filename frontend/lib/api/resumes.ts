@@ -208,7 +208,7 @@ export const resumesApi = {
         document.body.appendChild(a);
         a.click();
         a.remove();
-        URL.revokeObjectURL(url);
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
       }),
 
   score: (id: number, role?: string) =>
