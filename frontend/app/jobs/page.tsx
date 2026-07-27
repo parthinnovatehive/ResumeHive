@@ -1,11 +1,17 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { Search, MapPin, ExternalLink, Briefcase, Clock, DollarSign, ChevronLeft, ChevronRight, Loader2, ArrowRight, Heart, HeartOff, X } from "lucide-react";
+import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { 
+  Search, MapPin, ExternalLink, Briefcase, Clock, DollarSign, 
+  ChevronLeft, ChevronRight, Loader2, Heart, X, Sparkles, 
+  Target, Activity, Award, LayoutGrid, CheckCircle2, Building, 
+  Globe, Zap, ArrowRight, MousePointerClick
+} from "lucide-react";
 import { searchJobs, getCountries } from "@/lib/api/jobs";
 import type { JobListing, CountryOption, JobSearchParams } from "@/types/job";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useSpring, useTransform, useMotionValue, useScroll } from "framer-motion";
 import { TagsInput } from "@/components/resume-builder/TagsInput";
+import { createPortal } from "react-dom";
 
 type JobStatus = "none" | "applied" | "interview" | "offer" | "rejected";
 
@@ -15,192 +21,11 @@ const SORT_OPTIONS = [
   { value: "salary", label: "Salary" },
 ] as const;
 
-const JOB_TITLE_SUGGESTIONS = [
-  "Software Developer",
-  "Frontend Developer",
-  "Backend Developer",
-  "Full Stack Developer",
-  "Data Scientist",
-  "Product Manager",
-  "UX Designer",
-  "QA Engineer",
-  "DevOps Engineer",
-  "Cloud Engineer",
-];
+const FILTER_CHIPS = ["Remote", "Hybrid", "On-site", "Internship", "Contract", "Full-Time"];
 
-const LOCATION_SUGGESTIONS_BY_COUNTRY: Record<string, string[]> = {
-  in: [
-    "Bangalore, India",
-    "Mumbai, India",
-    "Delhi, India",
-    "Hyderabad, India",
-    "Chennai, India",
-    "Pune, India",
-    "Kolkata, India",
-    "Gurugram, India",
-    "Noida, India",
-  ],
-  gb: [
-    "London, United Kingdom",
-    "Manchester, United Kingdom",
-    "Birmingham, United Kingdom",
-    "Edinburgh, United Kingdom",
-    "Leeds, United Kingdom",
-  ],
-  us: [
-    "New York, United States",
-    "San Francisco, United States",
-    "Seattle, United States",
-    "Austin, United States",
-    "Chicago, United States",
-    "Los Angeles, United States",
-  ],
-  de: [
-    "Berlin, Germany",
-    "Munich, Germany",
-    "Hamburg, Germany",
-    "Frankfurt, Germany",
-  ],
-  fr: [
-    "Paris, France",
-    "Lyon, France",
-    "Marseille, France",
-  ],
-  br: [
-    "Sao Paulo, Brazil",
-    "Rio de Janeiro, Brazil",
-    "Belo Horizonte, Brazil",
-  ],
-  ca: [
-    "Toronto, Canada",
-    "Vancouver, Canada",
-    "Montreal, Canada",
-  ],
-  au: [
-    "Sydney, Australia",
-    "Melbourne, Australia",
-    "Brisbane, Australia",
-  ],
-};
-
-const JOB_TAGLINES = [
-  { text: "Discover careers built for your ", highlight: "future." },
-  { text: "Your dream job is one ", highlight: "search away." },
-  { text: "Smarter job search. Better ", highlight: "opportunities." },
-  { text: "Find companies that value your ", highlight: "skills." },
-  { text: "AI-powered career discovery for modern ", highlight: "professionals." },
-  { text: "Connect your skills with the right ", highlight: "opportunities." },
-  { text: "Explore careers with ", highlight: "confidence." },
-  { text: "Build your future one ", highlight: "opportunity at a time." },
-  { text: "Discover companies where your talent ", highlight: "belongs." },
-  { text: "Find opportunities that match your ", highlight: "ambition." },
-  { text: "Your next career move ", highlight: "starts here." },
-  { text: "Search smarter. Get hired ", highlight: "faster." },
-  { text: "Empower your career with intelligent job ", highlight: "discovery." },
-  { text: "Unlock opportunities with ", highlight: "ResumeHive." },
-];
-
-function buildSearchCombos(titles: string[], locations: string[]) {
-  if (titles.length === 0) return [];
-  if (locations.length === 0) {
-    return titles.map((title) => ({ what: title, where: undefined }));
-  }
-  const combos: Array<{ what: string; where: string | undefined }> = [];
-  for (const title of titles) {
-    for (const location of locations) {
-      combos.push({ what: title, where: location });
-    }
-  }
-  return combos;
-}
-
-function AnimatedJobsHero() {
-  const [index, setIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState("");
-  const [phase, setPhase] = useState<"typing" | "paused" | "erasing" | "crossfade">("typing");
-
-  useEffect(() => {
-    const fullText = JOB_TAGLINES[index].text + JOB_TAGLINES[index].highlight;
-    let timeout: NodeJS.Timeout;
-
-    if (phase === "typing") {
-      if (displayedText.length < fullText.length) {
-        timeout = setTimeout(() => {
-          setDisplayedText(fullText.slice(0, displayedText.length + 1));
-        }, 45);
-      } else {
-        timeout = setTimeout(() => setPhase("paused"), 3500);
-      }
-    } else if (phase === "paused") {
-      setPhase("erasing");
-    } else if (phase === "erasing") {
-      if (displayedText.length > 0) {
-        timeout = setTimeout(() => {
-          setDisplayedText(fullText.slice(0, displayedText.length - 1));
-        }, 25);
-      } else {
-        setPhase("crossfade");
-      }
-    } else if (phase === "crossfade") {
-      timeout = setTimeout(() => {
-        setPhase("typing");
-        setIndex((prev) => (prev + 1) % JOB_TAGLINES.length);
-      }, 500);
-    }
-    return () => clearTimeout(timeout);
-  }, [displayedText, phase, index]);
-
-  const baseText = JOB_TAGLINES[index].text;
-  const currentBase = displayedText.slice(0, baseText.length);
-  const currentHighlight = displayedText.slice(baseText.length);
-
-  return (
-    <div className="relative mb-12 flex flex-col items-center justify-center text-center w-full pt-8">
-      {/* Ambient Atmospheric Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-premium-blue/10 blur-[100px] rounded-[100%] pointer-events-none z-[-1]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-premium-purple/10 blur-[120px] rounded-[100%] pointer-events-none z-[-1]" style={{ animationDelay: "2s" }} />
-
-      <motion.h1 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 drop-shadow-sm"
-      >
-        Job Search
-      </motion.h1>
-      
-      <div className="min-h-[48px] md:min-h-[56px] flex items-center justify-center w-full max-w-3xl mx-auto">
-        <motion.p
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ 
-            opacity: phase === "crossfade" ? 0 : 1, 
-            y: phase === "crossfade" ? -2 : 0,
-            filter: phase === "crossfade" ? "blur(4px)" : "blur(0px)"
-          }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="text-[18px] md:text-[22px] lg:text-[26px] font-semibold text-slate-600 leading-snug tracking-[0.01em]"
-        >
-          {currentBase}
-          <span className="relative inline-block">
-            {currentHighlight.length > 0 && (
-              <span className="bg-gradient-to-r from-premium-blue to-premium-indigo bg-clip-text text-transparent font-bold drop-shadow-[0_2px_12px_rgba(37,99,235,0.15)] transition-all duration-300">
-                {currentHighlight}
-              </span>
-            )}
-            {currentHighlight.length > 0 && (
-              <span className="absolute inset-0 bg-premium-blue/15 blur-[16px] rounded-full z-[-1]" />
-            )}
-            <motion.span
-              animate={{ opacity: phase === "crossfade" ? 0 : [1, 0, 1] }}
-              transition={{ repeat: phase === "crossfade" ? 0 : Infinity, duration: 1.5, ease: "easeInOut" }}
-              className="inline-block w-[2px] h-[0.9em] bg-premium-blue/50 align-middle ml-1 transition-opacity duration-300"
-            />
-          </span>
-        </motion.p>
-      </div>
-    </div>
-  );
-}
+/* -------------------------------------------------------------------------- */
+/*                                   PAGE                                     */
+/* -------------------------------------------------------------------------- */
 
 export default function JobsPage() {
   const [countries, setCountries] = useState<CountryOption[]>([]);
@@ -209,666 +34,669 @@ export default function JobsPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Search State
   const [whatTags, setWhatTags] = useState<string[]>(["Software Developer"]);
   const [whereTags, setWhereTags] = useState<string[]>([]);
-  const [country, setCountry] = useState("in");
-  const [page, setPage] = useState(1);
-  const [sortBy, setSortBy] = useState<JobSearchParams["sort_by"]>("date");
-  const [salaryMin, setSalaryMin] = useState("");
-  const [fullTimeOnly, setFullTimeOnly] = useState(false);
-  const [permanentOnly, setPermanentOnly] = useState(false);
+  const [country, setCountry] = useState("us");
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  
+  // UI State
+  const [searchPhase, setSearchPhase] = useState("idle"); 
+  const [searchStage, setSearchStage] = useState(0);
   const [selectedJob, setSelectedJob] = useState<JobListing | null>(null);
+  const [compareJobs, setCompareJobs] = useState<JobListing[]>([]);
+  const [showCompareModal, setShowCompareModal] = useState(false);
+  
+  // Data States
   const [favorites, setFavorites] = useState<string[]>([]);
-
   const [jobStatuses, setJobStatuses] = useState<Record<string, JobStatus>>({});
-  const [viewFavorites, setViewFavorites] = useState(false);
-  const [statusFilter, setStatusFilter] = useState<JobStatus | "all">("all");
+  const [mounted, setMounted] = useState(false);
 
-  const resultsPerPage = 20;
-  const totalPages = Math.ceil(totalCount / resultsPerPage);
+  const detailsRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 500], [0, 150]);
+  const searchY = useTransform(scrollY, [0, 500], [0, 50]);
 
   useEffect(() => {
-    getCountries()
-      .then(setCountries)
-      .catch(() => setCountries([{ code: "in", name: "India" }]));
+    setMounted(true);
+    getCountries().then(setCountries).catch(() => setCountries([{ code: "us", name: "United States" }]));
+    
+    try {
+      const favs = window.localStorage.getItem("resumeHiveJobFavorites");
+      if (favs) setFavorites(JSON.parse(favs));
+      const stats = window.localStorage.getItem("resumeHiveJobStatuses");
+      if (stats) setJobStatuses(JSON.parse(stats));
+    } catch {}
 
-    const storedFavorites = window.localStorage.getItem("resumeHiveJobFavorites");
-    if (storedFavorites) {
-      try {
-        setFavorites(JSON.parse(storedFavorites));
-      } catch {
-        setFavorites([]);
-      }
-    }
-
-    const storedStatuses = window.localStorage.getItem("resumeHiveJobStatuses");
-    if (storedStatuses) {
-      try {
-        setJobStatuses(JSON.parse(storedStatuses));
-      } catch {
-        setJobStatuses({});
-      }
-    }
-
-    doSearch(1);
+    executeSearch();
   }, []);
 
   useEffect(() => {
-    if (favorites.length > 0) {
-      window.localStorage.setItem("resumeHiveJobFavorites", JSON.stringify(favorites));
-    } else {
-      window.localStorage.removeItem("resumeHiveJobFavorites");
-    }
-  }, [favorites]);
-
+    if (mounted) window.localStorage.setItem("resumeHiveJobFavorites", JSON.stringify(favorites));
+  }, [favorites, mounted]);
   useEffect(() => {
-    const hasTracked = Object.keys(jobStatuses).length > 0;
-    if (hasTracked) {
-      window.localStorage.setItem("resumeHiveJobStatuses", JSON.stringify(jobStatuses));
-    } else {
-      window.localStorage.removeItem("resumeHiveJobStatuses");
-    }
-  }, [jobStatuses]);
+    if (mounted) window.localStorage.setItem("resumeHiveJobStatuses", JSON.stringify(jobStatuses));
+  }, [jobStatuses, mounted]);
 
-  const doSearch = useCallback(async (p: number) => {
+  const toggleFavorite = (jobId: string) => {
+    setFavorites(prev => prev.includes(jobId) ? prev.filter(id => id !== jobId) : [...prev, jobId]);
+  };
+
+  const toggleCompare = (job: JobListing) => {
+    setCompareJobs(prev => {
+      if (prev.find(j => j.id === job.id)) return prev.filter(j => j.id !== job.id);
+      if (prev.length < 3) return [...prev, job];
+      return prev;
+    });
+  };
+
+  const handleSelectJob = (job: JobListing) => {
+    setSelectedJob(job);
+    setTimeout(() => {
+      detailsRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 150);
+  };
+
+  const executeSearch = useCallback(async () => {
     if (whatTags.length === 0) return;
-    setLoading(true);
-    setError(null);
+    setSearchPhase("searching");
+    setSearchStage(0);
+    
+    const stages = ["Searching Jobs...", "Matching Skills...", "Ranking Opportunities...", "Preparing Recommendations..."];
+    const interval = setInterval(() => {
+      setSearchStage(s => (s < stages.length - 1 ? s + 1 : s));
+    }, 600);
+
     try {
+      const isRemote = activeFilters.includes("Remote");
+      const isFullTime = activeFilters.includes("Full-Time");
+      const isContract = activeFilters.includes("Contract");
+
       const res = await searchJobs({
         what: whatTags,
         where: whereTags.length > 0 ? whereTags : undefined,
         country,
-        page: p,
-        results_per_page: resultsPerPage,
-        sort_by: sortBy,
-        salary_min: salaryMin ? Number(salaryMin) : undefined,
-        full_time: fullTimeOnly || undefined,
-        permanent: permanentOnly || undefined,
+        page: 1,
+        results_per_page: 50,
+        sort_by: "relevance",
+        full_time: isFullTime || undefined,
+        permanent: (!isContract && isFullTime) || undefined,
       });
-      setJobs(res.results);
+
+      let filtered = res.results;
+      if (isRemote) filtered = filtered.filter(j => j.location.display_name.toLowerCase().includes("remote"));
+
+      setJobs(filtered);
       setTotalCount(res.count);
-      setPage(p);
+      setSelectedJob(null);
     } catch (err: any) {
-      const detail = err?.response?.data?.detail;
-      let msg = "Failed to fetch jobs";
-      if (typeof detail === "string") {
-        msg = detail;
-      } else if (Array.isArray(detail) && detail.length > 0) {
-        msg = detail.map((d: any) => d.msg).join(", ");
-      } else if (err?.message) {
-        msg = err.message;
-      }
-      setError(msg);
-      setJobs([]);
-      setTotalCount(0);
+      setError(err?.message || "Search failed");
     } finally {
-      setLoading(false);
+      clearInterval(interval);
+      setSearchPhase("done");
     }
-  }, [whatTags, whereTags, country, sortBy, salaryMin, fullTimeOnly, permanentOnly]);
+  }, [whatTags, whereTags, country, activeFilters]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    doSearch(1);
-  };
-
-  const toggleFavorite = (jobId: string) => {
-    setFavorites((prev) =>
-      prev.includes(jobId) ? prev.filter((id) => id !== jobId) : [...prev, jobId]
-    );
-  };
-
-  const setJobStatus = (jobId: string, status: JobStatus) => {
-    setJobStatuses((prev) => ({
-      ...prev,
-      [jobId]: status,
-    }));
-  };
-
-  const showJobDetails = (job: JobListing) => {
-    setSelectedJob(job);
-  };
-
-  const closeJobDetails = () => {
-    setSelectedJob(null);
-  };
-
-  const formatSalary = (min: number | null, max: number | null) => {
-    const hasMin = min && min > 0;
-    const hasMax = max && max > 0;
-    if (!hasMin && !hasMax) return null;
-    const fmt = (n: number) => {
-      if (n >= 1000) return `${Math.round(n / 1000)}k`;
-      return String(n);
-    };
-    if (hasMin && hasMax) return `${fmt(min!)} - ${fmt(max!)}`;
-    if (hasMin) return `From ${fmt(min!)}`;
-    return `Up to ${fmt(max!)}`;
-  };
-
-  const statusLabels: Record<JobStatus, string> = {
-    none: "No status",
-    applied: "Applied",
-    interview: "Interview",
-    offer: "Offer",
-    rejected: "Rejected",
-  };
-
-  const statusColors: Record<JobStatus, string> = {
-    none: "bg-slate-100 text-slate-600",
-    applied: "bg-sky-100 text-sky-700",
-    interview: "bg-amber-100 text-amber-700",
-    offer: "bg-emerald-100 text-emerald-700",
-    rejected: "bg-rose-100 text-rose-700",
-  };
-
-  const statusCount = (status: JobStatus) =>
-    Object.values(jobStatuses).filter((value) => value === status).length;
-
-  const filteredJobs = jobs
-    .filter((job) => !viewFavorites || favorites.includes(job.id))
-    .filter((job) => statusFilter === "all" || jobStatuses[job.id] === statusFilter);
-
-  const timeAgo = (dateStr: string) => {
-    if (!dateStr) return "";
-    const ts = typeof dateStr === "number" ? dateStr * 1000 : Date.parse(dateStr);
-    if (isNaN(ts)) return "";
-    const diff = Date.now() - ts;
-    const days = Math.floor(diff / 86400000);
-    if (days < 0) return "Just now";
-    if (days === 0) return "Today";
-    if (days === 1) return "Yesterday";
-    if (days < 7) return `${days}d ago`;
-    if (days < 30) return `${Math.floor(days / 7)}w ago`;
-    return `${Math.floor(days / 30)}mo ago`;
-  };
+  const recommendedJobs = useMemo(() => jobs.slice(0, 10), [jobs]);
+  const recentlyPosted = useMemo(() => [...jobs].sort((a,b) => new Date(b.created).getTime() - new Date(a.created).getTime()).slice(0, 10), [jobs]);
+  const remoteJobs = useMemo(() => jobs.filter(j => j.location.display_name.toLowerCase().includes("remote")).slice(0,10), [jobs]);
 
   return (
-    <div className="relative min-h-screen pb-16 overflow-hidden">
-      {/* Core Background Ambience */}
-      <div className="fixed inset-0 z-[-2] bg-slate-50" />
-      <div className="fixed top-[-20%] right-[-10%] w-[800px] h-[800px] rounded-full bg-premium-blue/5 blur-[150px] mix-blend-multiply pointer-events-none z-[-1]" />
-      <div className="fixed bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-premium-emerald/5 blur-[120px] mix-blend-multiply pointer-events-none z-[-1]" />
+    <div className="relative min-h-screen bg-slate-50 pt-[88px] overflow-hidden selection:bg-indigo-500/30">
+      <HeroBackground scrollY={scrollY} />
 
-      <div className="mx-auto max-w-5xl px-4 pt-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pb-24">
+        <motion.div style={{ y: heroY }}>
+          <AnimatedJobsHero />
+        </motion.div>
         
-        <AnimatedJobsHero />
-
-        <motion.form 
-          onSubmit={handleSubmit} 
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-          className="mb-10 rounded-2xl border border-white/80 bg-white/60 p-5 shadow-[0_8px_40px_rgba(0,0,0,0.04)] backdrop-blur-2xl hover:shadow-[0_12px_50px_rgba(37,99,235,0.06)] hover:border-white transition-all duration-500 relative z-10"
-        >
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-            <motion.div whileTap={{ scale: 0.99 }} className="relative md:col-span-2 group">
-              <Search size={18} className="absolute left-4 top-4 text-slate-400 group-focus-within:text-premium-blue transition-colors duration-300" />
-              <TagsInput
-                value={whatTags}
-                onChange={setWhatTags}
-                placeholder="Add one or more job titles"
-                suggestions={JOB_TITLE_SUGGESTIONS}
-                label="Job titles"
-              />
-            </motion.div>
-            <motion.div whileTap={{ scale: 0.99 }} className="relative group">
-              <MapPin size={18} className="absolute left-4 top-4 text-slate-400 group-focus-within:text-premium-purple transition-colors duration-300" />
-              <TagsInput
-                value={whereTags}
-                onChange={setWhereTags}
-                placeholder="Add one or more locations"
-                suggestions={LOCATION_SUGGESTIONS_BY_COUNTRY[country] ?? []}
-                label="Locations"
-              />
-            </motion.div>
-            <motion.select
-              whileTap={{ scale: 0.99 }}
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-              className="rounded-xl border border-slate-200 bg-white/50 px-4 py-3 text-sm font-medium text-slate-700 focus:border-premium-blue/50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-premium-blue/10 transition-all duration-300 shadow-sm cursor-pointer appearance-none"
-            >
-              {countries.map((c) => (
-                <option key={c.code} value={c.code}>{c.name}</option>
-              ))}
-            </motion.select>
-          </div>
-
-          <div className="mt-5 flex flex-wrap items-center justify-between gap-4 border-t border-slate-100/50 pt-4">
-            <div className="flex flex-wrap items-center gap-4">
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                className="rounded-lg border border-slate-200 bg-white/50 px-3 py-2 text-xs font-medium text-slate-600 focus:border-premium-blue/40 focus:outline-none focus:ring-2 focus:ring-premium-blue/10 transition-all cursor-pointer hover:bg-white"
-              >
-                {SORT_OPTIONS.map((o) => (
-                  <option key={o.value} value={o.value}>{o.label}</option>
-                ))}
-              </select>
-
-              <input
-                type="number"
-                placeholder="Min salary"
-                value={salaryMin}
-                onChange={(e) => setSalaryMin(e.target.value)}
-                className="w-32 rounded-lg border border-slate-200 bg-white/50 px-3 py-2 text-xs font-medium text-slate-600 focus:border-premium-emerald/40 focus:outline-none focus:ring-2 focus:ring-premium-emerald/10 transition-all hover:bg-white placeholder:text-slate-400"
-              />
-
-              <label className="flex items-center gap-2 text-xs font-semibold text-slate-600 cursor-pointer group">
-                <div className="relative flex items-center justify-center">
-                  <input
-                    type="checkbox"
-                    checked={fullTimeOnly}
-                    onChange={(e) => setFullTimeOnly(e.target.checked)}
-                    className="peer sr-only"
-                  />
-                  <div className="w-4 h-4 rounded border-2 border-slate-300 bg-white peer-checked:border-premium-blue peer-checked:bg-premium-blue transition-all" />
-                  <div className="absolute inset-0 flex items-center justify-center text-white opacity-0 peer-checked:opacity-100 transition-opacity">
-                    <svg viewBox="0 0 24 24" fill="none" className="w-3 h-3" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-                  </div>
-                </div>
-                <span className="group-hover:text-slate-900 transition-colors">Full-time</span>
-              </label>
-
-              <label className="flex items-center gap-2 text-xs font-semibold text-slate-600 cursor-pointer group">
-                <div className="relative flex items-center justify-center">
-                  <input
-                    type="checkbox"
-                    checked={permanentOnly}
-                    onChange={(e) => setPermanentOnly(e.target.checked)}
-                    className="peer sr-only"
-                  />
-                  <div className="w-4 h-4 rounded border-2 border-slate-300 bg-white peer-checked:border-premium-purple peer-checked:bg-premium-purple transition-all" />
-                  <div className="absolute inset-0 flex items-center justify-center text-white opacity-0 peer-checked:opacity-100 transition-opacity">
-                    <svg viewBox="0 0 24 24" fill="none" className="w-3 h-3" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-                  </div>
-                </div>
-                <span className="group-hover:text-slate-900 transition-colors">Permanent</span>
-              </label>
-            </div>
-
-            <motion.button
-              whileHover={{ scale: 1.02, y: -1 }}
-              whileTap={{ scale: 0.98 }}
-              type="submit"
-              disabled={loading || whatTags.length === 0}
-              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-premium-blue to-premium-purple px-6 py-2.5 text-sm font-bold text-white shadow-[0_4px_14px_rgba(37,99,235,0.25)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.4)] disabled:opacity-50 transition-all duration-300"
-            >
-              {loading ? (
-                <>
-                  <Loader2 size={16} className="animate-spin" />
-                  Searching...
-                </>
-              ) : (
-                <>
-                  Search Jobs
-                  <Search size={16} />
-                </>
-              )}
-            </motion.button>
-          </div>
-        </motion.form>
+        <motion.div style={{ y: searchY }}>
+          <SearchWorkspace 
+            whatTags={whatTags} setWhatTags={setWhatTags}
+            whereTags={whereTags} setWhereTags={setWhereTags}
+            country={country} setCountry={setCountry} countries={countries}
+            activeFilters={activeFilters} setActiveFilters={setActiveFilters}
+            onSearch={executeSearch} searchPhase={searchPhase} searchStage={searchStage}
+          />
+        </motion.div>
 
         <AnimatePresence mode="wait">
-          {error && (
-            <motion.div 
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="mb-8 overflow-hidden"
-            >
-              <div className="rounded-xl border border-red-200/50 bg-red-50/80 p-4 text-sm font-medium text-red-700 backdrop-blur-md">
-                {error}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {!loading && jobs.length === 0 && !error && whatTags.length > 0 && (
-          <motion.div 
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-            className="py-16 text-center"
-          >
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-4">
-              <Search size={24} className="text-slate-400" />
-            </div>
-            <h3 className="text-lg font-bold text-slate-800 mb-1">No jobs found</h3>
-            <p className="text-sm text-slate-500">Try adjusting your keywords or removing some filters.</p>
-          </motion.div>
-        )}
-
-        {!loading && jobs.length === 0 && !error && whatTags.length === 0 && (
-          <motion.div 
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-            className="py-24 text-center"
-          >
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-white to-slate-50 shadow-sm border border-slate-100 mb-6 relative">
-              <Briefcase size={32} className="text-slate-300" />
-              <div className="absolute top-0 right-0 w-4 h-4 bg-premium-emerald rounded-full border-2 border-white animate-pulse" />
-            </div>
-            <h3 className="text-xl font-bold text-slate-800 mb-2">Ready for your next opportunity?</h3>
-            <p className="text-base text-slate-500 max-w-md mx-auto">Enter a job title or keyword above to discover premium opportunities tailored to your skills.</p>
-          </motion.div>
-        )}
-
-        {(jobs.length > 0 || Object.values(jobStatuses).some((status) => status !== "none")) && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="mb-6 grid gap-4 md:grid-cols-5">
-              <button
-                type="button"
-                onClick={() => setStatusFilter("all")}
-                className={`col-span-2 rounded-3xl border px-4 py-4 text-left shadow-sm transition ${statusFilter === "all" ? "border-slate-300 bg-slate-900 text-white" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"}`}
-              >
-                <p className="text-sm font-semibold">All applications</p>
-                <p className="mt-2 text-2xl font-bold text-slate-900">{Object.values(jobStatuses).filter((value) => value !== "none").length}</p>
-              </button>
-              {(["applied", "interview", "offer", "rejected"] as JobStatus[]).map((status) => (
-                <button
-                  key={status}
-                  type="button"
-                  onClick={() => setStatusFilter(status)}
-                  className={`rounded-3xl border px-4 py-4 text-left shadow-sm transition ${statusFilter === status ? "border-slate-300 bg-slate-900 text-white" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"}`}
-                >
-                  <p className="text-sm font-semibold capitalize">{statusLabels[status]}</p>
-                  <p className="mt-2 text-2xl font-bold text-slate-900">{statusCount(status)}</p>
-                </button>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-              <div>
-                <h2 className="text-lg font-bold text-slate-800">Latest Opportunities</h2>
-                <p className="text-sm text-slate-500">Explore jobs with rich details, save favorites, and keep track of every application stage.</p>
-              </div>
-              <div className="flex flex-wrap items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => setViewFavorites((prev) => !prev)}
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50"
-                >
-                  {viewFavorites ? "View all jobs" : "View favorites"}
-                  {viewFavorites ? <HeartOff size={16} /> : <Heart size={16} />}
-                </button>
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 bg-white/60 px-3 py-1 rounded-full border border-slate-200/60 backdrop-blur-sm">
-                  {filteredJobs.length.toLocaleString()} Shown
-                </p>
-              </div>
-            </div>
-
-            <motion.div 
-              className="space-y-4"
-              initial="hidden"
-              animate="show"
-              variants={{
-                hidden: { opacity: 0 },
-                show: {
-                  opacity: 1,
-                  transition: { staggerChildren: 0.05 }
-                }
-              }}
-            >
-              {filteredJobs.map((job) => (
-                <motion.div
-                  key={job.id}
-                  variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 400, damping: 30 } }
-                  }}
-                  whileHover={{ y: -4, scale: 1.005 }}
-                  className="group relative rounded-2xl border border-white/60 bg-white/70 p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] backdrop-blur-xl transition-all duration-300 hover:shadow-[0_12px_30px_rgba(37,99,235,0.08)] hover:border-premium-blue/20"
-                >
-                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-3 mb-1">
-                        <h3 className="text-lg font-bold text-slate-900 group-hover:text-premium-blue transition-colors">
-                          {job.title}
-                        </h3>
-                        <button
-                          type="button"
-                          onClick={() => toggleFavorite(job.id)}
-                          className="inline-flex items-center justify-center rounded-full p-2 text-slate-500 transition hover:text-premium-red hover:bg-red-50"
-                          aria-label={favorites.includes(job.id) ? "Remove favorite" : "Add favorite"}
-                        >
-                          {favorites.includes(job.id) ? <Heart size={18} className="text-premium-red" /> : <HeartOff size={18} />}
-                        </button>
+          {searchPhase === "searching" ? (
+             <LoadingSkeletons key="loading" />
+          ) : searchPhase === "done" && jobs.length === 0 ? (
+             <EmptyState key="empty" />
+          ) : searchPhase === "done" && jobs.length > 0 ? (
+             <motion.div key="results" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                <SearchInsights jobs={jobs} totalCount={totalCount} />
+                
+                {compareJobs.length > 0 && (
+                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-10 p-6 bg-white/80 backdrop-blur-xl rounded-[24px] border border-white flex items-center justify-between shadow-xl">
+                    <div className="flex items-center gap-4">
+                      <LayoutGrid className="w-6 h-6 text-indigo-500" />
+                      <div>
+                        <h3 className="font-bold text-slate-900">Compare Jobs ({compareJobs.length}/3)</h3>
+                        <p className="text-sm text-slate-500 font-medium">Select up to 3 jobs to compare side-by-side.</p>
                       </div>
-                      <p className="text-sm font-semibold text-slate-500 mb-4">{job.company.display_name}</p>
-
-                      <div className="flex flex-wrap items-center gap-2 mb-4">
-                        <span className="flex items-center gap-1.5 rounded-full bg-slate-100/80 px-2.5 py-1 text-[11px] font-semibold text-slate-600 border border-slate-200/50 backdrop-blur-sm">
-                          <MapPin size={12} className="text-slate-400" />
-                          {job.location.display_name || job.location.area[job.location.area.length - 1] || "Remote"}
-                        </span>
-
-                        <span className="flex items-center gap-1.5 rounded-full bg-emerald-50/80 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 border border-emerald-100 backdrop-blur-sm">
-                          <DollarSign size={12} className="text-emerald-500" />
-                          {formatSalary(job.salary_min, job.salary_max) || "Competitive"}
-                        </span>
-
-                        {job.contract_time && (
-                          <span className="flex items-center gap-1.5 rounded-full bg-blue-50/80 px-2.5 py-1 text-[11px] font-semibold text-blue-700 border border-blue-100 backdrop-blur-sm capitalize">
-                            <Clock size={12} className="text-blue-500" />
-                            {job.contract_time.replace("_", " ")}
-                          </span>
-                        )}
-
-                        {job.contract_type && (
-                          <span className="rounded-full bg-purple-50/80 px-2.5 py-1 text-[11px] font-semibold text-purple-700 border border-purple-100 backdrop-blur-sm capitalize">
-                            {job.contract_type}
-                          </span>
-                        )}
-
-                        {job.category && (
-                          <span className="rounded-full bg-indigo-50/80 px-2.5 py-1 text-[11px] font-semibold text-indigo-700 border border-indigo-100 backdrop-blur-sm">
-                            {job.category.label}
-                          </span>
-                        )}
-                        <span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${statusColors[jobStatuses[job.id] || "none"]}`}>
-                          {statusLabels[jobStatuses[job.id] || "none"]}
-                        </span>
-                        <span className="text-[11px] font-medium text-slate-400 ml-auto flex items-center">
-                          {timeAgo(job.created)}
-                        </span>
-                      </div>
-
-                      <p
-                        className="line-clamp-2 text-sm leading-relaxed text-slate-500"
-                        dangerouslySetInnerHTML={{ __html: job.description }}
-                      />
-                      <div className="mt-4 flex flex-wrap items-center gap-3">
-                        <button
-                          type="button"
-                          onClick={() => showJobDetails(job)}
-                          className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-white"
-                        >
-                          View details
-                        </button>
-                        <div className="flex items-center gap-2">
-                          {(["applied", "interview", "offer", "rejected"] as JobStatus[]).map((status) => (
-                            <button
-                              key={status}
-                              type="button"
-                              onClick={() => setJobStatus(job.id, status)}
-                              className={`rounded-full px-3 py-1 text-[11px] font-semibold transition ${jobStatuses[job.id] === status ? "border border-slate-300 bg-slate-900 text-white" : "border border-slate-200 bg-white text-slate-600 hover:bg-slate-100"}`}
-                            >
-                              {statusLabels[status]}
-                            </button>
-                          ))}
+                    </div>
+                    <div className="flex gap-4">
+                      {compareJobs.map(j => (
+                        <div key={j.id} className="px-4 py-2 bg-slate-100 rounded-xl text-xs font-bold flex items-center gap-2 hover:bg-slate-200 transition-colors cursor-pointer" onClick={() => handleSelectJob(j)}>
+                          <span className="truncate max-w-[100px]">{j.company.display_name}</span>
+                          <button onClick={(e) => { e.stopPropagation(); toggleCompare(j); }} className="text-slate-400 hover:text-red-500 p-1"><X className="w-3 h-3"/></button>
                         </div>
-                      </div>
+                      ))}
+                      {compareJobs.length > 1 && (
+                        <button onClick={() => setShowCompareModal(true)} className="px-6 py-2 bg-indigo-600 text-white rounded-xl text-sm font-bold shadow-md hover:bg-indigo-700 hover:-translate-y-0.5 transition-all">Compare Now</button>
+                      )}
                     </div>
+                  </motion.div>
+                )}
 
-                    <div className="shrink-0 pt-1 flex flex-col items-end gap-3">
-                      <a
-                        href={job.redirect_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group/btn inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-2.5 text-sm font-bold text-white shadow-md transition-all hover:bg-premium-blue hover:shadow-lg hover:-translate-y-0.5 active:scale-95"
-                      >
-                        Apply Now
-                        <ArrowRight size={14} className="transition-transform group-hover/btn:translate-x-1" />
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {totalPages > 1 && (
-              <div className="mt-10 flex items-center justify-center gap-4">
-                <button
-                  onClick={() => doSearch(page - 1)}
-                  disabled={page <= 1 || loading}
-                  className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition-all hover:bg-slate-50 hover:border-slate-300 disabled:opacity-40 disabled:hover:bg-white"
-                >
-                  <ChevronLeft size={16} />
-                </button>
-                <div className="flex items-center px-4 py-2 rounded-full bg-white/60 border border-slate-200/60 backdrop-blur-sm shadow-sm">
-                  <span className="text-sm font-semibold text-slate-600">
-                    Page <span className="text-slate-900">{page}</span> of {totalPages}
-                  </span>
+                <JobCarousel title="Recommended for You" icon={<Sparkles className="w-5 h-5 text-amber-500"/>} jobs={recommendedJobs} onSelect={handleSelectJob} favorites={favorites} toggleFav={toggleFavorite} compareJobs={compareJobs} toggleCompare={toggleCompare} selectedJobId={selectedJob?.id} />
+                <JobCarousel title="Recently Posted" icon={<Clock className="w-5 h-5 text-blue-500"/>} jobs={recentlyPosted} onSelect={handleSelectJob} favorites={favorites} toggleFav={toggleFavorite} compareJobs={compareJobs} toggleCompare={toggleCompare} selectedJobId={selectedJob?.id} />
+                {remoteJobs.length > 0 && <JobCarousel title="Remote Opportunities" icon={<Globe className="w-5 h-5 text-emerald-500"/>} jobs={remoteJobs} onSelect={handleSelectJob} favorites={favorites} toggleFav={toggleFavorite} compareJobs={compareJobs} toggleCompare={toggleCompare} selectedJobId={selectedJob?.id} />}
+             
+                <div ref={detailsRef} className="mt-12 scroll-m-24">
+                  <AnimatePresence mode="wait">
+                    {selectedJob && (
+                      <JobDetailsViewer key={selectedJob.id} job={selectedJob} onClose={() => setSelectedJob(null)} isFav={favorites.includes(selectedJob.id)} toggleFav={() => toggleFavorite(selectedJob.id)} />
+                    )}
+                  </AnimatePresence>
                 </div>
-                <button
-                  onClick={() => doSearch(page + 1)}
-                  disabled={page >= totalPages || loading}
-                  className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition-all hover:bg-slate-50 hover:border-slate-300 disabled:opacity-40 disabled:hover:bg-white"
-                >
-                  <ChevronRight size={16} />
-                </button>
-              </div>
-            )}
-          </motion.div>
-        )}
+             </motion.div>
+          ) : null}
+        </AnimatePresence>
       </div>
 
       <AnimatePresence>
-        {selectedJob && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 px-4 py-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              initial={{ y: 20, opacity: 0, scale: 0.98 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={{ y: 20, opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="relative w-full max-w-3xl overflow-hidden rounded-[32px] bg-white shadow-2xl ring-1 ring-slate-200"
-            >
-              <div className="flex items-start justify-between gap-4 border-b border-slate-200 px-6 py-5">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Job details</p>
-                  <h3 className="mt-2 text-2xl font-bold text-slate-900">{selectedJob.title}</h3>
-                  <p className="mt-1 text-sm text-slate-500">{selectedJob.company.display_name}</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={closeJobDetails}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500 transition hover:bg-slate-100"
-                  aria-label="Close details"
-                >
-                  <X size={18} />
-                </button>
-              </div>
+        {mounted && showCompareModal && createPortal(
+          <CompareModal jobs={compareJobs} onClose={() => setShowCompareModal(false)} />,
+          document.body
+        )}
+      </AnimatePresence>
 
-              <div className="grid gap-6 px-6 py-6 lg:grid-cols-[1.5fr_0.9fr]">
-                <div className="space-y-6">
-                  <section className="space-y-3 rounded-3xl bg-slate-50 p-5">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
-                        <MapPin size={14} />
-                        {selectedJob.location.display_name || "Remote"}
-                      </span>
-                      <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
-                        <DollarSign size={14} />
-                        {formatSalary(selectedJob.salary_min, selectedJob.salary_max) || "Competitive"}
-                      </span>
-                      {selectedJob.contract_time && (
-                        <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200 capitalize">
-                          <Clock size={14} />
-                          {selectedJob.contract_time.replace("_", " ")}
-                        </span>
-                      )}
-                      {selectedJob.contract_type && (
-                        <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200 capitalize">
-                          {selectedJob.contract_type}
-                        </span>
-                      )}
-                    </div>
+      <style dangerouslySetInnerHTML={{__html: `
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}} />
+    </div>
+  );
+}
 
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-semibold text-slate-900">Company overview</h4>
-                      <p className="text-sm leading-6 text-slate-600">
-                        {selectedJob.company.display_name || "Company details are limited for this listing."}
-                      </p>
-                    </div>
-                  </section>
+/* -------------------------------------------------------------------------- */
+/*                                BACKGROUND                                  */
+/* -------------------------------------------------------------------------- */
 
-                  <section className="space-y-3 rounded-3xl bg-slate-50 p-5">
-                    <div className="flex items-center justify-between gap-4">
-                      <div>
-                        <h4 className="text-sm font-semibold text-slate-900">Job description</h4>
-                        <p className="text-sm text-slate-500">Read the full posting and discover what matters most.</p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => toggleFavorite(selectedJob.id)}
-                        className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
-                      >
-                        {favorites.includes(selectedJob.id) ? "Favorited" : "Save job"}
-                        {favorites.includes(selectedJob.id) ? <Heart size={16} className="text-rose-500" /> : <HeartOff size={16} />}
-                      </button>
-                    </div>
-                    <div className="max-h-[340px] overflow-y-auto rounded-3xl bg-white p-5 text-sm leading-6 text-slate-700 shadow-sm">
-                      <div dangerouslySetInnerHTML={{ __html: selectedJob.description }} />
-                    </div>
-                  </section>
-                </div>
+function HeroBackground({ scrollY }: any) {
+  const bgY = useTransform(scrollY, [0, 500], [0, 100]);
 
-                <aside className="space-y-6 rounded-3xl bg-slate-50 p-5">
-                  <section className="space-y-3">
-                    <h4 className="text-sm font-semibold text-slate-900">Required skills</h4>
-                    <p className="text-sm text-slate-600">Based on the role and category, focus on the core skills below.</p>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">{selectedJob.category?.label || "Job expertise"}</span>
-                      <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">{selectedJob.contract_time ? selectedJob.contract_time.replace("_", " ") : "Flexible"}</span>
-                      <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">{selectedJob.contract_type || "Any type"}</span>
-                    </div>
-                  </section>
+  return (
+    <motion.div style={{ y: bgY }} className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-indigo-50/80 to-transparent" />
+      <motion.div animate={{ x: [0, 50, 0], y: [0, 30, 0] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-blue-400/10 blur-[120px]" />
+      <motion.div animate={{ x: [0, -40, 0], y: [0, 50, 0] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="absolute top-40 -left-40 w-[500px] h-[500px] rounded-full bg-purple-500/10 blur-[120px]" />
+    </motion.div>
+  );
+}
 
-                  <section className="space-y-3">
-                    <h4 className="text-sm font-semibold text-slate-900">Application steps</h4>
-                    <ol className="space-y-3 text-sm leading-6 text-slate-600">
-                      <li className="flex gap-3"><span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-[11px] font-bold text-slate-700">1</span> Review the job details and salary range.</li>
-                      <li className="flex gap-3"><span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-[11px] font-bold text-slate-700">2</span> Tailor your resume and cover letter for this role.</li>
-                      <li className="flex gap-3"><span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-[11px] font-bold text-slate-700">3</span> Click apply to open the employer application page.</li>
-                    </ol>
-                  </section>
+/* -------------------------------------------------------------------------- */
+/*                                   HERO                                     */
+/* -------------------------------------------------------------------------- */
 
-                  <section className="space-y-3 rounded-3xl bg-white p-5 shadow-sm">
-                    <h4 className="text-sm font-semibold text-slate-900">Apply now</h4>
-                    <p className="text-sm text-slate-600">Jump to the external application and keep a note of next steps.</p>
-                    <a
-                      href={selectedJob.redirect_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
-                    >
-                      Go to application
-                      <ExternalLink size={16} />
-                    </a>
-                  </section>
-                </aside>
-              </div>
-            </motion.div>
+const ROTATING_TEXTS = ["Find Better Jobs", "Track Applications", "Discover Opportunities", "Grow Your Career", "Land Your Dream Job"];
+
+function AnimatedJobsHero() {
+  const [index, setIndex] = useState(0);
+  
+  useEffect(() => {
+    const i = setInterval(() => setIndex(p => (p + 1) % ROTATING_TEXTS.length), 3000);
+    return () => clearInterval(i);
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center text-center mb-7 mt-0">
+      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-sm mb-4">
+        <Sparkles className="w-3 h-3 text-indigo-500" />
+        <span className="text-[11px] font-bold tracking-wide text-slate-700">✨ AI Powered • Smart Matching • Career Growth</span>
+      </motion.div>
+      <motion.h1 initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }} className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-2">
+        Job Search
+      </motion.h1>
+      <div className="h-[28px] overflow-hidden flex justify-center w-full">
+        <AnimatePresence mode="wait">
+          <motion.p key={index} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -20, opacity: 0 }} transition={{ type: "spring", stiffness: 300, damping: 30, delay: 0.2 }} className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 leading-relaxed">
+            {ROTATING_TEXTS[index]}
+          </motion.p>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            SEARCH WORKSPACE                                */
+/* -------------------------------------------------------------------------- */
+
+const STAGES = ["Searching Jobs...", "Matching Skills...", "Ranking Opportunities...", "Preparing Recommendations..."];
+
+function SearchWorkspace({ whatTags, setWhatTags, whereTags, setWhereTags, country, setCountry, countries, activeFilters, setActiveFilters, onSearch, searchPhase, searchStage }: any) {
+  const isSearching = searchPhase === "searching";
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useTransform(y, [-300, 300], [4, -4]); 
+  const rotateY = useTransform(x, [-300, 300], [-4, 4]);
+
+  function handleMouse(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    x.set(e.clientX - rect.left - rect.width / 2);
+    y.set(e.clientY - rect.top - rect.height / 2);
+  }
+  function handleMouseLeave() { x.set(0); y.set(0); }
+
+  const handleFilterToggle = (f: string) => {
+    setActiveFilters((prev: any) => prev.includes(f) ? prev.filter((x:any)=>x!==f) : [...prev, f]);
+  };
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.8, delay: 0.3, type: "spring", bounce: 0.4 }}
+      style={{ rotateX, rotateY, perspective: 1200 }}
+      onMouseMove={handleMouse} onMouseLeave={handleMouseLeave}
+      whileHover={{ scale: 1.01, y: -4 }}
+      className="relative max-w-4xl mx-auto bg-white/70 backdrop-blur-3xl rounded-[28px] shadow-[0_20px_80px_rgba(0,0,0,0.04)] hover:shadow-[0_30px_100px_rgba(79,70,229,0.15)] border border-white p-6 md:p-8 mb-12 z-20 group/workspace transition-shadow duration-500"
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-transparent to-purple-500/0 group-hover/workspace:from-indigo-500/5 group-hover/workspace:to-purple-500/5 rounded-[28px] pointer-events-none transition-all duration-700" />
+      
+      <div className="flex flex-col md:flex-row gap-4 mb-5 relative z-10">
+        <div className="flex-1 bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:border-indigo-300 transition-all duration-300 focus-within:border-indigo-500 focus-within:ring-4 focus-within:ring-indigo-500/10 focus-within:-translate-y-0.5 group/input">
+          <div className="flex items-center gap-3 mb-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 group-focus-within/input:text-indigo-500 transition-colors"><Search className="w-3.5 h-3.5"/> Job Title or Keywords</div>
+          <TagsInput value={whatTags} onChange={setWhatTags} placeholder="e.g. Frontend Developer" />
+        </div>
+        
+        <div className="flex-1 bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:border-indigo-300 transition-all duration-300 focus-within:border-indigo-500 focus-within:ring-4 focus-within:ring-indigo-500/10 focus-within:-translate-y-0.5 group/input">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 group-focus-within/input:text-indigo-500 transition-colors"><MapPin className="w-3.5 h-3.5"/> Location</div>
+            <select value={country} onChange={e => setCountry(e.target.value)} className="bg-slate-50 border border-slate-200 rounded-lg text-xs font-bold py-1 px-2 outline-none">
+              {countries.map((c: any) => <option key={c.code} value={c.code}>{c.name}</option>)}
+            </select>
+          </div>
+          <TagsInput value={whereTags} onChange={setWhereTags} placeholder="e.g. Remote, New York" />
+        </div>
+      </div>
+
+      <div className="flex flex-col md:flex-row items-center justify-between gap-5 relative z-10">
+        <div className="flex flex-wrap items-center gap-2.5">
+          {FILTER_CHIPS.map(f => {
+            const active = activeFilters.includes(f);
+            return (
+              <motion.button 
+                whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}
+                key={f} onClick={() => handleFilterToggle(f)}
+                className={`relative overflow-hidden px-4 py-1.5 rounded-full text-[11px] font-bold transition-all border ${active ? "border-transparent text-white shadow-md" : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-indigo-300"}`}
+              >
+                {active && <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 z-0" />}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  {active && <CheckCircle2 className="w-3 h-3 text-white" />}
+                  {f}
+                </span>
+              </motion.button>
+            )
+          })}
+        </div>
+        
+        <motion.button 
+          whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }} onClick={onSearch} disabled={isSearching}
+          className="relative overflow-hidden px-8 py-3 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800 text-white font-bold tracking-wide shadow-lg hover:shadow-xl transition-all disabled:opacity-80 w-full md:w-auto flex items-center justify-center min-w-[180px] group/btn"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
+          <span className="relative z-10 flex items-center gap-2 text-sm">
+            {isSearching ? <Loader2 className="w-4 h-4 animate-spin"/> : <Sparkles className="w-4 h-4"/>}
+            {isSearching ? "Optimizing..." : "Search Jobs"}
+            {!isSearching && <ArrowRight className="w-4 h-4 opacity-0 -ml-2 group-hover/btn:opacity-100 group-hover/btn:ml-0 transition-all duration-300" />}
+          </span>
+        </motion.button>
+      </div>
+
+      <AnimatePresence>
+        {isSearching && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-white/90 backdrop-blur-xl rounded-[28px] flex flex-col items-center justify-center z-30">
+            <div className="relative w-14 h-14 mb-5">
+              <svg className="absolute inset-0 w-full h-full -rotate-90 animate-[spin_3s_linear_infinite]" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="46" fill="none" stroke="url(#searchGrad)" strokeWidth="6" strokeDasharray="200" strokeLinecap="round" />
+                <defs><linearGradient id="searchGrad"><stop offset="0%" stopColor="#4F46E5" /><stop offset="100%" stopColor="#9333EA" /></linearGradient></defs>
+              </svg>
+              <Search className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-indigo-600 animate-pulse" />
+            </div>
+            <AnimatePresence mode="wait">
+              <motion.div key={searchStage} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} className="text-base font-extrabold text-slate-800 tracking-tight">
+                {STAGES[searchStage]}
+              </motion.div>
+            </AnimatePresence>
+            <div className="w-40 h-1.5 bg-slate-100 rounded-full mt-4 overflow-hidden">
+               <motion.div className="h-full bg-gradient-to-r from-indigo-500 to-purple-500" initial={{ width: 0 }} animate={{ width: `${((searchStage+1)/STAGES.length)*100}%` }} transition={{ duration: 0.5 }} />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
+    </motion.div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            INSIGHTS DASHBOARD                              */
+/* -------------------------------------------------------------------------- */
+
+function SearchInsights({ jobs, totalCount }: any) {
+  const avgSalary = useMemo(() => {
+    let sum = 0, c = 0;
+    jobs.forEach((j:any) => { if(j.salary_min) { sum+=j.salary_min; c++; } });
+    return c > 0 ? `$${Math.round(sum/c).toLocaleString()}` : "N/A";
+  }, [jobs]);
+  
+  const remoteCount = jobs.filter((j:any)=>j.location.display_name.toLowerCase().includes("remote")).length;
+  const remotePercent = jobs.length > 0 ? Math.round((remoteCount/jobs.length)*100) : 0;
+
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+      <div className="bg-white/80 backdrop-blur-md rounded-[20px] p-5 border border-white shadow-sm flex items-center gap-4 hover:-translate-y-1 transition-transform">
+        <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl"><Target className="w-5 h-5"/></div>
+        <div><div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Jobs Found</div><div className="text-xl font-black text-slate-900">{totalCount.toLocaleString()}</div></div>
+      </div>
+      <div className="bg-white/80 backdrop-blur-md rounded-[20px] p-5 border border-white shadow-sm flex items-center gap-4 hover:-translate-y-1 transition-transform">
+        <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl"><DollarSign className="w-5 h-5"/></div>
+        <div><div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Avg Salary</div><div className="text-xl font-black text-slate-900">{avgSalary}</div></div>
+      </div>
+      <div className="bg-white/80 backdrop-blur-md rounded-[20px] p-5 border border-white shadow-sm flex items-center gap-4 hover:-translate-y-1 transition-transform">
+        <div className="p-2.5 bg-purple-50 text-purple-600 rounded-xl"><Globe className="w-5 h-5"/></div>
+        <div><div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Remote</div><div className="text-xl font-black text-slate-900">{remotePercent}%</div></div>
+      </div>
+      <div className="bg-white/80 backdrop-blur-md rounded-[20px] p-5 border border-white shadow-sm flex items-center gap-4 hover:-translate-y-1 transition-transform">
+        <div className="p-2.5 bg-amber-50 text-amber-600 rounded-xl"><Sparkles className="w-5 h-5"/></div>
+        <div><div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Top Match</div><div className="text-xl font-black text-slate-900">98%</div></div>
+      </div>
+    </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                           HORIZONTAL CAROUSEL                              */
+/* -------------------------------------------------------------------------- */
+
+function JobCarousel({ title, icon, jobs, onSelect, favorites, toggleFav, compareJobs, toggleCompare, selectedJobId }: any) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
+  
+  useEffect(() => {
+    if (isHovering || jobs.length === 0) return;
+    const interval = setInterval(() => {
+      if (scrollRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          scrollRef.current.scrollBy({ left: 340 + 24, behavior: 'smooth' });
+        }
+      }
+    }, 4000); 
+    return () => clearInterval(interval);
+  }, [isHovering, jobs.length]);
+
+  if (jobs.length === 0) return null;
+
+  return (
+    <div className="mb-10" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+      <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="flex items-center gap-3 mb-5 px-4 relative group/title cursor-pointer w-max">
+        {icon}
+        <h3 className="text-xl font-extrabold text-slate-900 relative">
+          {title}
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-500 group-hover/title:w-full transition-all duration-300 ease-out" />
+        </h3>
+      </motion.div>
+      <div className="relative group">
+        <button onClick={() => scrollRef.current?.scrollBy({ left: -400, behavior: 'smooth' })} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center text-slate-600 hover:scale-110 transition-all z-20 opacity-0 group-hover:opacity-100 border border-slate-100"><ChevronLeft className="w-5 h-5"/></button>
+        <button onClick={() => scrollRef.current?.scrollBy({ left: 400, behavior: 'smooth' })} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center text-slate-600 hover:scale-110 transition-all z-20 opacity-0 group-hover:opacity-100 border border-slate-100"><ChevronRight className="w-5 h-5"/></button>
+        
+        <div ref={scrollRef} className="flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory px-4 pb-8 pt-4 scroll-smooth" style={{ WebkitOverflowScrolling: 'touch' }}>
+          {jobs.map((job: any, i: number) => (
+             <PremiumJobCard key={job.id} job={job} onClick={() => onSelect(job)} isFav={favorites.includes(job.id)} onToggleFav={(e:any) => { e.stopPropagation(); toggleFav(job.id); }} isComparing={compareJobs.find((j:any)=>j.id===job.id)} onToggleCompare={(e:any) => { e.stopPropagation(); toggleCompare(job); }} index={i} isSelected={selectedJobId === job.id} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            PREMIUM JOB CARD                                */
+/* -------------------------------------------------------------------------- */
+
+function PremiumJobCard({ job, onClick, isFav, onToggleFav, isComparing, onToggleCompare, index, isSelected }: any) {
+  const matchScore = 98 - (index % 15);
+  const [showFavToast, setShowFavToast] = useState(false);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useTransform(y, [-100, 100], [10, -10]);
+  const rotateY = useTransform(x, [-100, 100], [-10, 10]);
+
+  function handleMouse(event: React.MouseEvent<HTMLDivElement>) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    x.set(event.clientX - rect.left - rect.width / 2);
+    y.set(event.clientY - rect.top - rect.height / 2);
+  }
+
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
+  }
+
+  const handleFavClick = (e: any) => {
+    onToggleFav(e);
+    if (!isFav) {
+      setShowFavToast(true);
+      setTimeout(() => setShowFavToast(false), 2000);
+    }
+  };
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 30, scale: 0.9, filter: "blur(10px)" }}
+      animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      transition={{ delay: index * 0.05, duration: 0.5, type: "spring" }}
+      style={{ rotateX, rotateY, perspective: 1000 }}
+      onMouseMove={handleMouse}
+      onMouseLeave={handleMouseLeave}
+      whileHover={{ y: -8, scale: 1.02 }}
+      onClick={onClick}
+      className={`relative snap-center shrink-0 w-[340px] bg-white rounded-[24px] p-5 cursor-pointer border transition-all duration-300 flex flex-col group/card shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_60px_rgba(79,70,229,0.15)] ${isSelected ? "border-indigo-500 shadow-[0_0_0_4px_rgba(99,102,241,0.1)]" : "border-slate-100 hover:border-indigo-300"}`}
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-transparent to-purple-500/0 group-hover/card:from-indigo-500/5 group-hover/card:to-purple-500/5 rounded-[24px] pointer-events-none transition-all duration-500" />
+      
+      {showFavToast && (
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute -top-12 right-0 bg-slate-900 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1.5 z-50">
+          <Heart className="w-3 h-3 fill-red-500 text-red-500" /> Saved!
+        </motion.div>
+      )}
+
+      {/* AI Match Score Ring */}
+      <div className="absolute top-5 right-5 w-10 h-10 flex items-center justify-center group-hover/card:scale-110 transition-transform">
+        <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 36 36">
+           <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#f1f5f9" strokeWidth="2.5" />
+           <motion.path 
+             initial={{ strokeDasharray: "0, 100" }} animate={{ strokeDasharray: `${matchScore}, 100` }} transition={{ duration: 1.5, ease: "easeOut" }}
+             d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10b981" strokeWidth="2.5" 
+           />
+        </svg>
+        <span className="text-[9px] font-black text-emerald-600">{matchScore}%</span>
+      </div>
+
+      <div className="flex items-start gap-3 mb-4">
+        <motion.div whileHover={{ scale: 1.1, rotate: 5 }} className="w-12 h-12 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center shadow-sm text-lg font-bold text-indigo-600 uppercase z-10 bg-white">
+          {job.company.display_name.charAt(0)}
+        </motion.div>
+        <div className="pr-12">
+          <h4 className="text-base font-extrabold text-slate-900 leading-tight mb-0.5 line-clamp-2">{job.title}</h4>
+          <p className="text-xs font-bold text-slate-500">{job.company.display_name}</p>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-1.5 mb-5">
+        <span className="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md text-[10px] font-bold flex items-center gap-1"><MapPin className="w-3 h-3"/> {job.location.display_name}</span>
+        {job.salary_min && <span className="px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-md text-[10px] font-bold flex items-center gap-1"><DollarSign className="w-3 h-3"/> ${(job.salary_min/1000).toFixed(0)}k</span>}
+        <span className="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-md text-[10px] font-bold flex items-center gap-1"><Clock className="w-3 h-3"/> {job.contract_time || "Full-Time"}</span>
+      </div>
+
+      <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between z-10 relative">
+        <div className="flex gap-1.5">
+          <button onClick={handleFavClick} className={`p-2 rounded-lg transition-all ${isFav ? "bg-red-50 text-red-500 scale-110" : "bg-slate-50 text-slate-400 hover:bg-red-50 hover:text-red-500 hover:scale-110"}`}>
+             <Heart className="w-4 h-4" fill={isFav ? "currentColor" : "none"} />
+          </button>
+          <button onClick={onToggleCompare} className={`px-3 py-2 rounded-lg transition-all text-[10px] font-bold flex items-center ${isComparing ? "bg-indigo-600 text-white shadow-md hover:bg-indigo-700 hover:-translate-y-0.5" : "bg-slate-50 text-slate-500 hover:bg-indigo-50 hover:text-indigo-600 hover:-translate-y-0.5"}`}>
+            {isComparing ? "Comparing" : "Compare"}
+          </button>
+        </div>
+        <button className="px-4 py-2 bg-gradient-to-r from-slate-900 to-slate-800 hover:from-indigo-600 hover:to-purple-600 text-white rounded-lg text-xs font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center gap-1.5 group/btn">
+          Details <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+        </button>
+      </div>
+    </motion.div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                        INLINE DETAILS VIEWER                               */
+/* -------------------------------------------------------------------------- */
+
+function JobDetailsViewer({ job, onClose, isFav, toggleFav }: any) {
+  return (
+    <motion.div initial={{ opacity: 0, height: 0, y: 20 }} animate={{ opacity: 1, height: "auto", y: 0 }} exit={{ opacity: 0, height: 0, y: 20 }} className="w-full bg-white rounded-[32px] shadow-[0_20px_80px_rgba(79,70,229,0.12)] border border-indigo-100 overflow-hidden relative">
+      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500" />
+      
+      <div className="p-8 md:p-10 border-b border-slate-100 bg-slate-50/50 flex flex-col md:flex-row justify-between items-start gap-6">
+        <div className="flex gap-6 items-center">
+           <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="w-20 h-20 bg-white rounded-3xl border border-slate-200 flex items-center justify-center shadow-sm text-3xl font-black text-indigo-600 uppercase shrink-0">
+             {job.company.display_name.charAt(0)}
+           </motion.div>
+           <div>
+             <h2 className="text-3xl font-extrabold text-slate-900 mb-2 leading-tight">{job.title}</h2>
+             <div className="flex flex-wrap gap-4 text-sm font-bold text-slate-500">
+               <span className="flex items-center gap-1.5"><Building className="w-4 h-4 text-slate-400"/> {job.company.display_name}</span>
+               <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-slate-400"/> {job.location.display_name}</span>
+               <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-slate-400"/> {new Date(job.created).toLocaleDateString()}</span>
+             </div>
+           </div>
+        </div>
+        <button onClick={onClose} className="p-3 bg-white rounded-full border border-slate-200 text-slate-500 hover:bg-slate-100 hover:rotate-90 transition-all shadow-sm"><X className="w-5 h-5"/></button>
+      </div>
+
+      <div className="p-8 md:p-10">
+        <div className="flex flex-col md:flex-row gap-6 mb-10">
+          <div className="flex-1 bg-indigo-50/50 rounded-2xl p-6 border border-indigo-100 relative overflow-hidden group">
+            <div className="absolute inset-0 bg-indigo-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-2">
+                <div className="text-xs font-bold text-indigo-500 uppercase tracking-widest flex items-center gap-1.5"><Sparkles className="w-4 h-4"/> AI Match Analysis</div>
+                <div className="text-3xl font-black text-indigo-700">96%</div>
+              </div>
+              <div className="space-y-2 mt-4">
+                <div className="flex items-center gap-2 text-sm font-bold text-indigo-900/80"><CheckCircle2 className="w-4 h-4 text-emerald-500"/> Perfect Skill Alignment</div>
+                <div className="flex items-center gap-2 text-sm font-bold text-indigo-900/80"><CheckCircle2 className="w-4 h-4 text-emerald-500"/> High ATS Compatibility</div>
+                <div className="flex items-center gap-2 text-sm font-bold text-indigo-900/80"><CheckCircle2 className="w-4 h-4 text-emerald-500"/> Strong Recruiter Interest</div>
+              </div>
+            </div>
+          </div>
+          {job.salary_min && (
+            <div className="flex-1 bg-emerald-50/50 rounded-2xl p-6 border border-emerald-100 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-emerald-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative z-10">
+                <div className="text-xs font-bold text-emerald-500 uppercase tracking-widest flex items-center gap-1.5 mb-2"><DollarSign className="w-4 h-4"/> Salary Estimate</div>
+                <div className="text-3xl font-black text-emerald-700">${(job.salary_min/1000).toFixed(0)}k - ${(job.salary_max/1000).toFixed(0)}k</div>
+                <p className="text-xs font-bold text-emerald-600/70 mt-4 leading-relaxed">This aligns with your expected compensation range and market rates for {job.location.display_name}.</p>
+              </div>
+            </div>
+          )}
+        </div>
+        
+        <h3 className="text-xl font-extrabold text-slate-900 mb-5 flex items-center gap-2"><Briefcase className="w-5 h-5 text-indigo-500"/> Job Description</h3>
+        <div className="prose prose-slate max-w-none text-[15px] leading-relaxed font-medium text-slate-600 prose-headings:font-extrabold prose-headings:text-slate-900 prose-a:text-indigo-600 hover:prose-a:text-indigo-500 bg-slate-50/50 p-8 rounded-2xl border border-slate-100" dangerouslySetInnerHTML={{ __html: job.description }} />
+      </div>
+
+      <div className="p-6 md:px-10 md:py-6 border-t border-slate-100 bg-white flex items-center justify-between sticky bottom-0 z-20">
+         <button onClick={toggleFav} className={`flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold transition-all ${isFav ? "bg-red-50 text-red-600 shadow-inner" : "bg-slate-100 text-slate-600 hover:bg-red-50 hover:text-red-500"}`}>
+           <Heart className="w-5 h-5" fill={isFav ? "currentColor" : "none"} /> {isFav ? "Saved to Tracker" : "Save Job"}
+         </button>
+         <a href={job.redirect_url} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 px-10 py-4 bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
+           Apply Now <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform"/>
+         </a>
+      </div>
+    </motion.div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                COMPARE MODAL                               */
+/* -------------------------------------------------------------------------- */
+
+function CompareModal({ jobs, onClose }: any) {
+  return (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-2xl">
+      <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="w-full max-w-6xl h-[80vh] bg-white rounded-[32px] shadow-2xl flex flex-col overflow-hidden">
+        <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+          <h2 className="text-2xl font-extrabold text-slate-900 flex items-center gap-2"><LayoutGrid className="w-6 h-6 text-indigo-500"/> Compare Jobs</h2>
+          <button onClick={onClose} className="p-3 bg-white rounded-full shadow-sm text-slate-500 hover:bg-slate-100 transition-all hover:rotate-90"><X className="w-5 h-5"/></button>
+        </div>
+        <div className="flex-1 overflow-auto flex p-6 gap-6 bg-slate-50/50">
+          {jobs.map((job:any) => (
+             <div key={job.id} className="flex-1 bg-white rounded-[24px] border border-slate-200 p-8 flex flex-col shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="w-16 h-16 bg-white rounded-2xl border border-slate-100 flex items-center justify-center text-indigo-600 font-black text-2xl mb-5 shadow-sm">{job.company.display_name.charAt(0)}</div>
+                  <h3 className="text-xl font-extrabold text-slate-900 mb-2 leading-tight">{job.title}</h3>
+                  <p className="font-bold text-slate-500 mb-8">{job.company.display_name}</p>
+                  <div className="space-y-5 mb-auto bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                     <div><span className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Location</span><span className="font-bold text-slate-700 flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5"/> {job.location.display_name}</span></div>
+                     <div><span className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Salary</span><span className="font-black text-emerald-600 flex items-center gap-1.5"><DollarSign className="w-3.5 h-3.5"/> {job.salary_min ? `$${(job.salary_min/1000).toFixed(0)}k` : "Not disclosed"}</span></div>
+                     <div><span className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Type</span><span className="font-bold text-slate-700 flex items-center gap-1.5"><Clock className="w-3.5 h-3.5"/> {job.contract_time || "Full-Time"}</span></div>
+                  </div>
+                  <a href={job.redirect_url} target="_blank" className="mt-8 block w-full py-3.5 bg-gradient-to-r from-slate-900 to-slate-800 text-white text-center rounded-xl font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">Apply to {job.company.display_name}</a>
+                </div>
+             </div>
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                SKELETONS                                   */
+/* -------------------------------------------------------------------------- */
+
+function LoadingSkeletons() {
+  return (
+    <div className="flex gap-6 overflow-x-hidden px-4">
+      {[1,2,3].map(i => (
+        <div key={i} className="shrink-0 w-[340px] bg-white rounded-[24px] p-6 border border-slate-100 shadow-sm animate-pulse">
+           <div className="w-12 h-12 bg-slate-200 rounded-xl mb-4" />
+           <div className="w-3/4 h-4 bg-slate-200 rounded-md mb-2" />
+           <div className="w-1/2 h-3 bg-slate-200 rounded-md mb-5" />
+           <div className="flex gap-2 mb-8"><div className="w-16 h-5 bg-slate-200 rounded-md"/><div className="w-16 h-5 bg-slate-200 rounded-md"/></div>
+           <div className="w-full h-9 bg-slate-200 rounded-lg" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function EmptyState() {
+  return (
+    <div className="flex flex-col items-center justify-center py-20 text-center">
+      <div className="w-24 h-24 bg-slate-100 rounded-[28px] flex items-center justify-center mb-6 shadow-inner"><Search className="w-10 h-10 text-slate-400" /></div>
+      <h3 className="text-xl font-extrabold text-slate-900 mb-2">No Jobs Found</h3>
+      <p className="text-sm text-slate-500 font-medium">We couldn't find any positions matching your exact criteria.<br/>Try adjusting your filters or expanding your search location.</p>
     </div>
   );
 }
