@@ -246,13 +246,13 @@ export function PremiumTemplateGallery({ onClose, onApply, currentTemplate }: Pr
                         
                         {/* Live Miniature Preview */}
                         <div className="absolute top-0 left-0 w-[794px] h-[1123px] origin-top-left bg-white pointer-events-none p-8" style={{ transform: 'scale(0.35)' }}>
-                           <TemplateRenderer data={MOCK_DATA} template={t.baseTemplate} hideHeader={false} />
+                           <TemplateRenderer data={MOCK_DATA} template={t.baseTemplate} />
                         </div>
 
                         {/* Quick Preview Hover (Large Floating Popup) */}
                         <div className={`absolute -right-[420px] top-[-20%] w-[400px] h-[565px] bg-white shadow-[0_40px_100px_rgba(0,0,0,0.2)] z-[100] pointer-events-none rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] border border-slate-200/50 ${hoveredId === t.id ? 'opacity-100 translate-x-4 scale-100' : 'opacity-0 translate-x-0 scale-95'} hidden xl:block`}>
                           <div className="w-[794px] h-[1123px] origin-top-left bg-white p-8" style={{ transform: 'scale(0.5)' }}>
-                            <TemplateRenderer data={MOCK_DATA} template={t.baseTemplate} hideHeader={false} />
+                            <TemplateRenderer data={MOCK_DATA} template={t.baseTemplate} />
                           </div>
                           {/* Floating badge inside quick preview */}
                           <div className="absolute bottom-4 inset-x-4 flex justify-between items-center bg-white/90 backdrop-blur-md p-3 rounded-xl border border-slate-100 shadow-xl">
@@ -313,7 +313,7 @@ export function PremiumTemplateGallery({ onClose, onApply, currentTemplate }: Pr
                {/* Left: Huge Live Preview */}
                <div className="flex-1 bg-slate-100/50 relative overflow-y-auto p-4 md:p-8 flex justify-center custom-scrollbar">
                   <div className="w-full max-w-[794px] origin-top bg-white shadow-[0_20px_60px_rgba(0,0,0,0.1)] min-h-[1123px] relative p-8">
-                     <TemplateRenderer data={MOCK_DATA} template={previewTemplate.baseTemplate} hideHeader={false} />
+                     <TemplateRenderer data={MOCK_DATA} template={previewTemplate.baseTemplate} />
                   </div>
                </div>
 
@@ -400,7 +400,7 @@ export function PremiumTemplateGallery({ onClose, onApply, currentTemplate }: Pr
                        </div>
                        <div className="flex-1 overflow-y-auto p-8 flex justify-center custom-scrollbar bg-slate-100/50">
                          <div className="w-[794px] origin-top bg-white shadow-xl min-h-[1123px] relative p-8" style={{ transform: 'scale(0.8)' }}>
-                           <TemplateRenderer data={MOCK_DATA} template={t.baseTemplate} hideHeader={false} />
+                           <TemplateRenderer data={MOCK_DATA} template={t.baseTemplate} />
                          </div>
                        </div>
                     </div>

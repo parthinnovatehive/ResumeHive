@@ -1,18 +1,48 @@
-import Link from "next/link";
+import { MeshGradient } from "@/components/landing/MeshGradient";
+import { Hero } from "@/components/landing/Hero";
+import { FeaturesBento } from "@/components/landing/FeaturesBento";
+import { ResumeBuilderSection } from "@/components/landing/ResumeBuilderSection";
+import { ATSAnalyzerSection } from "@/components/landing/ATSAnalyzerSection";
+import { LinkedInOptimizerSection } from "@/components/landing/LinkedInOptimizerSection";
+import { JobSearchSection } from "@/components/landing/JobSearchSection";
+import { MockInterviewSection } from "@/components/landing/MockInterviewSection";
+import { CodingPracticeSection } from "@/components/landing/CodingPracticeSection";
+import { Statistics } from "@/components/landing/Statistics";
+import { SuccessStories } from "@/components/landing/SuccessStories";
+import { Testimonials } from "@/components/landing/Testimonials";
+import { FAQ } from "@/components/landing/FAQ";
+import { FinalCTA } from "@/components/landing/FinalCTA";
+import { Footer } from "@/components/landing/Footer";
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-4">
-      <h1 className="text-5xl font-bold mb-4">ResumeHive</h1>
-      <p className="text-lg text-gray-600 mb-8 max-w-md text-center">
-        Build ATS-friendly resumes that get you more interviews.
-      </p>
-      <Link
-        href="/resume-builder"
-        className="rounded-lg bg-blue-600 px-8 py-3 text-white font-semibold hover:bg-blue-700 transition"
-      >
-        Build Resume
-      </Link>
+    <main className="relative min-h-screen selection:bg-premium-blue/20 selection:text-premium-blue dark:selection:bg-premium-blue/40 dark:selection:text-white scroll-smooth">
+      {/* Fixed Interactive Background */}
+      <MeshGradient />
+      
+      {/* Sections composed seamlessly without abrupt transitions */}
+      <Hero />
+      <FeaturesBento />
+      
+      {/* Feature Showcases */}
+      <ResumeBuilderSection />
+      <ATSAnalyzerSection />
+      <LinkedInOptimizerSection />
+      <JobSearchSection />
+      <MockInterviewSection />
+      <CodingPracticeSection />
+      
+      {/* Social Proof */}
+      <Statistics />
+      <SuccessStories />
+      <Testimonials />
+      
+      {/* Support & Conversion */}
+      <FAQ />
+      <FinalCTA />
+      
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }

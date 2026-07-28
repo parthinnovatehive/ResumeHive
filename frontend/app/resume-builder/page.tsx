@@ -538,7 +538,7 @@ function ResumeBuilder() {
             <WysiwygPreview 
               data={watched} 
               template={template} 
-              activeSection={step}
+              activeSection={String(step)}
               onSectionClick={(section) => setStep(section as any)}
             />
           </div>
