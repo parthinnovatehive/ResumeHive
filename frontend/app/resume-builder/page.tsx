@@ -284,13 +284,19 @@ function ResumeBuilder() {
     finally { setScoring(false); }
   };
 
+  const getBackendError = (err: unknown): string => {
+    const detail = (err as any)?.response?.data?.detail;
+    return typeof detail === "string" ? detail : "";
+  };
+
   const handleGenerate = async () => {
     if (!resumeId) return;
     setGenerating(true);
     try {
+      await resumesApi.patch(resumeId, { ...form.getValues(), section_order: sectionOrder } as Record<string, unknown>);
       await resumesApi.generate(resumeId, template);
       toast("PDF generated successfully! Ready to download.", "success");
-    } catch { toast("Failed to generate PDF.", "error"); } 
+    } catch (err) { toast(getBackendError(err) || "Failed to generate PDF.", "error"); } 
     finally { setGenerating(false); }
   };
 
@@ -298,9 +304,10 @@ function ResumeBuilder() {
     if (!resumeId) return;
     setDownloading(true);
     try {
+      await resumesApi.patch(resumeId, { ...form.getValues(), section_order: sectionOrder } as Record<string, unknown>);
       await resumesApi.download(resumeId, template);
       toast("✓ Resume exported successfully", "success");
-    } catch { toast("Failed to download PDF.", "error"); } 
+    } catch (err) { toast(getBackendError(err) || "Failed to download PDF.", "error"); } 
     finally { setDownloading(false); }
   };
 
@@ -453,20 +460,20 @@ function ResumeBuilder() {
               <button onClick={redo} disabled={!canRedo} className="p-2 hover:bg-white rounded-md text-slate-500 transition-all hover:shadow-sm disabled:opacity-30 disabled:pointer-events-none" title="Redo (Ctrl+Shift+Z)"><Redo className="w-4 h-4"/></button>
             </div>
             
-            <button onClick={() => setShowTemplates(true)} className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold bg-white border border-slate-200 text-slate-700 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all group">
+            <button type="button" onClick={() => setShowTemplates(true)} className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold bg-white border border-slate-200 text-slate-700 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all group">
               <LayoutTemplate className="w-4 h-4 text-indigo-500 group-hover:scale-110 transition-transform"/> Template
             </button>
             
-            <button id="btn-ats-score" onClick={handleScore} className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold bg-indigo-50 text-indigo-700 shadow-sm hover:bg-indigo-100 transition-all">
+            <button type="button" id="btn-ats-score" onClick={handleScore} className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold bg-indigo-50 text-indigo-700 shadow-sm hover:bg-indigo-100 transition-all">
               <Activity className="w-4 h-4"/> ATS Score
             </button>
 
-            <button id="btn-export-pdf" onClick={handleDownload} disabled={downloading} className="flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-50">
+            <button type="button" id="btn-export-pdf" onClick={handleDownload} disabled={downloading} className="flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-50">
               {downloading ? <Loader2 className="w-4 h-4 animate-spin"/> : <Download className="w-4 h-4"/>} 
               {downloading ? "Exporting..." : "Export PDF"}
             </button>
             
-            <button onClick={() => setShowSettings(true)} className="p-2 hover:bg-slate-100 rounded-xl text-slate-400 transition-colors" title="Editor Settings"><Settings className="w-5 h-5"/></button>
+            <button type="button" onClick={() => setShowSettings(true)} className="p-2 hover:bg-slate-100 rounded-xl text-slate-400 transition-colors" title="Editor Settings"><Settings className="w-5 h-5"/></button>
           </div>
         </motion.header>
 

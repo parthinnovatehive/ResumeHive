@@ -265,7 +265,7 @@ def generate_resume_pdf(
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"PDF generation failed: {exc}",
+            detail=str(exc) if str(exc) else f"PDF generation failed: {type(exc).__name__}",
         )
 
     os.makedirs(f"{settings.STORAGE_DIR}/resumes", exist_ok=True)
@@ -294,7 +294,7 @@ def download_resume_pdf(
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"PDF generation failed: {exc}",
+            detail=str(exc) if str(exc) else f"PDF generation failed: {type(exc).__name__}",
         )
 
     return pdf_bytes, make_resume_filename(resume.full_name or "")
@@ -330,7 +330,7 @@ def get_ats_preview(
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"PDF generation failed: {exc}",
+            detail=str(exc) if str(exc) else f"PDF generation failed: {type(exc).__name__}",
         )
 
     text, used_ocr = extract_text_pdf(pdf_bytes)
