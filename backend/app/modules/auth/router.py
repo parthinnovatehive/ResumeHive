@@ -7,7 +7,7 @@ from app.modules.auth.schemas import SignupRequest, LoginRequest, AuthResponse, 
 from app.modules.auth import service
 from app.modules.auth.models import User
 
-router = APIRouter(prefix="/auth", tags=["auth"])
+router = APIRouter(prefix="/api/auth", tags=["auth"])
 
 
 @router.post("/signup", response_model=AuthResponse, status_code=201)
