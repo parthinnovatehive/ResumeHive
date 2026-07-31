@@ -23,6 +23,15 @@ export default function PracticePage() {
             Track your attempted and solved questions
           </p>
         </Link>
+        <Link
+          href="/practice/aptitude"
+          className="block p-6 border rounded-xl bg-white hover:shadow-md hover:border-blue-400 transition-all"
+        >
+          <h2 className="text-lg font-semibold mb-1">Aptitude</h2>
+          <p className="text-sm text-gray-500">
+            Practice quantitative aptitude with instant answer checks
+          </p>
+        </Link>
       </div>
     </div>
   );

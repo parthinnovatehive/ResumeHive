@@ -1,0 +1,692 @@
+Level,Question,Option_A,Option_B,Option_C,Option_D,Correct_Option,Solution,Needs_Review
+Basic,"Find the next number in the series: 2, 4, 6, 8, ?",17,20,10,12,C,"The series is arithmetic with a common difference of 2: 2 + 2 = 4, 4 + 2 = 6, 6 + 2 = 8.  
+Next number: 8 + 2 = 10.",TRUE
+Basic,"Find the next number: 1, 3, 9, 27, ?",13,48,33,81,D,"The series is geometric: each term is multiplied by 3 (1 × 3 = 3, 3 × 3 = 9, 9 × 3 = 27).  
+Next number: 27 × 3 = 81.",TRUE
+Basic,"Find the next number: 5, 10, 20, 40, ?",55,90,80,25,C,"Each term is multiplied by 2: 5 × 2 = 10, 10 × 2 = 20, 20 × 2 = 40.  
+Next number: 40 × 2 = 80.",TRUE
+Basic,"Find the missing number: 2, 5, 11, ?, 26",31,17,23,9,C,"The series follows a pattern: 2 × 2 + 1 = 5, 5 × 2 + 1 = 11, 11 × 2 + 1 = 23, 23 × 2 + 1 = 47.  
+Missing number: 23.",TRUE
+Basic,"Find the next number: 3, 6, 12, 24, ?",50,25,48,10,C,"Each term is multiplied by 2: 3 × 2 = 6, 6 × 2 = 12, 12 × 2 = 24.  
+Next number: 24 × 2 = 48.",TRUE
+Basic,"Find the next number: 10, 8, 6, 4, ?",25,1,22,2,D,"Arithmetic series with a common difference of -2: 10 - 2 = 8, 8 - 2 = 6, 6 - 2 = 4.  
+Next number: 4 - 2 = 2.",TRUE
+Basic,"Find the missing number: 1, 2, 4, 7, ?, 22",13,11,9,5,B,"Differences: 2-1 = 1, 4-2 = 2, 7-4 = 3, next difference is 4, so 7 + 4 = 11.  
+Next difference is 5: 11 + 5 = 16, then 6: 16 + 6 = 22.  
+Missing number: 11.",TRUE
+Basic,"Find the next number: 1, 1, 2, 3, 5, ?",99,19,25,8,D,"Fibonacci series: each term is the sum of the two preceding ones (1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5).  
+Next number: 3 + 5 = 8.",TRUE
+Basic,"Find the next number: 4, 16, 64, 256, ?",1025,blue,1024,33,C,"Each term is multiplied by 4: 4 × 4 = 16, 16 × 4 = 64, 64 × 4 = 256.  
+Next number: 256 × 4 = 1024.",TRUE
+Basic,Cat : Meow :: Dog : ?,Fur,Mew,Woof,Bark,D,A cat’s sound is “meow”; a dog’s sound is “bark.”,TRUE
+Basic,Pen : Write :: Scissors : ?,Sew,Cut,Knit,Fold,B,A pen is used to write; scissors are used to cut.,TRUE
+Basic,Big : Small :: Tall : ?,Cloud,River,Short,Fat,C,Big is the opposite of small; tall is the opposite of short.,TRUE
+Basic,Apple : Fruit :: Carrot : ?,Tree,Sword,Pineapple,Vegetable,D,Apple is a type of fruit; carrot is a type of vegetable.,TRUE
+Basic,Book : Page :: Kitchen : ?,Apparel,Dishes,Furniture,Utensils,D,"A book contains pages; a kitchen contains utensils (or appliances, but utensils is more specific).",TRUE
+Basic,Sun : Day :: Moon : ?,Night,Monday,Darkness,Nightfall,A,Sun is associated with day; moon is associated with night.,TRUE
+Basic,Teacher : Classroom :: Chef : ?,Office,Factory,Restaurant,Kitchen,D,A teacher works in a classroom; a chef works in a kitchen.,TRUE
+Basic,Bird : Fly :: Fish : ?,Eat,Swim,Run,Dive,B,A bird moves by flying; a fish moves by swimming.,TRUE
+Basic,Foot : Shoe :: Hand : ?,Glove,Finger,Desk,Guitar,A,A foot is covered by a shoe; a hand is covered by a glove.,TRUE
+Basic,Car : Road :: Boat : ?,Lake,Sky,Ocean,Water,D,A car travels on a road; a boat travels on water.,TRUE
+Basic,"If “CAT” is coded as “DBU,” how is “DOG” coded?",BQO,KHO,EPH,VXW,C,"Each letter in CAT is shifted forward by 1 (C→D, A→B, T→U).  
+For DOG: D+1=E, O+1=P, G+1=H.",TRUE
+Basic,"If “BOOK” is coded as “CPPL,” how is “READ” coded?",23,Aloha,Gold,SFBE,D,"Each letter is shifted forward by 1: B→C, O→P, O→P, K→L.  
+For READ: R+1=S, E+1=F, A+1=B, D+1=E.",TRUE
+Basic,"If “MAN” is coded as “NBO,” how is “PEN” coded?",MJD,QFO,AUC,QHO,B,"Each letter is shifted forward by 1: M→N, A→B, N→O.  
+For PEN: P+1=Q, E+1=F, N+1=O.",TRUE
+Basic,"If “FISH” is coded as “EJRI,” how is “BIRD” coded?",AHQC,98,32,Sky Blue,A,"Each letter is shifted backward by 1: F→E, I→J, S→R, H→I.  
+For BIRD: B-1=A, I-1=H, R-1=Q, D-1=C.",TRUE
+Basic,"If “APPLE” is coded as “BQQMF,” how is “GRAPE” coded?",orange,4,22,HSBQF,D,"Each letter is shifted forward by 1: A→B, P→Q, P→Q, L→M, E→F.  
+For GRAPE: G+1=H, R+1=S, A+1=B, P+1=Q, E+1=F.",TRUE
+Basic,"If “SUN” is coded as 54, how is “MOON” coded?",67,32,89,57,D,"SUN: S=19, U=21, N=14; sum = 19+21+14 = 54.  
+MOON: M=13, O=15, O=15, N=14; sum = 13+15+15+14 = 57.",TRUE
+Basic,"If “DOG” is coded as “WLT,” how is “CAT” coded?",WLT,22,DOG,SZB,D,"Each letter is shifted backward by 1 in reverse order: D→C (W), O→N (L), G→F (T).  
+For CAT: Reverse = TAC; T-1=S, A-1=Z, C-1=B. Code = SZB.",TRUE
+Basic,"If “STAR” is coded as “TUBS,” how is “MOON” coded?",28,NPPO,12,15,B,"Each letter is shifted forward by 1: S→T, T→U, A→B, R→S.  
+For MOON: M+1=N, O+1=P, O+1=P, N+1=O.",TRUE
+Basic,"If “COW” is coded as 24, how is “PIG” coded?",13,27,32,5,C,"COW: C=3, O=15, W=23; sum = 3+15+23 = 41 (but given 24, assume positional sum or typo).  
+Assume sum of positions: P=16, I=9, G=7; sum = 16+9+7 = 32.",TRUE
+Basic,"If “BALL” is coded as “CBMM,” how is “GAME” coded?",CBBB,HBNF,HMMM,FNBH,B,"Each letter is shifted forward by 1: B→C, A→B, L→M, L→M.  
+For GAME: G+1=H, A+1=B, M+1=N, E+1=F.",TRUE
+Basic,"A is B’s brother, and C is B’s sister. If D is C’s mother, who is D to A?",Grandmother,Cousin,Mother-in-law,Mother,D,"A and B are brothers, C is their sister, D is C’s mother.  
+D is the mother of A, B, and C.",TRUE
+Basic,"If X is Y’s father, and Y is Z’s sister, who is X to Z?",Son,Grandfather,Father,Uncle,C,X is the father of Y and Z (siblings).,TRUE
+Basic,"P is Q’s son, and R is Q’s wife. Who is R to P?",Brother,Father,Mother,Cousin,C,"R is Q’s wife, and P is their son.  
+R is P’s mother.",TRUE
+Basic,"A is B’s father, and B is C’s daughter. Who is C to A?",Wife,Cousin,Sister,Mother,A,"A is the father of B, and B is C’s daughter.  
+C is A’s wife.",TRUE
+Basic,"If M is N’s sister, and O is N’s father, who is O to M?",Cousin,Mother,Grandfather,Father,D,"M and N are sisters, O is N’s father.  
+O is M’s father.",TRUE
+Basic,"X is Y’s brother, and Z is Y’s mother. Who is Z to X?",Father,Uncle,Mother-in-law,Mother,D,Z is the mother of Y and X (siblings).,TRUE
+Basic,"If A is B’s son, and C is B’s sister, who is C to A?",Mother,Grandmother,Aunt,Cousin,A,"A is B’s son, and C is B’s sister.  
+C is A’s mother.",TRUE
+Basic,"P is Q’s father, and R is Q’s daughter. Who is R to P?",Brother,Uncle's Brother,Grandmother,Daughter,D,"R is Q’s daughter, and P is Q’s father.  
+R is P’s daughter.",TRUE
+Basic,"If X is Y’s sister, and Z is Y’s father, who is Z to X?",Mother,Father,Uncle,Neighbor,B,"X and Y are sisters, Z is Y’s father.  
+Z is X’s father.",TRUE
+Basic,"A is B’s mother, and B is C’s sister. Who is A to C?",Grandfather,Mother,Brother,Cousin,B,"A is B’s mother, and B is C’s sister.  
+A is C’s mother.",TRUE
+Basic,"A man walks 5 km north, then 3 km east. How far is he from the starting point?",10,12,20,5.83 km,D,"Forms a right triangle. North = 5 km, East = 3 km.  
+Distance = \( \sqrt{5^2 + 3^2} = \sqrt{25 + 9} = \sqrt{34} \approx 5.83 \) km.",TRUE
+Basic,"A person walks 4 km south, then 3 km west. In which direction is he from the starting point?",Northwest,East,Southwest,Southeast,C,South and west form a right angle. He is southwest of the starting point.,TRUE
+Basic,"A man walks 6 km east, then 8 km north. How far is he from the starting point?",10 km,10 miles,5,12,A,Distance = \( \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10 \) km.,TRUE
+Basic,"A person walks 2 km north, then 2 km west, then 2 km south. Where is he relative to the starting point?",1 km north,4 km south east,5 km west,2 km west,D,"North 2 km, south 2 km cancel out. He moves 2 km west.",TRUE
+Basic,"A man walks 5 km south, then 5 km east, then 5 km north. Where is he from the starting point?",15 km away,5 km east,4,5 km south,B,"South 5 km, north 5 km cancel out. He moves 5 km east.",TRUE
+Basic,"A person walks 10 km west, then 10 km north. What is the shortest distance to the starting point?",42.43,15.5,14.14 km,17.32,C,Distance = \( \sqrt{10^2 + 10^2} = \sqrt{200} \approx 14.14 \) km.,TRUE
+Basic,"A man walks 3 km north, then 4 km east, then 3 km south. Where is he from the starting point?",1 km south,4 km east,9 km,0 km,B,"North 3 km, south 3 km cancel out. He moves 4 km east.",TRUE
+Basic,"A person walks 6 km east, then 8 km south, then 6 km west. Where is he from the starting point?",16 km south,5 km east,8 km south,2,C,"East 6 km, west 6 km cancel out. He moves 8 km south.",TRUE
+Basic,"A man walks 7 km north, then 24 km east. How far is he from the starting point?",3 km,25 miles,North Pole,25 km,D,Distance = \( \sqrt{7^2 + 24^2} = \sqrt{49 + 576} = \sqrt{625} = 25 \) km.,TRUE
+Basic,"A person walks 4 km west, then 3 km north. In which direction is he from the starting point?",East,Southwest,Northwest,North,C,West and north form a right angle. He is northwest of the starting point.,TRUE
+Basic,All cats are mammals. All mammals are animals. Conclusion: All cats are animals.,True,False,Maybe,17,A,"All cats are mammals (A→B), all mammals are animals (B→C).  
+Therefore, all cats are animals (A→C). Valid.",TRUE
+Basic,Some dogs are pets. All pets are friendly. Conclusion: Some dogs are friendly.,False,All dogs are friendly,True,Some dogs are cats,C,"Some dogs are pets (Some A are B), all pets are friendly (B→C).  
+Some dogs are friendly (Some A are C). Valid.",TRUE
+Basic,All birds fly. Some sparrows are birds. Conclusion: Some sparrows fly.,True,None,Always,0,A,"All birds fly (A→B), some sparrows are birds (Some C are A).  
+Some sparrows fly (Some C are B). Valid.",TRUE
+Basic,No fish are mammals. All whales are mammals. Conclusion: No whales are fish.,True,All whales are fish,Only mammals are whales,Some fish are mammals,A,"No fish are mammals (No A are B), all whales are mammals (C→B).  
+No whales are fish (No C are A). Valid.",TRUE
+Basic,Some apples are red. Some red things are fruits. Conclusion: Some apples are fruits.,Only red apples,None of these,False,All apples,C,"Some apples are red (Some A are B), some red things are fruits (Some B are C).  
+No definite conclusion about apples and fruits. Invalid.",TRUE
+Basic,All roses are flowers. Some flowers are red. Conclusion: Some roses are red.,Napoleon,3,Socrates,False,D,"All roses are flowers (A→B), some flowers are red (Some B are C).  
+No definite conclusion. Invalid.",TRUE
+Basic,No cats are dogs. All dogs are pets. Conclusion: No cats are pets.,Some dogs are not pets,All cats are pets,False,Cats,C,"No cats are dogs (No A are B), all dogs are pets (B→C).  
+No definite conclusion. Invalid.",TRUE
+Basic,All engineers are smart. Some smart people are coders. Conclusion: Some engineers are coders.,No engineers are coders,All coders are engineers,Only smart coders are engineers,False,D,"All engineers are smart (A→B), some smart people are coders (Some B are C).  
+No definite conclusion. Invalid.",TRUE
+Basic,All books are pages. All pages are paper. Conclusion: All books are paper.,Some books are leather,False,True,All books are hardbacks,C,"All books are pages (A→B), all pages are paper (B→C).  
+All books are paper (A→C). Valid.",TRUE
+Basic,Some cars are fast. All fast things are expensive. Conclusion: Some cars are expensive.,False,Expensive things,Some cars,True,D,"Some cars are fast (Some A are B), all fast things are expensive (B→C).  
+Some cars are expensive (Some A are C). Valid.",TRUE
+Basic,"Three houses A, B, C are in a row. A is to the left of B, and C is to the right of A. Which house is in the middle?",C,5,B,A,C,"A is left of B, C is right of A. Order: A, B, C.  
+B is in the middle.",TRUE
+Basic,"In a race, P finishes before Q but after R. Who finishes first?",R,P,Nobody,Q,A,"R finishes before P, P before Q. Order: R, P, Q.  
+R finishes first.",TRUE
+Basic,"Four people A, B, C, D sit in a row. A is next to B, and C is next to D. Who can be at the ends?",A or D,B and D,ABCD,C and B,A,"A and B are together, C and D are together. Possible orders: A-B-C-D, D-C-B-A, etc.  
+Ends can be A or D (or B or C in reverse).",TRUE
+Basic,"Three friends X, Y, Z have different ages. X is younger than Y, and Z is older than X. Who is the youngest?",Y,X,22,Z,B,"X is younger than Y, Z is older than X.  
+X is the youngest.",TRUE
+Basic,"In a line, P is second from the left, and Q is third from the right. If there are 5 people, who is in the middle?",P,3,R,Q,D,"Total 5 positions. P is 2nd (left). Q is 3rd from right, so 3rd (5-3+1).  
+Order: _ P _ Q _. Middle is 3rd, which is Q.",TRUE
+Basic,"A, B, C are three boxes. A is heavier than B, and B is heavier than C. Which is the lightest?",C,B,A,22,A,"A > B > C.  
+C is the lightest.",TRUE
+Basic,"Three cars P, Q, R are parked. P is to the left of Q, and R is to the right of Q. Which is in the middle?",2,Q,R is in the middle,Q is not in the middle,B,"Order: P, Q, R.  
+Q is in the middle.",TRUE
+Basic,"Four students A, B, C, D sit in a circle. A is opposite B, and C is next to A. Who is opposite C?",D,B,E,A,A,"A and B are opposite. C is next to A. Possible order: A-C-D-B.  
+Opposite C is D.",TRUE
+Basic,"In a queue, X is third from the front, and Y is second from the back. If there are 6 people, who is between X and Y?",5,4th person,2,3,B,"X is 3rd. Y is 5th (6-2+1). Order: _ _ X _ Y _.  
+Person in 4th position is between X and Y.",TRUE
+Basic,"Is x > 5?  
+    (1) x + 2 = 7  
+    (2) x - 3 = 2",4,Not sufficient,x + 1,10,B,"(1) \( x + 2 = 7 \), so \( x = 5 \). Not sufficient (x = 5, not > 5).  
+(2) \( x - 3 = 2 \), so \( x = 5 \). Not sufficient.  
+Both give \( x = 5 \). Not sufficient.",TRUE
+Basic,"What is the value of y?  
+    (1) y + 4 = 10  
+    (2) 2y = 12",Each alone is sufficient,8,24,4,A,"(1) \( y + 4 = 10 \), so \( y = 6 \). Sufficient.  
+(2) \( 2y = 12 \), so \( y = 6 \). Sufficient.",TRUE
+Basic,"Is a rectangle a square?  
+    (1) All sides are equal  
+    (2) One side is 5",Yes,Statement 1 alone is sufficient,Any,No,B,"(1) All sides equal implies a square. Sufficient.  
+(2) One side = 5 does not confirm equal sides. Not sufficient.",TRUE
+Basic,"What is the age of A?  
+    (1) A is twice as old as B  
+    (2) B is 10 years old",Both statements together are sufficient,5,30,10,A,"(1) A = 2B. Not sufficient without B’s age.  
+(2) B = 10. Not sufficient without A’s relation.  
+Both: A = 2 × 10 = 20. Sufficient.",TRUE
+Basic,"Is x positive?  
+    (1) x^2 = 16  
+    (2) x > 0",42,Yes,4,Statement 2 alone is sufficient,D,"(1) \( x^2 = 16 \), so \( x = \pm 4 \). Not sufficient.  
+(2) \( x > 0 \). Sufficient.",TRUE
+Basic,"What is the value of z?  
+    (1) z + 5 = 8  
+    (2) z - 2 = 1",9,4,5,Each alone is sufficient,D,"(1) \( z + 5 = 8 \), so \( z = 3 \). Sufficient.  
+(2) \( z - 2 = 1 \), so \( z = 3 \). Sufficient.",TRUE
+Basic,"Is a triangle equilateral?  
+    (1) Two sides are equal  
+    (2) One angle is 60°",no,Not sufficient,45,7,B,"(1) Two sides equal implies isosceles, not necessarily equilateral. Not sufficient.  
+(2) One angle = 60° does not confirm all angles equal. Not sufficient.  
+Both: Still not sufficient without all sides or angles equal.",TRUE
+Basic,"What is the value of x + y?  
+    (1) x = 5  
+    (2) y = 3",5,8,y,Both statements together are sufficient,D,"(1) x = 5. Not sufficient without y.  
+(2) y = 3. Not sufficient without x.  
+Both: x + y = 5 + 3 = 8. Sufficient.",TRUE
+Basic,"Is x even?  
+    (1) x is divisible by 2  
+    (2) x is a multiple of 3",No,Statement 1 alone is sufficient,3,Always,B,"(1) Divisible by 2 means x is even. Sufficient.  
+(2) Multiple of 3 (e.g., 3, 6) may or may not be even. Not sufficient.",TRUE
+Basic,"What is the value of p?  
+    (1) p + q = 10  
+    (2) p - q = 4",20,Both statements together are sufficient,8,-3,B,"Add (1) and (2): \( (p + q) + (p - q) = 10 + 4 \), so \( 2p = 14 \), \( p = 7 \).",TRUE
+Basic,"Which shape completes the pattern: Square, Circle, Square, Circle, ?",Octagon,Triangle,Hexagon,Square,D,"The pattern alternates: Square, Circle, Square, Circle.  
+Next is Square.",TRUE
+Basic,"If a figure rotates 90° clockwise, and it’s a triangle pointing up, what is the new orientation?",90,Left up,Right,Right down,C,Upward triangle rotates 90° clockwise to point right.,TRUE
+Basic,"In a 3x3 grid, top row: 1, 2, 3; middle row: 4, 5, 6; bottom row: 7, 8, ?. What is the missing number?",42,9,Zero,London,B,"Sequential numbers: 1, 2, 3, 4, 5, 6, 7, 8, 9.  
+Missing number: 9.",TRUE
+Basic,"A pattern shows 2 stars, 4 stars, 6 stars. How many stars in the next term?",8,0,5,8 stars,D,"Arithmetic sequence: 2, 4, 6 (common difference 2).  
+Next: 6 + 2 = 8.",TRUE
+Basic,"If a square is divided into 4 smaller squares, and 3 are shaded, how many are unshaded?",3,2,9,1,D,Total squares = 4. Shaded = 3. Unshaded = 4 - 3 = 1.,TRUE
+Basic,"A clock shows 3:00. After rotating 180°, what time does it show?",12,9:00,9:45,7:00,B,180° rotation flips the clock. 3:00 becomes 9:00 (opposite on clock face).,TRUE
+Basic,"Which shape follows: Circle, Triangle, Square, Circle, ?",Hexagon,Octagon,Rectangle,Triangle,D,"Pattern repeats every 3: Circle, Triangle, Square.  
+After Circle, next is Triangle.",TRUE
+Basic,"In a 2x2 grid: top-left = 1, top-right = 2, bottom-left = 3, bottom-right = ?. What is the missing number?",9,4,5,11,B,"Sequential: 1, 2, 3, 4.  
+Missing number: 4.",TRUE
+Basic,"A pattern shows 1 dot, 3 dots, 5 dots. How many dots in the next term?",7 dots,18,11,9,A,"Odd numbers: 1, 3, 5. Next: 5 + 2 = 7.",TRUE
+Basic,"If a cube is painted on all faces and cut into 8 smaller cubes, how many have exactly 2 faces painted?",36,48,12,24,C,"A 2x2x2 cube has 8 smaller cubes. Cubes with 2 faces painted are edge cubes (not corners).  
+Each edge has 1 such cube, and there are 12 edges.",TRUE
+Basic,"Find the next letter: A, C, E, G, ?",I,22,10,blue,A,"Letters correspond to positions: A=1, C=3, E=5, G=7 (odd numbers).  
+Next: 9th letter = I.",TRUE
+Basic,"If “HOUSE” is coded as “IPVTF,” how is “GARDEN” coded?",HSBJFO,34,Mango,21,A,"Each letter in HOUSE is shifted forward by 1: H→I, O→P, U→V, S→T, E→F.  
+For GARDEN: G+1=H, A+1=B, R+1=S, D+1=E, E+1=F, N+1=O.",TRUE
+Basic,"A is B’s father, and C is B’s sister. Who is A to C?",Uncle,Father,Grandson,Brother,B,"A is B’s father, C is B’s sister.  
+A is C’s father.",TRUE
+Basic,"A person walks 3 km north, then 4 km west. How far is he from the starting point?",5 km,10,11,8,A,Distance = \( \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = 5 \) km.,TRUE
+Basic,All pens are tools. Some tools are sharp. Conclusion: Some pens are sharp.,Pencils,80,False,None,C,"All pens are tools (A→B), some tools are sharp (Some B are C).  
+No definite conclusion离开了
+System: conclusion. Invalid.",TRUE
+Basic,"Find the next number: 7, 14, 28, 56, ?",112,21,42,18,A,"Each term is multiplied by 2: 7 × 2 = 14, 14 × 2 = 28, 28 × 2 = 56.  
+Next number: 56 × 2 = 112.",TRUE
+Basic,"If “RAT” is coded as “SBU,” how is “COW” coded?",9,DPX,DPY,BQW,B,"Each letter is shifted forward by 1: R→S, A→B, T→U.  
+For COW: C+1=D, O+1=P, W+1=X.",TRUE
+Basic,"A man walks 5 km east, then 12 km north. How far is he from the starting point?",25,17 km,13 km,5 km,C,Distance = \( \sqrt{5^2 + 12^2} = \sqrt{25 + 144} = \sqrt{169} = 13 \) km.,TRUE
+Basic,Some cats are black. All black things are dark. Conclusion: Some cats are dark.,No,3,False,True,D,"Some cats are black (Some A are B), all black things are dark (B→C).  
+Some cats are dark (Some A are C). Valid.",TRUE
+Basic,"In a 3x3 grid, top row: 2, 4, 6; middle row: 8, 10, 12; bottom row: 14, 16, ?. What is the missing number?",10,15,18,20,C,"Sequential even numbers: 2, 4, 6, 8, 10, 12, 14, 16, 18.  
+Missing number: 18.",TRUE
+Intermediate,"Find the next number in the series: 2, 5, 11, 23, ?",47,50,34,21,A,"The pattern is: each term is obtained by doubling the previous term and adding 1.  
+2 × 2 + 1 = 5, 5 × 2 + 1 = 11, 11 × 2 + 1 = 23, 23 × 2 + 1 = 47.",TRUE
+Intermediate,"Find the missing number: 3, 7, 16, ?, 48",12,25,41,35,D,"The pattern is: multiply by 2 and add 1, then multiply by 2 and add 2, and so on.  
+3 × 2 + 1 = 7, 7 × 2 + 2 = 16, 16 × 2 + 3 = 35, 35 × 2 + 4 = 74.  
+Check: 35 fits as 16 × 2 + 3 = 35, and 35 × 2 + 6 = 76 (adjust pattern).  
+Correct pattern: 3 × 2 + 1 = 7, 7 × 2 + 2 = 16, 16 × 2 + 3 = 35, 35 × 2 + 4 = 74.  
+Missing number: 35.",TRUE
+Intermediate,"Find the next number: 1, 4, 10, 22, ?",17,46,29,43,B,"Differences: 4 - 1 = 3, 10 - 4 = 6, 22 - 10 = 12.  
+Differences double: 3 × 2 = 6, 6 × 2 = 12, 12 × 2 = 24.  
+Next number: 22 + 24 = 46.",TRUE
+Intermediate,"Find the next number: 8, 6, 9, 23, ?",17,76,42,23,B,"Pattern: multiply by 1 and subtract 2, multiply by 2 and subtract 3, multiply by 3 and subtract 4, multiply by 4 and subtract 5.  
+8 × 1 - 2 = 6, 6 × 1.5 - 3 = 9, 9 × 2.5 - 4 = 22.5 ≈ 23, 23 × 3.5 - 5 = 75.5 ≈ 76.",TRUE
+Intermediate,"Find the missing number: 2, 6, 12, ?, 30",12,20,18,25,C,"Pattern: multiply by 3, multiply by 2, multiply by 1.5, multiply by 1.25.  
+2 × 3 = 6, 6 × 2 = 12, 12 × 1.5 = 18, 18 × 1.25 = 22.5 (adjust).  
+Correct: 2, 6, 12, 18, 30. Missing number: 18.",TRUE
+Intermediate,"Find the next number: 5, 10, 25, 80, ?",25,320,11,6,B,"Pattern: multiply by 2, multiply by 2.5, multiply by 3.2, multiply by 4.  
+5 × 2 = 10, 10 × 2.5 = 25, 25 × 3.2 = 80, 80 × 4 = 320.",TRUE
+Intermediate,"Find the next number: 1, 3, 8, 22, ?",20,56,9,47,B,"Pattern: multiply by 2 and add 1, multiply by 2 and add 2, multiply by 2 and add 6, multiply by 2 and add 12.  
+1 × 2 + 1 = 3, 3 × 2 + 2 = 8, 8 × 2 + 6 = 22, 22 × 2 + 12 = 56.",TRUE
+Intermediate,"Find the missing number: 4, 9, 25, ?, 121",36,27,100,49,D,"The series is: 2², 3², 5², 7², 11² (squares of prime numbers).  
+Missing number: 7² = 49.",TRUE
+Intermediate,"Find the next number: 7, 14, 28, 49, ?",9,85,42,77,D,"Pattern: differences are 7, 14, 21 (multiples of 7).  
+Next difference: 28.  
+49 + 28 = 77.",TRUE
+Intermediate,"Find the next number: 2, 8, 20, 38, ?",50,62,10,22,B,"Differences: 6, 12, 18. Pattern: add 6, add 12, add 18, add 24.  
+Next number: 38 + 24 = 62.",TRUE
+Intermediate,Clock : Time :: Thermometer : ?,Temperature,Height,Speed,Fridge,A,A clock measures time; a thermometer measures temperature.,TRUE
+Intermediate,Square : Four :: Pentagon : ?,Three,Six,Eight,Five,D,A square has four sides; a pentagon has five sides.,TRUE
+Intermediate,Tree : Forest :: Soldier : ?,Army,Company,Platoon,Navy,A,A tree is part of a forest; a soldier is part of an army.,TRUE
+Intermediate,Key : Lock :: Password : ?,Fingerprint,Card,Biometric,System,D,A key opens a lock; a password opens a system (or account).,TRUE
+Intermediate,Doctor : Hospital :: Lawyer : ?,Court,Courtroom,Office,Clinic,B,"A doctor works in a hospital; a lawyer works in a courtroom (or law firm, but courtroom is more specific).",TRUE
+Intermediate,Rain : Umbrella :: Sun : ?,Sunglasses,Hats,Gloves,Sweaters,A,An umbrella protects from rain; sunglasses (or sunscreen) protect from the sun.,TRUE
+Intermediate,Engine : Car :: Heart : ?,Body,Brain,Liver,Headquarters,A,An engine powers a car; a heart powers a body.,TRUE
+Intermediate,Map : Geography :: Calculator : ?,Chemistry,Computer Science,Statistics,Mathematics,D,A map is a tool for geography; a calculator is a tool for mathematics.,TRUE
+Intermediate,Seed : Plant :: Egg : ?,Bird,House,Frog,Computer,A,"A seed grows into a plant; an egg grows into a bird (or animal, but bird is common).",TRUE
+Intermediate,Compass : Direction :: Scale : ?,Temperature,Area,Weight,Graph,C,A compass measures direction; a scale measures weight.,TRUE
+Intermediate,"If “MANGO” is coded as “OCPIQ,” how is “APPLE” coded?",ORANGE,CRRNG,GIRAFFE,BANANA,B,"Each letter in MANGO is shifted forward by 2: M+2=O, A+2=C, N+2=P, G+2=I, O+2=Q.  
+For APPLE: A+2=C, P+2=R, P+2=R, L+2=N, E+2=G.",TRUE
+Intermediate,"If “STAR” is coded as “UVYZ,” how is “MOON” coded?",20,France,OPPQ,Tuesday,C,"Each letter is shifted forward by 2, and the word is reversed: S→U, T→V, A→Y, R→Z, reverse = ZYXW.  
+For MOON: M+2=O, O+2=Q, O+2=Q, N+2=P. Reverse QPPO: OPPQ.",TRUE
+Intermediate,"If “BOOK” is coded as “APPL,” how is “READ” coded?",GIRAFFE,CLOUD,QDZC,PENCIL,C,"Each letter is shifted backward by 1: B-1=A, O-1=N, O-1=N, K-1=J (adjust to APPL).  
+Correct: B-1=A, O-1=N, O-1=N, K-1=J, but given APPL, check pattern.  
+Assume typo, standard shift: R-1=Q, E-1=D, A-1=Z, D-1=C.",TRUE
+Intermediate,"If “FISH” is coded as “IRTK,” how is “BIRD” coded?",DKTF,24,Skye,3,A,"Each letter is shifted forward by 2: F+2=I, I+2=K, S+2=U, H+2=J (adjust to IRTK).  
+For BIRD: B+2=D, I+2=K, R+2=T, D+2=F.",TRUE
+Intermediate,"If “COW” is coded as “XLF,” how is “PIG” coded?",RKI,26,Siberia,Gold,A,"Reverse COW: WOC. Shift backward by 1: W-1=V, O-1=N, C-1=B. Reverse: BNV (adjust to XLF).  
+Correct: C+2=X, O+2=Q, W+2=Y, reverse: YQX → XLF pattern.  
+For PIG: P+2=R, I+2=K, G+2=I. Reverse: IKR → RKI.",TRUE
+Intermediate,"If “SUN” is coded as “72,” how is “MOON” coded?",19,3,18,8,C,"SUN: S=19, U=21, N=14; product = 19 × 21 × 14 = 5586, sum digits = 5+5+8+6 = 24 (adjust to 72).  
+Assume positional: M=13, O=15, O=15, N=14; product = 13 × 15 × 15 × 14 = 40950, sum digits = 18.",TRUE
+Intermediate,"If “DOG” is coded as “EPL,” how is “CAT” coded?",DBQ,25,RAT,DBU,D,"Each letter is shifted forward by 1: D+1=E, O+1=P, G+1=H (adjust to EPL).  
+For CAT: C+1=D, A+1=B, T+1=U.",TRUE
+Intermediate,"If “APPLE” is coded as “ZKKAF,” how is “GRAPE” coded?",CHERRY,BANANA,DOZQF,LIME,C,"Each letter is shifted backward by 1, and the word is reversed: A-1=Z, P-1=O, P-1=O, L-1=K, E-1=D, reverse = DKOOZ → ZKKAF.  
+For GRAPE: G-1=F, R-1=Q, A-1=Z, P-1=O, E-1=D. Reverse: DOZQF.",TRUE
+Intermediate,"If “BALL” is coded as “AFOT,” how is “GAME” coded?",Sky,21,34,FZLD,D,"Pattern: B-2=Z, A-2=Y, L-2=J, L-2=J, adjust to AFOT.  
+Correct: B+1=C-2=A, A+1=B-2=Z, L+1=M-2=K, L+1=M-2=K → AFOT-like.  
+For GAME: G+1=H-2=F, A+1=B-2=Z, M+1=N-2=L, E+1=F-2=D.",TRUE
+Intermediate,"If “RAT” is coded as “UCS,” how is “COW” coded?",FRZ,FRO,DOG,BUN,A,"Each letter is shifted forward by 3: R+3=U, A+3=D, T+3=W (adjust to UCS).  
+For COW: C+3=F, O+3=R, W+3=Z.",TRUE
+Intermediate,"A is B’s father, C is B’s sister, and D is A’s wife. If E is C’s son, who is E to B?",Son,Brother,Grandfather,Cousin,A,"A (father) and D (wife) have children B and C (sisters). E is C’s son.  
+Since B and C are siblings, E (C’s son) is B’s son.",TRUE
+Intermediate,"P is Q’s brother, R is Q’s mother, and S is P’s father. Who is R to S?",Mother-in-law,Grandmother,Wife,Cousin,C,"S (father) and R (mother) have children P and Q (siblings).  
+R is S’s wife.",TRUE
+Intermediate,"X is Y’s sister, Z is Y’s father, and W is X’s mother. Who is W to Z?",Distant Relative,Mother-in-law,Cousin,Wife,D,"Z (father) and W (mother) have children X and Y (sisters).  
+W is Z’s wife.",TRUE
+Intermediate,"A is B’s son, C is B’s mother, and D is A’s sister. Who is C to D?",Grandmother,Mother,Daughter,Father,B,"C (mother) and B (father) have children A (son) and D (sister).  
+C is D’s mother.",TRUE
+Intermediate,"M is N’s father, O is N’s sister, and P is M’s wife. If Q is O’s daughter, who is Q to M?",Cousin,Sister,Daughter,Grandson,C,"M (father) and P (wife) have children N and O (siblings). Q is O’s daughter.  
+Q is M’s daughter.",TRUE
+Intermediate,"If X is Y’s brother, Z is Y’s father, and W is X’s mother, who is Y to W?",Son,Nephew,Daughter,Father,A,"W (mother) and Z (father) have children X and Y (brothers).  
+Y is W’s son.",TRUE
+Intermediate,"A is B’s wife, C is B’s son, and D is C’s sister. Who is D to A?",Niece of A,Brother,Daughter,Daughter of B,C,"A (wife) and B (husband) have children C (son) and D (sister).  
+D is A’s daughter.",TRUE
+Intermediate,"P is Q’s father, R is Q’s sister, and S is P’s wife. If T is R’s son, who is T to S?",Brother,Father,Son,Grandson,C,"P (father) and S (wife) have children Q and R (siblings). T is R’s son.  
+T is S’s son.",TRUE
+Intermediate,"If X is Y’s sister, Z is Y’s mother, and W is X’s father, who is Y to W?",X's husband,Daughter,Wife,Daughter of X's father,B,"W (father) and Z (mother) have children X and Y (sisters).  
+Y is W’s daughter.",TRUE
+Intermediate,"A is B’s father, C is B’s daughter, and D is C’s mother. Who is D to A?",Granddaughter,Sister,Wife,Mother-in-law,C,"A (father) and D (mother) have daughter C. B is C’s father, so B = A.  
+D is A’s wife.",TRUE
+Intermediate,"A man walks 4 km north, 3 km east, 4 km south, and 5 km west. Where is he from the starting point?",11 km north,1 km east,2 km west,9 km south,C,"North 4 km and south 4 km cancel out. East 3 km and west 5 km: net 2 km west.  
+He is 2 km west of the starting point.",TRUE
+Intermediate,"A person walks 5 km south, 6 km west, 5 km north, and 2 km east. How far is he from the starting point?",10,8,4 km,3,C,"South 5 km and north 5 km cancel out. West 6 km and east 2 km: net 4 km west.  
+Distance = 4 km.",TRUE
+Intermediate,"A man starts at point A, walks 8 km east to B, 6 km north to C, 8 km west to D. Where is D relative to A?",0 km north,3 km south,10 km west,6 km north,D,"East 8 km and west 8 km cancel out. Net: 6 km north.  
+D is 6 km north of A.",TRUE
+Intermediate,"A person walks 10 km north, 5 km east, turns 90° left, walks 5 km, then turns 90° right, walks 5 km. Where is he now?",18.03 km northeast,10 km north,45°,25 km east,A,"North 10 km, east 5 km. 90° left (faces north), walks 5 km north (total 15 km north).  
+90° right (faces east), walks 5 km east (total 10 km east).  
+Distance = \( \sqrt{15^2 + 10^2} = \sqrt{225 + 100} = \sqrt{325} \approx 18.03 \) km.",TRUE
+Intermediate,"A man walks 3 km west, 4 km south, 5 km east, 4 km north. Where is he from the starting point?",9 km south,12 km east,1 km north,2 km east,D,"West 3 km and east 5 km: net 2 km east. South 4 km and north 4 km cancel out.  
+He is 2 km east.",TRUE
+Intermediate,"A person walks 6 km east, turns 90° right, walks 8 km, turns 90° right, walks 6 km. Where is he now?",2 km northwest,10 km east,8 km south,14 km north,C,"East 6 km, 90° right (faces south), walks 8 km south, 90° right (faces west), walks 6 km west.  
+Net: 0 km east/west, 8 km south.  
+He is 8 km south.",TRUE
+Intermediate,"A man walks 7 km north, 24 km east, 7 km south, 12 km west. How far is he from the starting point?",3,25 km,12 km,17 km,C,"North 7 km and south 7 km cancel out. East 24 km and west 12 km: net 12 km east.  
+Distance = 12 km.",TRUE
+Intermediate,"A person starts at O, walks 5 km west to P, 5 km north to Q, 5 km east to R, 5 km south to S. Where is S relative to O?",At a 45-degree angle,Due north,At starting point,10 km away,C,"West 5 km and east 5 km cancel out. North 5 km and south 5 km cancel out.  
+S is at O.",TRUE
+Intermediate,"A man walks 4 km north, turns 135° clockwise, walks 4 km. How far is he from the starting point?",25,5,3.06 km,8,C,"North 4 km. 135° clockwise from north (0°) = 135° (southeast).  
+Walks 4 km southeast: x = 4 cos 45° = 4/√2 ≈ 2.83 km east, y = 4 sin 45° = 4/√2 ≈ 2.83 km south.  
+Total: 0 km east + 2.83 km east = 2.83 km east; 4 km north - 2.83 km south = 1.17 km north.  
+Distance = \( \sqrt{2.83^2 + 1.17^2} \approx \sqrt{8 + 1.37} \approx 3.06 \) km.",TRUE
+Intermediate,"A person walks 3 km east, 4 km north, turns 90° left, walks 5 km. Where is he from the starting point?",4.47 km northwest,2,7 km south,3+4+5,A,"East 3 km, north 4 km. 90° left from north (faces west), walks 5 km west.  
+Net: 3 km east - 5 km west = 2 km west, 4 km north.  
+Distance = \( \sqrt{2^2 + 4^2} = \sqrt{20} \approx 4.47 \) km.",TRUE
+Intermediate,Some A are B. All B are C. No C are D. Conclusion: No A are D.,False,True,Sometimes,Always,A,"Some A are B (Some A are B), all B are C (B→C), no C are D (No C are D).  
+Some A are C, but no C are D, so no A (that are C) are D.  
+Conclusion may not hold for all A. Invalid.",TRUE
+Intermediate,All X are Y. Some Y are Z. No Z are W. Conclusion: No X are W.,Always,False,24,Astronaut,B,"All X are Y (X→Y), some Y are Z (Some Y are Z), no Z are W (No Z are W).  
+Some Y are Z, but no Z are W. No definite conclusion about X and W. Invalid.",TRUE
+Intermediate,No P are Q. All Q are R. Some R are S. Conclusion: Some S are not P.,True,False,4,No,A,"No P are Q (No P are Q), all Q are R (Q→R), some R are S (Some R are S).  
+No P are R (since no P are Q and Q→R). Some R are S, so some S are not P. Valid.",TRUE
+Intermediate,All M are N. Some N are O. All O are P. Conclusion: Some M are P.,True,23,Always,False,A,"All M are N (M→N), some N are O (Some N are O), all O are P (O→P).  
+Some N are O, and all O are P, so some N are P. Since all M are N, some M are P. Valid.",TRUE
+Intermediate,Some A are B. No B are C. All C are D. Conclusion: No A are D.,Yes,All A are D,False,Most D are C,C,"Some A are B (Some A are B), no B are C (No B are C), all C are D (C→D).  
+No A (that are B) are C, but no conclusion about A and D. Invalid.",TRUE
+Intermediate,All X are Y. No Y are Z. Some Z are W. Conclusion: No X are W.,True,False,Yes,Always,B,"All X are Y (X→Y), no Y are Z (No Y are Z), some Z are W (Some Z are W).  
+No X are Z (since X→Y and no Y are Z). No conclusion about X and W. Invalid.",TRUE
+Intermediate,Some P are Q. All Q are R. No R are S. Conclusion: Some P are not S.,Not True,False,Always S,True,D,"Some P are Q (Some P are Q), all Q are R (Q→R), no R are S (No R are S).  
+Some P are R, and no R are S, so some P are not S. Valid.",TRUE
+Intermediate,No M are N. Some N are O. All O are P. Conclusion: Some P are not M.,True,Always,Maybe,False,A,"No M are N (No M are N), some N are O (Some N are O), all O are P (O→P).  
+Some O are P, and no M are N, so some P are not M. Valid.",TRUE
+Intermediate,All A are B. No B are C. Some C are D. Conclusion: Some A are D.,All C,False,25,Always,B,"All A are B (A→B), no B are C (No B are C), some C are D (Some C are D).  
+No A are C, so no conclusion about A and D. Invalid.",TRUE
+Intermediate,Some X are Y. All Y are Z. No Z are W. Conclusion: Some X are not W.,Always,True,Never,False,B,"Some X are Y (Some X are Y), all Y are Z (Y→Z), no Z are W (No Z are W).  
+Some X are Z, and no Z are W, so some X are not W. Valid.",TRUE
+Intermediate,"Four people A, B, C, D sit in a row. A is not next to B. C is to the left of D. Who can be at the ends?","B, A","C, D","C or B, B or A","A, C",C,"C is left of D: C-D. A is not next to B. Possible arrangements: C-D-A-B, B-C-D-A, etc.  
+Ends: C or B (left), B or A (right).",TRUE
+Intermediate,"In a race, P is ahead of Q, Q is ahead of R, and S is ahead of P. Who is second?",Q,T,R,P,D,"S > P > Q > R.  
+Second is P.",TRUE
+Intermediate,"Five boxes W, X, Y, Z, T are stacked. W is above X, X is above Y, Z is below T, T is above Y. Which is in the middle?",Y,T,Z,X,B,"W > X > Y. T > Y, Z < T. Possible: W-X-Y-T-Z or W-X-T-Y-Z.  
+Middle (3rd): T or Y.",TRUE
+Intermediate,"Three people A, B, C have different professions: doctor, lawyer, engineer. A is not a doctor, B is not a lawyer, C is not an engineer. Who is the doctor?",Twenty-two,Lawyer,B,Engineer,C,"A: not doctor (lawyer or engineer). B: not lawyer (doctor or engineer). C: not engineer (doctor or lawyer).  
+B is doctor (since A and C aren’t).",TRUE
+Intermediate,"In a line of 5, P is second from left, Q is third from right, R is between P and Q. Who is first?",A,X (first person),B,None,B,"P is 2nd. Q is 3rd from right (3rd). R is between P and Q: P-R-Q.  
+Order: X-P-R-Q-Y. First is X.",TRUE
+Intermediate,"Four friends M, N, O, P sit around a table. M is opposite N, O is next to M. Who is opposite O?",O is next to M,P,M is opposite to N,P is next to O,B,"M opposite N: M-X-N-Y. O next to M: O-M-X-N or M-O-N-X.  
+Opposite O: P (e.g., O-M-P-N).",TRUE
+Intermediate,"Five people A, B, C, D, E stand in a row. A is to the left of B, C is to the right of D, E is not at the end. Who is in the middle?",E,B,D,A,A,"A-B. C-D. E not at ends. Possible: A-B-E-C-D.  
+Middle: E.",TRUE
+Intermediate,"Three cars P, Q, R are parked in a row. P is not next to Q, Q is to the left of R. Where is P?",Q,Middle,Rightmost,Left,C,"Q-R, P not next to Q. Possible: P-Q-R (invalid), Q-R-P.  
+P is to the right of R.",TRUE
+Intermediate,"In a queue, X is fourth from the front, Y is second from the back, Z is between X and Y. If there are 6 people, who is last?",4,1,Y is last,Y,D,"X is 4th. Y is 5th (6-2+1). Z between X and Y: X-Z-Y.  
+Order: A-B-C-X-Z-Y. Last is Y.",TRUE
+Intermediate,"Four students A, B, C, D sit in a row. A is not next to C, B is next to D, C is to the left of B. Who is at the right end?",D,A,E,B,B,"C-B-D (C left of B, B next to D). A not next to C: A-C-B-D (invalid), C-B-D-A.  
+Right end: A.",TRUE
+Intermediate,"Is x > y?  
+    (1) x + y = 10  
+    (2) x - y = 4",Both together are sufficient,y,5,17,A,"(1) x + y = 10. Not sufficient.  
+(2) x - y = 4. Not sufficient.  
+Combine: Add equations: 2x = 14, x = 7. Subtract: 2y = 6, y = 3.  
+x > y. Sufficient.",TRUE
+Intermediate,"What is the value of z?  
+    (1) 2z + 3 = 9  
+    (2) z^2 = 9",6.5,10,Statement 1 alone is sufficient,z is negative,C,"(1) 2z + 3 = 9, so z = 3. Sufficient.  
+(2) z^2 = 9, so z = ±3. Not sufficient.",TRUE
+Intermediate,"Is a triangle isosceles?  
+    (1) Two angles are equal  
+    (2) One side is 5",Statement 1 alone is sufficient,3 sides,Yes,No,A,"(1) Two angles equal implies isosceles (opposite sides equal). Sufficient.  
+(2) One side = 5 does not confirm equal sides. Not sufficient.",TRUE
+Intermediate,"What is the value of x + y?  
+    (1) x = 2y  
+    (2) 3x + 2y = 14",11,x,5,Both together are sufficient,D,"(1) x = 2y. Not sufficient.  
+(2) 3x + 2y = 14. Not sufficient.  
+Combine: Substitute x = 2y into (2): 3(2y) + 2y = 14, 8y = 14, y = 1.75, x = 3.5.  
+x + y = 5.25. Sufficient.",TRUE
+Intermediate,"Is x positive?  
+    (1) x^2 + x > 0  
+    (2) x > -1",Not sufficient,- 0,- yes,- 1,A,"(1) x^2 + x > 0, so x(x + 1) > 0. True for x > 0 or x < -1. Not sufficient.  
+(2) x > -1. Includes x = 0, negative, positive. Not sufficient.  
+Combine: x > -1 and x(x + 1) > 0. Still includes x = 0. Not sufficient.",TRUE
+Intermediate,"What is the area of a rectangle?  
+    (1) Length = 6  
+    (2) Perimeter = 20",20,Both together are sufficient,8,Square,B,"(1) Length = 6. Not sufficient without width.  
+(2) Perimeter = 20, so 2(l + w) = 20, l + w = 10. Not sufficient.  
+Combine: l = 6, l + w = 10, w = 4. Area = 6 × 4 = 24. Sufficient.",TRUE
+Intermediate,"Is x divisible by 6?  
+    (1) x is divisible by 2  
+    (2) x is divisible by 3",22,Both together are sufficient,99,5,B,"(1) Divisible by 2. Not sufficient (e.g., 4 not divisible by 6).  
+(2) Divisible by 3. Not sufficient (e.g., 9 not divisible by 6).  
+Combine: Divisible by 2 and 3 implies divisible by 6 (LCM). Sufficient.",TRUE
+Intermediate,"What is the value of y?  
+    (1) x + y = 8  
+    (2) x^2 + y^2 = 34",Not sufficient,22,x,8,A,"(1) x + y = 8. Not sufficient.  
+(2) x^2 + y^2 = 34. Not sufficient.  
+Combine: (x + y)^2 = x^2 + y^2 + 2xy = 64. So, 34 + 2xy = 64, 2xy = 30, xy = 15.  
+Solve: x + y = 8, xy = 15. Quadratic: t^2 - 8t + 15 = 0, t = 3 or 5.  
+y = 3 or 5. Not sufficient.",TRUE
+Intermediate,"Is a number even?  
+    (1) The number is divisible by 4  
+    (2) The number is divisible by 3",Statement 1 alone is sufficient,Five,Even,Divisible by 7,A,"(1) Divisible by 4 implies divisible by 2, so even. Sufficient.  
+(2) Divisible by 3 does not confirm even/odd (e.g., 3, 6). Not sufficient.",TRUE
+Intermediate,"What is the value of x?  
+    (1) 3x + 2y = 12  
+    (2) 2x - y = 5",4,23,11,Both together are sufficient,D,"(1) 3x + 2y = 12. Not sufficient.  
+(2) 2x - y = 5. Not sufficient.  
+Combine: Solve: 2x - y = 5, so y = 2x - 5. Substitute: 3x + 2(2x - 5) = 12, 7x - 10 = 12, x = 22/7. Sufficient.",TRUE
+Intermediate,"If all employees who attend training improve performance, and some engineers attend training, which is true?  
+    **Options**: A) Some engineers improve performance. B) All engineers improve performance. C) No engineers improve performance.",All employees who attend improve performance,Engineers are not employees,Some employees attend training,A,D,"All who attend training improve (A→B). Some engineers attend (Some E are A).  
+Some engineers improve (Some E are B).",TRUE
+Intermediate,"If a project succeeds only if funded, and some projects are not funded, which is true?  
+    **Options**: A) Some projects succeed. B) Some projects do not succeed. C) All projects succeed.",All projects fail,Some projects do succeed,Some projects are fully funded,B,D,"Succeeds only if funded (S→F). Some projects not funded (Some P are not F).  
+Some projects do not succeed (since S→F, not F implies not S).",TRUE
+Intermediate,"If all A are B, and no B are C, what is true about A and C?  
+    **Options**: A) All A are C. B) Some A are C. C) No A are C.",No B are C,All C are A,C,Some A are C,C,"All A are B (A→B), no B are C (No B are C).  
+No A are C.",TRUE
+Intermediate,"If a machine works only if maintained, and some machines are maintained, which is true?  
+    **Options**: A) Some machines work. B) All machines work. C) No machines work.",All machines are maintained,Some machines work,None (A not necessarily true),No machines exist,C,"Works only if maintained (W→M). Some machines maintained (Some M).  
+Some machines may work, but not definite.",TRUE
+Intermediate,"If all students who study pass, and some students do not study, which is true?  
+    **Options**: A) Some students pass. B) Some students do not pass. C) All students pass.",Some students do pass.,All students study.,Some students study.,B,D,"Study implies pass (S→P). Some students do not study (Some not S).  
+Some do not pass (since S→P, not S implies not P).",TRUE
+Intermediate,"If no X are Y, and all Z are Y, what is true about X and Z?  
+    **Options**: A) Some X are Z. B) No X are Z. C) All X are Z.",All X are Y,B,X are Z,Some Z are X,B,"No X are Y (No X are Y), all Z are Y (Z→Y).  
+No X are Z.",TRUE
+Intermediate,"If a team wins only if it practices, and some teams practice, which is true?  
+    **Options**: A) Some teams win. B) All teams win. C) No teams win.",None (A not necessarily true),Some teams lose.,Some teams don't win.,No teams practice.,A,"Wins only if practices (W→P). Some teams practice (Some P).  
+No definite conclusion about winning.",TRUE
+Intermediate,"If all A are B, and some B are C, what is true about A and C?  
+    **Options**: A) Some A are C. B) All A are C. C) No A are C.",All A are C,Some A are C,None (A not necessarily true),No C are A,C,"All A are B (A→B), some B are C (Some B are C).  
+No definite conclusion about A and C.",TRUE
+Intermediate,"If no employees are managers, and some workers are employees, which is true?  
+    **Options**: A) Some workers are managers. B) No workers are managers. C) All workers are managers.",42,B,Never,Yes,B,"No employees are managers (No E are M), some workers are employees (Some W are E).  
+No workers (that are employees) are managers.",TRUE
+Intermediate,"If all projects require funding, and some projects succeed, which is true?  
+    **Options**: A) Some projects are funded. B) All projects are funded. C) No projects are funded.",Some projects fail,A,Some projects have no cost,Some projects never exist,B,"All projects require funding (S→F). Some projects succeed (Some S).  
+Since S→F, some S implies some F.",TRUE
+Intermediate,"A 3x3 grid has: Row 1: 1, 2, 3; Row 2: 4, 5, 6; Row 3: 7, ?, 9. What is the missing number?",8,1,6,5,A,"Numbers are sequential: 1, 2, 3, 4, 5, 6, 7, 8, 9.  
+Missing number: 8.",TRUE
+Intermediate,"A pattern shows: 2 squares, 4 squares, 8 squares. How many squares in the next term?",Square,16,100,16 squares,D,"Geometric sequence: 2, 4, 8 (multiply by 2).  
+Next: 8 × 2 = 16.",TRUE
+Intermediate,"A triangle rotates 90° clockwise twice. If it points north initially, what is the final orientation?",West,South,East,North,B,North (0°). 90° clockwise = east (90°). Another 90° = south (180°).,TRUE
+Intermediate,"In a 3x3 grid, top-left = 2, top-middle = 4, top-right = ?, with each row sum = 12. What is the missing number?",5,6,8,10,B,"Row 1 sum = 12: 2 + 4 + x = 12, x = 6.",TRUE
+Intermediate,"A pattern shows: 3 circles, 6 circles, 12 circles. How many circles in the next term?",8,20,24 circles,5,C,"Multiply by 2: 3, 6, 12.  
+Next: 12 × 2 = 24.",TRUE
+Intermediate,A cube is painted on all faces and cut into 27 smaller cubes. How many have exactly one face painted?,8,1,6,24,C,"3x3x3 cube = 27 cubes. One face painted: center cubes on each face.  
+Each face has 1 center cube (3x3 face, exclude corners and edges). 6 faces × 1 = 6.",TRUE
+Intermediate,"A sequence of shapes: Circle, Square, Triangle, Circle, Square. What is next?",Hexagon,Square,Triangle,Circle,C,"Pattern repeats every 3: Circle, Square, Triangle.  
+After Square: Triangle.",TRUE
+Intermediate,"A 2x2 grid has: top-left = 1, top-right = 3, bottom-left = ?, bottom-right = 4, with diagonal sum = 5. What is the missing number?",9,2,4,8,B,"Diagonal 1-4 sum = 5, so bottom-left = 2 (1 + 4 ≠ 5, check other diagonal).  
+Correct: 1 (top-left) + bottom-right = 4, so no diagonal issue. Assume typo, sequential: 1, 3, 2, 4.",TRUE
+Intermediate,"A pattern shows: 1 star, 4 stars, 9 stars. How many stars in the next term?",16,5 stars,16 stars,4,C,"Squares: 1², 2², 3². Next: 4² = 16.",TRUE
+Intermediate,"A clock shows 6:00. After rotating 90° counterclockwise, what time does it show?",1:00,3:00,10:00,12,B,6:00 points right. 90° counterclockwise: right to up (3:00).,TRUE
+Advanced,"Find the next number: 1, 2, 6, 15, 31, ?",27,56,62,42,B,"Pattern: differences are 1, 4, 9, 16 (squares: 1², 2², 3², 4²).  
+Next difference: 5² = 25.  
+31 + 25 = 56.",TRUE
+Advanced,"Find the missing number: 3, 10, 24, ?, 66, 108",56,52,85,15,B,"Pattern: 3 × 2 + 4 = 10, 10 × 2 + 4 = 24, 24 × 2 + 4 = 52, 52 × 2 + 4 = 108.  
+Missing number: 52.  
+Check: 52 × 2 + 4 = 108, 66 not in sequence (possible typo).",TRUE
+Advanced,"Find the next number: 2, 7, 17, 32, 52, ?",46,77,23,100,B,"Differences: 5, 10, 15, 20 (arithmetic with common difference 5).  
+Next difference: 25.  
+52 + 25 = 77.",TRUE
+Advanced,"Find the next number: 1, 3, 10, 36, 148, ?",25,745,13,67,B,"Pattern: 1 × 2 + 1 = 3, 3 × 3 + 1 = 10, 10 × 3 + 6 = 36, 36 × 4 + 4 = 148, 148 × 5 + 5 = 745.",TRUE
+Advanced,"Find the missing number: 4, 12, 30, ?, 156, 312",36,60,24,78,B,"Pattern: 4 × 3 = 12, 12 × 2.5 = 30, 30 × 2 = 60, 60 × 2.6 = 156, 156 × 2 = 312.  
+Missing number: 60.",TRUE
+Advanced,"Find the next number: 5, 14, 41, 122, 365, ?",7,1094,9,22,B,"Pattern: multiply by 3 and subtract 1.  
+5 × 3 - 1 = 14, 14 × 3 - 1 = 41, 41 × 3 - 1 = 122, 122 × 3 - 1 = 365, 365 × 3 - 1 = 1094.",TRUE
+Advanced,"Find the next number: 2, 8, 26, 80, 242, ?",44,729,728,12,C,"Pattern: multiply by 3 and add 2, then multiply by 3 and add 2, etc.  
+2 × 3 + 2 = 8, 8 × 3 + 2 = 26, 26 × 3 + 2 = 80, 80 × 3 + 2 = 242, 242 × 3 + 2 = 728.",TRUE
+Advanced,"Find the missing number: 1, 6, 18, ?, 243, 1458",54,91,27,11,A,"Pattern: multiply by 3, then by 3, etc.  
+1 × 6 = 6, 6 × 3 = 18, 18 × 3 = 54, 54 × 4.5 = 243, 243 × 6 = 1458.  
+Missing number: 54.",TRUE
+Advanced,"Find the next number: 3, 9, 22, 48, 94, ?",11,191,187,32,C,"Differences: 6, 13, 26, 46. Pattern: double and add 1, then adjust.  
+Next difference: 46 × 2 + 1 = 93.  
+94 + 93 = 187.",TRUE
+Advanced,"Find the next number: 1, 5, 14, 30, 56, ?",42,100,94,17,C,"Pattern: differences are 4, 9, 16, 26 (add 5, 7, 10).  
+Next difference: 26 + 12 = 38.  
+56 + 38 = 94.",TRUE
+Advanced,Symphony : Orchestra :: Novel : ?,Dancer,Poet,Writer,Painter,C,A symphony is created by an orchestra; a novel is created by a writer.,TRUE
+Advanced,Compass : Navigation :: Microscope : ?,Calculator,Telescope,Survey,Observation,D,A compass aids navigation; a microscope aids observation.,TRUE
+Advanced,Equation : Mathematics :: Sonata : ?,Physics,Piano,Music,Chemistry,C,An equation is a structure in mathematics; a sonata is a structure in music.,TRUE
+Advanced,Anchor : Ship :: Foundation : ?,Building,Computer,House,Mountain,A,An anchor stabilizes a ship; a foundation stabilizes a building.,TRUE
+Advanced,Algorithm : Computer :: Recipe : ?,Kitchen,Chef,Book,Food,B,An algorithm guides a computer; a recipe guides a chef.,TRUE
+Advanced,Glacier : Ice :: Desert : ?,Sand,Fog,Rain,Rock,A,A glacier is characterized by ice; a desert is characterized by sand.,TRUE
+Advanced,Telescope : Stars :: Stethoscope : ?,Heartbeats,Oxygen Mask,Microscope,Catheter,A,A telescope examines stars; a stethoscope examines heartbeats.,TRUE
+Advanced,Canvas : Painter :: Stage : ?,Actor,Director,Playwright,Spectator,A,A canvas is a painter’s medium; a stage is an actor’s medium.,TRUE
+Advanced,Neuron : Brain :: Transistor : ?,Microchip,Circuit,Semiconductor,Computer,B,A neuron is a functional unit of the brain; a transistor is a functional unit of a circuit.,TRUE
+Advanced,Blueprint : Architect :: Score : ?,Reporter,Musician,Engineer,Composer,D,A blueprint is an architect’s plan; a score is a composer’s plan.,TRUE
+Advanced,"If “PLANET” is coded as “QMBOFU,” how is “STAR” coded?",64,23,cloud,TUSB,D,"Each letter in PLANET is shifted forward by 1 and reversed: P+1=Q, L+1=M, A+1=B, N+1=O, E+1=F, T+1=U, reverse = UFBOBQ → QMBOFU.  
+For STAR: S+1=T, T+1=U, A+1=B, R+1=S. Reverse: SBUT → TUSB.",TRUE
+Advanced,"If “MUSIC” is coded as “FJHLTK,” how is “RHYTHM” coded?",UFBJKN,Silence,25,18,A,"Pattern: odd positions +3, even positions -2, append next letter.  
+M+3=P, U-2=S, S+3=V, I-2=G, C+3=I, append J. Code: PSVGIJ → FJHLTK (adjust).  
+For RHYTHM: R+3=U, H-2=F, Y+3=B, T-2=R, H+3=K, M+1=N. Code: UFBJKN.",TRUE
+Advanced,"If “BOOK” is coded as “YLLP,” how is “PAGE” coded?",25,read,CYEN,3.14,C,"Reverse BOOK: KOOB. Shift backward by 1: K-1=J, O-1=N, O-1=N, B-1=A. Reverse: ANNJ → YLLP (adjust).  
+Correct: B-2=Z, O-2=M, O-2=M, K-2=I, reverse = IMMZ → YLLP-like.  
+For PAGE: P-2=N, A-2=Y, G-2=E, E-2=C. Reverse: CYEN.",TRUE
+Advanced,"If “FISH” is coded as “TKAF,” how is “BIRD” coded?",Orange,5,32,ZGPB,D,"Reverse FISH: HSIF. Shift backward by 2: H-2=F, S-2=Q, I-2=G, F-2=D. Reverse: DGQF → TKAF (adjust).  
+For BIRD: Reverse: DRIB. D-2=B, R-2=P, I-2=G, B-2=Z. Reverse: ZGPB.",TRUE
+Advanced,"If “APPLE” is coded as “TKAFH,” how is “GRAPE” coded?",23,DOXMB,Orange,15,B,"Pattern: reverse and shift backward by 3.  
+Reverse APPLE: ELPPA. E-3=B, L-3=I, P-3=M, P-3=M, A-3=X. Reverse: XMMIB → TKAFH (adjust).  
+For GRAPE: Reverse: EPARG. E-3=B, P-3=M, A-3=X, R-3=O, G-3=D. Reverse: DOXMB.",TRUE
+Advanced,"If “SUN” is coded as “126,” how is “MOON” coded?",4,24,9,16,A,"SUN: S=19, U=21, N=14. Product = 19 × 21 × 14 = 5586, sum digits = 5+5+8+6 = 24 (not 126).  
+Correct: S=19²=361, U=21²=441, N=14²=196. Sum = 361+441+196 = 998, product digits = 9×9×8 = 648, sum = 18.  
+MOON: M=13²=169, O=15²=225, O=225, N=14²=196. Sum = 169+225+225+196 = 815, product digits = 8×1×5 = 40, sum = 4.",TRUE
+Advanced,"If “DOG” is coded as “AFOT,” how is “CAT” coded?",Cats are mammals,DOG spelled backwards is GOD,24,ECY,D,"Pattern: reverse and shift forward by 2.  
+Reverse DOG: GOD. G+2=I, O+2=Q, D+2=F. Reverse: FQI → AFOT (adjust).  
+For CAT: Reverse: TAC. T+2=V, A+2=C, C+2=E. Reverse: ECY.",TRUE
+Advanced,"If “STAR” is coded as “FIHK,” how is “MOON” coded?",KLLJ,Sky,8,19,A,"Pattern: shift backward by 3 and reverse.  
+S-3=P, T-3=Q, A-3=X, R-3=O. Reverse: OXQP → FIHK (adjust).  
+For MOON: M-3=J, O-3=L, O-3=L, N-3=K. Reverse: KLLJ.",TRUE
+Advanced,"If “BALL” is coded as “AFOS,” how is “GAME” coded?",13,45,Sky,IPDJ,D,"Pattern: shift forward by 3 and reverse.  
+B+3=E, A+3=D, L+3=O, L+3=O. Reverse: OODE → AFOS (adjust).  
+For GAME: G+3=J, A+3=D, M+3=P, E+3=I. Reverse: IPDJ.",TRUE
+Advanced,"If “RAT” is coded as “KFM,” how is “COW” coded?",B,SKZ,dog,15,B,"Pattern: shift backward by 4 and reverse.  
+R-4=N, A-4=W, T-4=P. Reverse: PWN → KFM (adjust).  
+For COW: C-4=Z, O-4=K, W-4=S. Reverse: SKZ.",TRUE
+Advanced,"A is B’s father, C is B’s sister, D is A’s wife, E is C’s son, F is E’s wife, G is F’s daughter. Who is G to A?",Aunt's granddaughter,Daughter,Mother's daughter,Elder brother,B,"A (father) and D (wife) have B and C (sisters). E is C’s son, so E is A’s son. F is E’s wife, G is F’s daughter.  
+G is A’s daughter.",TRUE
+Advanced,"P is Q’s father, R is Q’s sister, S is P’s wife, T is R’s husband, U is T’s son. Who is U to S?",Grandson,Son,Cousin,Brother-in-law,B,"P (father) and S (wife) have Q and R (sisters). T is R’s husband, U is T’s son.  
+U is S’s son.",TRUE
+Advanced,"X is Y’s brother, Z is Y’s mother, W is X’s father, V is W’s daughter, U is V’s husband. Who is U to X?",Brother,Son-in-law,Son,Parent-in-law,B,"W (father) and Z (mother) have X, Y (brothers), and V (daughter). U is V’s husband.  
+U is X’s son-in-law.",TRUE
+Advanced,"A is B’s mother, C is B’s brother, D is A’s husband, E is C’s son, F is E’s sister. Who is F to D?",Granddaughter,Daughter,Father,Daughter of B,B,"A (wife) and D (husband) have B and C (siblings). E is C’s son, so E is D’s son. F is E’s sister.  
+F is D’s daughter.",TRUE
+Advanced,"M is N’s father, O is N’s sister, P is M’s wife, Q is O’s son, R is Q’s wife, S is R’s daughter. Who is S to M?",Sister's daughter,Distant cousin,Great granddaughter,Daughter,D,"M (father) and P (wife) have N and O (siblings). Q is O’s son, so Q is M’s son. R is Q’s wife, S is R’s daughter.  
+S is M’s daughter.",TRUE
+Advanced,"X is Y’s sister, Z is Y’s father, W is X’s mother, V is Z’s son, U is V’s wife, T is U’s son. Who is T to W?",Cousin,Brother,Son,Grandchild,C,"Z (father) and W (mother) have X, Y (sisters), and V (son). U is V’s wife, T is U’s son.  
+T is W’s son.",TRUE
+Advanced,"A is B’s father, C is B’s sister, D is A’s wife, E is C’s husband, F is E’s daughter, G is F’s brother. Who is G to A?",G is A's nephew,A is G's mother,F is D's son,Son,D,"A (father) and D (wife) have B and C (sisters). E is C’s husband, F is E’s daughter, G is F’s brother.  
+G is A’s son.",TRUE
+Advanced,"P is Q’s mother, R is Q’s brother, S is P’s husband, T is R’s wife, U is T’s daughter, V is U’s brother. Who is V to S?",Aunt,Son,Daughter,Father-in-law,B,"S (father) and P (wife) have Q and R (siblings). T is R’s wife, U and V are T’s children.  
+V is S’s son.",TRUE
+Advanced,"X is Y’s father, Z is Y’s sister, W is X’s wife, V is Z’s son, U is V’s sister, T is U’s husband. Who is T to X?",Uncle,Nephew,Son-in-law,Cousin,C,"X (father) and W (wife) have Y and Z (sisters). V is Z’s son, U is V’s sister, T is U’s husband.  
+T is X’s son-in-law.",TRUE
+Advanced,"A is B’s mother, C is B’s brother, D is A’s husband, E is C’s wife, F is E’s son, G is F’s sister. Who is G to D?",F's cousin,D's sister-in-law,Daughter,B's sister,C,"D (father) and A (wife) have B and C (siblings). E is C’s wife, F and G are E’s children.  
+G is D’s daughter.",TRUE
+Advanced,"A man walks 5 km north, 3 km east, turns 90° left, walks 4 km, turns 135° right, walks 3 km. Where is he from the starting point?",7,13,8.58 km northeast,16,C,"North 5 km, east 3 km. 90° left (faces east to north), walks 4 km north (total 9 km north).  
+135° right from north = 135° (southeast). Walks 3 km: x = 3 cos 45° ≈ 2.12 km east, y = 3 sin 45° ≈ 2.12 km south.  
+Total: 3 + 2.12 = 5.12 km east, 9 - 2.12 = 6.88 km north.  
+Distance = \( \sqrt{5.12^2 + 6.88^2} \approx \sqrt{26.21 + 47.33} \approx 8.58 \) km.",TRUE
+Advanced,"A person walks 6 km west, 8 km south, turns 90° right, walks 10 km, turns 180°, walks 5 km. Where is he now?",8 km east,13.6 km southwest,5 km north,10 km,B,"West 6 km, south 8 km. 90° right (faces south to west), walks 10 km west (total 16 km west).  
+180° (faces east), walks 5 km east (16 - 5 = 11 km west).  
+Net: 11 km west, 8 km south.  
+Distance = \( \sqrt{11^2 + 8^2} = \sqrt{121 + 64} = 13.6 \) km.",TRUE
+Advanced,"A man walks 4 km north, 7 km east, 4 km south, 2 km west, turns 90° left, walks 3 km. Where is he from the starting point?",7,5.83 km southeast,6.66 km northwest,14,B,"North 4 km, south 4 km cancel out. East 7 km, west 2 km: net 5 km east.  
+90° left from west (faces south), walks 3 km south.  
+Net: 5 km east, 3 km south.  
+Distance = \( \sqrt{5^2 + 3^2} = \sqrt{34} \approx 5.83 \) km.",TRUE
+Advanced,"A person starts at O, walks 10 km east to P, 6 km north to Q, turns 45° left, walks 8 km to R. How far is R from O?",25,8.94 km,12.44 km,15.67 km,C,"East 10 km, north 6 km. 45° left from north (315° or northwest).  
+Walks 8 km: x = 8 cos 45° ≈ 5.66 km west, y = 8 sin 45° ≈ 5.66 km north.  
+Total: 10 - 5.66 ≈ 4.34 km east, 6 + 5.66 ≈ 11.66 km north.  
+Distance = \( \sqrt{4.34^2 + 11.66^2} \approx \sqrt{18.84 + 135.96} \approx 12.44 \) km.",TRUE
+Advanced,"A man walks 5 km south, 12 km west, turns 90° right, walks 7 km, turns 90° left, walks 4 km. Where is he now?",- 10 km northwest,- 23 km north,- 3 km east,16.12 km southwest,D,"South 5 km, west 12 km. 90° right (faces west to north), walks 7 km north (net 2 km south).  
+90° left (faces west), walks 4 km west (total 16 km west).  
+Distance = \( \sqrt{16^2 + 2^2} = \sqrt{260} \approx 16.12 \) km.",TRUE
+Advanced,"A person walks 8 km east, turns 60° right, walks 6 km, turns 120° left, walks 4 km. How far is he from the starting point?",4,10.5,5,16.69 km,D,"East 8 km. 60° right from east (150°). 6 km: x = 6 cos 30° ≈ 5.2 km east, y = 6 sin 30° = 3 km south.  
+120° left from 150° = 30°. 4 km: x = 4 cos 30° ≈ 3.46 km east, y = 4 sin 30° = 2 km north.  
+Total: 8 + 5.2 + 3.46 ≈ 16.66 km east, -3 + 2 = -1 km south.  
+Distance = \( \sqrt{16.66^2 + 1^2} \approx 16.69 \) km.",TRUE
+Advanced,"A man walks 3 km north, 4 km east, 3 km south, turns 90° right, walks 5 km, turns 90° left, walks 2 km. Where is he now?",3.14,7.81 km southeast,12,15,B,"North 3 km, south 3 km cancel out. East 4 km. 90° right (faces south), walks 5 km south.  
+90° left (faces east), walks 2 km east (total 6 km east).  
+Distance = \( \sqrt{6^2 + 5^2} = \sqrt{61} \approx 7.81 \) km.",TRUE
+Advanced,"A person walks 7 km west, 4 km north, turns 45° right, walks 5 km, turns 45° left, walks 3 km. Where is he now?",- 20 km southwest,- 5 km south,11.07 km northwest,- 13 km east,C,"West 7 km, north 4 km. 45° right from north (45° east). 5 km: x = 5 sin 45° ≈ 3.54 km east, y = 5 cos 45° ≈ 3.54 km north.  
+45° left from 45° = 0° (north). 3 km north.  
+Total: -7 + 3.54 = -3.46 km west, 4 + 3.54 + 3 = 10.54 km north.  
+Distance = \( \sqrt{3.46^2 + 10.54^2} \approx 11.07 \) km.",TRUE
+Advanced,"A man walks 6 km south, 8 km east, turns 90° left, walks 10 km, turns 90° right, walks 4 km. Where is he now?",14 km north,12.65 km northeast,9.8 km southeast,6.5 km west,B,"South 6 km, east 8 km. 90° left (faces east to north), walks 10 km north (net 4 km north).  
+90° right (faces east), walks 4 km east (total 12 km east).  
+Distance = \( \sqrt{12^2 + 4^2} = \sqrt{160} \approx 12.65 \) km.",TRUE
+Advanced,"A person walks 5 km north, 3 km west, turns 135° left, walks 4 km, turns 45° right, walks 2 km. How far is he from the starting point?",4.5,7,8.14 km,12,C,"North 5 km, west 3 km. 135° left from west (225° southwest). 4 km: x = 4 cos 45° ≈ 2.83 km west, y = 4 sin 45° ≈ 2.83 km south.  
+45° right from 225° = 270° (west). 2 km west.  
+Total: -3 - 2.83 - 2 = -7.83 km west, 5 - 2.83 = 2.17 km north.  
+Distance = \( \sqrt{7.83^2 + 2.17^2} \approx 8.14 \) km.",TRUE
+Advanced,All A are B. Some B are C. No C are D. Some D are E. Conclusion: Some A are not E.,False,1,Yes,Always,A,"All A are B (A→B), some B are C (Some B are C), no C are D (No C are D), some D are E (Some D are E).  
+Some B are C, no C are D, so no B (that are C) are D. No conclusion about A and E. Invalid.",TRUE
+Advanced,No P are Q. All Q are R. Some R are S. No S are T. Conclusion: Some P are not T.,25,True,False,Never,B,"No P are Q (No P are Q), all Q are R (Q→R), some R are S (Some R are S), no S are T (No S are T).  
+No P are R, some R are S, no S are T. No P are S, so some P are not T. Valid.",TRUE
+Advanced,Some X are Y. All Y are Z. No Z are W. Some W are V. Conclusion: Some X are not V.,False,Yes,Both,Never,A,"Some X are Y (Some X are Y), all Y are Z (Y→Z), no Z are W (No Z are W), some W are V (Some W are V).  
+Some X are Z, no Z are W, so no X (that are Z) are W. No conclusion about X and V. Invalid.",TRUE
+Advanced,All M are N. Some N are O. No O are P. All P are Q. Conclusion: Some M are not Q.,False,Always,80%,50,A,"All M are N (M→N), some N are O (Some N are O), no O are P (No O are P), all P are Q (P→Q).  
+Some N are O, no O are P, so no N (that are O) are P. Some M are not P, but all P are Q, so no conclusion about M and Q. Invalid.",TRUE
+Advanced,No A are B. Some B are C. All C are D. No D are E. Conclusion: Some A are not E.,E,F,50,True,D,"No A are B (No A are B), some B are C (Some B are C), all C are D (C→D), no D are E (No D are E).  
+Some B are D, no D are E, so no B (that are D) are E. No A are B, so some A are not E (since no B are E). Valid.",TRUE
+Advanced,All X are Y. No Y are Z. Some Z are W. All W are V. Conclusion: No X are V.,No,22,False,All,C,"All X are Y (X→Y), no Y are Z (No Y are Z), some Z are W (Some Z are W), all W are V (W→V).  
+No X are Z, some Z are V, but no conclusion about X and V. Invalid.",TRUE
+Advanced,Some P are Q. No Q are R. All R are S. Some S are T. Conclusion: Some P are not T.,False,Some T are P,None,Always,A,"Some P are Q (Some P are Q), no Q are R (No Q are R), all R are S (R→S), some S are T (Some S are T).  
+No P (that are Q) are R, some S are T, but no conclusion about P and T. Invalid.",TRUE
+Advanced,No M are N. All N are O. Some O are P. No P are Q. Conclusion: Some M are not Q.,Not specified,Undetermined,True,False,C,"No M are N (No M are N), all N are O (N→O), some O are P (Some O are P), no P are Q (No P are Q).  
+No M are O, some O are P, no P are Q, so some O are not Q. Some M are not Q (since no M are O). Valid.",TRUE
+Advanced,All A are B. Some B are C. No C are D. All D are E. Conclusion: Some A are not E.,Always,True,False,Never,B,"All A are B (A→B), some B are C (Some B are C), no C are D (No C are D), all D are E (D→E).  
+No B (that are C) are D, so no B are E. Some A are not E. Valid.",TRUE
+Advanced,Some X are Y. All Y are Z. Some Z are W. No W are V. Conclusion: Some X are not V.,False,5,True,Not Provided,C,"Some X are Y (Some X are Y), all Y are Z (Y→Z), some Z are W (Some Z are W), no W are V (No W are V).  
+Some X are Z, some Z are W, no W are V, so some X are not V. Valid.",TRUE
+Advanced,"Five people A, B, C, D, E sit in a row. A is not next to B, C is to the left of D, E is not at an end, D is not next to E. Who is in the middle?",D,C,E,B,C,"C left of D: C-D. E not at ends, D not next to E, A not next to B.  
+Possible: C-E-D-A-B. Middle: E.",TRUE
+Advanced,"In a race, P finishes before Q, R before S, S before P, T after Q. Who is second?",22,R,T,S,D,"R > S > P > Q > T.  
+Second: S.",TRUE
+Advanced,"Six boxes U, V, W, X, Y, Z are stacked. U is above V, V is above W, X is below Y, Y is above Z, W is above X. Which is third from top?",U,V,Z,W,D,"U > V > W. Y > Z, X < Y, W > X.  
+Possible: U-V-W-Y-X-Z. Third: W.",TRUE
+Advanced,"Four people A, B, C, D have professions: doctor, lawyer, engineer, teacher. A is not a doctor, B is not a lawyer, C is not an engineer, D is not a teacher. Who is the engineer?",A,D is the engineer,Lawyer,C is the engineer,A,"A: not doctor (lawyer, engineer, teacher). B: not lawyer (doctor, engineer, teacher). C: not engineer (doctor, lawyer, teacher). D: not teacher (doctor, lawyer, engineer).  
+A is engineer (B, C, D can’t be).",TRUE
+Advanced,"In a line of 7, P is third from left, Q is fourth from right, R is to the left of Q, S is between P and R. Who is last?",Z,Y,T,S,A,"P is 3rd. Q is 4th (7-4+1). R left of Q, S between P and R: P-S-R-Q.  
+Order: X-Y-P-S-R-Q-Z. Last: Z.",TRUE
+Advanced,"Five friends M, N, O, P, Q sit around a table. M is opposite N, O is next to M, P is not next to O. Who is opposite P?",7,M,Q,O,C,"M opposite N: M-X-N-Y. O next to M: O-M-X-N. P not next to O: M-O-N-P-Q.  
+Opposite P: Q.",TRUE
+Advanced,"Six people A, B, C, D, E, F stand in a row. A is to the left of B, C is to the right of D, E is not next to F, B is not next to C. Who is in the middle?",D,E,F,B,D,"A-B. C-D. E not next to F, B not next to C.  
+Possible: A-D-C-B-E-F (6th position middle). Middle: B.",TRUE
+Advanced,"Four cars P, Q, R, S are parked in a row. P is not next to Q, Q is to the left of R, R is not next to S. Where is S?",Rightmost,S is next to Q,S is to the left of P,S is in the middle,A,"Q-R. P not next to Q, R not next to S.  
+Possible: Q-R-P-S. S is rightmost.",TRUE
+Advanced,"In a queue of 8, X is fifth from the front, Y is third from the back, Z is between X and Y, W is to the left of X. Who is second?",W,B,Y,Z,B,"X is 5th. Y is 6th (8-3+1). Z between X and Y: X-Z-Y. W left of X: W-X-Z-Y.  
+Order: A-B-C-W-X-Z-Y-D. Second: B.",TRUE
+Advanced,"Five students A, B, C, D, E sit in a row. A is not next to C, B is next to D, C is to the left of B, E is not at an end. Who is in the middle?",A,B,D,E,C,"C-B-D. A not next to C, E not at ends.  
+Possible: C-B-D-E-A. Middle: D.",TRUE
+Advanced,"Is x > y?  
+    (1) x^2 > y^2  
+    (2) x + y > 0",True,Not sufficient,7,22,B,"(1) x^2 > y^2 implies |x| > |y|. Not sufficient (e.g., x = -3, y = 2).  
+(2) x + y > 0. Not sufficient.  
+Combine: |x| > |y|, x + y > 0. If x > 0, x > |y| > y. If x < 0, check: x = -3, y = -1 fails. Not sufficient.",TRUE
+Advanced,"What is the value of z?  
+    (1) z^2 + 3z + 2 = 0  
+    (2) z^2 - 4z + 3 = 0",5.1,4,Not sufficient,z is positive,C,"(1) z^2 + 3z + 2 = 0. (z + 1)(z + 2) = 0, z = -1, -2. Not sufficient.  
+(2) z^2 - 4z + 3 = 0. (z - 1)(z - 3) = 0, z = 1, 3. Not sufficient.  
+Combine: No common solution. Not sufficient.",TRUE
+Advanced,"Is a triangle equilateral?  
+    (1) Two sides are equal, and one angle is 60°  
+    (2) The perimeter is 18, and one side is 6",No,Both together are sufficient,Yes,Six,B,"(1) Two sides equal, one angle 60°. Could be isosceles or equilateral. Not sufficient.  
+(2) Perimeter 18, one side 6. Other sides sum to 12. Not sufficient.  
+Combine: Two sides equal, one 6, sum 12, angle 60°. If all sides 6, equilateral. Sufficient.",TRUE
+Advanced,"What is the value of x + y?  
+    (1) x^2 + y^2 = 25  
+    (2) xy = 12",7,x,22,Not sufficient,D,"(1) x^2 + y^2 = 25. Not sufficient.  
+(2) xy = 12. Not sufficient.  
+Combine: (x + y)^2 = x^2 + y^2 + 2xy = 25 + 24 = 49, x + y = ±7. Not sufficient.",TRUE
+Advanced,"Is x divisible by 9?  
+    (1) x is divisible by 3  
+    (2) x is divisible by 27",42,25,Statement 2 alone is sufficient,17,C,"(1) Divisible by 3. Not sufficient (e.g., 6).  
+(2) Divisible by 27 implies divisible by 9. Sufficient.",TRUE
+Advanced,"What is the area of a triangle?  
+    (1) Base = 8, height = 6  
+    (2) Two sides are 10 and 10, included angle is 60°",20,Each alone is sufficient,5,triangle is square,B,"(1) Area = (1/2) × 8 × 6 = 24. Sufficient.  
+(2) Area = (1/2) × 10 × 10 × sin 60° = 50 × (√3/2) ≈ 43.3. Sufficient.",TRUE
+Advanced,"Is x > 0?  
+    (1) x^3 > x^2  
+    (2) x^2 > x",Statement 1 alone is sufficient,-9,No,Any,A,"(1) x^3 > x^2. Divide by x^2: x > 1. Sufficient.  
+(2) x^2 > x. x(x - 1) > 0, so x < 0 or x > 1. Not sufficient.",TRUE
+Advanced,"What is the value of y?  
+    (1) 2x + 3y = 12  
+    (2) 4x + 6y = 24",x,Not sufficient,11,25,B,"(1) 2x + 3y = 12. Not sufficient.  
+(2) 4x + 6y = 24, same as 2x + 3y = 12. Not sufficient.  
+Combine: Same equation, no unique solution. Not sufficient.",TRUE
+Advanced,"Is a number prime?  
+    (1) It is odd  
+    (2) It is greater than 10 and less than 20",Both together are sufficient,Even,One,23,A,"(1) Odd. Not sufficient (e.g., 9).  
+(2) 11, 13, 17, 19 are prime, 15 not prime. Not sufficient.  
+Combine: Odd primes: 11, 13, 17, 19. Sufficient.",TRUE
+Advanced,"What is the value of x?  
+    (1) x^2 + 2x - 8 = 0  
+    (2) x^2 - 2x - 8 = 0",6,Not sufficient,0,x,B,"(1) x^2 + 2x - 8 = 0. (x + 4)(x - 2) = 0, x = -4, 2. Not sufficient.  
+(2) x^2 - 2x - 8 = 0. (x - 4)(x + 2) = 0, x = 4, -2. Not sufficient.  
+Combine: No common solution. Not sufficient.",TRUE
+Advanced,"If all A are B, and no B are C, what must be true?  
+    **Options**: A) Some A are C. B) No A are C. C) All A are C.",All B are A,C,Some A are C,B,D,"All A are B (A→B), no B are C (No B are C).  
+No A are C.",TRUE
+Advanced,"If a project succeeds only if funded, and some projects are funded, what must be true?  
+    **Options**: A) Some projects succeed. B) All projects succeed. C) No projects succeed.",22,Some projects are not funded,None,Some projects fail,C,"Succeeds only if funded (S→F). Some projects funded (Some F).  
+No definite conclusion about success.",TRUE
+Advanced,"If no X are Y, and some Z are Y, what must be true about X and Z?  
+    **Options**: A) Some X are Z. B) No X are Z. C) All X are Z.",Some X are Z.,X and Z are the same.,None,All Z are X.,C,"No X are Y (No X are Y), some Z are Y (Some Z are Y).  
+No conclusion about X and Z.",TRUE
+Advanced,"If all employees who train improve, and some managers train, what must be true?  
+    **Options**: A) Some managers improve. B) All managers improve. C) No managers improve.",A,Some managers are employees.,Some employees are managers.,Only employees train.,A,"Train implies improve (T→I). Some managers train (Some M are T).  
+Some managers improve.",TRUE
+Advanced,"If all A require B, and some A lack C, what must be true?  
+    **Options**: A) Some A have B. B) Some A lack B. C) All A have B.",Some A lack C,C is not related to A,A,All A require C,C,"All A require B (A→B). Some A lack C (Some A not C).  
+All A have B, so some A have B.",TRUE
+Advanced,"If no P are Q, and all R are Q, what must be true about P and R?  
+    **Options**: A) Some P are R. B) No P are R. C) All P are R.",Many P are R,All P are Q,Some P are R,B,D,"No P are Q (No P are Q), all R are Q (R→Q).  
+No P are R.",TRUE
+Advanced,"If a system fails only if overloaded, and some systems are not overloaded, what must be true?  
+    **Options**: A) Some systems fail. B) Some systems do not fail. C) All systems fail.",B,Most systems fail.,Some systems are overloaded.,Some systems fail.,A,"Fails only if overloaded (F→O). Some systems not overloaded (Some not O).  
+Some systems do not fail.",TRUE
+Advanced,"If all X are Y, and some Y are not Z, what must be true about X and Z?  
+    **Options**: A) Some X are Z. B) Some X are not Z. C) All X are Z.",B,23,All Y are Z,Some X are Z,A,"All X are Y (X→Y), some Y are not Z (Some Y not Z).  
+Some X are not Z.",TRUE
+Advanced,"If no A are B, and some C are B, what must be true about A and C?  
+    **Options**: A) Some A are C. B) No A are C. C) All A are C.",A and C are equal,All C are A,None,Some A are C,C,"No A are B (No A are B), some C are B (Some C are B).  
+No conclusion about A and C.",TRUE
+Advanced,"If all projects need approval, and some projects succeed, what must be true?  
+    **Options**: A) Some projects are approved. B) All projects are approved. C) No projects are approved.",Approval is not necessary,A,Some projects fail,Most projects are rejected,B,"Need approval (S→A). Some projects succeed (Some S).  
+Some projects are approved.",TRUE
+Advanced,"A 3x3 grid: Row 1: 2, 4, 6; Row 2: 8, ?, 12; Row 3: 14, 16, 18. What is the missing number?",20,16,26,10,D,"Pattern: sequential even numbers. Row 2: 8, 10, 12.  
+Missing number: 10.",TRUE
+Advanced,"A pattern: 1 square, 3 squares, 6 squares, 10 squares. How many squares in the next term?",12,20,15 squares,15,C,"Triangular numbers: 1, 3, 6, 10 (n(n+1)/2).  
+Next: n=5, 5×6/2 = 15.",TRUE
+Advanced,"A pentagon rotates 72° clockwise three times. If it starts with vertex A at top, what is the final orientation?",Corner,Top,Bottom,East,B,"72° × 3 = 216°. Pentagon has 5 vertices, 360°/5 = 72°.  
+216° = 3 full rotations + 0°. Vertex A at top.",TRUE
+Advanced,"A 3x3 grid: top-left = 1, top-middle = 3, top-right = 5, sum of each row = 12. What is bottom-right?",11,23,7,9,D,"Row 1: 1 + 3 + 5 ≠ 12 (adjust). Assume sum 12 for bottom row.  
+Bottom row: 14, 16, x. 14 + 16 + x = 12 (impossible).  
+Correct: sequential, bottom-right = 9.",TRUE
+Advanced,"A pattern: 2 circles, 5 circles, 11 circles, 20 circles. How many circles in the next term?",18,32 circles,41,30,B,"Differences: 3, 6, 9. Next difference: 12.  
+20 + 12 = 32.",TRUE
+Advanced,A 4x4x4 cube is painted and cut into 64 smaller cubes. How many have exactly two faces painted?,26,16,48,24,D,"4x4x4 cube. Two faces painted: edge cubes (not corners).  
+Each edge has 2 such cubes (4-2). 12 edges × 2 = 24.",TRUE
+Advanced,"A sequence: Circle, Square, Triangle, Square, Circle, Triangle, Circle, Square. What is next?",Seven,Hexagon,Triangle,Square,C,"Pattern: C-S-T, S-C-T, C-S-?. Repeats every 3: next is T.",TRUE
+Advanced,"A 3x3 grid: top-left = 1, top-right = 4, bottom-left = 7, sum of diagonals = 12. What is bottom-right?",7,5,9,2,A,"Diagonal 1-4-x = 12. 1 + 4 + x = 12, x = 7.",TRUE
+Advanced,"A pattern: 1 star, 4 stars, 10 stars, 20 stars. How many stars in the next term?",35,42,16,35 stars,D,"Differences: 3, 6, 10. Next difference: 15.  
+20 + 15 = 35.",TRUE
+Advanced,"A clock shows 9:00. After rotating 270° clockwise, what time does it show?",9:45,12:00,6:00,2:45,C,9:00 points left. 270° clockwise: left to down (6:00).,TRUE

@@ -1,0 +1,2238 @@
+"Level","Question","Option_A","Option_B","Option_C","Option_D","Correct_Option","Solution","Needs_Review","Distractor_Method"
+"Basic","**Table 1: Monthly Sales (in units) of Five Products in a Store (Jan–Apr 2023)**
+| Product | Jan | Feb | Mar | Apr |
+|---------|-----|-----|-----|-----|
+| A       | 200 | 250 | 300 | 350 |
+| B       | 150 | 180 | 200 | 220 |
+| C       | 100 | 120 | 140 | 160 |
+| D       | 300 | 280 | 260 | 240 |
+| E       | 250 | 270 | 290 | 310 |
+
+Question: What is the total sales of Product A across all months?","350 units","1,210 units","1100 units","2,200 units","C","Total sales = 200 + 250 + 300 + 350 = 1100 units.","TRUE","mechanical"
+"Basic","**Table 1: Monthly Sales (in units) of Five Products in a Store (Jan–Apr 2023)**
+| Product | Jan | Feb | Mar | Apr |
+|---------|-----|-----|-----|-----|
+| A       | 200 | 250 | 300 | 350 |
+| B       | 150 | 180 | 200 | 220 |
+| C       | 100 | 120 | 140 | 160 |
+| D       | 300 | 280 | 260 | 240 |
+| E       | 250 | 270 | 290 | 310 |
+
+Question: Which product had the highest sales in February?","Product D","The product with the highest sales in April had a sales increase of 310 units from January.","Product E had the same sales as Product D in February.","The product with the lowest sales in January was C.","A","Feb sales: A (250), B (180), C (120), D (280), E (270). Highest is D (280).","TRUE","llm"
+"Basic","**Table 1: Monthly Sales (in units) of Five Products in a Store (Jan–Apr 2023)**
+| Product | Jan | Feb | Mar | Apr |
+|---------|-----|-----|-----|-----|
+| A       | 200 | 250 | 300 | 350 |
+| B       | 150 | 180 | 200 | 220 |
+| C       | 100 | 120 | 140 | 160 |
+| D       | 300 | 280 | 260 | 240 |
+| E       | 250 | 270 | 290 | 310 |
+
+Question: What is the average monthly sales of Product B?","200 units","187.5 units","180 units","150 units","B","Total sales = 150 + 180 + 200 + 220 = 750. Average = 750 ÷ 4 = 187.5 units.","TRUE","mechanical"
+"Basic","**Table 1: Monthly Sales (in units) of Five Products in a Store (Jan–Apr 2023)**
+| Product | Jan | Feb | Mar | Apr |
+|---------|-----|-----|-----|-----|
+| A       | 200 | 250 | 300 | 350 |
+| B       | 150 | 180 | 200 | 220 |
+| C       | 100 | 120 | 140 | 160 |
+| D       | 300 | 280 | 260 | 240 |
+| E       | 250 | 270 | 290 | 310 |
+
+Question: By how much did Product C’s sales increase from Jan to Apr?","60 units","100 units","160 units","120 units","A","Increase = Apr (160) - Jan (100) = 60 units.","TRUE","mechanical"
+"Basic","**Table 1: Monthly Sales (in units) of Five Products in a Store (Jan–Apr 2023)**
+| Product | Jan | Feb | Mar | Apr |
+|---------|-----|-----|-----|-----|
+| A       | 200 | 250 | 300 | 350 |
+| B       | 150 | 180 | 200 | 220 |
+| C       | 100 | 120 | 140 | 160 |
+| D       | 300 | 280 | 260 | 240 |
+| E       | 250 | 270 | 290 | 310 |
+
+Question: What is the total sales of all products in March?","2,380 units","1,071 units","1190 units","1,309 units","C","Mar sales: A (300) + B (200) + C (140) + D (260) + E (290) = 1190 units.","TRUE","mechanical"
+"Basic","**Table 1: Monthly Sales (in units) of Five Products in a Store (Jan–Apr 2023)**
+| Product | Jan | Feb | Mar | Apr |
+|---------|-----|-----|-----|-----|
+| A       | 200 | 250 | 300 | 350 |
+| B       | 150 | 180 | 200 | 220 |
+| C       | 100 | 120 | 140 | 160 |
+| D       | 300 | 280 | 260 | 240 |
+| E       | 250 | 270 | 290 | 310 |
+
+Question: Which product had the lowest sales in April?","Product C","The difference in sales between Product E and Product C in April was 150 units.","Product B had higher sales than Product C in April.","Product A had lower sales in April than Product D.","A","Apr sales: A (350), B (220), C (160), D (240), E (310). Lowest is C (160).","TRUE","llm"
+"Basic","**Table 1: Monthly Sales (in units) of Five Products in a Store (Jan–Apr 2023)**
+| Product | Jan | Feb | Mar | Apr |
+|---------|-----|-----|-----|-----|
+| A       | 200 | 250 | 300 | 350 |
+| B       | 150 | 180 | 200 | 220 |
+| C       | 100 | 120 | 140 | 160 |
+| D       | 300 | 280 | 260 | 240 |
+| E       | 250 | 270 | 290 | 310 |
+
+Question: What is the percentage increase in Product A’s sales from Jan to Feb?","28%","22%","25%","50%","C","Increase = 250 - 200 = 50. % Increase = (50 ÷ 200) × 100 = 25%.","TRUE","mechanical"
+"Basic","**Table 1: Monthly Sales (in units) of Five Products in a Store (Jan–Apr 2023)**
+| Product | Jan | Feb | Mar | Apr |
+|---------|-----|-----|-----|-----|
+| A       | 200 | 250 | 300 | 350 |
+| B       | 150 | 180 | 200 | 220 |
+| C       | 100 | 120 | 140 | 160 |
+| D       | 300 | 280 | 260 | 240 |
+| E       | 250 | 270 | 290 | 310 |
+
+Question: What is the ratio of Product B’s sales in Feb to Mar?","9 : 10","Product B's sales in Feb were less than Product C's sales in Mar.","Product A's sales in Apr were more than Product B's sales in Jan by 50 units.","The ratio of Product E's sales in Jan to Product D's sales in Apr is 17.5 : 10.","A","Feb (180) : Mar (200) = 180 : 200 = 9 : 10.","TRUE","llm"
+"Basic","**Table 1: Monthly Sales (in units) of Five Products in a Store (Jan–Apr 2023)**
+| Product | Jan | Feb | Mar | Apr |
+|---------|-----|-----|-----|-----|
+| A       | 200 | 250 | 300 | 350 |
+| B       | 150 | 180 | 200 | 220 |
+| C       | 100 | 120 | 140 | 160 |
+| D       | 300 | 280 | 260 | 240 |
+| E       | 250 | 270 | 290 | 310 |
+
+Question: What is the total sales of Products D and E in Jan?","550 units","300 units","1,100 units","250 units","A","Jan sales: D (300) + E (250) = 550 units.","TRUE","mechanical"
+"Basic","**Table 1: Monthly Sales (in units) of Five Products in a Store (Jan–Apr 2023)**
+| Product | Jan | Feb | Mar | Apr |
+|---------|-----|-----|-----|-----|
+| A       | 200 | 250 | 300 | 350 |
+| B       | 150 | 180 | 200 | 220 |
+| C       | 100 | 120 | 140 | 160 |
+| D       | 300 | 280 | 260 | 240 |
+| E       | 250 | 270 | 290 | 310 |
+
+Question: Which month had the highest total sales?","The highest total sales occurred in January for products A, B, and C.","April had the lowest total sales of all products combined.","The month with the highest average sales was March.","April","D","Total sales: Jan (1000), Feb (1100), Mar (1190), Apr (1280). Highest is Apr.","TRUE","llm"
+"Basic","**Table 2: Number of Students in Five Classes (A–E) in Two Years**
+| Class | 2022 | 2023 |
+|-------|------|------|
+| A     | 40   | 50   |
+| B     | 30   | 35   |
+| C     | 50   | 45   |
+| D     | 60   | 70   |
+| E     | 20   | 25   |
+
+Question: What is the total number of students in Class D across both years?","260 students","70 students","60 students","130 students","D","Total = 60 + 70 = 130 students.","TRUE","mechanical"
+"Basic","**Table 2: Number of Students in Five Classes (A–E) in Two Years**
+| Class | 2022 | 2023 |
+|-------|------|------|
+| A     | 40   | 50   |
+| B     | 30   | 35   |
+| C     | 50   | 45   |
+| D     | 60   | 70   |
+| E     | 20   | 25   |
+
+Question: Which class had the highest number of students in 2023?","Class E had the highest number of students in 2023.","Class C had fewer students in 2023 than in 2022, so it is not the class with the highest number of students.","Class D","Class A had 10 more students in 2023 than Class B, and Class B had 5 more students than Class C, so Class A is the class with the highest number of students.","C","2023: A (50), B (35), C (45), D (70), E (25). Highest is D (70).","TRUE","llm"
+"Basic","**Table 2: Number of Students in Five Classes (A–E) in Two Years**
+| Class | 2022 | 2023 |
+|-------|------|------|
+| A     | 40   | 50   |
+| B     | 30   | 35   |
+| C     | 50   | 45   |
+| D     | 60   | 70   |
+| E     | 20   | 25   |
+
+Question: What is the average number of students in Class A over the two years?","45 students","40 students","90 students","50 students","A","Total = 40 + 50 = 90. Average = 90 ÷ 2 = 45 students.","TRUE","mechanical"
+"Basic","**Table 2: Number of Students in Five Classes (A–E) in Two Years**
+| Class | 2022 | 2023 |
+|-------|------|------|
+| A     | 40   | 50   |
+| B     | 30   | 35   |
+| C     | 50   | 45   |
+| D     | 60   | 70   |
+| E     | 20   | 25   |
+
+Question: By how much did Class B’s student count increase from 2022 to 2023?","4 students","5 students","6 students","10 students","B","Increase = 35 - 30 = 5 students.","TRUE","mechanical"
+"Basic","**Table 2: Number of Students in Five Classes (A–E) in Two Years**
+| Class | 2022 | 2023 |
+|-------|------|------|
+| A     | 40   | 50   |
+| B     | 30   | 35   |
+| C     | 50   | 45   |
+| D     | 60   | 70   |
+| E     | 20   | 25   |
+
+Question: What is the total number of students in 2022 across all classes?","220 students","400 students","60 students","200 students","D","Total = 40 + 30 + 50 + 60 + 20 = 200 students.","TRUE","mechanical"
+"Basic","**Table 2: Number of Students in Five Classes (A–E) in Two Years**
+| Class | 2022 | 2023 |
+|-------|------|------|
+| A     | 40   | 50   |
+| B     | 30   | 35   |
+| C     | 50   | 45   |
+| D     | 60   | 70   |
+| E     | 20   | 25   |
+
+Question: Which class had the lowest number of students in 2022?","Class A had the highest number of students in 2022, and Class E had the lowest.","Class E","Class D had the lowest number of students in 2022.","Class B had the lowest number of students in 2022, except the year 2022 was an off-year.","B","2022: A (40), B (30), C (50), D (60), E (20). Lowest is E (20).","TRUE","llm"
+"Basic","**Table 2: Number of Students in Five Classes (A–E) in Two Years**
+| Class | 2022 | 2023 |
+|-------|------|------|
+| A     | 40   | 50   |
+| B     | 30   | 35   |
+| C     | 50   | 45   |
+| D     | 60   | 70   |
+| E     | 20   | 25   |
+
+Question: What is the percentage increase in Class A’s students from 2022 to 2023?","50%","40%","10%","25%","D","Increase = 50 - 40 = 10. % Increase = (10 ÷ 40) × 100 = 25%.","TRUE","mechanical"
+"Basic","**Table 2: Number of Students in Five Classes (A–E) in Two Years**
+| Class | 2022 | 2023 |
+|-------|------|------|
+| A     | 40   | 50   |
+| B     | 30   | 35   |
+| C     | 50   | 45   |
+| D     | 60   | 70   |
+| E     | 20   | 25   |
+
+Question: What is the ratio of students in Class C in 2022 to 2023?","Class C had 50 students in 2022, and Class E had 20 students in 2023, so the ratio of students in Class C in 2022 to Class E in 2023 is 50 : 25.","Class C had 50 students in 2022 and 45 students in 2023, so the ratio of students in Class C in 2022 to 2023 is 50 : 40.","The number of students in Class C in 2022 was 50, and the number of students in Class D in 2022 was 60, so the ratio of students in Class C in 2022 to Class D in 2022 is 50 : 60.","10 : 9","D","2022 (50) : 2023 (45) = 50 : 45 = 10 : 9.","TRUE","llm"
+"Basic","**Table 2: Number of Students in Five Classes (A–E) in Two Years**
+| Class | 2022 | 2023 |
+|-------|------|------|
+| A     | 40   | 50   |
+| B     | 30   | 35   |
+| C     | 50   | 45   |
+| D     | 60   | 70   |
+| E     | 20   | 25   |
+
+Question: What is the total number of students in Classes A and B in 2023?","170 students","35 students","85 students","50 students","C","2023: A (50) + B (35) = 85 students.","TRUE","mechanical"
+"Basic","**Table 2: Number of Students in Five Classes (A–E) in Two Years**
+| Class | 2022 | 2023 |
+|-------|------|------|
+| A     | 40   | 50   |
+| B     | 30   | 35   |
+| C     | 50   | 45   |
+| D     | 60   | 70   |
+| E     | 20   | 25   |
+
+Question: Which year had more total students?","The total number of students in 2022 was lower than in 2023 because Class C had fewer students in 2023.","2023","had fewer total students, with Class E having the lowest number of students at 20 in that year.","In 2023, Class B had a decrease of 5 students from 2022.","B","2022: 200 students. 2023: 50 + 35 + 45 + 70 + 25 = 225 students. 2023 is higher.","TRUE","llm"
+"Basic","**Bar Graph 1: Annual Revenue (in $1000) of Four Companies (2019–2021)**
+- 2019: P (50), Q (40), R (60), S (30)
+- 2020: P (55), Q (45), R (65), S (35)
+- 2021: P (60), Q (50), R (70), S (40)
+
+Question: What is Company P’s total revenue over the three years?","$165,000","$148,500","$181,500","$330,000","A","Total = 50 + 55 + 60 = 165 ($1000).","TRUE","mechanical"
+"Basic","**Bar Graph 1: Annual Revenue (in $1000) of Four Companies (2019–2021)**
+- 2019: P (50), Q (40), R (60), S (30)
+- 2020: P (55), Q (45), R (65), S (35)
+- 2021: P (60), Q (50), R (70), S (40)
+
+Question: Which company had the highest revenue in 2020?","Company R had the lowest revenue in 2019.","Company S had the highest revenue in 2020 because it increased by 16.67% from 2019 to 2020.","Company P had the highest revenue in 2020 because it increased by 10% from 2019 to 2020 but still had the lowest revenue among all companies in 2020.","Company R","D","2020: P (55), Q (45), R (65), S (35). Highest is R (65).","TRUE","llm"
+"Basic","**Bar Graph 1: Annual Revenue (in $1000) of Four Companies (2019–2021)**
+- 2019: P (50), Q (40), R (60), S (30)
+- 2020: P (55), Q (45), R (65), S (35)
+- 2021: P (60), Q (50), R (70), S (40)
+
+Question: What is the average revenue of Company Q over the three years?","$40,500","$90,000","$45,000","$49,500","C","Total = 40 + 45 + 50 = 135. Average = 135 ÷ 3 = 45 ($1000).","TRUE","mechanical"
+"Basic","**Bar Graph 1: Annual Revenue (in $1000) of Four Companies (2019–2021)**
+- 2019: P (50), Q (40), R (60), S (30)
+- 2020: P (55), Q (45), R (65), S (35)
+- 2021: P (60), Q (50), R (70), S (40)
+
+Question: By how much did Company S’s revenue increase from 2019 to 2021?","$10,000","$20,000","$9,000","$11,000","A","Increase = 40 - 30 = 10 ($1000).","TRUE","mechanical"
+"Basic","**Bar Graph 1: Annual Revenue (in $1000) of Four Companies (2019–2021)**
+- 2019: P (50), Q (40), R (60), S (30)
+- 2020: P (55), Q (45), R (65), S (35)
+- 2021: P (60), Q (50), R (70), S (40)
+
+Question: What is the total revenue of all companies in 2019?","$198,000","$360,000","$180,000","$162,000","C","2019: 50 + 40 + 60 + 30 = 180 ($1000).","TRUE","mechanical"
+"Basic","**Bar Graph 1: Annual Revenue (in $1000) of Four Companies (2019–2021)**
+- 2019: P (50), Q (40), R (60), S (30)
+- 2020: P (55), Q (45), R (65), S (35)
+- 2021: P (60), Q (50), R (70), S (40)
+
+Question: Which company had the lowest revenue in 2021?","Company S","Company R had the highest revenue in 2019, so it's likely that company had the highest revenue in 2021 as well, making company S the lowest.","Company P had the lowest revenue increase from 2019 to 2021, so it must have had the lowest revenue in 2021.","The revenue of company Q increased by 25% from 2019 to 2021, while company S's revenue increased by only 33.33%, making company S the lowest in 2021.","A","2021: P (60), Q (50), R (70), S (40). Lowest is S (40).","TRUE","llm"
+"Basic","**Bar Graph 1: Annual Revenue (in $1000) of Four Companies (2019–2021)**
+- 2019: P (50), Q (40), R (60), S (30)
+- 2020: P (55), Q (45), R (65), S (35)
+- 2021: P (60), Q (50), R (70), S (40)
+
+Question: What is the percentage increase in Company P’s revenue from 2019 to 2020?","10%","20%","11%","5%","A","Increase = 55 - 50 = 5. % Increase = (5 ÷ 50) × 100 = 10%.","TRUE","mechanical"
+"Basic","**Bar Graph 1: Annual Revenue (in $1000) of Four Companies (2019–2021)**
+- 2019: P (50), Q (40), R (60), S (30)
+- 2020: P (55), Q (45), R (65), S (35)
+- 2021: P (60), Q (50), R (70), S (40)
+
+Question: What is the ratio of Company Q’s revenue in 2020 to 2021?","9 : 10","The ratio of Company Q's revenue in 2020 to Company S's revenue in 2021 is 45 : 40.","The ratio of Company P's revenue in 2019 to Company Q's revenue in 2021 is 50 : 50.","The ratio of Company Q's revenue in 2020 to Company R's revenue in 2019 is 45 : 60.","A","2020 (45) : 2021 (50) = 45 : 50 = 9 : 10.","TRUE","llm"
+"Basic","**Bar Graph 1: Annual Revenue (in $1000) of Four Companies (2019–2021)**
+- 2019: P (50), Q (40), R (60), S (30)
+- 2020: P (55), Q (45), R (65), S (35)
+- 2021: P (60), Q (50), R (70), S (40)
+
+Question: What is the total revenue of Companies R and S in 2020?","$100,000","$90,000","$200,000","$110,000","A","2020: R (65) + S (35) = 100 ($1000).","TRUE","mechanical"
+"Basic","**Bar Graph 1: Annual Revenue (in $1000) of Four Companies (2019–2021)**
+- 2019: P (50), Q (40), R (60), S (30)
+- 2020: P (55), Q (45), R (65), S (35)
+- 2021: P (60), Q (50), R (70), S (40)
+
+Question: Which year had the highest total revenue?","Option 1: The year with the highest total revenue was 2019 because the revenue of company P increased significantly from 60 to 60 in that year.","Option 2: The year with the highest total revenue was 2020 because company R's revenue was 65, surpassing its 2021 value of 70 when considering only the revenue of company R.","2021","Option 3: The year with the highest total revenue was 2019 because the revenue of company S increased from 30 to 40 in that year, contributing significantly to the overall total.","C","2019: 180. 2020: 55 + 45 + 65 + 35 = 200. 2021: 60 + 50 + 70 + 40 = 220 ($1000). Highest is 2021.","TRUE","llm"
+"Basic","**Bar Graph 2: Number of Books Sold by Four Genres (2022–2023)**
+- 2022: Fiction (200), Non-Fiction (150), Mystery (100), Sci-Fi (50)
+- 2023: Fiction (220), Non-Fiction (160), Mystery (120), Sci-Fi (60)
+
+Question: What is the total number of Fiction books sold over the two years?","840 books","220 books","420 books","200 books","C","Total = 200 + 220 = 420 books.","TRUE","mechanical"
+"Basic","**Bar Graph 2: Number of Books Sold by Four Genres (2022–2023)**
+- 2022: Fiction (200), Non-Fiction (150), Mystery (100), Sci-Fi (50)
+- 2023: Fiction (220), Non-Fiction (160), Mystery (120), Sci-Fi (60)
+
+Question: Which genre sold the most books in 2023?","Mystery sold the most books in 2023 with 250 units.","Fiction","Sci-Fi sold the most books in 2023 with 80 units.","Non-Fiction sold more books in 2023 than any other genre.","B","2023: Fiction (220), Non-Fiction (160), Mystery (120), Sci-Fi (60). Highest is Fiction.","TRUE","llm"
+"Basic","**Bar Graph 2: Number of Books Sold by Four Genres (2022–2023)**
+- 2022: Fiction (200), Non-Fiction (150), Mystery (100), Sci-Fi (50)
+- 2023: Fiction (220), Non-Fiction (160), Mystery (120), Sci-Fi (60)
+
+Question: What is the average number of Mystery books sold over the two years?","110 books","120 books","100 books","220 books","A","Total = 100 + 120 = 220. Average = 220 ÷ 2 = 110 books.","TRUE","mechanical"
+"Basic","**Bar Graph 2: Number of Books Sold by Four Genres (2022–2023)**
+- 2022: Fiction (200), Non-Fiction (150), Mystery (100), Sci-Fi (50)
+- 2023: Fiction (220), Non-Fiction (160), Mystery (120), Sci-Fi (60)
+
+Question: By how many books did Sci-Fi sales increase from 2022 to 2023?","20 books","9 books","10 books","11 books","C","Increase = 60 - 50 = 10 books.","TRUE","mechanical"
+"Basic","**Bar Graph 2: Number of Books Sold by Four Genres (2022–2023)**
+- 2022: Fiction (200), Non-Fiction (150), Mystery (100), Sci-Fi (50)
+- 2023: Fiction (220), Non-Fiction (160), Mystery (120), Sci-Fi (60)
+
+Question: What is the total number of books sold in 2022?","200 books","500 books","1,000 books","150 books","B","2022: 200 + 150 + 100 + 50 = 500 books.","TRUE","mechanical"
+"Basic","**Bar Graph 2: Number of Books Sold by Four Genres (2022–2023)**
+- 2022: Fiction (200), Non-Fiction (150), Mystery (100), Sci-Fi (50)
+- 2023: Fiction (220), Non-Fiction (160), Mystery (120), Sci-Fi (60)
+
+Question: Which genre sold the fewest books in 2022?","Sci-Fi","The data shows that Fiction sold the same number of books in both years, so Non-Fiction sold the fewest books in 2022.","Mystery sold more books than Non-Fiction in both years, so Mystery sold the fewest books in 2022.","In 2022, the ratio of Fiction to Sci-Fi books sold is 4:1, and Mystery to Non-Fiction is 2:3, so Mystery sold the fewest books in 2022.","A","2022: Fiction (200), Non-Fiction (150), Mystery (100), Sci-Fi (50). Lowest is Sci-Fi.","TRUE","llm"
+"Basic","**Bar Graph 2: Number of Books Sold by Four Genres (2022–2023)**
+- 2022: Fiction (200), Non-Fiction (150), Mystery (100), Sci-Fi (50)
+- 2023: Fiction (220), Non-Fiction (160), Mystery (120), Sci-Fi (60)
+
+Question: What is the percentage increase in Fiction sales from 2022 to 2023?","9%","20%","10%","11%","C","Increase = 220 - 200 = 20. % Increase = (20 ÷ 200) × 100 = 10%.","TRUE","mechanical"
+"Basic","**Bar Graph 2: Number of Books Sold by Four Genres (2022–2023)**
+- 2022: Fiction (200), Non-Fiction (150), Mystery (100), Sci-Fi (50)
+- 2023: Fiction (220), Non-Fiction (160), Mystery (120), Sci-Fi (60)
+
+Question: What is the ratio of Non-Fiction sales in 2022 to 2023?","Non-Fiction sales in 2022 were 50% lower than in 2023.","Non-Fiction sales in 2022 were 10% higher than in 2023.","The ratio of Non-Fiction sales in 2022 to Sci-Fi sales in 2022 is 3 : 1.","15 : 16","D","2022 (150) : 2023 (160) = 150 : 160 = 15 : 16.","TRUE","llm"
+"Basic","**Bar Graph 2: Number of Books Sold by Four Genres (2022–2023)**
+- 2022: Fiction (200), Non-Fiction (150), Mystery (100), Sci-Fi (50)
+- 2023: Fiction (220), Non-Fiction (160), Mystery (120), Sci-Fi (60)
+
+Question: What is the total number of Mystery and Sci-Fi books sold in 2023?","60 books","360 books","180 books","120 books","C","2023: Mystery (120) + Sci-Fi (60) = 180 books.","TRUE","mechanical"
+"Basic","**Bar Graph 2: Number of Books Sold by Four Genres (2022–2023)**
+- 2022: Fiction (200), Non-Fiction (150), Mystery (100), Sci-Fi (50)
+- 2023: Fiction (220), Non-Fiction (160), Mystery (120), Sci-Fi (60)
+
+Question: Which year had more total book sales?","had more total book sales because the Fiction sales that year were significantly higher than in 2023.","2023","In 2022, the Non-Fiction and Sci-Fi genres combined for more sales than in 2023.","The total number of books sold in 2022 was greater than in 2023 due to the higher Mystery sales in 2022.","B","2022: 500. 2023: 220 + 160 + 120 + 60 = 560 books. 2023 is higher.","TRUE","llm"
+"Basic","**Pie Chart 1: Budget Allocation of a Company (Total: $100,000)**
+- Salaries: 40%
+- Rent: 20%
+- Supplies: 15%
+- Marketing: 15%
+- Miscellaneous: 10%
+
+Question: How much is allocated to Salaries?","$40,000","$100,000","$44,000","$80,000","A","Salaries = 40% of 100,000 = (40 ÷ 100) × 100,000 = $40,000.","TRUE","mechanical"
+"Basic","**Pie Chart 1: Budget Allocation of a Company (Total: $100,000)**
+- Salaries: 40%
+- Rent: 20%
+- Supplies: 15%
+- Marketing: 15%
+- Miscellaneous: 10%
+
+Question: What is the amount allocated to Rent?","$18,000","$40,000","$20,000","$22,000","C","Rent = 20% of 100,000 = (20 ÷ 100) × 100,000 = $20,000.","TRUE","mechanical"
+"Basic","**Pie Chart 1: Budget Allocation of a Company (Total: $100,000)**
+- Salaries: 40%
+- Rent: 20%
+- Supplies: 15%
+- Marketing: 15%
+- Miscellaneous: 10%
+
+Question: What is the total allocation for Supplies and Marketing?","$33,000","$30,000","$27,000","$60,000","B","Supplies (15%) + Marketing (15%) = 30%. 30% of 100,000 = $30,000.","TRUE","mechanical"
+"Basic","**Pie Chart 1: Budget Allocation of a Company (Total: $100,000)**
+- Salaries: 40%
+- Rent: 20%
+- Supplies: 15%
+- Marketing: 15%
+- Miscellaneous: 10%
+
+Question: How much more is allocated to Salaries than to Miscellaneous?","$60,000","$40,000","$30,000","$10,000","C","Salaries ($40,000) - Miscellaneous (10% = $10,000) = 40,000 - 10,000 = $30,000.","TRUE","mechanical"
+"Basic","**Pie Chart 1: Budget Allocation of a Company (Total: $100,000)**
+- Salaries: 40%
+- Rent: 20%
+- Supplies: 15%
+- Marketing: 15%
+- Miscellaneous: 10%
+
+Question: What percentage of the budget is allocated to Rent and Supplies combined?","35%","20%","15%","70%","A","Rent (20%) + Supplies (15%) = 35%.","TRUE","mechanical"
+"Basic","**Pie Chart 1: Budget Allocation of a Company (Total: $100,000)**
+- Salaries: 40%
+- Rent: 20%
+- Supplies: 15%
+- Marketing: 15%
+- Miscellaneous: 10%
+
+Question: Which category has the smallest allocation?","Miscellaneous","Marketing has the smallest allocation as it accounts for 15% of the budget in 2008.","Supplies has the smallest allocation as it accounts for 15% of the budget in 2020.","Rent has the smallest allocation as it accounts for 20% of the budget.","A","Miscellaneous (10%) is the smallest.","TRUE","llm"
+"Basic","**Pie Chart 1: Budget Allocation of a Company (Total: $100,000)**
+- Salaries: 40%
+- Rent: 20%
+- Supplies: 15%
+- Marketing: 15%
+- Miscellaneous: 10%
+
+Question: What is the ratio of Salaries to Marketing allocation?","The ratio of Salaries to Marketing allocation is 3 : 8.","8 : 3","The ratio of Salaries to Marketing allocation is 1 : 1.","The ratio of Salaries to Rent allocation is 2 : 1.","B","Salaries (40%) : Marketing (15%) = 40 : 15 = 8 : 3.","TRUE","llm"
+"Basic","**Pie Chart 1: Budget Allocation of a Company (Total: $100,000)**
+- Salaries: 40%
+- Rent: 20%
+- Supplies: 15%
+- Marketing: 15%
+- Miscellaneous: 10%
+
+Question: How much is allocated to Miscellaneous?","$9,000","$10,000","$11,000","$20,000","B","Miscellaneous = 10% of 100,000 = $10,000.","TRUE","mechanical"
+"Basic","**Pie Chart 1: Budget Allocation of a Company (Total: $100,000)**
+- Salaries: 40%
+- Rent: 20%
+- Supplies: 15%
+- Marketing: 15%
+- Miscellaneous: 10%
+
+Question: What is the difference between Rent and Marketing allocations?","$5,000","$5,500","$15,000","$10,000","A","Rent (20% = $20,000) - Marketing (15% = $15,000) = $5,000.","TRUE","mechanical"
+"Basic","**Pie Chart 1: Budget Allocation of a Company (Total: $100,000)**
+- Salaries: 40%
+- Rent: 20%
+- Supplies: 15%
+- Marketing: 15%
+- Miscellaneous: 10%
+
+Question: What is the total percentage allocated to Salaries and Rent?","60%","20%","40%","120%","A","Salaries (40%) + Rent (20%) = 60%.","TRUE","mechanical"
+"Basic","**Pie Chart 2: Distribution of 500 Students by Department**
+- CS: 30%
+- EE: 25%
+- ME: 20%
+- CE: 15%
+- CH: 10%
+
+Question: How many students are in the CS department?","100 students","150 students","300 students","165 students","B","CS = 30% of 500 = (30 ÷ 100) × 500 = 150 students.","TRUE","mechanical"
+"Basic","**Pie Chart 2: Distribution of 500 Students by Department**
+- CS: 30%
+- EE: 25%
+- ME: 20%
+- CE: 15%
+- CH: 10%
+
+Question: How many students are in the EE department?","125 students","100 students","250 students","138 students","A","EE = 25% of 500 = (25 ÷ 100) × 500 = 125 students.","TRUE","mechanical"
+"Basic","**Pie Chart 2: Distribution of 500 Students by Department**
+- CS: 30%
+- EE: 25%
+- ME: 20%
+- CE: 15%
+- CH: 10%
+
+Question: What is the total number of students in ME and CE?","175 students","100 students","350 students","500 students","A","ME (20%) + CE (15%) = 35%. 35% of 500 = (35 ÷ 100) × 500 = 175 students.","TRUE","mechanical"
+"Basic","**Pie Chart 2: Distribution of 500 Students by Department**
+- CS: 30%
+- EE: 25%
+- ME: 20%
+- CE: 15%
+- CH: 10%
+
+Question: How many more students are in CS than in CH?","30 students","100 students","150 students","50 students","B","CS (30% = 150) - CH (10% = 50) = 150 - 50 = 100 students.","TRUE","mechanical"
+"Basic","**Pie Chart 2: Distribution of 500 Students by Department**
+- CS: 30%
+- EE: 25%
+- ME: 20%
+- CE: 15%
+- CH: 10%
+
+Question: What percentage of students are in EE and ME combined?","20%","25%","90%","45%","D","EE (25%) + ME (20%) = 45%.","TRUE","mechanical"
+"Basic","**Pie Chart 2: Distribution of 500 Students by Department**
+- CS: 30%
+- EE: 25%
+- ME: 20%
+- CE: 15%
+- CH: 10%
+
+Question: Which department has the fewest students?","The Chemical Engineering department has the second largest number of students.","CH","Mechanical Engineering has more students than Computer Science.","Computer Science and Electrical Engineering are tied for the most students.","B","CH (10%) is the smallest.","TRUE","llm"
+"Basic","**Pie Chart 2: Distribution of 500 Students by Department**
+- CS: 30%
+- EE: 25%
+- ME: 20%
+- CE: 15%
+- CH: 10%
+
+Question: What is the ratio of CS to CE students?","2 : 1","The ratio of CS to CE students in the ME and CE departments combined is 3 : 2, as CS students form 30% of the total students and CE students form 20% of the total students.","The ratio of CS to CE students is 3 : 2, as CS students form 35% of the total students and CE students form 23.75% of the total students.","CS students form 60% of the total CS and EE students combined, while CE students form 45% of the total CS and EE students combined, so the ratio of CS to CE students is 4 : 3.","A","CS (30%) : CE (15%) = 30 : 15 = 2 : 1.","TRUE","llm"
+"Basic","**Pie Chart 2: Distribution of 500 Students by Department**
+- CS: 30%
+- EE: 25%
+- ME: 20%
+- CE: 15%
+- CH: 10%
+
+Question: How many students are in the CH department?","100 students","45 students","55 students","50 students","D","CH = 10% of 500 = (10 ÷ 100) × 500 = 50 students.","TRUE","mechanical"
+"Basic","**Pie Chart 2: Distribution of 500 Students by Department**
+- CS: 30%
+- EE: 25%
+- ME: 20%
+- CE: 15%
+- CH: 10%
+
+Question: What is the difference between EE and ME student counts?","20 students","50 students","25 students","28 students","C","EE (25% = 125) - ME (20% = 100) = 125 - 100 = 25 students.","TRUE","mechanical"
+"Basic","**Pie Chart 2: Distribution of 500 Students by Department**
+- CS: 30%
+- EE: 25%
+- ME: 20%
+- CE: 15%
+- CH: 10%
+
+Question: What is the total percentage of CS and EE students?","25%","110%","30%","55%","D","CS (30%) + EE (25%) = 55%.","TRUE","mechanical"
+"Basic","**Line Graph 1: Monthly Temperature (°C) in a City (Jan–Jun)**
+- Jan: 10
+- Feb: 12
+- Mar: 15
+- Apr: 18
+- May: 22
+- Jun: 25
+
+Question: What is the temperature in March?","30°C","15°C","16°C","14°C","B","Mar = 15°C.","TRUE","mechanical"
+"Basic","**Line Graph 1: Monthly Temperature (°C) in a City (Jan–Jun)**
+- Jan: 10
+- Feb: 12
+- Mar: 15
+- Apr: 18
+- May: 22
+- Jun: 25
+
+Question: What is the highest temperature recorded?","50°C","28°C","25°C","22°C","C","Highest is Jun (25°C).","TRUE","mechanical"
+"Basic","**Line Graph 1: Monthly Temperature (°C) in a City (Jan–Jun)**
+- Jan: 10
+- Feb: 12
+- Mar: 15
+- Apr: 18
+- May: 22
+- Jun: 25
+
+Question: What is the average temperature over the six months?","15°C","12°C","17°C","10°C","C","Total = 10 + 12 + 15 + 18 + 22 + 25 = 102. Average = 102 ÷ 6 = 17°C.","TRUE","mechanical"
+"Basic","**Line Graph 1: Monthly Temperature (°C) in a City (Jan–Jun)**
+- Jan: 10
+- Feb: 12
+- Mar: 15
+- Apr: 18
+- May: 22
+- Jun: 25
+
+Question: By how much did the temperature increase from Feb to Mar?","4°C","6°C","2°C","3°C","D","Increase = 15 - 12 = 3°C.","TRUE","mechanical"
+"Basic","**Line Graph 1: Monthly Temperature (°C) in a City (Jan–Jun)**
+- Jan: 10
+- Feb: 12
+- Mar: 15
+- Apr: 18
+- May: 22
+- Jun: 25
+
+Question: What is the total temperature for Jan and Feb?","22°C","12°C","44°C","10°C","A","Jan (10) + Feb (12) = 22°C.","TRUE","mechanical"
+"Basic","**Line Graph 1: Monthly Temperature (°C) in a City (Jan–Jun)**
+- Jan: 10
+- Feb: 12
+- Mar: 15
+- Apr: 18
+- May: 22
+- Jun: 25
+
+Question: Which month had the lowest temperature?","The month with the lowest temperature was June, which is incorrect because June has the highest temperature in the line graph.","The month with the lowest temperature was March, but when comparing the temperatures, it is clear that April's temperature was lower than March's but not as low as January's.","January","The month with the lowest temperature was February, as it shows a temperature of 12°C, which is higher than January's 10°C but lower than all other months.","C","Lowest is Jan (10°C).","TRUE","llm"
+"Basic","**Line Graph 1: Monthly Temperature (°C) in a City (Jan–Jun)**
+- Jan: 10
+- Feb: 12
+- Mar: 15
+- Apr: 18
+- May: 22
+- Jun: 25
+
+Question: What is the percentage increase in temperature from Jan to Feb?","10%","12%","40%","20%","D","Increase = 12 - 10 = 2. % Increase = (2 ÷ 10) × 100 = 20%.","TRUE","mechanical"
+"Basic","**Line Graph 1: Monthly Temperature (°C) in a City (Jan–Jun)**
+- Jan: 10
+- Feb: 12
+- Mar: 15
+- Apr: 18
+- May: 22
+- Jun: 25
+
+Question: What is the ratio of temperature in Mar to Apr?","The ratio of temperature in Feb to Mar is 4 : 5.","5 : 6","The ratio of temperature in May to Jun is 7 : 8.","The ratio of temperature in Jan to Apr is 5 : 9.","B","Mar (15) : Apr (18) = 15 : 18 = 5 : 6.","TRUE","llm"
+"Basic","**Line Graph 1: Monthly Temperature (°C) in a City (Jan–Jun)**
+- Jan: 10
+- Feb: 12
+- Mar: 15
+- Apr: 18
+- May: 22
+- Jun: 25
+
+Question: What is the temperature difference between May and Jun?","2°C","4°C","6°C","3°C","D","Jun (25) - May (22) = 3°C.","TRUE","mechanical"
+"Basic","**Line Graph 1: Monthly Temperature (°C) in a City (Jan–Jun)**
+- Jan: 10
+- Feb: 12
+- Mar: 15
+- Apr: 18
+- May: 22
+- Jun: 25
+
+Question: Which month had a temperature of 18°C?","April","The month with the temperature of 18°C was May.","April had the highest temperature in this period.","The city experienced an increase in temperature of 18°C from March to April.","A","Apr = 18°C.","TRUE","llm"
+"Basic","**Line Graph 2: Monthly Website Visitors (in thousands, Jan–Jun)**
+- Jan: 20
+- Feb: 25
+- Mar: 30
+- Apr: 35
+- May: 40
+- Jun: 45
+
+Question: How many visitors were there in April?","38,500 visitors","35,000 visitors","31,500 visitors","70,000 visitors","B","Apr = 35 (thousand) = 35,000 visitors.","TRUE","mechanical"
+"Basic","**Line Graph 2: Monthly Website Visitors (in thousands, Jan–Jun)**
+- Jan: 20
+- Feb: 25
+- Mar: 30
+- Apr: 35
+- May: 40
+- Jun: 45
+
+Question: What is the highest number of visitors recorded?","45,000 visitors","49,500 visitors","40,500 visitors","90,000 visitors","A","Highest is Jun (45,000).","TRUE","mechanical"
+"Basic","**Line Graph 2: Monthly Website Visitors (in thousands, Jan–Jun)**
+- Jan: 20
+- Feb: 25
+- Mar: 30
+- Apr: 35
+- May: 40
+- Jun: 45
+
+Question: What is the average number of visitors over the six months?","35,750 visitors","65,000 visitors","32,500 visitors","29,250 visitors","C","Total = 20 + 25 + 30 + 35 + 40 + 45 = 195. Average = 195 ÷ 6 = 32.5 (thousand) = 32,500.","TRUE","mechanical"
+"Basic","**Line Graph 2: Monthly Website Visitors (in thousands, Jan–Jun)**
+- Jan: 20
+- Feb: 25
+- Mar: 30
+- Apr: 35
+- May: 40
+- Jun: 45
+
+Question: By how many visitors did the count increase from Mar to Apr?","4,500 visitors","5,500 visitors","10,000 visitors","5,000 visitors","D","Increase = 35 - 30 = 5 (thousand) = 5,000 visitors.","TRUE","mechanical"
+"Basic","**Line Graph 2: Monthly Website Visitors (in thousands, Jan–Jun)**
+- Jan: 20
+- Feb: 25
+- Mar: 30
+- Apr: 35
+- May: 40
+- Jun: 45
+
+Question: What is the total number of visitors in Jan and Feb?","45,000 visitors","40,500 visitors","90,000 visitors","49,500 visitors","A","Jan (20) + Feb (25) = 45 (thousand) = 45,000 visitors.","TRUE","mechanical"
+"Basic","**Line Graph 2: Monthly Website Visitors (in thousands, Jan–Jun)**
+- Jan: 20
+- Feb: 25
+- Mar: 30
+- Apr: 35
+- May: 40
+- Jun: 45
+
+Question: Which month had the fewest visitors?","January had significantly fewer visitors than the other months in the second quarter.","January","May received the fewest visitors in the first half of the year.","March had the fewest visitors among the months shown.","B","Lowest is Jan (20,000).","TRUE","llm"
+"Basic","**Line Graph 2: Monthly Website Visitors (in thousands, Jan–Jun)**
+- Jan: 20
+- Feb: 25
+- Mar: 30
+- Apr: 35
+- May: 40
+- Jun: 45
+
+Question: What is the percentage increase in visitors from Feb to Mar?","20%","30%","40%","25%","A","Increase = 30 - 25 = 5. % Increase = (5 ÷ 25) × 100 = 20%.","TRUE","mechanical"
+"Basic","**Line Graph 2: Monthly Website Visitors (in thousands, Jan–Jun)**
+- Jan: 20
+- Feb: 25
+- Mar: 30
+- Apr: 35
+- May: 40
+- Jun: 45
+
+Question: What is the ratio of visitors in May to Jun?","The ratio of visitors in Jun to May is 9 : 8 in reverse order but the question asks the other way round so this is wrong.","The ratio of visitors in Mar to Apr is 6 : 7.","8 : 9","The ratio of visitors in Jan to Feb is 4 : 5.","C","May (40) : Jun (45) = 40 : 45 = 8 : 9.","TRUE","llm"
+"Basic","**Line Graph 2: Monthly Website Visitors (in thousands, Jan–Jun)**
+- Jan: 20
+- Feb: 25
+- Mar: 30
+- Apr: 35
+- May: 40
+- Jun: 45
+
+Question: What is the difference in visitors between Apr and May?","4,500 visitors","5,500 visitors","10,000 visitors","5,000 visitors","D","May (40) - Apr (35) = 5 (thousand) = 5,000 visitors.","TRUE","mechanical"
+"Basic","**Line Graph 2: Monthly Website Visitors (in thousands, Jan–Jun)**
+- Jan: 20
+- Feb: 25
+- Mar: 30
+- Apr: 35
+- May: 40
+- Jun: 45
+
+Question: Which month had 30,000 visitors?","February had 30,000 visitors.","April had 30,000 website visitors overall from the data provided.","March had 40,000 visitors in the year before the given data.","March","D","Mar = 30 (thousand) = 30,000.","TRUE","llm"
+"Basic","**Caselet 1: A Shop Sells Three Types of Fruits**
+- Apples: 100 kg sold at $2/kg
+- Bananas: 150 kg sold at $1/kg
+- Oranges: 200 kg sold at $1.5/kg
+
+Question: What is the total revenue from Apples?","$220","$200","$400","$100","B","Revenue = 100 × 2 = $200.","TRUE","mechanical"
+"Basic","**Caselet 1: A Shop Sells Three Types of Fruits**
+- Apples: 100 kg sold at $2/kg
+- Bananas: 150 kg sold at $1/kg
+- Oranges: 200 kg sold at $1.5/kg
+
+Question: What is the total revenue from Bananas?","$135","$300","$150","$165","C","Revenue = 150 × 1 = $150.","TRUE","mechanical"
+"Basic","**Caselet 1: A Shop Sells Three Types of Fruits**
+- Apples: 100 kg sold at $2/kg
+- Bananas: 150 kg sold at $1/kg
+- Oranges: 200 kg sold at $1.5/kg
+
+Question: What is the total revenue from Oranges?","$200","$330","$600","$300","D","Revenue = 200 × 1.5 = $300.","TRUE","mechanical"
+"Basic","**Caselet 1: A Shop Sells Three Types of Fruits**
+- Apples: 100 kg sold at $2/kg
+- Bananas: 150 kg sold at $1/kg
+- Oranges: 200 kg sold at $1.5/kg
+
+Question: What is the total revenue from all fruits?","$1,300","$200","$650","$300","C","Total = 200 + 150 + 300 = $650.","TRUE","mechanical"
+"Basic","**Caselet 1: A Shop Sells Three Types of Fruits**
+- Apples: 100 kg sold at $2/kg
+- Bananas: 150 kg sold at $1/kg
+- Oranges: 200 kg sold at $1.5/kg
+
+Question: Which fruit generated the highest revenue?","Apples generated the highest revenue since they were sold for $2/kg and had the largest quantity sold.","Oranges","The revenue from oranges was not as high as initially thought since the quantity sold was actually 100 kg.","Bananas generated the highest revenue due to their higher unit price of $1/kg compared to oranges.","B","Apples ($200), Bananas ($150), Oranges ($300). Highest is Oranges.","TRUE","llm"
+"Basic","**Caselet 1: A Shop Sells Three Types of Fruits**
+- Apples: 100 kg sold at $2/kg
+- Bananas: 150 kg sold at $1/kg
+- Oranges: 200 kg sold at $1.5/kg
+
+Question: What is the average price per kg of the fruits sold?","$2.88/kg","$1.3/kg","$1.58/kg","$1.44/kg","D","Total revenue = $650. Total kg = 100 + 150 + 200 = 450. Average price = 650 ÷ 450 ≈ $1.44/kg.","TRUE","mechanical"
+"Basic","**Caselet 1: A Shop Sells Three Types of Fruits**
+- Apples: 100 kg sold at $2/kg
+- Bananas: 150 kg sold at $1/kg
+- Oranges: 200 kg sold at $1.5/kg
+
+Question: What is the ratio of Apples sold to Bananas sold (in kg)?","The ratio of Apples sold to total fruits sold is 1 : 4, based on the total weight of Apples.","2 : 3","The ratio of Bananas sold to Oranges sold is 1 : 1.33, since both Bananas and Oranges are sold at the same price per kg.","Apples sold to Oranges sold ratio is 1 : 2, since Apples are sold at a lower price per kg.","B","Apples (100) : Bananas (150) = 100 : 150 = 2 : 3.","TRUE","llm"
+"Basic","**Caselet 1: A Shop Sells Three Types of Fruits**
+- Apples: 100 kg sold at $2/kg
+- Bananas: 150 kg sold at $1/kg
+- Oranges: 200 kg sold at $1.5/kg
+
+Question: How much more revenue did Oranges generate than Bananas?","$165","$150","$300","$135","B","Oranges ($300) - Bananas ($150) = $150.","TRUE","mechanical"
+"Basic","**Caselet 1: A Shop Sells Three Types of Fruits**
+- Apples: 100 kg sold at $2/kg
+- Bananas: 150 kg sold at $1/kg
+- Oranges: 200 kg sold at $1.5/kg
+
+Question: What percentage of total revenue came from Apples?","33.85%","61.54%","27.69%","30.77%","D","Apples ($200) ÷ Total ($650) × 100 ≈ 30.77%.","TRUE","mechanical"
+"Basic","**Caselet 1: A Shop Sells Three Types of Fruits**
+- Apples: 100 kg sold at $2/kg
+- Bananas: 150 kg sold at $1/kg
+- Oranges: 200 kg sold at $1.5/kg
+
+Question: What is the total weight of fruits sold?","200 kg","450 kg","150 kg","900 kg","B","Total = 100 + 150 + 200 = 450 kg.","TRUE","mechanical"
+"Basic","**Caselet 2: A School’s Sports Day Points**
+- Team A: 50 points (Athletics), 30 points (Swimming), 20 points (Others)
+- Team B: 40 points (Athletics), 20 points (Swimming), 30 points (Others)
+- Team C: 30 points (Athletics), 40 points (Swimming), 10 points (Others)
+
+Question: What is Team A’s total points?","100 points","50 points","200 points","30 points","A","Total = 50 + 30 + 20 = 100 points.","TRUE","mechanical"
+"Basic","**Caselet 2: A School’s Sports Day Points**
+- Team A: 50 points (Athletics), 30 points (Swimming), 20 points (Others)
+- Team B: 40 points (Athletics), 20 points (Swimming), 30 points (Others)
+- Team C: 30 points (Athletics), 40 points (Swimming), 10 points (Others)
+
+Question: Which team scored the most points in Swimming?","Team A scored the most points in Others in 2019.","Team C","Team C scored the most points in Athletics in 2015.","Team B scored the most points in Swimming in 2020.","B","Swimming: A (30), B (20), C (40). Highest is C (40).","TRUE","llm"
+"Basic","**Caselet 2: A School’s Sports Day Points**
+- Team A: 50 points (Athletics), 30 points (Swimming), 20 points (Others)
+- Team B: 40 points (Athletics), 20 points (Swimming), 30 points (Others)
+- Team C: 30 points (Athletics), 40 points (Swimming), 10 points (Others)
+
+Question: What is the average points scored by Team B?","40 points","20 points","90 points","30 points","D","Total = 40 + 20 + 30 = 90. Average = 90 ÷ 3 = 30 points.","TRUE","mechanical"
+"Basic","**Caselet 2: A School’s Sports Day Points**
+- Team A: 50 points (Athletics), 30 points (Swimming), 20 points (Others)
+- Team B: 40 points (Athletics), 20 points (Swimming), 30 points (Others)
+- Team C: 30 points (Athletics), 40 points (Swimming), 10 points (Others)
+
+Question: By how many points did Team A outscore Team C in Athletics?","50 points","20 points","30 points","40 points","B","A (50) - C (30) = 20 points.","TRUE","mechanical"
+"Basic","**Caselet 2: A School’s Sports Day Points**
+- Team A: 50 points (Athletics), 30 points (Swimming), 20 points (Others)
+- Team B: 40 points (Athletics), 20 points (Swimming), 30 points (Others)
+- Team C: 30 points (Athletics), 40 points (Swimming), 10 points (Others)
+
+Question: What is the total points scored in Others across all teams?","60 points","30 points","120 points","20 points","A","Others: A (20) + B (30) + C (10) = 60 points.","TRUE","mechanical"
+"Basic","**Caselet 2: A School’s Sports Day Points**
+- Team A: 50 points (Athletics), 30 points (Swimming), 20 points (Others)
+- Team B: 40 points (Athletics), 20 points (Swimming), 30 points (Others)
+- Team C: 30 points (Athletics), 40 points (Swimming), 10 points (Others)
+
+Question: Which team scored the fewest points overall?","Team A scored the fewest points in Swimming, so they must have scored the fewest overall.","Team C","Team B had a higher total in Athletics than Team C, so Team C cannot be the lowest overall.","Team C scored the highest points in Swimming, so it is likely that they scored the fewest overall.","B","A: 100, B: 90, C: 30 + 40 + 10 = 80. Lowest is C (80).","TRUE","llm"
+"Basic","**Caselet 2: A School’s Sports Day Points**
+- Team A: 50 points (Athletics), 30 points (Swimming), 20 points (Others)
+- Team B: 40 points (Athletics), 20 points (Swimming), 30 points (Others)
+- Team C: 30 points (Athletics), 40 points (Swimming), 10 points (Others)
+
+Question: What is the percentage of Team A’s points from Athletics?","45%","100%","55%","50%","D","Athletics (50) ÷ Total (100) × 100 = 50%.","TRUE","mechanical"
+"Basic","**Caselet 2: A School’s Sports Day Points**
+- Team A: 50 points (Athletics), 30 points (Swimming), 20 points (Others)
+- Team B: 40 points (Athletics), 20 points (Swimming), 30 points (Others)
+- Team C: 30 points (Athletics), 40 points (Swimming), 10 points (Others)
+
+Question: What is the ratio of Team B’s Swimming to Others points?","2 : 3","Team B's Swimming points were lower than Team A's points in the Others category in 2022.","Team C had a higher ratio of Swimming to Others points than Team B.","The correct answer is the ratio of Team B's Others points to Team A's Swimming points.","A","Swimming (20) : Others (30) = 20 : 30 = 2 : 3.","TRUE","llm"
+"Basic","**Caselet 2: A School’s Sports Day Points**
+- Team A: 50 points (Athletics), 30 points (Swimming), 20 points (Others)
+- Team B: 40 points (Athletics), 20 points (Swimming), 30 points (Others)
+- Team C: 30 points (Athletics), 40 points (Swimming), 10 points (Others)
+
+Question: What is the total points scored by Teams A and B in Swimming?","100 points","50 points","20 points","30 points","B","A (30) + B (20) = 50 points.","TRUE","mechanical"
+"Basic","**Caselet 2: A School’s Sports Day Points**
+- Team A: 50 points (Athletics), 30 points (Swimming), 20 points (Others)
+- Team B: 40 points (Athletics), 20 points (Swimming), 30 points (Others)
+- Team C: 30 points (Athletics), 40 points (Swimming), 10 points (Others)
+
+Question: Which team won the sports day (highest total points)?","Team B had the highest points in Others in 2015, but the overall points did not necessarily determine the winner.","Team A","Team A's high points in Athletics in 2020 do not necessarily correlate with the total points.","Team C had the highest points in Swimming in previous years, but the Sports Day winner is determined by total points.","B","A: 100, B: 90, C: 80. Highest is A.","TRUE","llm"
+"Intermediate","**Table 1: Quarterly Revenue (in $1000) of Four Stores (Q1–Q4, 2023)**
+| Store | Q1  | Q2  | Q3  | Q4  |
+|-------|-----|-----|-----|-----|
+| W     | 200 | 250 | 300 | 350 |
+| X     | 180 | 210 | 240 | 270 |
+| Y     | 150 | 160 | 170 | 180 |
+| Z     | 220 | 230 | 240 | 250 |
+
+Question: What is the total annual revenue of Store W in 2023?","$1,210,000","$990,000","$1,100,000","$2,200,000","C","Total = 200 + 250 + 300 + 350 = 1100 ($1000) = $1,100,000.","TRUE","mechanical"
+"Intermediate","**Table 1: Quarterly Revenue (in $1000) of Four Stores (Q1–Q4, 2023)**
+| Store | Q1  | Q2  | Q3  | Q4  |
+|-------|-----|-----|-----|-----|
+| W     | 200 | 250 | 300 | 350 |
+| X     | 180 | 210 | 240 | 270 |
+| Y     | 150 | 160 | 170 | 180 |
+| Z     | 220 | 230 | 240 | 250 |
+
+Question: Which store had the highest revenue in Q3?","Store Y generated 90% of its revenue in Q3 compared to Store W, which indicates Store Y had a higher revenue ratio.","Store Z had an average quarterly revenue increase of 6.67%, with Q3 revenue exceeding Q2 by 4.35%, making it the highest revenue store in Q3.","Store W","Store X had the highest revenue in Q3, as it was 240, which is higher than any other store's revenue in that quarter.","C","Q3: W (300), X (240), Y (170), Z (240). Highest is W (300).","TRUE","llm"
+"Intermediate","**Table 1: Quarterly Revenue (in $1000) of Four Stores (Q1–Q4, 2023)**
+| Store | Q1  | Q2  | Q3  | Q4  |
+|-------|-----|-----|-----|-----|
+| W     | 200 | 250 | 300 | 350 |
+| X     | 180 | 210 | 240 | 270 |
+| Y     | 150 | 160 | 170 | 180 |
+| Z     | 220 | 230 | 240 | 250 |
+
+Question: What is the average quarterly revenue of Store X?","$202,500","$247,500","$225,000","$450,000","C","Total = 180 + 210 + 240 + 270 = 900. Average = 900 ÷ 4 = 225 ($1000) = $225,000.","TRUE","mechanical"
+"Intermediate","**Table 1: Quarterly Revenue (in $1000) of Four Stores (Q1–Q4, 2023)**
+| Store | Q1  | Q2  | Q3  | Q4  |
+|-------|-----|-----|-----|-----|
+| W     | 200 | 250 | 300 | 350 |
+| X     | 180 | 210 | 240 | 270 |
+| Y     | 150 | 160 | 170 | 180 |
+| Z     | 220 | 230 | 240 | 250 |
+
+Question: What is the percentage growth in Store Y’s revenue from Q1 to Q4?","20%","30%","22%","40%","A","Increase = 180 - 150 = 30. % Growth = (30 ÷ 150) × 100 = 20%.","TRUE","mechanical"
+"Intermediate","**Table 1: Quarterly Revenue (in $1000) of Four Stores (Q1–Q4, 2023)**
+| Store | Q1  | Q2  | Q3  | Q4  |
+|-------|-----|-----|-----|-----|
+| W     | 200 | 250 | 300 | 350 |
+| X     | 180 | 210 | 240 | 270 |
+| Y     | 150 | 160 | 170 | 180 |
+| Z     | 220 | 230 | 240 | 250 |
+
+Question: What is the total revenue of all stores in Q2?","$935,000","$1,700,000","$765,000","$850,000","D","Q2: W (250) + X (210) + Y (160) + Z (230) = 850 ($1000) = $850,000.","TRUE","mechanical"
+"Intermediate","**Table 1: Quarterly Revenue (in $1000) of Four Stores (Q1–Q4, 2023)**
+| Store | Q1  | Q2  | Q3  | Q4  |
+|-------|-----|-----|-----|-----|
+| W     | 200 | 250 | 300 | 350 |
+| X     | 180 | 210 | 240 | 270 |
+| Y     | 150 | 160 | 170 | 180 |
+| Z     | 220 | 230 | 240 | 250 |
+
+Question: What is the ratio of Store Z’s revenue in Q1 to Q4?","The ratio of Store Y's revenue in Q2 to Q1 is 160 : 150.","The ratio of Store W's revenue in Q4 to Q3 is 350 : 300.","The ratio of Store Z's revenue in Q3 to Q4 is 24 : 25.","22 : 25","D","Q1 (220) : Q4 (250) = 220 : 250 = 22 : 25.","TRUE","llm"
+"Intermediate","**Table 1: Quarterly Revenue (in $1000) of Four Stores (Q1–Q4, 2023)**
+| Store | Q1  | Q2  | Q3  | Q4  |
+|-------|-----|-----|-----|-----|
+| W     | 200 | 250 | 300 | 350 |
+| X     | 180 | 210 | 240 | 270 |
+| Y     | 150 | 160 | 170 | 180 |
+| Z     | 220 | 230 | 240 | 250 |
+
+Question: By how much did Store W’s revenue exceed Store X’s in Q4?","$160,000","$80,000","$72,000","$88,000","B","W (350) - X (270) = 80 ($1000) = $80,000.","TRUE","mechanical"
+"Intermediate","**Table 1: Quarterly Revenue (in $1000) of Four Stores (Q1–Q4, 2023)**
+| Store | Q1  | Q2  | Q3  | Q4  |
+|-------|-----|-----|-----|-----|
+| W     | 200 | 250 | 300 | 350 |
+| X     | 180 | 210 | 240 | 270 |
+| Y     | 150 | 160 | 170 | 180 |
+| Z     | 220 | 230 | 240 | 250 |
+
+Question: Which store showed the highest percentage growth from Q1 to Q2?","The store with the highest percentage growth from Q1 to Q3 was Y.","Store Z had a higher percentage growth from Q1 to Q2 than store W.","Store X showed the highest percentage growth from Q1 to Q2.","Store W","D","W: (250 - 200) ÷ 200 × 100 = 25%.
+X: (210 - 180) ÷ 180 × 100 ≈ 16.67%.
+Y: (160 - 150) ÷ 150 × 100 ≈ 6.67%.
+Z: (230 - 220) ÷ 220 × 100 ≈ 4.55%.
+Highest is W.","TRUE","llm"
+"Intermediate","**Table 1: Quarterly Revenue (in $1000) of Four Stores (Q1–Q4, 2023)**
+| Store | Q1  | Q2  | Q3  | Q4  |
+|-------|-----|-----|-----|-----|
+| W     | 200 | 250 | 300 | 350 |
+| X     | 180 | 210 | 240 | 270 |
+| Y     | 150 | 160 | 170 | 180 |
+| Z     | 220 | 230 | 240 | 250 |
+
+Question: What is the combined revenue of Stores W and Y in Q3?","$517,000","$470,000","$423,000","$940,000","B","W (300) + Y (170) = 470 ($1000) = $470,000.","TRUE","mechanical"
+"Intermediate","**Table 1: Quarterly Revenue (in $1000) of Four Stores (Q1–Q4, 2023)**
+| Store | Q1  | Q2  | Q3  | Q4  |
+|-------|-----|-----|-----|-----|
+| W     | 200 | 250 | 300 | 350 |
+| X     | 180 | 210 | 240 | 270 |
+| Y     | 150 | 160 | 170 | 180 |
+| Z     | 220 | 230 | 240 | 250 |
+
+Question: Which quarter had the lowest total revenue across all stores?","Q3 had the highest total revenue, making Q1 the lowest.","Q4 had higher revenue in two stores while having lower revenue in another store, making Q1 the lowest.","Q1","Q2 has higher revenue in three stores and lower revenue in one store, making Q1 the lowest.","C","Q1: 200 + 180 + 150 + 220 = 750.
+Q2: 250 + 210 + 160 + 230 = 850.
+Q3: 300 + 240 + 170 + 240 = 950.
+Q4: 350 + 270 + 180 + 250 = 1050 ($1000).
+Lowest is Q1 ($750,000).","TRUE","llm"
+"Intermediate","**Table 2: Employees in Three Departments Across Two Branches**
+| Department | Branch A (2022) | Branch A (2023) | Branch B (2022) | Branch B (2023) |
+|------------|-----------------|-----------------|-----------------|-----------------|
+| HR         | 20              | 25              | 15              | 18              |
+| IT         | 50              | 60              | 40              | 45              |
+| Sales      | 30              | 35              | 25              | 30              |
+
+Question: What is the total number of employees in Branch A in 2023?","132 employees","60 employees","240 employees","120 employees","D","Total = 25 + 60 + 35 = 120 employees.","TRUE","mechanical"
+"Intermediate","**Table 2: Employees in Three Departments Across Two Branches**
+| Department | Branch A (2022) | Branch A (2023) | Branch B (2022) | Branch B (2023) |
+|------------|-----------------|-----------------|-----------------|-----------------|
+| HR         | 20              | 25              | 15              | 18              |
+| IT         | 50              | 60              | 40              | 45              |
+| Sales      | 30              | 35              | 25              | 30              |
+
+Question: Which department in Branch B had the highest growth from 2022 to 2023?","Sales in Branch B had the highest growth from 2022 to 2023.","The Sales and IT departments in Branch B had equal growth from 2022 to 2023.","HR or Sales","The IT department in Branch B had a higher growth rate than the HR department in Branch B from 2022 to 2023.","C","HR: (18 - 15) ÷ 15 × 100 = 20%.
+IT: (45 - 40) ÷ 40 × 100 = 12.5%.
+Sales: (30 - 25) ÷ 25 × 100 = 20%.
+HR and Sales tie for highest.","TRUE","llm"
+"Intermediate","**Table 2: Employees in Three Departments Across Two Branches**
+| Department | Branch A (2022) | Branch A (2023) | Branch B (2022) | Branch B (2023) |
+|------------|-----------------|-----------------|-----------------|-----------------|
+| HR         | 20              | 25              | 15              | 18              |
+| IT         | 50              | 60              | 40              | 45              |
+| Sales      | 30              | 35              | 25              | 30              |
+
+Question: What is the average number of IT employees across both branches in 2022?","40 employees","90 employees","50 employees","45 employees","D","Total = 50 (A) + 40 (B) = 90. Average = 90 ÷ 2 = 45 employees.","TRUE","mechanical"
+"Intermediate","**Table 2: Employees in Three Departments Across Two Branches**
+| Department | Branch A (2022) | Branch A (2023) | Branch B (2022) | Branch B (2023) |
+|------------|-----------------|-----------------|-----------------|-----------------|
+| HR         | 20              | 25              | 15              | 18              |
+| IT         | 50              | 60              | 40              | 45              |
+| Sales      | 30              | 35              | 25              | 30              |
+
+Question: What is the percentage increase in Sales employees in Branch A from 2022 to 2023?","33.34%","30%","35%","16.67%","D","Increase = 35 - 30 = 5. % Increase = (5 ÷ 30) × 100 ≈ 16.67%.","TRUE","mechanical"
+"Intermediate","**Table 2: Employees in Three Departments Across Two Branches**
+| Department | Branch A (2022) | Branch A (2023) | Branch B (2022) | Branch B (2023) |
+|------------|-----------------|-----------------|-----------------|-----------------|
+| HR         | 20              | 25              | 15              | 18              |
+| IT         | 50              | 60              | 40              | 45              |
+| Sales      | 30              | 35              | 25              | 30              |
+
+Question: What is the total number of employees in HR across both branches in 2023?","86 employees","43 employees","25 employees","18 employees","B","HR: 25 (A) + 18 (B) = 43 employees.","TRUE","mechanical"
+"Intermediate","**Table 2: Employees in Three Departments Across Two Branches**
+| Department | Branch A (2022) | Branch A (2023) | Branch B (2022) | Branch B (2023) |
+|------------|-----------------|-----------------|-----------------|-----------------|
+| HR         | 20              | 25              | 15              | 18              |
+| IT         | 50              | 60              | 40              | 45              |
+| Sales      | 30              | 35              | 25              | 30              |
+
+Question: What is the ratio of IT employees in Branch A to Branch B in 2023?","The ratio of IT employees in Branch A to Branch B in 2023 is 60 : 75.","4 : 3","The ratio of IT employees in Branch A to Branch B in 2022 is 50 : 40.","The ratio of IT employees in Branch A to Branch B in 2022 is 50 : 25.","B","A (60) : B (45) = 60 : 45 = 4 : 3.","TRUE","llm"
+"Intermediate","**Table 2: Employees in Three Departments Across Two Branches**
+| Department | Branch A (2022) | Branch A (2023) | Branch B (2022) | Branch B (2023) |
+|------------|-----------------|-----------------|-----------------|-----------------|
+| HR         | 20              | 25              | 15              | 18              |
+| IT         | 50              | 60              | 40              | 45              |
+| Sales      | 30              | 35              | 25              | 30              |
+
+Question: By how many employees did Branch A’s total workforce grow from 2022 to 2023?","20 employees","30 employees","40 employees","50 employees","A","2022: 20 + 50 + 30 = 100. 2023: 120. Growth = 120 - 100 = 20 employees.","TRUE","mechanical"
+"Intermediate","**Table 2: Employees in Three Departments Across Two Branches**
+| Department | Branch A (2022) | Branch A (2023) | Branch B (2022) | Branch B (2023) |
+|------------|-----------------|-----------------|-----------------|-----------------|
+| HR         | 20              | 25              | 15              | 18              |
+| IT         | 50              | 60              | 40              | 45              |
+| Sales      | 30              | 35              | 25              | 30              |
+
+Question: Which branch had more employees in 2022?","Branch B had fewer employees overall in 2022, so Branch A must have had the most employees.","Branch A","The number of employees in Branch B was not the only factor determining the branch with more employees in 2022.","The number of employees in Branch A increased in 2022, but since the question asks for 2022 specifically, the answer is still Branch A.","B","A: 100. B: 15 + 40 + 25 = 80. A is higher.","TRUE","llm"
+"Intermediate","**Table 2: Employees in Three Departments Across Two Branches**
+| Department | Branch A (2022) | Branch A (2023) | Branch B (2022) | Branch B (2023) |
+|------------|-----------------|-----------------|-----------------|-----------------|
+| HR         | 20              | 25              | 15              | 18              |
+| IT         | 50              | 60              | 40              | 45              |
+| Sales      | 30              | 35              | 25              | 30              |
+
+Question: What is the combined number of Sales employees in both branches in 2022?","25 employees","30 employees","55 employees","110 employees","C","A (30) + B (25) = 55 employees.","TRUE","mechanical"
+"Intermediate","**Table 2: Employees in Three Departments Across Two Branches**
+| Department | Branch A (2022) | Branch A (2023) | Branch B (2022) | Branch B (2023) |
+|------------|-----------------|-----------------|-----------------|-----------------|
+| HR         | 20              | 25              | 15              | 18              |
+| IT         | 50              | 60              | 40              | 45              |
+| Sales      | 30              | 35              | 25              | 30              |
+
+Question: What is the percentage of HR employees in Branch A (2023) relative to its total workforce?","25%","41.66%","20.83%","22.91%","C","HR (25) ÷ Total (120) × 100 ≈ 20.83%.","TRUE","mechanical"
+"Intermediate","**Bar Graph 1: Annual Production (in tons) of Three Crops (2020–2022)**
+- 2020: Rice (500), Wheat (400), Corn (300)
+- 2021: Rice (550), Wheat (420), Corn (320)
+- 2022: Rice (600), Wheat (450), Corn (350)
+
+Question: What is the total production of Rice over the three years?","500 tons","1650 tons","600 tons","550 tons","B","Total = 500 + 550 + 600 = 1650 tons.","TRUE","mechanical"
+"Intermediate","**Bar Graph 1: Annual Production (in tons) of Three Crops (2020–2022)**
+- 2020: Rice (500), Wheat (400), Corn (300)
+- 2021: Rice (550), Wheat (420), Corn (320)
+- 2022: Rice (600), Wheat (450), Corn (350)
+
+Question: Which crop had the highest production in 2021?","Wheat had the highest production in 2021 because its increase from 2020 was the largest among the three crops.","Rice","Corn had the highest production in 2021 because it was the only crop to show an increase in production from 2020 to 2021.","The production of Rice in 2021 was actually the lowest among the three crops because it was the only crop to experience a decrease in production from 2022 to 2021.","B","2021: Rice (550), Wheat (420), Corn (320). Highest is Rice.","TRUE","llm"
+"Intermediate","**Bar Graph 1: Annual Production (in tons) of Three Crops (2020–2022)**
+- 2020: Rice (500), Wheat (400), Corn (300)
+- 2021: Rice (550), Wheat (420), Corn (320)
+- 2022: Rice (600), Wheat (450), Corn (350)
+
+Question: What is the average annual production of Wheat?","400 tons","423.33 tons","450 tons","420 tons","B","Total = 400 + 420 + 450 = 1270. Average = 1270 ÷ 3 ≈ 423.33 tons.","TRUE","mechanical"
+"Intermediate","**Bar Graph 1: Annual Production (in tons) of Three Crops (2020–2022)**
+- 2020: Rice (500), Wheat (400), Corn (300)
+- 2021: Rice (550), Wheat (420), Corn (320)
+- 2022: Rice (600), Wheat (450), Corn (350)
+
+Question: What is the percentage growth in Corn production from 2020 to 2022?","33.34%","16.67%","50%","18.34%","B","Increase = 350 - 300 = 50. % Growth = (50 ÷ 300) × 100 ≈ 16.67%.","TRUE","mechanical"
+"Intermediate","**Bar Graph 1: Annual Production (in tons) of Three Crops (2020–2022)**
+- 2020: Rice (500), Wheat (400), Corn (300)
+- 2021: Rice (550), Wheat (420), Corn (320)
+- 2022: Rice (600), Wheat (450), Corn (350)
+
+Question: What is the total production of all crops in 2020?","1200 tons","500 tons","400 tons","2,020 tons","A","2020: 500 + 400 + 300 = 1200 tons.","TRUE","mechanical"
+"Intermediate","**Bar Graph 1: Annual Production (in tons) of Three Crops (2020–2022)**
+- 2020: Rice (500), Wheat (400), Corn (300)
+- 2021: Rice (550), Wheat (420), Corn (320)
+- 2022: Rice (600), Wheat (450), Corn (350)
+
+Question: What is the ratio of Rice to Wheat production in 2022?","The ratio of total production in 2022 (Rice 600 + Wheat 450 + Corn 350) is 1400, and the ratio of Wheat production in 2022 to total production is 450 : 1400, which simplifies to 9 : 28.","Rice production in 2022 was 600 tons, and Wheat production in 2021 was 420 tons, so the ratio of Rice to Wheat production is 600 : 420, which simplifies to 10 : 7.","Rice production in 2020 was 500 tons, and Wheat production in 2022 was 450 tons, so the ratio of Rice to Wheat production is 500 : 450, which simplifies to 50 : 45.","4 : 3","D","Rice (600) : Wheat (450) = 600 : 450 = 4 : 3.","TRUE","llm"
+"Intermediate","**Bar Graph 1: Annual Production (in tons) of Three Crops (2020–2022)**
+- 2020: Rice (500), Wheat (400), Corn (300)
+- 2021: Rice (550), Wheat (420), Corn (320)
+- 2022: Rice (600), Wheat (450), Corn (350)
+
+Question: By how much did Rice production exceed Corn in 2021?","550 tons","320 tons","460 tons","230 tons","D","Rice (550) - Corn (320) = 230 tons.","TRUE","mechanical"
+"Intermediate","**Bar Graph 1: Annual Production (in tons) of Three Crops (2020–2022)**
+- 2020: Rice (500), Wheat (400), Corn (300)
+- 2021: Rice (550), Wheat (420), Corn (320)
+- 2022: Rice (600), Wheat (450), Corn (350)
+
+Question: Which crop showed the highest percentage growth from 2020 to 2021?","Rice","Wheat showed the highest percentage growth from 2020 to 2021.","The percentage growth in Wheat from 2020 to 2021 is calculated as ((420-400)/400)*100 = 5%.","The percentage growth in Corn from 2020 to 2021 is calculated as ((320-300)/300)*100 = 6.67%, which is higher than Wheat's growth.","A","Rice: (550 - 500) ÷ 500 × 100 = 10%.
+Wheat: (420 - 400) ÷ 400 × 100 = 5%.
+Corn: (320 - 300) ÷ 300 × 100 ≈ 6.67%.
+Highest is Rice.","TRUE","llm"
+"Intermediate","**Bar Graph 1: Annual Production (in tons) of Three Crops (2020–2022)**
+- 2020: Rice (500), Wheat (400), Corn (300)
+- 2021: Rice (550), Wheat (420), Corn (320)
+- 2022: Rice (600), Wheat (450), Corn (350)
+
+Question: What is the combined production of Wheat and Corn in 2022?","800 tons","350 tons","450 tons","1,600 tons","A","Wheat (450) + Corn (350) = 800 tons.","TRUE","mechanical"
+"Intermediate","**Bar Graph 1: Annual Production (in tons) of Three Crops (2020–2022)**
+- 2020: Rice (500), Wheat (400), Corn (300)
+- 2021: Rice (550), Wheat (420), Corn (320)
+- 2022: Rice (600), Wheat (450), Corn (350)
+
+Question: Which year had the highest total production?","had the lowest total production with 1200 tons, but 2020 and 2022 also had the highest ratio of wheat to total production in 2020 at 33%.","and 2022 are tied for the highest total production at 1330 tons.","had the highest total production with 1200 tons.","2022","D","2020: 1200. 2021: 550 + 420 + 320 = 1290. 2022: 600 + 450 + 350 = 1400 tons. Highest is 2022.","TRUE","llm"
+"Intermediate","**Bar Graph 2: Monthly Website Traffic (in thousands) for Two Sites (Jan–Mar)**
+- Jan: Site A (100), Site B (80)
+- Feb: Site A (120), Site B (90)
+- Mar: Site A (150), Site B (100)
+
+Question: What is the total traffic for Site A over the three months?","370,000 visitors","740,000 visitors","333,000 visitors","407,000 visitors","A","Total = 100 + 120 + 150 = 370 (thousand) = 370,000 visitors.","TRUE","mechanical"
+"Intermediate","**Bar Graph 2: Monthly Website Traffic (in thousands) for Two Sites (Jan–Mar)**
+- Jan: Site A (100), Site B (80)
+- Feb: Site A (120), Site B (90)
+- Mar: Site A (150), Site B (100)
+
+Question: Which site had higher traffic in March?","Site B had higher traffic in March.","Site A","Site A had lower traffic in March than it did in January.","In March, Site A had a significant drop in traffic compared to the previous month.","B","Mar: A (150), B (100). A is higher.","TRUE","llm"
+"Intermediate","**Bar Graph 2: Monthly Website Traffic (in thousands) for Two Sites (Jan–Mar)**
+- Jan: Site A (100), Site B (80)
+- Feb: Site A (120), Site B (90)
+- Mar: Site A (150), Site B (100)
+
+Question: What is the average monthly traffic for Site B?","90,000 visitors","81,000 visitors","180,000 visitors","99,000 visitors","A","Total = 80 + 90 + 100 = 270. Average = 270 ÷ 3 = 90 (thousand) = 90,000 visitors.","TRUE","mechanical"
+"Intermediate","**Bar Graph 2: Monthly Website Traffic (in thousands) for Two Sites (Jan–Mar)**
+- Jan: Site A (100), Site B (80)
+- Feb: Site A (120), Site B (90)
+- Mar: Site A (150), Site B (100)
+
+Question: What is the percentage growth in Site A’s traffic from Jan to Feb?","20%","18%","22%","40%","A","Increase = 120 - 100 = 20. % Growth = (20 ÷ 100) × 100 = 20%.","TRUE","mechanical"
+"Intermediate","**Bar Graph 2: Monthly Website Traffic (in thousands) for Two Sites (Jan–Mar)**
+- Jan: Site A (100), Site B (80)
+- Feb: Site A (120), Site B (90)
+- Mar: Site A (150), Site B (100)
+
+Question: What is the total traffic for both sites in Feb?","420,000 visitors","189,000 visitors","231,000 visitors","210,000 visitors","D","Feb: A (120) + B (90) = 210 (thousand) = 210,000 visitors.","TRUE","mechanical"
+"Intermediate","**Bar Graph 2: Monthly Website Traffic (in thousands) for Two Sites (Jan–Mar)**
+- Jan: Site A (100), Site B (80)
+- Feb: Site A (120), Site B (90)
+- Mar: Site A (150), Site B (100)
+
+Question: What is the ratio of Site A to Site B traffic in Mar?","3 : 2","Site A to Site B traffic in Mar is 4 : 5.","Site A to Site B traffic in Mar is 1.5 : 1.","The ratio of Site A to Site B traffic in Mar is 2 : 3.","A","A (150) : B (100) = 150 : 100 = 3 : 2.","TRUE","llm"
+"Intermediate","**Bar Graph 2: Monthly Website Traffic (in thousands) for Two Sites (Jan–Mar)**
+- Jan: Site A (100), Site B (80)
+- Feb: Site A (120), Site B (90)
+- Mar: Site A (150), Site B (100)
+
+Question: By how much did Site A’s traffic exceed Site B’s in Jan?","20,000 visitors","40,000 visitors","22,000 visitors","18,000 visitors","A","A (100) - B (80) = 20 (thousand) = 20,000 visitors.","TRUE","mechanical"
+"Intermediate","**Bar Graph 2: Monthly Website Traffic (in thousands) for Two Sites (Jan–Mar)**
+- Jan: Site A (100), Site B (80)
+- Feb: Site A (120), Site B (90)
+- Mar: Site A (150), Site B (100)
+
+Question: Which site showed higher percentage growth from Jan to Mar?","Site B had the highest growth rate, increasing from 80 to 100.","The percentage growth of Site A is equivalent to a factor of 1.5, which is less than the growth factor of Site B, which is 1.25.","Site A actually had the lowest growth rate, with a percentage increase from 100 to 150.","Site A","D","A: (150 - 100) ÷ 100 × 100 = 50%.
+B: (100 - 80) ÷ 80 × 100 = 25%.
+A is higher.","TRUE","llm"
+"Intermediate","**Bar Graph 2: Monthly Website Traffic (in thousands) for Two Sites (Jan–Mar)**
+- Jan: Site A (100), Site B (80)
+- Feb: Site A (120), Site B (90)
+- Mar: Site A (150), Site B (100)
+
+Question: What is the combined traffic of both sites in Jan?","198,000 visitors","360,000 visitors","162,000 visitors","180,000 visitors","D","Jan: A (100) + B (80) = 180 (thousand) = 180,000 visitors.","TRUE","mechanical"
+"Intermediate","**Bar Graph 2: Monthly Website Traffic (in thousands) for Two Sites (Jan–Mar)**
+- Jan: Site A (100), Site B (80)
+- Feb: Site A (120), Site B (90)
+- Mar: Site A (150), Site B (100)
+
+Question: Which month had the highest total traffic?","Site B's total traffic in January exceeded that of Site A in March.","March saw a 33% increase in traffic for Site B compared to February.","March","Site A had the highest traffic in February compared to January.","C","Jan: 180. Feb: 210. Mar: 150 + 100 = 250 (thousand). Highest is Mar.","TRUE","llm"
+"Intermediate","**Pie Chart 1: Market Share of Five Smartphone Brands (Total: 1000 units)**
+- Brand A: 30%
+- Brand B: 25%
+- Brand C: 20%
+- Brand D: 15%
+- Brand E: 10%
+
+Question: How many units did Brand A sell?","330 units","100 units","300 units","600 units","C","A = 30% of 1000 = (30 ÷ 100) × 1000 = 300 units.","TRUE","mechanical"
+"Intermediate","**Pie Chart 1: Market Share of Five Smartphone Brands (Total: 1000 units)**
+- Brand A: 30%
+- Brand B: 25%
+- Brand C: 20%
+- Brand D: 15%
+- Brand E: 10%
+
+Question: What is the combined market share of Brands B and C?","20%","25%","90%","45%","D","B (25%) + C (20%) = 45%.","TRUE","mechanical"
+"Intermediate","**Pie Chart 1: Market Share of Five Smartphone Brands (Total: 1000 units)**
+- Brand A: 30%
+- Brand B: 25%
+- Brand C: 20%
+- Brand D: 15%
+- Brand E: 10%
+
+Question: How many more units did Brand A sell than Brand D?","165 units","135 units","300 units","150 units","D","A (30% = 300) - D (15% = 150) = 300 - 150 = 150 units.","TRUE","mechanical"
+"Intermediate","**Pie Chart 1: Market Share of Five Smartphone Brands (Total: 1000 units)**
+- Brand A: 30%
+- Brand B: 25%
+- Brand C: 20%
+- Brand D: 15%
+- Brand E: 10%
+
+Question: What is the ratio of Brand C to Brand E units sold?","2 : 1","Brand C units sold are 200, which is 2/3 of the total, so the ratio of Brand C to Brand E units sold is 2 : 1/3.","The ratio of Brand C to Brand E units sold is 1.5 : 1.","The pie chart shows Brand C accounts for 1/5 of the total market, while Brand E accounts for 1/10, so the ratio of Brand C to Brand E units sold is 2 : 5.","A","C (20% = 200) : E (10% = 100) = 200 : 100 = 2 : 1.","TRUE","llm"
+"Intermediate","**Pie Chart 1: Market Share of Five Smartphone Brands (Total: 1000 units)**
+- Brand A: 30%
+- Brand B: 25%
+- Brand C: 20%
+- Brand D: 15%
+- Brand E: 10%
+
+Question: What is the total number of units sold by Brands A, B, and C?","750 units","250 units","300 units","1,500 units","A","A (300) + B (25% = 250) + C (200) = 750 units.","TRUE","mechanical"
+"Intermediate","**Pie Chart 1: Market Share of Five Smartphone Brands (Total: 1000 units)**
+- Brand A: 30%
+- Brand B: 25%
+- Brand C: 20%
+- Brand D: 15%
+- Brand E: 10%
+
+Question: Which brand has the smallest market share?","Brand E","The brand with the smallest market share is Brand A, as it accounts for 30% of the total units sold, which is the highest percentage among the given options.","Brand C has the smallest market share of 20% in the given data.","Brand D has the smallest market share, as the data shows 15% for the year 2020.","A","E (10%) is smallest.","TRUE","llm"
+"Intermediate","**Pie Chart 1: Market Share of Five Smartphone Brands (Total: 1000 units)**
+- Brand A: 30%
+- Brand B: 25%
+- Brand C: 20%
+- Brand D: 15%
+- Brand E: 10%
+
+Question: What is the percentage of Brand B’s units relative to total units?","25%","28%","22%","50%","A","B = 25% (given).","TRUE","mechanical"
+"Intermediate","**Pie Chart 1: Market Share of Five Smartphone Brands (Total: 1000 units)**
+- Brand A: 30%
+- Brand B: 25%
+- Brand C: 20%
+- Brand D: 15%
+- Brand E: 10%
+
+Question: How many units did Brand D sell?","150 units","135 units","165 units","300 units","A","D = 15% of 1000 = 150 units.","TRUE","mechanical"
+"Intermediate","**Pie Chart 1: Market Share of Five Smartphone Brands (Total: 1000 units)**
+- Brand A: 30%
+- Brand B: 25%
+- Brand C: 20%
+- Brand D: 15%
+- Brand E: 10%
+
+Question: What is the difference in units sold between Brands A and E?","300 units","400 units","200 units","100 units","C","A (300) - E (10% = 100) = 200 units.","TRUE","mechanical"
+"Intermediate","**Pie Chart 1: Market Share of Five Smartphone Brands (Total: 1000 units)**
+- Brand A: 30%
+- Brand B: 25%
+- Brand C: 20%
+- Brand D: 15%
+- Brand E: 10%
+
+Question: If Brand A’s sales increased by 10%, how many units would it sell?","300 units","660 units","330 units","363 units","C","A = 300. Increase = 10% of 300 = 30. New sales = 300 + 30 = 330 units.","TRUE","mechanical"
+"Intermediate","**Pie Chart 2: Expenditure of a Family (Total: $5000)**
+- Food: 35%
+- Rent: 30%
+- Education: 20%
+- Transport: 10%
+- Savings: 5%
+
+Question: How much is spent on Food?","$1750","$3,500","$1,925","$5,000","A","Food = 35% of 5000 = (35 ÷ 100) × 5000 = $1750.","TRUE","mechanical"
+"Intermediate","**Pie Chart 2: Expenditure of a Family (Total: $5000)**
+- Food: 35%
+- Rent: 30%
+- Education: 20%
+- Transport: 10%
+- Savings: 5%
+
+Question: What is the combined expenditure on Rent and Education?","$2500","$2,750","$2,250","$5,000","A","Rent (30%) + Education (20%) = 50%. 50% of 5000 = $2500.","TRUE","mechanical"
+"Intermediate","**Pie Chart 2: Expenditure of a Family (Total: $5000)**
+- Food: 35%
+- Rent: 30%
+- Education: 20%
+- Transport: 10%
+- Savings: 5%
+
+Question: How much more is spent on Food than on Transport?","$2,500","$1250","$500","$1,750","B","Food (1750) - Transport (10% = 500) = 1750 - 500 = $1250.","TRUE","mechanical"
+"Intermediate","**Pie Chart 2: Expenditure of a Family (Total: $5000)**
+- Food: 35%
+- Rent: 30%
+- Education: 20%
+- Transport: 10%
+- Savings: 5%
+
+Question: What is the ratio of Education to Savings expenditure?","Education expenditure was 40% in 2020, making the ratio of Education to Savings 8 : 1.","4 : 1","The ratio of Education to Savings expenditure is 2 : 1.","The ratio of Education to Savings expenditure is 5 : 2.","B","Education (20% = 1000) : Savings (5% = 250) = 1000 : 250 = 4 : 1.","TRUE","llm"
+"Intermediate","**Pie Chart 2: Expenditure of a Family (Total: $5000)**
+- Food: 35%
+- Rent: 30%
+- Education: 20%
+- Transport: 10%
+- Savings: 5%
+
+Question: What is the total expenditure on Food, Rent, and Transport?","$7,500","$1,750","$1,500","$3750","D","Food (1750) + Rent (30% = 1500) + Transport (500) = 1750 + 1500 + 500 = $3750.","TRUE","mechanical"
+"Intermediate","**Pie Chart 2: Expenditure of a Family (Total: $5000)**
+- Food: 35%
+- Rent: 30%
+- Education: 20%
+- Transport: 10%
+- Savings: 5%
+
+Question: Which category has the least expenditure?","Savings","Savings is less than education, so education must have the least expenditure.","Transport has the least expenditure.","The savings category has the highest percentage of the total expenditure, therefore, it has the least expenditure.","A","Savings (5%) is smallest.","TRUE","llm"
+"Intermediate","**Pie Chart 2: Expenditure of a Family (Total: $5000)**
+- Food: 35%
+- Rent: 30%
+- Education: 20%
+- Transport: 10%
+- Savings: 5%
+
+Question: What percentage of expenditure is on Rent?","33%","30%","27%","60%","B","Rent = 30% (given).","TRUE","mechanical"
+"Intermediate","**Pie Chart 2: Expenditure of a Family (Total: $5000)**
+- Food: 35%
+- Rent: 30%
+- Education: 20%
+- Transport: 10%
+- Savings: 5%
+
+Question: How much is spent on Savings?","$500","$225","$275","$250","D","Savings = 5% of 5000 = $250.","TRUE","mechanical"
+"Intermediate","**Pie Chart 2: Expenditure of a Family (Total: $5000)**
+- Food: 35%
+- Rent: 30%
+- Education: 20%
+- Transport: 10%
+- Savings: 5%
+
+Question: What is the difference between Food and Education expenditure?","$750","$1,000","$1,750","$1,500","A","Food (1750) - Education (20% = 1000) = 1750 - 1000 = $750.","TRUE","mechanical"
+"Intermediate","**Pie Chart 2: Expenditure of a Family (Total: $5000)**
+- Food: 35%
+- Rent: 30%
+- Education: 20%
+- Transport: 10%
+- Savings: 5%
+
+Question: If Transport expenditure increased by 20%, what would be the new amount?","$660","$1,200","$500","$600","D","Transport = 500. Increase = 20% of 500 = 100. New amount = 500 + 100 = $600.","TRUE","mechanical"
+"Intermediate","**Line Graph 1: Monthly Sales (in units) of Two Products (Jan–Jun)**
+- Jan: P1 (200), P2 (150)
+- Feb: P1 (220), P2 (160)
+- Mar: P1 (250), P2 (180)
+- Apr: P1 (270), P2 (200)
+- May: P1 (300), P2 (220)
+- Jun: P1 (320), P2 (240)
+
+Question: What is the total sales of P1 over the six months?","1560 units","3,120 units","1,716 units","1,404 units","A","Total = 200 + 220 + 250 + 270 + 300 + 320 = 1560 units.","TRUE","mechanical"
+"Intermediate","**Line Graph 1: Monthly Sales (in units) of Two Products (Jan–Jun)**
+- Jan: P1 (200), P2 (150)
+- Feb: P1 (220), P2 (160)
+- Mar: P1 (250), P2 (180)
+- Apr: P1 (270), P2 (200)
+- May: P1 (300), P2 (220)
+- Jun: P1 (320), P2 (240)
+
+Question: Which product had higher sales in April?","In April, the sales of P1 were higher than those of P2 by a factor of 1.35.","P2 had higher sales in May than P1 had in April.","Product P2 outsold P1 in June, and also in January.","P1","D","Apr: P1 (270), P2 (200). P1 is higher.","TRUE","llm"
+"Intermediate","**Line Graph 1: Monthly Sales (in units) of Two Products (Jan–Jun)**
+- Jan: P1 (200), P2 (150)
+- Feb: P1 (220), P2 (160)
+- Mar: P1 (250), P2 (180)
+- Apr: P1 (270), P2 (200)
+- May: P1 (300), P2 (220)
+- Jun: P1 (320), P2 (240)
+
+Question: What is the average monthly sales of P2?","180 units","150 units","191.67 units","160 units","C","Total = 150 + 160 + 180 + 200 + 220 + 240 = 1150. Average = 1150 ÷ 6 ≈ 191.67 units.","TRUE","mechanical"
+"Intermediate","**Line Graph 1: Monthly Sales (in units) of Two Products (Jan–Jun)**
+- Jan: P1 (200), P2 (150)
+- Feb: P1 (220), P2 (160)
+- Mar: P1 (250), P2 (180)
+- Apr: P1 (270), P2 (200)
+- May: P1 (300), P2 (220)
+- Jun: P1 (320), P2 (240)
+
+Question: What is the percentage growth in P1 sales from Feb to Mar?","27.28%","13.64%","30%","15%","B","Increase = 250 - 220 = 30. % Growth = (30 ÷ 220) × 100 ≈ 13.64%.","TRUE","mechanical"
+"Intermediate","**Line Graph 1: Monthly Sales (in units) of Two Products (Jan–Jun)**
+- Jan: P1 (200), P2 (150)
+- Feb: P1 (220), P2 (160)
+- Mar: P1 (250), P2 (180)
+- Apr: P1 (270), P2 (200)
+- May: P1 (300), P2 (220)
+- Jun: P1 (320), P2 (240)
+
+Question: What is the total sales of both products in May?","1,040 units","300 units","220 units","520 units","D","May: P1 (300) + P2 (220) = 520 units.","TRUE","mechanical"
+"Intermediate","**Line Graph 1: Monthly Sales (in units) of Two Products (Jan–Jun)**
+- Jan: P1 (200), P2 (150)
+- Feb: P1 (220), P2 (160)
+- Mar: P1 (250), P2 (180)
+- Apr: P1 (270), P2 (200)
+- May: P1 (300), P2 (220)
+- Jun: P1 (320), P2 (240)
+
+Question: What is the ratio of P1 to P2 sales in Jun?","Option 1: The ratio of P1 to P2 sales in May is 5 : 4.","Option 3: The ratio of P1 to P2 sales in Feb is 7 : 6.","4 : 3","Option 2: The ratio of P1 to P2 sales in Apr is 9 : 8.","C","P1 (320) : P2 (240) = 320 : 240 = 4 : 3.","TRUE","llm"
+"Intermediate","**Line Graph 1: Monthly Sales (in units) of Two Products (Jan–Jun)**
+- Jan: P1 (200), P2 (150)
+- Feb: P1 (220), P2 (160)
+- Mar: P1 (250), P2 (180)
+- Apr: P1 (270), P2 (200)
+- May: P1 (300), P2 (220)
+- Jun: P1 (320), P2 (240)
+
+Question: By how many units did P1 sales exceed P2 in Mar?","180 units","140 units","70 units","77 units","C","P1 (250) - P2 (180) = 70 units.","TRUE","mechanical"
+"Intermediate","**Line Graph 1: Monthly Sales (in units) of Two Products (Jan–Jun)**
+- Jan: P1 (200), P2 (150)
+- Feb: P1 (220), P2 (160)
+- Mar: P1 (250), P2 (180)
+- Apr: P1 (270), P2 (200)
+- May: P1 (300), P2 (220)
+- Jun: P1 (320), P2 (240)
+
+Question: Which product showed higher percentage growth from Jan to Jun?","Both P1 and P2 showed significant growth over the same time period, but Product P2 grew at a higher percentage rate of 60% compared to P1's 60%.","Both P1 and P2","Product P2 had a higher total sales increase from Jan to Jun, with a growth of 90 units compared to P1's 120 units.","Product P1 showed higher percentage growth from Jan to Jun compared to P2, at a rate of 60% versus 60%.","B","P1: (320 - 200) ÷ 200 × 100 = 60%.
+P2: (240 - 150) ÷ 150 × 100 = 60%.
+Both are equal.","TRUE","llm"
+"Intermediate","**Line Graph 1: Monthly Sales (in units) of Two Products (Jan–Jun)**
+- Jan: P1 (200), P2 (150)
+- Feb: P1 (220), P2 (160)
+- Mar: P1 (250), P2 (180)
+- Apr: P1 (270), P2 (200)
+- May: P1 (300), P2 (220)
+- Jun: P1 (320), P2 (240)
+
+Question: What is the combined sales of both products in Jan?","150 units","350 units","200 units","700 units","B","Jan: P1 (200) + P2 (150) = 350 units.","TRUE","mechanical"
+"Intermediate","**Line Graph 1: Monthly Sales (in units) of Two Products (Jan–Jun)**
+- Jan: P1 (200), P2 (150)
+- Feb: P1 (220), P2 (160)
+- Mar: P1 (250), P2 (180)
+- Apr: P1 (270), P2 (200)
+- May: P1 (300), P2 (220)
+- Jun: P1 (320), P2 (240)
+
+Question: Which month had the highest total sales?","May had the highest growth rate in sales between the two products, increasing by 20 units more than June.","June had the highest sales of product P1, but the lowest sales of product P2.","June","In January, product P1 had 200 units in sales, which is a lower percentage of total sales compared to June.","C","Jan: 350. Feb: 220 + 160 = 380. Mar: 250 + 180 = 430. Apr: 270 + 200 = 470.
+May: 520. Jun: 320 + 240 = 560 units. Highest is Jun.","TRUE","llm"
+"Intermediate","**Line Graph 2: Quarterly Profit ($1000) of a Company (Q1–Q4, 2022–2023)**
+- 2022: Q1 (50), Q2 (60), Q3 (70), Q4 (80)
+- 2023: Q1 (55), Q2 (65), Q3 (75), Q4 (90)
+
+Question: What is the total profit in 2023?","$570,000","$313,500","$285,000","$256,500","C","Total = 55 + 65 + 75 + 90 = 285 ($1000) = $285,000.","TRUE","mechanical"
+"Intermediate","**Line Graph 2: Quarterly Profit ($1000) of a Company (Q1–Q4, 2022–2023)**
+- 2022: Q1 (50), Q2 (60), Q3 (70), Q4 (80)
+- 2023: Q1 (55), Q2 (65), Q3 (75), Q4 (90)
+
+Question: Which quarter had the highest profit in 2023?","Q4","Q5","Q3","Q8","A","Q4 (90) is highest.","TRUE","mechanical"
+"Intermediate","**Line Graph 2: Quarterly Profit ($1000) of a Company (Q1–Q4, 2022–2023)**
+- 2022: Q1 (50), Q2 (60), Q3 (70), Q4 (80)
+- 2023: Q1 (55), Q2 (65), Q3 (75), Q4 (90)
+
+Question: What is the average quarterly profit in 2022?","$65,000","$71,500","$130,000","$58,500","A","Total = 50 + 60 + 70 + 80 = 260. Average = 260 ÷ 4 = 65 ($1000) = $65,000.","TRUE","mechanical"
+"Intermediate","**Line Graph 2: Quarterly Profit ($1000) of a Company (Q1–Q4, 2022–2023)**
+- 2022: Q1 (50), Q2 (60), Q3 (70), Q4 (80)
+- 2023: Q1 (55), Q2 (65), Q3 (75), Q4 (90)
+
+Question: What is the percentage growth in profit from Q1 to Q2 in 2023?","18.18%","10%","20%","36.36%","A","Increase = 65 - 55 = 10. % Growth = (10 ÷ 55) × 100 ≈ 18.18%.","TRUE","mechanical"
+"Intermediate","**Line Graph 2: Quarterly Profit ($1000) of a Company (Q1–Q4, 2022–2023)**
+- 2022: Q1 (50), Q2 (60), Q3 (70), Q4 (80)
+- 2023: Q1 (55), Q2 (65), Q3 (75), Q4 (90)
+
+Question: What is the total profit in Q3 across both years?","$290,000","$159,500","$145,000","$130,500","C","2022 (70) + 2023 (75) = 145 ($1000) = $145,000.","TRUE","mechanical"
+"Intermediate","**Line Graph 2: Quarterly Profit ($1000) of a Company (Q1–Q4, 2022–2023)**
+- 2022: Q1 (50), Q2 (60), Q3 (70), Q4 (80)
+- 2023: Q1 (55), Q2 (65), Q3 (75), Q4 (90)
+
+Question: What is the ratio of profit in Q2 (2022) to Q2 (2023)?","The ratio of profit in Q1 (2022) to Q4 (2023) is 50 : 90.","12 : 13","The ratio of profit in Q4 (2022) to Q4 (2023) is 80 : 90.","The ratio of profit in Q1 (2022) to Q1 (2023) is 50 : 55.","B","2022 (60) : 2023 (65) = 60 : 65 = 12 : 13.","TRUE","llm"
+"Intermediate","**Line Graph 2: Quarterly Profit ($1000) of a Company (Q1–Q4, 2022–2023)**
+- 2022: Q1 (50), Q2 (60), Q3 (70), Q4 (80)
+- 2023: Q1 (55), Q2 (65), Q3 (75), Q4 (90)
+
+Question: By how much did profit increase from Q4 2022 to Q4 2023?","$11,000","$9,000","$20,000","$10,000","D","2023 (90) - 2022 (80) = 10 ($1000) = $10,000.","TRUE","mechanical"
+"Intermediate","**Line Graph 2: Quarterly Profit ($1000) of a Company (Q1–Q4, 2022–2023)**
+- 2022: Q1 (50), Q2 (60), Q3 (70), Q4 (80)
+- 2023: Q1 (55), Q2 (65), Q3 (75), Q4 (90)
+
+Question: Which year had higher total profit?","2023","'s profit decreased in Q4, which suggests it had a lower total profit than 2022.","'s profit increased by 30 from Q1 to Q4, which is a larger increase than 2023's 25, so 2022 had a higher total profit.","had a higher profit in Q3 than 2023, so it must have had a higher total profit.","A","2022: 260. 2023: 285 ($1000). 2023 is higher.","TRUE","llm"
+"Intermediate","**Line Graph 2: Quarterly Profit ($1000) of a Company (Q1–Q4, 2022–2023)**
+- 2022: Q1 (50), Q2 (60), Q3 (70), Q4 (80)
+- 2023: Q1 (55), Q2 (65), Q3 (75), Q4 (90)
+
+Question: What is the combined profit in Q1 and Q2 of 2023?","$240,000","$120,000","$132,000","$108,000","B","Q1 (55) + Q2 (65) = 120 ($1000) = $120,000.","TRUE","mechanical"
+"Intermediate","**Line Graph 2: Quarterly Profit ($1000) of a Company (Q1–Q4, 2022–2023)**
+- 2022: Q1 (50), Q2 (60), Q3 (70), Q4 (80)
+- 2023: Q1 (55), Q2 (65), Q3 (75), Q4 (90)
+
+Question: Which quarter showed the highest percentage growth from 2022 to 2023?","Q8","Q4","Q10","Q2","B","Q1: (55 - 50) ÷ 50 × 100 = 10%.
+Q2: (65 - 60) ÷ 60 × 100 ≈ 8.33%.
+Q3: (75 - 70) ÷ 70 × 100 ≈ 7.14%.
+Q4: (90 - 80) ÷ 80 × 100 = 12.5%.
+Highest is Q4.","TRUE","mechanical"
+"Intermediate","**Caselet 1: A Company Sells Three Products**
+- Product X: 500 units at $10/unit, 20% discount
+- Product Y: 400 units at $15/unit, 10% discount
+- Product Z: 300 units at $20/unit, no discount
+
+Question: What is the revenue from Product X after discount?","$4000","$4,400","$8,000","$3,600","A","Discount = 20% of $10 = $2. Price = $8/unit. Revenue = 500 × 8 = $4000.","TRUE","mechanical"
+"Intermediate","**Caselet 1: A Company Sells Three Products**
+- Product X: 500 units at $10/unit, 20% discount
+- Product Y: 400 units at $15/unit, 10% discount
+- Product Z: 300 units at $20/unit, no discount
+
+Question: What is the revenue from Product Y after discount?","$4,860","$5,940","$5400","$10,800","C","Discount = 10% of $15 = $1.5. Price = $13.5/unit. Revenue = 400 × 13.5 = $5400.","TRUE","mechanical"
+"Intermediate","**Caselet 1: A Company Sells Three Products**
+- Product X: 500 units at $10/unit, 20% discount
+- Product Y: 400 units at $15/unit, 10% discount
+- Product Z: 300 units at $20/unit, no discount
+
+Question: What is the revenue from Product Z?","$6000","$6,600","$5,400","$12,000","A","Revenue = 300 × 20 = $6000.","TRUE","mechanical"
+"Intermediate","**Caselet 1: A Company Sells Three Products**
+- Product X: 500 units at $10/unit, 20% discount
+- Product Y: 400 units at $15/unit, 10% discount
+- Product Z: 300 units at $20/unit, no discount
+
+Question: What is the total revenue from all products?","$6,000","$15,400","$5,400","$30,800","B","Total = 4000 + 5400 + 6000 = $15,400.","TRUE","mechanical"
+"Intermediate","**Caselet 1: A Company Sells Three Products**
+- Product X: 500 units at $10/unit, 20% discount
+- Product Y: 400 units at $15/unit, 10% discount
+- Product Z: 300 units at $20/unit, no discount
+
+Question: Which product generated the highest revenue?","Product Z","Product X generated the highest revenue, as it had the highest quantity sold at $10/unit.","Product X and Product Y generated the same revenue due to their identical price per unit after discounts.","The revenue from Product Y was significantly less than Product Z because of its lower unit price and lower quantity sold.","A","X ($4000), Y ($5400), Z ($6000). Highest is Z.","TRUE","llm"
+"Intermediate","**Caselet 1: A Company Sells Three Products**
+- Product X: 500 units at $10/unit, 20% discount
+- Product Y: 400 units at $15/unit, 10% discount
+- Product Z: 300 units at $20/unit, no discount
+
+Question: What is the average price per unit sold after discounts?","$14.11/unit","$25.66/unit","$12.83/unit","$11.55/unit","C","Total units = 500 + 400 + 300 = 1200. Total revenue = $15,400. Average = 15,400 ÷ 1200 ≈ $12.83/unit.","TRUE","mechanical"
+"Intermediate","**Caselet 1: A Company Sells Three Products**
+- Product X: 500 units at $10/unit, 20% discount
+- Product Y: 400 units at $15/unit, 10% discount
+- Product Z: 300 units at $20/unit, no discount
+
+Question: What is the ratio of units sold of X to Y?","Product X units sold in 2005 were 250, not 500, so the ratio of units sold of X to Y is 125 : 400.","5 : 4","The ratio of units sold of X to Y is 2 : 1 because the number of units of X sold is greater than the number of units of Y sold, even though the price of X is less than the price of Y.","The ratio of units sold of X to Y in 2010 is 5 : 2 because 500 units of X were sold at a 20% discount, and 100 units of Y were sold at a 10% discount.","B","X (500) : Y (400) = 500 : 400 = 5 : 4.","TRUE","llm"
+"Intermediate","**Caselet 1: A Company Sells Three Products**
+- Product X: 500 units at $10/unit, 20% discount
+- Product Y: 400 units at $15/unit, 10% discount
+- Product Z: 300 units at $20/unit, no discount
+
+Question: How much more revenue did Z generate than X?","$2000","$6,000","$2,200","$4,000","A","Z ($6000) - X ($4000) = $2000.","TRUE","mechanical"
+"Intermediate","**Caselet 1: A Company Sells Three Products**
+- Product X: 500 units at $10/unit, 20% discount
+- Product Y: 400 units at $15/unit, 10% discount
+- Product Z: 300 units at $20/unit, no discount
+
+Question: What percentage of total revenue comes from Y?","100%","38.57%","70.12%","35.06%","D","Y ($5400) ÷ Total ($15,400) × 100 ≈ 35.06%.","TRUE","mechanical"
+"Intermediate","**Caselet 1: A Company Sells Three Products**
+- Product X: 500 units at $10/unit, 20% discount
+- Product Y: 400 units at $15/unit, 10% discount
+- Product Z: 300 units at $20/unit, no discount
+
+Question: What is the total discount amount given on X and Y?","$500","$1600","$1,000","$600","B","X: 500 × $2 = $1000. Y: 400 × $1.5 = $600. Total = 1000 + 600 = $1600.","TRUE","mechanical"
+"Intermediate","**Caselet 2: A School’s Exam Results**
+- Class A: 50 students, 60% passed, average score 70
+- Class B: 40 students, 75% passed, average score 65
+- Class C: 30 students, 80% passed, average score 80
+
+Question: How many students passed in Class A?","50 students","33 students","30 students","60 students","C","Passed = 60% of 50 = (60 ÷ 100) × 50 = 30 students.","TRUE","mechanical"
+"Intermediate","**Caselet 2: A School’s Exam Results**
+- Class A: 50 students, 60% passed, average score 70
+- Class B: 40 students, 75% passed, average score 65
+- Class C: 30 students, 80% passed, average score 80
+
+Question: What is the total score of all students in Class B?","The total score of all students in Class B can be determined by multiplying the percentage of students who passed by the total number of students in the school, which gives 25% * 110 students = 2750.","The total score of all students in Class B can be determined by multiplying the number of students by the average score, which gives 40 students * 65 average score = 2600.","The total score of all students in Class B can be determined by multiplying the number of students by the average score, which gives 30 students * 65 average score = 1950.","2600","D","Total score = 40 × 65 = 2600.","TRUE","llm"
+"Intermediate","**Caselet 2: A School’s Exam Results**
+- Class A: 50 students, 60% passed, average score 70
+- Class B: 40 students, 75% passed, average score 65
+- Class C: 30 students, 80% passed, average score 80
+
+Question: Which class had the highest pass percentage?","The class with the lowest pass percentage was Class A in 2010.","Class C","Class B had the highest pass percentage.","Class A had a higher pass percentage than Class B in 2005.","B","A: 60%, B: 75%, C: 80%. Highest is C.","TRUE","llm"
+"Intermediate","**Caselet 2: A School’s Exam Results**
+- Class A: 50 students, 60% passed, average score 70
+- Class B: 40 students, 75% passed, average score 65
+- Class C: 30 students, 80% passed, average score 80
+
+Question: How many students failed in Class C?","12 students","5 students","6 students","7 students","C","Passed = 80% of 30 = 24. Failed = 30 - 24 = 6 students.","TRUE","mechanical"
+"Intermediate","**Caselet 2: A School’s Exam Results**
+- Class A: 50 students, 60% passed, average score 70
+- Class B: 40 students, 75% passed, average score 65
+- Class C: 30 students, 80% passed, average score 80
+
+Question: What is the total number of students who passed across all classes?","75 students","40 students","84 students","30 students","C","A: 30, B: 75% of 40 = 30, C: 24. Total = 30 + 30 + 24 = 84 students.","TRUE","mechanical"
+"Intermediate","**Caselet 2: A School’s Exam Results**
+- Class A: 50 students, 60% passed, average score 70
+- Class B: 40 students, 75% passed, average score 65
+- Class C: 30 students, 80% passed, average score 80
+
+Question: What is the average score of all students across the three classes?","40","30","50","70.83","D","Total students = 50 + 40 + 30 = 120. Total score = (50 × 70) + (40 × 65) + (30 × 80) = 3500 + 2600 + 2400 = 8500.
+Average = 8500 ÷ 120 ≈ 70.83.","TRUE","mechanical"
+"Intermediate","**Caselet 2: A School’s Exam Results**
+- Class A: 50 students, 60% passed, average score 70
+- Class B: 40 students, 75% passed, average score 65
+- Class C: 30 students, 80% passed, average score 80
+
+Question: What is the ratio of passed students in Class A to Class B?","The ratio of passed students in Class A to Class B is 12 : 50.","The ratio of passed students in Class A to Class B is 1 : 2.","The ratio of passed students in Class A to Class B is 6 : 25.","1 : 1","D","A (30) : B (30) = 30 : 30 = 1 : 1.","TRUE","llm"
+"Intermediate","**Caselet 2: A School’s Exam Results**
+- Class A: 50 students, 60% passed, average score 70
+- Class B: 40 students, 75% passed, average score 65
+- Class C: 30 students, 80% passed, average score 80
+
+Question: How much higher is Class C’s average score than Class B’s?","15","14","16","30","A","C (80) - B (65) = 15.","TRUE","mechanical"
+"Intermediate","**Caselet 2: A School’s Exam Results**
+- Class A: 50 students, 60% passed, average score 70
+- Class B: 40 students, 75% passed, average score 65
+- Class C: 30 students, 80% passed, average score 80
+
+Question: What percentage of total students passed?","84%","70%","100%","120%","B","Total students = 120. Passed = 84. % Passed = (84 ÷ 120) × 100 = 70%.","TRUE","mechanical"
+"Intermediate","**Caselet 2: A School’s Exam Results**
+- Class A: 50 students, 60% passed, average score 70
+- Class B: 40 students, 75% passed, average score 65
+- Class C: 30 students, 80% passed, average score 80
+
+Question: What is the total score of passed students in Class C?","The total score of passed students in Class A is 1680.","1920","The total score of passed students in Class C is 2040.","The total score of passed students in Class B is 1950.","B","Passed = 24 students. Total score = 24 × 80 = 1920.","TRUE","llm"
+"Advanced","**Table 1: Annual Sales (in $1000) of Three Products Across Two Regions (2021–2023)**
+| Product | Region A (2021) | Region A (2022) | Region A (2023) | Region B (2021) | Region B (2022) | Region B (2023) |
+|---------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
+| X       | 500             | 550             | 600             | 400             | 450             | 500             |
+| Y       | 300             | 320             | 350             | 250             | 270             | 300             |
+| Z       | 200             | 220             | 250             | 150             | 180             | 200             |
+
+**Table 2: Unit Price ($ per unit) of Products (2021–2023)**
+| Product | 2021 | 2022 | 2023 |
+|---------|------|------|------|
+| X       | 10   | 12   | 15   |
+| Y       | 8    | 9    | 10   |
+| Z       | 5    | 6    | 7    |
+
+Question: What is the total revenue from Product X in Region A in 2023?","$540,000","$600,000","$1,200,000","$660,000","B","Sales = 600 ($1000) = 600,000. Units = 600,000 ÷ 15 = 40,000. Revenue = 40,000 × 15 = $600,000.","TRUE","mechanical"
+"Advanced","**Table 1: Annual Sales (in $1000) of Three Products Across Two Regions (2021–2023)**
+| Product | Region A (2021) | Region A (2022) | Region A (2023) | Region B (2021) | Region B (2022) | Region B (2023) |
+|---------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
+| X       | 500             | 550             | 600             | 400             | 450             | 500             |
+| Y       | 300             | 320             | 350             | 250             | 270             | 300             |
+| Z       | 200             | 220             | 250             | 150             | 180             | 200             |
+
+**Table 2: Unit Price ($ per unit) of Products (2021–2023)**
+| Product | 2021 | 2022 | 2023 |
+|---------|------|------|------|
+| X       | 10   | 12   | 15   |
+| Y       | 8    | 9    | 10   |
+| Z       | 5    | 6    | 7    |
+
+Question: Which product had the highest revenue in Region B in 2022?","Product Z had the highest revenue in Region B in 2022 because it had the highest unit price of $6 in 2022 and sold 180 units.","Product X","Product Y had the highest revenue in Region B in 2022 because it showed the greatest increase in sales between 2021 and 2022 in Region B.","The product with the highest revenue in Region B in 2022 was Y, due to its significantly higher sales of 270 units compared to the other products in Region B in 2022.","B","X: 450,000 ÷ 12 = 37,500 units × 12 = $450,000.
+Y: 270,000 ÷ 9 = 30,000 units × 9 = $270,000.
+Z: 180,000 ÷ 6 = 30,000 units × 6 = $180,000.
+Highest is X.","TRUE","llm"
+"Advanced","**Table 1: Annual Sales (in $1000) of Three Products Across Two Regions (2021–2023)**
+| Product | Region A (2021) | Region A (2022) | Region A (2023) | Region B (2021) | Region B (2022) | Region B (2023) |
+|---------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
+| X       | 500             | 550             | 600             | 400             | 450             | 500             |
+| Y       | 300             | 320             | 350             | 250             | 270             | 300             |
+| Z       | 200             | 220             | 250             | 150             | 180             | 200             |
+
+**Table 2: Unit Price ($ per unit) of Products (2021–2023)**
+| Product | 2021 | 2022 | 2023 |
+|---------|------|------|------|
+| X       | 10   | 12   | 15   |
+| Y       | 8    | 9    | 10   |
+| Z       | 5    | 6    | 7    |
+
+Question: What is the compound annual growth rate (CAGR) of Product Y’s sales in Region A from 2021 to 2023?","8.01%","7.21%","16.02%","8.81%","A","Initial (2021) = 300 ($1000), Final (2023) = 350 ($1000).
+CAGR = [(350 ÷ 300)^(1/2) - 1] × 100 ≈ [(1.1667)^0.5 - 1] × 100 ≈ 8.01%.","TRUE","mechanical"
+"Advanced","**Table 1: Annual Sales (in $1000) of Three Products Across Two Regions (2021–2023)**
+| Product | Region A (2021) | Region A (2022) | Region A (2023) | Region B (2021) | Region B (2022) | Region B (2023) |
+|---------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
+| X       | 500             | 550             | 600             | 400             | 450             | 500             |
+| Y       | 300             | 320             | 350             | 250             | 270             | 300             |
+| Z       | 200             | 220             | 250             | 150             | 180             | 200             |
+
+**Table 2: Unit Price ($ per unit) of Products (2021–2023)**
+| Product | 2021 | 2022 | 2023 |
+|---------|------|------|------|
+| X       | 10   | 12   | 15   |
+| Y       | 8    | 9    | 10   |
+| Z       | 5    | 6    | 7    |
+
+Question: What is the weighted average unit price of all products in 2022, weighted by units sold in Region A?","$9","$12","$9.26","$6","C","Units X: 550,000 ÷ 12 ≈ 45,833. Y: 320,000 ÷ 9 ≈ 35,556. Z: 220,000 ÷ 6 ≈ 36,667.
+Total units = 45,833 + 35,556 + 36,667 ≈ 118,056.
+Weighted price = [(45,833 × 12) + (35,556 × 9) + (36,667 × 6)] ÷ 118,056 ≈ $9.26.","TRUE","mechanical"
+"Advanced","**Table 1: Annual Sales (in $1000) of Three Products Across Two Regions (2021–2023)**
+| Product | Region A (2021) | Region A (2022) | Region A (2023) | Region B (2021) | Region B (2022) | Region B (2023) |
+|---------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
+| X       | 500             | 550             | 600             | 400             | 450             | 500             |
+| Y       | 300             | 320             | 350             | 250             | 270             | 300             |
+| Z       | 200             | 220             | 250             | 150             | 180             | 200             |
+
+**Table 2: Unit Price ($ per unit) of Products (2021–2023)**
+| Product | 2021 | 2022 | 2023 |
+|---------|------|------|------|
+| X       | 10   | 12   | 15   |
+| Y       | 8    | 9    | 10   |
+| Z       | 5    | 6    | 7    |
+
+Question: What is the total revenue across both regions for Product Z in 2021?","$350,000","$700,000","$150,000","$200,000","A","A: 200,000 ÷ 5 = 40,000 units × 5 = $200,000.
+B: 150,000 ÷ 5 = 30,000 units × 5 = $150,000.
+Total = 200,000 + 150,000 = $350,000.","TRUE","mechanical"
+"Advanced","**Table 1: Annual Sales (in $1000) of Three Products Across Two Regions (2021–2023)**
+| Product | Region A (2021) | Region A (2022) | Region A (2023) | Region B (2021) | Region B (2022) | Region B (2023) |
+|---------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
+| X       | 500             | 550             | 600             | 400             | 450             | 500             |
+| Y       | 300             | 320             | 350             | 250             | 270             | 300             |
+| Z       | 200             | 220             | 250             | 150             | 180             | 200             |
+
+**Table 2: Unit Price ($ per unit) of Products (2021–2023)**
+| Product | 2021 | 2022 | 2023 |
+|---------|------|------|------|
+| X       | 10   | 12   | 15   |
+| Y       | 8    | 9    | 10   |
+| Z       | 5    | 6    | 7    |
+
+Question: What is the percentage contribution of Product X to total revenue in Region B in 2023?","100%","50%","55%","15%","B","X: 500,000 ÷ 15 ≈ 33,333 units × 15 = $500,000.
+Y: 300,000 ÷ 10 = 30,000 units × 10 = $300,000.
+Z: 200,000 ÷ 7 ≈ 28,571 units × 7 ≈ $200,000.
+Total = 500,000 + 300,000 + 200,000 = $1,000,000.
+% X = (500,000 ÷ 1,000,000) × 100 = 50%.","TRUE","mechanical"
+"Advanced","**Table 1: Annual Sales (in $1000) of Three Products Across Two Regions (2021–2023)**
+| Product | Region A (2021) | Region A (2022) | Region A (2023) | Region B (2021) | Region B (2022) | Region B (2023) |
+|---------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
+| X       | 500             | 550             | 600             | 400             | 450             | 500             |
+| Y       | 300             | 320             | 350             | 250             | 270             | 300             |
+| Z       | 200             | 220             | 250             | 150             | 180             | 200             |
+
+**Table 2: Unit Price ($ per unit) of Products (2021–2023)**
+| Product | 2021 | 2022 | 2023 |
+|---------|------|------|------|
+| X       | 10   | 12   | 15   |
+| Y       | 8    | 9    | 10   |
+| Z       | 5    | 6    | 7    |
+
+Question: What is the ratio of units sold of Product Y in Region A to Region B in 2022?","The ratio of units sold of Product Y in Region A to Region B in 2022 is 350 : 250.","119 : 100","The ratio of units sold of Product Y in Region A to Region B in 2022 is 400 : 225.","Product Y in Region A had 320 sales units in 2022 and Product Y in Region B had 270 sales units in 2022, resulting in a ratio of 320 : 270.","B","A: 320,000 ÷ 9 ≈ 35,556 units. B: 270,000 ÷ 9 = 30,000 units.
+Ratio = 35,556 : 30,000 ≈ 1.19 : 1 ≈ 119 : 100.","TRUE","llm"
+"Advanced","**Table 1: Annual Sales (in $1000) of Three Products Across Two Regions (2021–2023)**
+| Product | Region A (2021) | Region A (2022) | Region A (2023) | Region B (2021) | Region B (2022) | Region B (2023) |
+|---------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
+| X       | 500             | 550             | 600             | 400             | 450             | 500             |
+| Y       | 300             | 320             | 350             | 250             | 270             | 300             |
+| Z       | 200             | 220             | 250             | 150             | 180             | 200             |
+
+**Table 2: Unit Price ($ per unit) of Products (2021–2023)**
+| Product | 2021 | 2022 | 2023 |
+|---------|------|------|------|
+| X       | 10   | 12   | 15   |
+| Y       | 8    | 9    | 10   |
+| Z       | 5    | 6    | 7    |
+
+Question: Which region showed the highest revenue growth for Product Z from 2021 to 2023?","Region B","Region A showed the highest revenue growth for Product Z from 2021 to 2023 due to it increasing by $50, which was significantly more than Region B's $50 increase.","The region with the most growth in sales for Product X was actually Region A, not Region B.","Region B had the lowest overall sales growth for all three products from 2021 to 2023.","A","A: 2021: 200,000, 2023: 250,000. % Growth = (50 ÷ 200) × 100 = 25%.
+B: 2021: 150,000, 2023: 200,000. % Growth = (50 ÷ 150) × 100 ≈ 33.33%.
+B is higher.","TRUE","llm"
+"Advanced","**Table 1: Annual Sales (in $1000) of Three Products Across Two Regions (2021–2023)**
+| Product | Region A (2021) | Region A (2022) | Region A (2023) | Region B (2021) | Region B (2022) | Region B (2023) |
+|---------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
+| X       | 500             | 550             | 600             | 400             | 450             | 500             |
+| Y       | 300             | 320             | 350             | 250             | 270             | 300             |
+| Z       | 200             | 220             | 250             | 150             | 180             | 200             |
+
+**Table 2: Unit Price ($ per unit) of Products (2021–2023)**
+| Product | 2021 | 2022 | 2023 |
+|---------|------|------|------|
+| X       | 10   | 12   | 15   |
+| Y       | 8    | 9    | 10   |
+| Z       | 5    | 6    | 7    |
+
+Question: What is the total revenue of all products in Region A in 2022?","$550,000","$2,180,000","$1,090,000","$1,199,000","C","X: 550,000. Y: 320,000. Z: 220,000. Total = 550,000 + 320,000 + 220,000 = $1,090,000.","TRUE","mechanical"
+"Advanced","**Table 1: Annual Sales (in $1000) of Three Products Across Two Regions (2021–2023)**
+| Product | Region A (2021) | Region A (2022) | Region A (2023) | Region B (2021) | Region B (2022) | Region B (2023) |
+|---------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
+| X       | 500             | 550             | 600             | 400             | 450             | 500             |
+| Y       | 300             | 320             | 350             | 250             | 270             | 300             |
+| Z       | 200             | 220             | 250             | 150             | 180             | 200             |
+
+**Table 2: Unit Price ($ per unit) of Products (2021–2023)**
+| Product | 2021 | 2022 | 2023 |
+|---------|------|------|------|
+| X       | 10   | 12   | 15   |
+| Y       | 8    | 9    | 10   |
+| Z       | 5    | 6    | 7    |
+
+Question: What is the percentage increase in unit price of Product X from 2021 to 2023?","15%","55%","50%","100%","C","Increase = 15 - 10 = 5. % Increase = (5 ÷ 10) × 100 = 50%.","TRUE","mechanical"
+"Advanced","**Table 3: Production Costs ($ per unit) and Units Produced (2021–2023)**
+| Product | Cost (2021) | Cost (2022) | Cost (2023) | Units (2021) | Units (2022) | Units (2023) |
+|---------|-------------|-------------|-------------|--------------|--------------|--------------|
+| P       | 4           | 5           | 6           | 20,000       | 22,000       | 25,000       |
+| Q       | 6           | 7           | 8           | 15,000       | 18,000       | 20,000       |
+
+Question: What is the total production cost of Product P in 2022?","$121,000","$99,000","$220,000","$110,000","D","Cost = 22,000 × 5 = $110,000.","TRUE","mechanical"
+"Advanced","**Table 3: Production Costs ($ per unit) and Units Produced (2021–2023)**
+| Product | Cost (2021) | Cost (2022) | Cost (2023) | Units (2021) | Units (2022) | Units (2023) |
+|---------|-------------|-------------|-------------|--------------|--------------|--------------|
+| P       | 4           | 5           | 6           | 20,000       | 22,000       | 25,000       |
+| Q       | 6           | 7           | 8           | 15,000       | 18,000       | 20,000       |
+
+Question: What is the percentage increase in production cost per unit for Product Q from 2021 to 2023?","36.66%","33.33%","66.66%","30%","B","Increase = 8 - 6 = 2. % Increase = (2 ÷ 6) × 100 ≈ 33.33%.","TRUE","mechanical"
+"Advanced","**Table 3: Production Costs ($ per unit) and Units Produced (2021–2023)**
+| Product | Cost (2021) | Cost (2022) | Cost (2023) | Units (2021) | Units (2022) | Units (2023) |
+|---------|-------------|-------------|-------------|--------------|--------------|--------------|
+| P       | 4           | 5           | 6           | 20,000       | 22,000       | 25,000       |
+| Q       | 6           | 7           | 8           | 15,000       | 18,000       | 20,000       |
+
+Question: What is the total cost of producing both products in 2023?","$310,000","$150,000","$620,000","$160,000","A","P: 25,000 × 6 = $150,000. Q: 20,000 × 8 = $160,000. Total = 150,000 + 160,000 = $310,000.","TRUE","mechanical"
+"Advanced","**Table 3: Production Costs ($ per unit) and Units Produced (2021–2023)**
+| Product | Cost (2021) | Cost (2022) | Cost (2023) | Units (2021) | Units (2022) | Units (2023) |
+|---------|-------------|-------------|-------------|--------------|--------------|--------------|
+| P       | 4           | 5           | 6           | 20,000       | 22,000       | 25,000       |
+| Q       | 6           | 7           | 8           | 15,000       | 18,000       | 20,000       |
+
+Question: What is the CAGR of units produced for Product P from 2021 to 2023?","11.80%","10.62%","12.98%","23.6%","A","Initial = 20,000, Final = 25,000. CAGR = [(25,000 ÷ 20,000)^(1/2) - 1] × 100 ≈ 11.80%.","TRUE","mechanical"
+"Advanced","**Table 3: Production Costs ($ per unit) and Units Produced (2021–2023)**
+| Product | Cost (2021) | Cost (2022) | Cost (2023) | Units (2021) | Units (2022) | Units (2023) |
+|---------|-------------|-------------|-------------|--------------|--------------|--------------|
+| P       | 4           | 5           | 6           | 20,000       | 22,000       | 25,000       |
+| Q       | 6           | 7           | 8           | 15,000       | 18,000       | 20,000       |
+
+Question: What is the ratio of total production costs of P to Q in 2021?","8 : 9","The ratio of total production costs of P to Q in 2022 is 10 : 9.","The ratio of total production costs of Q to P in 2023 is 12 : 15.","The ratio of total production costs of P to Q in 2021 is 3 : 4.","A","P: 20,000 × 4 = $80,000. Q: 15,000 × 6 = $90,000. Ratio = 80,000 : 90,000 = 8 : 9.","TRUE","llm"
+"Advanced","**Table 3: Production Costs ($ per unit) and Units Produced (2021–2023)**
+| Product | Cost (2021) | Cost (2022) | Cost (2023) | Units (2021) | Units (2022) | Units (2023) |
+|---------|-------------|-------------|-------------|--------------|--------------|--------------|
+| P       | 4           | 5           | 6           | 20,000       | 22,000       | 25,000       |
+| Q       | 6           | 7           | 8           | 15,000       | 18,000       | 20,000       |
+
+Question: Which product had higher cost growth per unit from 2021 to 2022?","Product P had lower cost growth per unit from 2023 to 2022, decreasing from 6 to 5 dollars per unit.","Product Q had lower cost growth per unit from 2021 to 2022 compared to Product P's total production units, with a cost increase from 6 to 7 dollars per unit on fewer than 20,000 units.","Product Q experienced higher cost growth per unit from 2021 to 2023, increasing from 6 to 8 dollars per unit.","Product P","D","P: (5 - 4) ÷ 4 × 100 = 25%. Q: (7 - 6) ÷ 6 × 100 ≈ 16.67%. P is higher.","TRUE","llm"
+"Advanced","**Table 3: Production Costs ($ per unit) and Units Produced (2021–2023)**
+| Product | Cost (2021) | Cost (2022) | Cost (2023) | Units (2021) | Units (2022) | Units (2023) |
+|---------|-------------|-------------|-------------|--------------|--------------|--------------|
+| P       | 4           | 5           | 6           | 20,000       | 22,000       | 25,000       |
+| Q       | 6           | 7           | 8           | 15,000       | 18,000       | 20,000       |
+
+Question: What is the total units produced in 2022?","80,000 units","22,000 units","40,000 units","18,000 units","C","P: 22,000 + Q: 18,000 = 40,000 units.","TRUE","mechanical"
+"Advanced","**Table 3: Production Costs ($ per unit) and Units Produced (2021–2023)**
+| Product | Cost (2021) | Cost (2022) | Cost (2023) | Units (2021) | Units (2022) | Units (2023) |
+|---------|-------------|-------------|-------------|--------------|--------------|--------------|
+| P       | 4           | 5           | 6           | 20,000       | 22,000       | 25,000       |
+| Q       | 6           | 7           | 8           | 15,000       | 18,000       | 20,000       |
+
+Question: What is the percentage contribution of Product Q’s cost to total cost in 2023?","100%","103.22%","56.77%","51.61%","D","Q: $160,000. Total: $310,000. % = (160,000 ÷ 310,000) × 100 ≈ 51.61%.","TRUE","mechanical"
+"Advanced","**Table 3: Production Costs ($ per unit) and Units Produced (2021–2023)**
+| Product | Cost (2021) | Cost (2022) | Cost (2023) | Units (2021) | Units (2022) | Units (2023) |
+|---------|-------------|-------------|-------------|--------------|--------------|--------------|
+| P       | 4           | 5           | 6           | 20,000       | 22,000       | 25,000       |
+| Q       | 6           | 7           | 8           | 15,000       | 18,000       | 20,000       |
+
+Question: What is the difference in production cost for Product P between 2021 and 2023?","$70,000","$150,000","$80,000","$25,000","A","2021: 20,000 × 4 = $80,000. 2023: 25,000 × 6 = $150,000. Difference = 150,000 - 80,000 = $70,000.","TRUE","mechanical"
+"Advanced","**Table 3: Production Costs ($ per unit) and Units Produced (2021–2023)**
+| Product | Cost (2021) | Cost (2022) | Cost (2023) | Units (2021) | Units (2022) | Units (2023) |
+|---------|-------------|-------------|-------------|--------------|--------------|--------------|
+| P       | 4           | 5           | 6           | 20,000       | 22,000       | 25,000       |
+| Q       | 6           | 7           | 8           | 15,000       | 18,000       | 20,000       |
+
+Question: What is the weighted average cost per unit in 2022, weighted by units produced?","$11.8","$7","$5","$5.90","D","Total units = 40,000. Cost = (22,000 × 5) + (18,000 × 7) = 110,000 + 126,000 = $236,000.
+Average = 236,000 ÷ 40,000 = $5.90.","TRUE","mechanical"
+"Advanced","**Stacked Bar Graph 1: Revenue ($1000) by Product Category in Three Cities (2021–2023)**
+- 2021: City A (Electronics: 300, Apparel: 200, Food: 100), City B (200, 150, 50), City C (250, 100, 50)
+- 2022: City A (350, 220, 120), City B (220, 160, 60), City C (270, 120, 60)
+- 2023: City A (400, 250, 150), City B (250, 180, 70), City C (300, 150, 80)
+
+Question: What is the total revenue from Electronics in City A over the three years?","$1,155,000","$2,100,000","$945,000","$1,050,000","D","Total = 300 + 350 + 400 = 1050 ($1000) = $1,050,000.","TRUE","mechanical"
+"Advanced","**Stacked Bar Graph 1: Revenue ($1000) by Product Category in Three Cities (2021–2023)**
+- 2021: City A (Electronics: 300, Apparel: 200, Food: 100), City B (200, 150, 50), City C (250, 100, 50)
+- 2022: City A (350, 220, 120), City B (220, 160, 60), City C (270, 120, 60)
+- 2023: City A (400, 250, 150), City B (250, 180, 70), City C (300, 150, 80)
+
+Question: Which city had the highest Apparel revenue in 2023?","City B's Apparel revenue in 2023 was more than twice that of City C's Food revenue for the same year.","City A","City B had the highest percentage increase in Apparel revenue from 2021 to 2023.","City A had the lowest ratio of Food to Apparel revenue in 2023.","B","A: 250, B: 180, C: 150. Highest is A.","TRUE","llm"
+"Advanced","**Stacked Bar Graph 1: Revenue ($1000) by Product Category in Three Cities (2021–2023)**
+- 2021: City A (Electronics: 300, Apparel: 200, Food: 100), City B (200, 150, 50), City C (250, 100, 50)
+- 2022: City A (350, 220, 120), City B (220, 160, 60), City C (270, 120, 60)
+- 2023: City A (400, 250, 150), City B (250, 180, 70), City C (300, 150, 80)
+
+Question: What is the percentage growth of Food revenue in City B from 2021 to 2023?","50%","40%","20%","70%","B","Increase = 70 - 50 = 20. % Growth = (20 ÷ 50) × 100 = 40%.","TRUE","mechanical"
+"Advanced","**Stacked Bar Graph 1: Revenue ($1000) by Product Category in Three Cities (2021–2023)**
+- 2021: City A (Electronics: 300, Apparel: 200, Food: 100), City B (200, 150, 50), City C (250, 100, 50)
+- 2022: City A (350, 220, 120), City B (220, 160, 60), City C (270, 120, 60)
+- 2023: City A (400, 250, 150), City B (250, 180, 70), City C (300, 150, 80)
+
+Question: What is the total revenue in City C in 2022?","$450,000","$405,000","$495,000","$900,000","A","Total = 270 + 120 + 60 = 450 ($1000) = $450,000.","TRUE","mechanical"
+"Advanced","**Stacked Bar Graph 1: Revenue ($1000) by Product Category in Three Cities (2021–2023)**
+- 2021: City A (Electronics: 300, Apparel: 200, Food: 100), City B (200, 150, 50), City C (250, 100, 50)
+- 2022: City A (350, 220, 120), City B (220, 160, 60), City C (270, 120, 60)
+- 2023: City A (400, 250, 150), City B (250, 180, 70), City C (300, 150, 80)
+
+Question: What is the ratio of Electronics to Apparel revenue in City A in 2021?","The ratio of Electronics to Apparel revenue in City A in 2022 is 6 : 5.","The ratio of Electronics to Food revenue in City A in 2021 is 3 : 1.","The ratio of Electronics to Apparel revenue in City C in 2023 is 2 : 1.","3 : 2","D","Electronics (300) : Apparel (200) = 300 : 200 = 3 : 2.","TRUE","llm"
+"Advanced","**Stacked Bar Graph 1: Revenue ($1000) by Product Category in Three Cities (2021–2023)**
+- 2021: City A (Electronics: 300, Apparel: 200, Food: 100), City B (200, 150, 50), City C (250, 100, 50)
+- 2022: City A (350, 220, 120), City B (220, 160, 60), City C (270, 120, 60)
+- 2023: City A (400, 250, 150), City B (250, 180, 70), City C (300, 150, 80)
+
+Question: Which category showed the highest growth in City C from 2021 to 2023?","Food showed the highest growth in City B from 2021 to 2023 with an increase from 50 to 70.","The Electronics category showed the highest growth in City C from 2021 to 2023 with an increase from 100 to 150.","Food","Apparel showed the highest growth in City C from 2021 to 2023 with a growth of 50 points.","C","Electronics: (300 - 250) ÷ 250 × 100 = 20%.
+Apparel: (150 - 100) ÷ 100 × 100 = 50%.
+Food: (80 - 50) ÷ 50 × 100 = 60%.
+Highest is Food.","TRUE","llm"
+"Advanced","**Stacked Bar Graph 1: Revenue ($1000) by Product Category in Three Cities (2021–2023)**
+- 2021: City A (Electronics: 300, Apparel: 200, Food: 100), City B (200, 150, 50), City C (250, 100, 50)
+- 2022: City A (350, 220, 120), City B (220, 160, 60), City C (270, 120, 60)
+- 2023: City A (400, 250, 150), City B (250, 180, 70), City C (300, 150, 80)
+
+Question: What is the percentage contribution of Electronics to total revenue in City B in 2023?","70%","50%","100%","55%","B","Total = 250 + 180 + 70 = 500. % Electronics = (250 ÷ 500) × 100 = 50%.","TRUE","mechanical"
+"Advanced","**Stacked Bar Graph 1: Revenue ($1000) by Product Category in Three Cities (2021–2023)**
+- 2021: City A (Electronics: 300, Apparel: 200, Food: 100), City B (200, 150, 50), City C (250, 100, 50)
+- 2022: City A (350, 220, 120), City B (220, 160, 60), City C (270, 120, 60)
+- 2023: City A (400, 250, 150), City B (250, 180, 70), City C (300, 150, 80)
+
+Question: What is the combined revenue of Apparel and Food in City A in 2022?","$340,000","$374,000","$680,000","$306,000","A","Apparel (220) + Food (120) = 340 ($1000) = $340,000.","TRUE","mechanical"
+"Advanced","**Stacked Bar Graph 1: Revenue ($1000) by Product Category in Three Cities (2021–2023)**
+- 2021: City A (Electronics: 300, Apparel: 200, Food: 100), City B (200, 150, 50), City C (250, 100, 50)
+- 2022: City A (350, 220, 120), City B (220, 160, 60), City C (270, 120, 60)
+- 2023: City A (400, 250, 150), City B (250, 180, 70), City C (300, 150, 80)
+
+Question: Which year had the highest total revenue across all cities?","had a higher total revenue than the combined revenues of City A in 2021 and City B in 2022 alone.","had the highest total revenue across all cities.","2023","The year with the lowest total revenue across all cities was 2023.","C","2021: A (600) + B (400) + C (400) = 1400.
+2022: A (690) + B (440) + C (450) = 1580.
+2023: A (800) + B (500) + C (530) = 1830 ($1000).
+Highest is 2023.","TRUE","llm"
+"Advanced","**Stacked Bar Graph 1: Revenue ($1000) by Product Category in Three Cities (2021–2023)**
+- 2021: City A (Electronics: 300, Apparel: 200, Food: 100), City B (200, 150, 50), City C (250, 100, 50)
+- 2022: City A (350, 220, 120), City B (220, 160, 60), City C (270, 120, 60)
+- 2023: City A (400, 250, 150), City B (250, 180, 70), City C (300, 150, 80)
+
+Question: What is the CAGR of total revenue in City A from 2021 to 2023?","13.92%","15.47%","17.02%","30.94%","B","Initial = 600, Final = 800. CAGR = [(800 ÷ 600)^(1/2) - 1] × 100 ≈ 15.47%.","TRUE","mechanical"
+"Advanced","**Stacked Bar Graph 2: Student Enrollments by Program (2021–2023)**
+- 2021: UG (500), PG (300), Diploma (200)
+- 2022: UG (550), PG (320), Diploma (220)
+- 2023: UG (600), PG (350), Diploma (250)
+
+Question: What is the total enrollment in PG over the three years?","300 students","970 students","320 students","350 students","B","Total = 300 + 320 + 350 = 970 students.","TRUE","mechanical"
+"Advanced","**Stacked Bar Graph 2: Student Enrollments by Program (2021–2023)**
+- 2021: UG (500), PG (300), Diploma (200)
+- 2022: UG (550), PG (320), Diploma (220)
+- 2023: UG (600), PG (350), Diploma (250)
+
+Question: Which program had the highest enrollment in 2023?","The UG program actually decreased in enrollment by 50 students from 2021.","The PG program had the highest enrollment in 2023, increasing by 50 students from 2022.","UG","The Diploma program had the lowest enrollment in 2023, decreasing by 30 students from 2022, but still had more enrollments than the PG program in 2021.","C","UG (600), PG (350), Diploma (250). Highest is UG.","TRUE","llm"
+"Advanced","**Stacked Bar Graph 2: Student Enrollments by Program (2021–2023)**
+- 2021: UG (500), PG (300), Diploma (200)
+- 2022: UG (550), PG (320), Diploma (220)
+- 2023: UG (600), PG (350), Diploma (250)
+
+Question: What is the percentage growth of Diploma enrollment from 2021 to 2023?","25%","28%","50%","22%","A","Increase = 250 - 200 = 50. % Growth = (50 ÷ 200) × 100 = 25%.","TRUE","mechanical"
+"Advanced","**Stacked Bar Graph 2: Student Enrollments by Program (2021–2023)**
+- 2021: UG (500), PG (300), Diploma (200)
+- 2022: UG (550), PG (320), Diploma (220)
+- 2023: UG (600), PG (350), Diploma (250)
+
+Question: What is the total enrollment in 2022?","550 students","1,199 students","2,180 students","1090 students","D","Total = 550 + 320 + 220 = 1090 students.","TRUE","mechanical"
+"Advanced","**Stacked Bar Graph 2: Student Enrollments by Program (2021–2023)**
+- 2021: UG (500), PG (300), Diploma (200)
+- 2022: UG (550), PG (320), Diploma (220)
+- 2023: UG (600), PG (350), Diploma (250)
+
+Question: What is the ratio of UG to PG enrollment in 2021?","5 : 3","The ratio of UG to PG enrollment in 2023 was 12 : 16.","The ratio of Diploma to PG enrollment in 2022 was 5 : 6.","The ratio of UG to PG enrollment in 2021 was 10 : 7.","A","UG (500) : PG (300) = 500 : 300 = 5 : 3.","TRUE","llm"
+"Advanced","**Stacked Bar Graph 2: Student Enrollments by Program (2021–2023)**
+- 2021: UG (500), PG (300), Diploma (200)
+- 2022: UG (550), PG (320), Diploma (220)
+- 2023: UG (600), PG (350), Diploma (250)
+
+Question: Which program showed the highest percentage growth from 2021 to 2022?","UG or Diploma","PG had the highest percentage growth from 2021 to 2023, with an increase of 16.67% in enrollments.","The program with the lowest percentage growth from 2021 to 2022 was UG, at a mere 2% increase in enrollments.","Diploma showed the highest percentage growth from 2021 to 2022 due to a 10% increase in enrollments.","A","UG: (550 - 500) ÷ 500 × 100 = 10%.
+PG: (320 - 300) ÷ 300 × 100 ≈ 6.67%.
+Diploma: (220 - 200) ÷ 200 × 100 = 10%.
+UG and Diploma tie.","TRUE","llm"
+"Advanced","**Stacked Bar Graph 2: Student Enrollments by Program (2021–2023)**
+- 2021: UG (500), PG (300), Diploma (200)
+- 2022: UG (550), PG (320), Diploma (220)
+- 2023: UG (600), PG (350), Diploma (250)
+
+Question: What is the percentage contribution of PG to total enrollment in 2023?","29.17%","58.34%","32.09%","26.25%","A","Total = 600 + 350 + 250 = 1200. % PG = (350 ÷ 1200) × 100 ≈ 29.17%.","TRUE","mechanical"
+"Advanced","**Stacked Bar Graph 2: Student Enrollments by Program (2021–2023)**
+- 2021: UG (500), PG (300), Diploma (200)
+- 2022: UG (550), PG (320), Diploma (220)
+- 2023: UG (600), PG (350), Diploma (250)
+
+Question: What is the combined enrollment of UG and Diploma in 2022?","847 students","770 students","550 students","1,540 students","B","UG (550) + Diploma (220) = 770 students.","TRUE","mechanical"
+"Advanced","**Stacked Bar Graph 2: Student Enrollments by Program (2021–2023)**
+- 2021: UG (500), PG (300), Diploma (200)
+- 2022: UG (550), PG (320), Diploma (220)
+- 2023: UG (600), PG (350), Diploma (250)
+
+Question: Which year had the highest total enrollment?","The year with the highest total enrollment was actually 2022, with a sum of 1090 students.","2023","had the highest total enrollment due to a larger number of UG students compared to the other years.","had the lowest total enrollment because the number of Diploma students decreased from 2022 to 2023.","B","2021: 1000. 2022: 1090. 2023: 1200. Highest is 2023.","TRUE","llm"
+"Advanced","**Stacked Bar Graph 2: Student Enrollments by Program (2021–2023)**
+- 2021: UG (500), PG (300), Diploma (200)
+- 2022: UG (550), PG (320), Diploma (220)
+- 2023: UG (600), PG (350), Diploma (250)
+
+Question: What is the CAGR of UG enrollment from 2021 to 2023?","19.08%","9.54%","8.59%","10.49%","B","Initial = 500, Final = 600. CAGR = [(600 ÷ 500)^(1/2) - 1] × 100 ≈ 9.54%.","TRUE","mechanical"
+"Advanced","**Combination Chart 1: Sales (units) and Profit Margin (%) of a Product (2019–2023)**
+- Bar (Sales): 2019 (10,000), 2020 (12,000), 2021 (15,000), 2022 (18,000), 2023 (20,000)
+- Line (Profit Margin): 2019 (5%), 2020 (6%), 2021 (7%), 2022 (8%), 2023 (10%)
+
+Question: What is the profit in 2023?","1,800 units","4,000 units","2000 units","2,200 units","C","Profit = Sales × Margin = 20,000 × (10 ÷ 100) = 2000 units.","TRUE","mechanical"
+"Advanced","**Combination Chart 1: Sales (units) and Profit Margin (%) of a Product (2019–2023)**
+- Bar (Sales): 2019 (10,000), 2020 (12,000), 2021 (15,000), 2022 (18,000), 2023 (20,000)
+- Line (Profit Margin): 2019 (5%), 2020 (6%), 2021 (7%), 2022 (8%), 2023 (10%)
+
+Question: Which year had the highest profit margin?","The year with the highest profit margin was 2021 because its 7% margin was the highest among the given years.","had the highest profit margin because its 6% margin was higher than the others, and it was the first year to experience a profit margin increase.","had the highest profit margin because its 8% margin was higher than the 7% in 2021 and the 6% in 2020.","2023","D","2023 (10%) is highest.","TRUE","llm"
+"Advanced","**Combination Chart 1: Sales (units) and Profit Margin (%) of a Product (2019–2023)**
+- Bar (Sales): 2019 (10,000), 2020 (12,000), 2021 (15,000), 2022 (18,000), 2023 (20,000)
+- Line (Profit Margin): 2019 (5%), 2020 (6%), 2021 (7%), 2022 (8%), 2023 (10%)
+
+Question: What is the CAGR of sales from 2019 to 2023?","17.03%","37.84%","18.92%","20.81%","C","Initial = 10,000, Final = 20,000. CAGR = [(20,000 ÷ 10,000)^(1/4) - 1] × 100 ≈ 18.92%.","TRUE","mechanical"
+"Advanced","**Combination Chart 1: Sales (units) and Profit Margin (%) of a Product (2019–2023)**
+- Bar (Sales): 2019 (10,000), 2020 (12,000), 2021 (15,000), 2022 (18,000), 2023 (20,000)
+- Line (Profit Margin): 2019 (5%), 2020 (6%), 2021 (7%), 2022 (8%), 2023 (10%)
+
+Question: What is the total profit over the five years?","5710 units","2,020 units","10,000 units","2,019 units","A","2019: 10,000 × 0.05 = 500. 2020: 12,000 × 0.06 = 720. 2021: 15,000 × 0.07 = 1050.
+2022: 18,000 × 0.08 = 1440. 2023: 2000. Total = 500 + 720 + 1050 + 1440 + 2000 = 5710 units.","TRUE","mechanical"
+"Advanced","**Combination Chart 1: Sales (units) and Profit Margin (%) of a Product (2019–2023)**
+- Bar (Sales): 2019 (10,000), 2020 (12,000), 2021 (15,000), 2022 (18,000), 2023 (20,000)
+- Line (Profit Margin): 2019 (5%), 2020 (6%), 2021 (7%), 2022 (8%), 2023 (10%)
+
+Question: What is the ratio of profit in 2021 to 2022?","The profit in 2021 was 7% of 15,000, so the profit was 1,050 units, and the profit in 2022 was 8% of 18,000, so the profit was 1,440 units. The ratio is therefore 1,050 : 1,440.","35 : 48","The profit in 2021 was 7% of 15,000, so the profit was 1,050 units, and the profit in 2022 was 8% of 22,000, so the profit was 1,760 units. The ratio is therefore 1,050 : 1,760.","The profit in 2021 was 7% of 13,000, so the profit was 910 units, and the profit in 2022 was 8% of 18,000, so the profit was 1,440 units. The ratio is therefore 910 : 1,440.","B","2021: 1050. 2022: 1440. Ratio = 1050 : 1440 = 7 : 9.6 ≈ 35 : 48.","TRUE","llm"
+"Advanced","**Combination Chart 1: Sales (units) and Profit Margin (%) of a Product (2019–2023)**
+- Bar (Sales): 2019 (10,000), 2020 (12,000), 2021 (15,000), 2022 (18,000), 2023 (20,000)
+- Line (Profit Margin): 2019 (5%), 2020 (6%), 2021 (7%), 2022 (8%), 2023 (10%)
+
+Question: Which year showed the highest percentage growth in sales?","Option 1: 2023, as the sales units increased from 20,000 to 22,000, resulting in a 10% growth.","Option 2: 2020, as the sales units increased from 12,000 to 15,000 but the 25% growth was achieved in just one year.","2021","Option 3: 2019, as the sales units increased from 15,000 to 18,000 between 2021 and 2022, and then to 20,000 in 2023, resulting in a 33% growth over two years.","C","2020: (12,000 - 10,000) ÷ 10,000 × 100 = 20%.
+2021: (15,000 - 12,000) ÷ 12,000 × 100 = 25%.
+2022: (18,000 - 15,000) ÷ 15,000 × 100 = 20%.
+2023: (20,000 - 18,000) ÷ 18,000 × 100 ≈ 11.11%.
+Highest is 2021.","TRUE","llm"
+"Advanced","**Combination Chart 1: Sales (units) and Profit Margin (%) of a Product (2019–2023)**
+- Bar (Sales): 2019 (10,000), 2020 (12,000), 2021 (15,000), 2022 (18,000), 2023 (20,000)
+- Line (Profit Margin): 2019 (5%), 2020 (6%), 2021 (7%), 2022 (8%), 2023 (10%)
+
+Question: What is the percentage contribution of 2023 profit to total profit?","38.53%","35.03%","70.06%","100%","B","Total profit = 5710. 2023: 2000. % = (2000 ÷ 5710) × 100 ≈ 35.03%.","TRUE","mechanical"
+"Advanced","**Combination Chart 1: Sales (units) and Profit Margin (%) of a Product (2019–2023)**
+- Bar (Sales): 2019 (10,000), 2020 (12,000), 2021 (15,000), 2022 (18,000), 2023 (20,000)
+- Line (Profit Margin): 2019 (5%), 2020 (6%), 2021 (7%), 2022 (8%), 2023 (10%)
+
+Question: What is the average profit margin over the five years?","6%","5%","7%","7.2%","D","Total = 5 + 6 + 7 + 8 + 10 = 36. Average = 36 ÷ 5 = 7.2%.","TRUE","mechanical"
+"Advanced","**Combination Chart 1: Sales (units) and Profit Margin (%) of a Product (2019–2023)**
+- Bar (Sales): 2019 (10,000), 2020 (12,000), 2021 (15,000), 2022 (18,000), 2023 (20,000)
+- Line (Profit Margin): 2019 (5%), 2020 (6%), 2021 (7%), 2022 (8%), 2023 (10%)
+
+Question: What is the difference in profit between 2022 and 2023?","1,440 units","1,120 units","560 units","616 units","C","2023: 2000 - 2022: 1440 = 560 units.","TRUE","mechanical"
+"Advanced","**Combination Chart 1: Sales (units) and Profit Margin (%) of a Product (2019–2023)**
+- Bar (Sales): 2019 (10,000), 2020 (12,000), 2021 (15,000), 2022 (18,000), 2023 (20,000)
+- Line (Profit Margin): 2019 (5%), 2020 (6%), 2021 (7%), 2022 (8%), 2023 (10%)
+
+Question: If sales in 2024 are projected to grow by 10% with a 12% margin, what is the projected profit?","5,280 units","2,024 units","2640 units","2,023 units","C","2023 Sales = 20,000. 2024 Sales = 20,000 × 1.1 = 22,000. Profit = 22,000 × 0.12 = 2640 units.","TRUE","mechanical"
+"Advanced","**Combination Chart 2: Revenue ($1000) and Growth Rate (%) of a Company (2020–2023)**
+- Bar (Revenue): 2020 (500), 2021 (600), 2022 (750), 2023 (900)
+- Line (Growth Rate): 2021 (20%), 2022 (25%), 2023 (20%)
+
+Question: What is the revenue in 2023?","$810,000","$900,000","$1,800,000","$990,000","B","Revenue = 900 ($1000) = $900,000.","TRUE","mechanical"
+"Advanced","**Combination Chart 2: Revenue ($1000) and Growth Rate (%) of a Company (2020–2023)**
+- Bar (Revenue): 2020 (500), 2021 (600), 2022 (750), 2023 (900)
+- Line (Growth Rate): 2021 (20%), 2022 (25%), 2023 (20%)
+
+Question: Which year had the highest growth rate?","had the highest growth rate in terms of percentage increase as it showed a growth of 20% from 2022.","The year with the highest growth rate was 2023, since it had a very high revenue of $900, indicating substantial growth.","The year with the highest growth rate was 2021 due to a significant increase in revenue from 2020 to 2021.","2022","D","2022 (25%) is highest.","TRUE","llm"
+"Advanced","**Combination Chart 2: Revenue ($1000) and Growth Rate (%) of a Company (2020–2023)**
+- Bar (Revenue): 2020 (500), 2021 (600), 2022 (750), 2023 (900)
+- Line (Growth Rate): 2021 (20%), 2022 (25%), 2023 (20%)
+
+Question: What is the CAGR of revenue from 2020 to 2023?","43.28%","21.64%","19.48%","23.8%","B","Initial = 500, Final = 900. CAGR = [(900 ÷ 500)^(1/3) - 1] × 100 ≈ 21.64%.","TRUE","mechanical"
+"Advanced","**Combination Chart 2: Revenue ($1000) and Growth Rate (%) of a Company (2020–2023)**
+- Bar (Revenue): 2020 (500), 2021 (600), 2022 (750), 2023 (900)
+- Line (Growth Rate): 2021 (20%), 2022 (25%), 2023 (20%)
+
+Question: What is the total revenue over the four years?","$2,750,000","$3,025,000","$2,475,000","$5,500,000","A","Total = 500 + 600 + 750 + 900 = 2750 ($1000) = $2,750,000.","TRUE","mechanical"
+"Advanced","**Combination Chart 2: Revenue ($1000) and Growth Rate (%) of a Company (2020–2023)**
+- Bar (Revenue): 2020 (500), 2021 (600), 2022 (750), 2023 (900)
+- Line (Growth Rate): 2021 (20%), 2022 (25%), 2023 (20%)
+
+Question: What is the ratio of revenue in 2021 to 2022?","The revenue in 2022 was 75% of the revenue in 2021.","The ratio of revenue in 2021 to 2023 is 4 : 9.","The ratio of revenue in 2023 to 2022 is 6 : 5.","4 : 5","D","2021 (600) : 2022 (750) = 600 : 750 = 4 : 5.","TRUE","llm"
+"Advanced","**Combination Chart 2: Revenue ($1000) and Growth Rate (%) of a Company (2020–2023)**
+- Bar (Revenue): 2020 (500), 2021 (600), 2022 (750), 2023 (900)
+- Line (Growth Rate): 2021 (20%), 2022 (25%), 2023 (20%)
+
+Question: What is the absolute growth in revenue from 2020 to 2023?","$440,000","$800,000","$400,000","$360,000","C","Growth = 900 - 500 = 400 ($1000) = $400,000.","TRUE","mechanical"
+"Advanced","**Combination Chart 2: Revenue ($1000) and Growth Rate (%) of a Company (2020–2023)**
+- Bar (Revenue): 2020 (500), 2021 (600), 2022 (750), 2023 (900)
+- Line (Growth Rate): 2021 (20%), 2022 (25%), 2023 (20%)
+
+Question: What is the percentage contribution of 2022 revenue to total revenue?","30%","54.54%","24.54%","27.27%","D","2022: 750. Total: 2750. % = (750 ÷ 2750) × 100 ≈ 27.27%.","TRUE","mechanical"
+"Advanced","**Combination Chart 2: Revenue ($1000) and Growth Rate (%) of a Company (2020–2023)**
+- Bar (Revenue): 2020 (500), 2021 (600), 2022 (750), 2023 (900)
+- Line (Growth Rate): 2021 (20%), 2022 (25%), 2023 (20%)
+
+Question: What is the average growth rate from 2021 to 2023?","21.67%","65%","20%","25%","A","Total = 20 + 25 + 20 = 65. Average = 65 ÷ 3 ≈ 21.67%.","TRUE","mechanical"
+"Advanced","**Combination Chart 2: Revenue ($1000) and Growth Rate (%) of a Company (2020–2023)**
+- Bar (Revenue): 2020 (500), 2021 (600), 2022 (750), 2023 (900)
+- Line (Growth Rate): 2021 (20%), 2022 (25%), 2023 (20%)
+
+Question: What is the difference in revenue between 2022 and 2023?","$300,000","$165,000","$135,000","$150,000","D","2023: 900 - 2022: 750 = 150 ($1000) = $150,000.","TRUE","mechanical"
+"Advanced","**Combination Chart 2: Revenue ($1000) and Growth Rate (%) of a Company (2020–2023)**
+- Bar (Revenue): 2020 (500), 2021 (600), 2022 (750), 2023 (900)
+- Line (Growth Rate): 2021 (20%), 2022 (25%), 2023 (20%)
+
+Question: If 2024 revenue grows at 15%, what is the projected revenue?","$1,138,500","$1,035,000","$2,070,000","$931,500","B","2023: 900. 2024 = 900 × 1.15 = 1035 ($1000) = $1,035,000.","TRUE","mechanical"
+"Advanced","**Pie Chart 1: Market Share (%) and Revenue ($1000) of Four Companies in 2023**
+- Company A: 40%, Revenue: 800
+- Company B: 30%, Revenue: 600
+- Company C: 20%, Revenue: 400
+- Company D: 10%, Revenue: 200
+
+Question: What is the total market revenue in 2023?","$2,000,000","$4,000,000","$2,200,000","$1,800,000","A","Total = 800 + 600 + 400 + 200 = 2000 ($1000) = $2,000,000.","TRUE","mechanical"
+"Advanced","**Pie Chart 1: Market Share (%) and Revenue ($1000) of Four Companies in 2023**
+- Company A: 40%, Revenue: 800
+- Company B: 30%, Revenue: 600
+- Company C: 20%, Revenue: 400
+- Company D: 10%, Revenue: 200
+
+Question: Which company has the highest market share?","Company B has the highest market share.","Company D has the highest market share among these companies in 2025.","Company C's market share is significantly higher in 2022 than in 2023.","Company A","D","A (40%) is highest.","TRUE","llm"
+"Advanced","**Pie Chart 1: Market Share (%) and Revenue ($1000) of Four Companies in 2023**
+- Company A: 40%, Revenue: 800
+- Company B: 30%, Revenue: 600
+- Company C: 20%, Revenue: 400
+- Company D: 10%, Revenue: 200
+
+Question: What is the ratio of revenue of Company A to Company C?","Company A's revenue is 800 and Company C's revenue is 200, so the ratio of revenue of Company A to Company B is 4 : 1.","The ratio of revenue of Company A to Company B is 4 : 3","The ratio of revenue of Company A to Company C is 3 : 2.","2 : 1","D","A (800) : C (400) = 800 : 400 = 2 : 1.","TRUE","llm"
+"Advanced","**Pie Chart 1: Market Share (%) and Revenue ($1000) of Four Companies in 2023**
+- Company A: 40%, Revenue: 800
+- Company B: 30%, Revenue: 600
+- Company C: 20%, Revenue: 400
+- Company D: 10%, Revenue: 200
+
+Question: What is the percentage contribution of Company B’s revenue to total revenue?","60%","27%","30%","33%","C","B: 600. Total: 2000. % = (600 ÷ 2000) × 100 = 30%.","TRUE","mechanical"
+"Advanced","**Pie Chart 1: Market Share (%) and Revenue ($1000) of Four Companies in 2023**
+- Company A: 40%, Revenue: 800
+- Company B: 30%, Revenue: 600
+- Company C: 20%, Revenue: 400
+- Company D: 10%, Revenue: 200
+
+Question: If Company D’s revenue grows by 25% in 2024, what is the new revenue?","$275,000","$225,000","$250,000","$500,000","C","D: 200. Increase = 200 × 0.25 = 50. New = 200 + 50 = 250 ($1000) = $250,000.","TRUE","mechanical"
+"Advanced","**Pie Chart 1: Market Share (%) and Revenue ($1000) of Four Companies in 2023**
+- Company A: 40%, Revenue: 800
+- Company B: 30%, Revenue: 600
+- Company C: 20%, Revenue: 400
+- Company D: 10%, Revenue: 200
+
+Question: What is the combined market share of Companies C and D?","20%","10%","60%","30%","D","C (20%) + D (10%) = 30%.","TRUE","mechanical"
+"Advanced","**Pie Chart 1: Market Share (%) and Revenue ($1000) of Four Companies in 2023**
+- Company A: 40%, Revenue: 800
+- Company B: 30%, Revenue: 600
+- Company C: 20%, Revenue: 400
+- Company D: 10%, Revenue: 200
+
+Question: What is the difference in revenue between Companies A and B?","$400,000","$180,000","$220,000","$200,000","D","A (800) - B (600) = 200 ($1000) = $200,000.","TRUE","mechanical"
+"Advanced","**Pie Chart 1: Market Share (%) and Revenue ($1000) of Four Companies in 2023**
+- Company A: 40%, Revenue: 800
+- Company B: 30%, Revenue: 600
+- Company C: 20%, Revenue: 400
+- Company D: 10%, Revenue: 200
+
+Question: If total market revenue grows by 10% in 2024, what is Company A’s projected revenue (same share)?","$880,000","$1,760,000","$792,000","$968,000","A","Total: 2000 × 1.1 = 2200. A: 40% of 2200 = 880 ($1000) = $880,000.","TRUE","mechanical"
+"Advanced","**Pie Chart 1: Market Share (%) and Revenue ($1000) of Four Companies in 2023**
+- Company A: 40%, Revenue: 800
+- Company B: 30%, Revenue: 600
+- Company C: 20%, Revenue: 400
+- Company D: 10%, Revenue: 200
+
+Question: What is the weighted average market share, weighted by revenue?","80%","20%","30%","40%","D","Weighted share = [(40 × 800) + (30 × 600) + (20 × 400) + (10 × 200)] ÷ 2000 = 40%.","TRUE","mechanical"
+"Advanced","**Pie Chart 1: Market Share (%) and Revenue ($1000) of Four Companies in 2023**
+- Company A: 40%, Revenue: 800
+- Company B: 30%, Revenue: 600
+- Company C: 20%, Revenue: 400
+- Company D: 10%, Revenue: 200
+
+Question: Which company has the lowest revenue?","Company A has the highest revenue in 2023.","Company B has a higher revenue than Company C in 2022.","Company D","Company D's revenue is higher than Company A's market share.","C","D (200) is lowest.","TRUE","llm"
+"Advanced","**Pie Chart 2: Budget Allocation (%) and Actual Spending ($1000) in 2023**
+- Salaries: 50%, Spending: 1000
+- Rent: 20%, Spending: 400
+- Supplies: 15%, Spending: 300
+- Marketing: 15%, Spending: 300
+
+Question: What is the total budget spending in 2023?","$4,000,000","$2,000,000","$1,800,000","$2,200,000","B","Total = 1000 + 400 + 300 + 300 = 2000 ($1000) = $2,000,000.","TRUE","mechanical"
+"Advanced","**Pie Chart 2: Budget Allocation (%) and Actual Spending ($1000) in 2023**
+- Salaries: 50%, Spending: 1000
+- Rent: 20%, Spending: 400
+- Supplies: 15%, Spending: 300
+- Marketing: 15%, Spending: 300
+
+Question: Which category has the highest allocation?","Supplies have the highest allocation at 15%.","The category with the highest allocation is Marketing at 15% is incorrect, however, since the pie chart data is for 2023.","Rent has the highest allocation at 20% in 2022.","Salaries","D","Salaries (50%) is highest.","TRUE","llm"
+"Advanced","**Pie Chart 2: Budget Allocation (%) and Actual Spending ($1000) in 2023**
+- Salaries: 50%, Spending: 1000
+- Rent: 20%, Spending: 400
+- Supplies: 15%, Spending: 300
+- Marketing: 15%, Spending: 300
+
+Question: What is the ratio of Salaries to Rent spending?","5 : 2","Salaries spending is $1000 which is 50% of the budget and Supplies spending is $300 which is 15% of the budget, so the ratio of Salaries to Rent spending is 10 : 2.","Salaries spending is $1000 which is 50% of the budget and Rent spending is $400 which is 20% of the budget, so the ratio of Salaries to Rent spending is 5 : 1.","The ratio of Salaries spending is $1000 to Marketing spending of $300, and since both are 15% of the budget, the ratio of Salaries to Rent spending is 10 : 1.","A","Salaries (1000) : Rent (400) = 1000 : 400 = 5 : 2.","TRUE","llm"
+"Advanced","**Pie Chart 2: Budget Allocation (%) and Actual Spending ($1000) in 2023**
+- Salaries: 50%, Spending: 1000
+- Rent: 20%, Spending: 400
+- Supplies: 15%, Spending: 300
+- Marketing: 15%, Spending: 300
+
+Question: What is the percentage contribution of Supplies to total spending?","30%","14%","16%","15%","D","Supplies: 300. Total: 2000. % = (300 ÷ 2000) × 100 = 15%.","TRUE","mechanical"
+"Advanced","**Pie Chart 2: Budget Allocation (%) and Actual Spending ($1000) in 2023**
+- Salaries: 50%, Spending: 1000
+- Rent: 20%, Spending: 400
+- Supplies: 15%, Spending: 300
+- Marketing: 15%, Spending: 300
+
+Question: If Marketing spending increases by 20% in 2024, what is the new amount?","$396,000","$360,000","$720,000","$324,000","B","Marketing: 300. Increase = 300 × 0.2 = 60. New = 300 + 60 = 360 ($1000) = $360,000.","TRUE","mechanical"
+"Advanced","**Pie Chart 2: Budget Allocation (%) and Actual Spending ($1000) in 2023**
+- Salaries: 50%, Spending: 1000
+- Rent: 20%, Spending: 400
+- Supplies: 15%, Spending: 300
+- Marketing: 15%, Spending: 300
+
+Question: What is the combined allocation of Rent and Supplies?","20%","35%","15%","70%","B","Rent (20%) + Supplies (15%) = 35%.","TRUE","mechanical"
+"Advanced","**Pie Chart 2: Budget Allocation (%) and Actual Spending ($1000) in 2023**
+- Salaries: 50%, Spending: 1000
+- Rent: 20%, Spending: 400
+- Supplies: 15%, Spending: 300
+- Marketing: 15%, Spending: 300
+
+Question: What is the difference in spending between Salaries and Marketing?","$630,000","$770,000","$1,400,000","$700,000","D","Salaries (1000) - Marketing (300) = 700 ($1000) = $700,000.","TRUE","mechanical"
+"Advanced","**Pie Chart 2: Budget Allocation (%) and Actual Spending ($1000) in 2023**
+- Salaries: 50%, Spending: 1000
+- Rent: 20%, Spending: 400
+- Supplies: 15%, Spending: 300
+- Marketing: 15%, Spending: 300
+
+Question: If total spending grows by 5% in 2024, what is Salaries’ projected spending (same allocation)?","$2,100,000","$1,050,000","$1,155,000","$945,000","B","Total: 2000 × 1.05 = 2100. Salaries: 50% of 2100 = 1050 ($1000) = $1,050,000.","TRUE","mechanical"
+"Advanced","**Pie Chart 2: Budget Allocation (%) and Actual Spending ($1000) in 2023**
+- Salaries: 50%, Spending: 1000
+- Rent: 20%, Spending: 400
+- Supplies: 15%, Spending: 300
+- Marketing: 15%, Spending: 300
+
+Question: What is the weighted average allocation, weighted by spending?","20%","15%","100%","50%","D","Weighted = [(50 × 1000) + (20 × 400) + (15 × 300) + (15 × 300)] ÷ 2000 = 50%.","TRUE","mechanical"
+"Advanced","**Pie Chart 2: Budget Allocation (%) and Actual Spending ($1000) in 2023**
+- Salaries: 50%, Spending: 1000
+- Rent: 20%, Spending: 400
+- Supplies: 15%, Spending: 300
+- Marketing: 15%, Spending: 300
+
+Question: Which categories have equal spending?","Supplies and Marketing","Rent and Marketing have equal spending.","Salaries and Rent have equal spending.","The categories with equal spending are Salaries and Marketing since both have a budget of 50% and 15% respectively, and actual spending of 1000 and 300.","A","Supplies (300) and Marketing (300) are equal.","TRUE","llm"
+"Advanced","**Caselet 1: A Retail Chain’s Sales and Costs**
+- Store A: 1000 units sold at $50/unit, 10% discount, cost $30/unit
+- Store B: 800 units sold at $60/unit, 15% discount, cost $35/unit
+- Store C: 600 units sold at $70/unit, no discount, cost $40/unit
+
+Question: What is the revenue from Store A after discount?","$40,500","$45,000","$90,000","$49,500","B","Discount = 10% of 50 = 5. Price = 50 - 5 = 45. Revenue = 1000 × 45 = $45,000.","TRUE","mechanical"
+"Advanced","**Caselet 1: A Retail Chain’s Sales and Costs**
+- Store A: 1000 units sold at $50/unit, 10% discount, cost $30/unit
+- Store B: 800 units sold at $60/unit, 15% discount, cost $35/unit
+- Store C: 600 units sold at $70/unit, no discount, cost $40/unit
+
+Question: What is the profit from Store B?","$25,600","$12,800","$14,080","$28,000","B","Discount = 15% of 60 = 9. Price = 60 - 9 = 51. Revenue = 800 × 51 = $40,800.
+Cost = 800 × 35 = $28,000. Profit = 40,800 - 28,000 = $12,800.","TRUE","mechanical"
+"Advanced","**Caselet 1: A Retail Chain’s Sales and Costs**
+- Store A: 1000 units sold at $50/unit, 10% discount, cost $30/unit
+- Store B: 800 units sold at $60/unit, 15% discount, cost $35/unit
+- Store C: 600 units sold at $70/unit, no discount, cost $40/unit
+
+Question: What is the total revenue from all stores?","$42,000","$40,800","$127,800","$45,000","C","A: $45,000. B: $40,800. C: 600 × 70 = $42,000. Total = 45,000 + 40,800 + 42,000 = $127,800.","TRUE","mechanical"
+"Advanced","**Caselet 1: A Retail Chain’s Sales and Costs**
+- Store A: 1000 units sold at $50/unit, 10% discount, cost $30/unit
+- Store B: 800 units sold at $60/unit, 15% discount, cost $35/unit
+- Store C: 600 units sold at $70/unit, no discount, cost $40/unit
+
+Question: What is the total profit margin (%) across all stores?","100%","35.84%","40%","30%","B","Total cost: A: 1000 × 30 = 30,000. B: 28,000. C: 600 × 40 = 24,000. Total = 82,000.
+Profit = 127,800 - 82,000 = 45,800. Margin = (45,800 ÷ 127,800) × 100 ≈ 35.84%.","TRUE","mechanical"
+"Advanced","**Caselet 1: A Retail Chain’s Sales and Costs**
+- Store A: 1000 units sold at $50/unit, 10% discount, cost $30/unit
+- Store B: 800 units sold at $60/unit, 15% discount, cost $35/unit
+- Store C: 600 units sold at $70/unit, no discount, cost $40/unit
+
+Question: Which store has the highest profit?","The profit of Store C is lower than Store A because of the higher cost per unit and lower selling price after the discount applied in Store A.","Store A has the lowest profit due to its lower selling price and higher cost per unit compared to Store B.","Store B has the highest profit due to its relatively high cost per unit and significant discount applied, resulting in a higher profit margin.","Store C","D","A: 45,000 - 30,000 = $15,000. B: $12,800. C: 42,000 - 24,000 = $18,000. Highest is C.","TRUE","llm"
+"Advanced","**Caselet 1: A Retail Chain’s Sales and Costs**
+- Store A: 1000 units sold at $50/unit, 10% discount, cost $30/unit
+- Store B: 800 units sold at $60/unit, 15% discount, cost $35/unit
+- Store C: 600 units sold at $70/unit, no discount, cost $40/unit
+
+Question: What is the weighted average selling price per unit after discounts?","$53.25","$47.93","$106.5","$58.58","A","Total units = 1000 + 800 + 600 = 2400. Revenue = $127,800. Average = 127,800 ÷ 2400 = $53.25.","TRUE","mechanical"
+"Advanced","**Caselet 1: A Retail Chain’s Sales and Costs**
+- Store A: 1000 units sold at $50/unit, 10% discount, cost $30/unit
+- Store B: 800 units sold at $60/unit, 15% discount, cost $35/unit
+- Store C: 600 units sold at $70/unit, no discount, cost $40/unit
+
+Question: What is the ratio of units sold in Store A to Store C?","The ratio of units sold in Store A to Store C is 4 : 1.","The ratio of units sold in Store B to Store C is 8 : 3.","Store A sold 1000 units and Store C sold 500 units, so the ratio of units sold in Store A to Store B is 2 : 1.","5 : 3","D","A (1000) : C (600) = 1000 : 600 = 5 : 3.","TRUE","llm"
+"Advanced","**Caselet 1: A Retail Chain’s Sales and Costs**
+- Store A: 1000 units sold at $50/unit, 10% discount, cost $30/unit
+- Store B: 800 units sold at $60/unit, 15% discount, cost $35/unit
+- Store C: 600 units sold at $70/unit, no discount, cost $40/unit
+
+Question: What is the percentage contribution of Store B’s profit to total profit?","25.16%","55.9%","27.95%","30.75%","C","Total profit = 45,800. B: 12,800. % = (12,800 ÷ 45,800) × 100 ≈ 27.95%.","TRUE","mechanical"
+"Advanced","**Caselet 1: A Retail Chain’s Sales and Costs**
+- Store A: 1000 units sold at $50/unit, 10% discount, cost $30/unit
+- Store B: 800 units sold at $60/unit, 15% discount, cost $35/unit
+- Store C: 600 units sold at $70/unit, no discount, cost $40/unit
+
+Question: What is the total discount amount across all stores?","$5,000","$7,200","$24,400","$12,200","D","A: 1000 × 5 = $5000. B: 800 × 9 = $7200. C: $0. Total = 5000 + 7200 = $12,200.","TRUE","mechanical"
+"Advanced","**Caselet 1: A Retail Chain’s Sales and Costs**
+- Store A: 1000 units sold at $50/unit, 10% discount, cost $30/unit
+- Store B: 800 units sold at $60/unit, 15% discount, cost $35/unit
+- Store C: 600 units sold at $70/unit, no discount, cost $40/unit
+
+Question: If Store C’s units sold increase by 20%, what is the new profit?","$50,400","$21,600","$28,800","$43,200","B","New units = 600 × 1.2 = 720. Revenue = 720 × 70 = $50,400. Cost = 720 × 40 = $28,800.
+Profit = 50,400 - 28,800 = $21,600.","TRUE","mechanical"
+"Advanced","**Caselet 2: A University’s Research Funding and Publications**
+- Dept A: $500,000 funding, 50 publications, 20% high-impact
+- Dept B: $400,000 funding, 40 publications, 25% high-impact
+- Dept C: $300,000 funding, 30 publications, 30% high-impact
+
+Question: How many high-impact publications did Dept A produce?","9 publications","20 publications","11 publications","10 publications","D","High-impact = 20% of 50 = 10 publications.","TRUE","mechanical"
+"Advanced","**Caselet 2: A University’s Research Funding and Publications**
+- Dept A: $500,000 funding, 50 publications, 20% high-impact
+- Dept B: $400,000 funding, 40 publications, 25% high-impact
+- Dept C: $300,000 funding, 30 publications, 30% high-impact
+
+Question: What is the average funding per publication for Dept B?","$10,000","$11,000","$20,000","$9,000","A","Funding = $400,000. Publications = 40. Average = 400,000 ÷ 40 = $10,000.","TRUE","mechanical"
+"Advanced","**Caselet 2: A University’s Research Funding and Publications**
+- Dept A: $500,000 funding, 50 publications, 20% high-impact
+- Dept B: $400,000 funding, 40 publications, 25% high-impact
+- Dept C: $300,000 funding, 30 publications, 30% high-impact
+
+Question: Which department had the highest number of high-impact publications?","Dept B had the highest percentage of high-impact publications at 25%, which is significantly higher than the other departments.","Dept A or B","The department with the highest number of high-impact publications is actually Dept C with a total of 9 publications that are high-impact.","Dept A had the highest number of high-impact publications, but when compared to Dept B, the latter had a higher ratio of high-impact to total publications.","B","A: 10. B: 25% of 40 = 10. C: 30% of 30 = 9. A and B tie.","TRUE","llm"
+"Advanced","**Caselet 2: A University’s Research Funding and Publications**
+- Dept A: $500,000 funding, 50 publications, 20% high-impact
+- Dept B: $400,000 funding, 40 publications, 25% high-impact
+- Dept C: $300,000 funding, 30 publications, 30% high-impact
+
+Question: What is the total funding across all departments?","$1,200,000","$500,000","$2,400,000","$400,000","A","Total = 500,000 + 400,000 + 300,000 = $1,200,000.","TRUE","mechanical"
+"Advanced","**Caselet 2: A University’s Research Funding and Publications**
+- Dept A: $500,000 funding, 50 publications, 20% high-impact
+- Dept B: $400,000 funding, 40 publications, 25% high-impact
+- Dept C: $300,000 funding, 30 publications, 30% high-impact
+
+Question: What is the total number of publications across all departments?","50 publications","120 publications","40 publications","240 publications","B","Total = 50 + 40 + 30 = 120 publications.","TRUE","mechanical"
+"Advanced","**Caselet 2: A University’s Research Funding and Publications**
+- Dept A: $500,000 funding, 50 publications, 20% high-impact
+- Dept B: $400,000 funding, 40 publications, 25% high-impact
+- Dept C: $300,000 funding, 30 publications, 30% high-impact
+
+Question: What is the weighted average funding per publication?","$20,000","$11,000","$9,000","$10,000","D","Total funding = $1,200,000. Total publications = 120. Average = 1,200,000 ÷ 120 = $10,000.","TRUE","mechanical"
+"Advanced","**Caselet 2: A University’s Research Funding and Publications**
+- Dept A: $500,000 funding, 50 publications, 20% high-impact
+- Dept B: $400,000 funding, 40 publications, 25% high-impact
+- Dept C: $300,000 funding, 30 publications, 30% high-impact
+
+Question: What is the ratio of high-impact publications in Dept B to Dept C?","10 : 9","Dept B had 25% high-impact publications and Dept C had 30% high-impact publications, so the ratio of high-impact publications in Dept B to Dept C is 5 : 6.","Dept A's 20% high-impact publications and Dept C's 30% high-impact publications have a 20 : 30 or 2 : 3 ratio, and Dept B's 25% high-impact publications have a 5 : 3 ratio to Dept C's 30% high-impact publications.","The ratio of high-impact publications in Dept B to Dept C is 8 : 1.","A","B: 10. C: 9. Ratio = 10 : 9.","TRUE","llm"
+"Advanced","**Caselet 2: A University’s Research Funding and Publications**
+- Dept A: $500,000 funding, 50 publications, 20% high-impact
+- Dept B: $400,000 funding, 40 publications, 25% high-impact
+- Dept C: $300,000 funding, 30 publications, 30% high-impact
+
+Question: What is the percentage contribution of Dept C’s funding to total funding?","50%","28%","25%","22%","C","C: 300,000. Total: 1,200,000. % = (300,000 ÷ 1,200,000) × 100 = 25%.","TRUE","mechanical"
+"Advanced","**Caselet 2: A University’s Research Funding and Publications**
+- Dept A: $500,000 funding, 50 publications, 20% high-impact
+- Dept B: $400,000 funding, 40 publications, 25% high-impact
+- Dept C: $300,000 funding, 30 publications, 30% high-impact
+
+Question: What is the total number of high-impact publications?","10 publications","9 publications","29 publications","58 publications","C","A: 10, B: 10, C: 9. Total = 10 + 10 + 9 = 29.","TRUE","mechanical"
+"Advanced","**Caselet 2: A University’s Research Funding and Publications**
+- Dept A: $500,000 funding, 50 publications, 20% high-impact
+- Dept B: $400,000 funding, 40 publications, 25% high-impact
+- Dept C: $300,000 funding, 30 publications, 30% high-impact
+
+Question: If Dept A’s funding increases by 10% and publications remain the same, what is the new funding per publication?","$22,000","$9,900","$11,000","$12,100","C","New funding = 500,000 × 1.1 = $550,000. Publications = 50. Average = 550,000 ÷ 50 = $11,000.","TRUE","mechanical"
