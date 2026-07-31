@@ -1,0 +1,708 @@
+"Level","Topic","Question","Option_A","Option_B","Option_C","Option_D","Correct_Option","Solution","Needs_Review"
+"Basic","Programming Fundamentals","What is the output of this C code?
+int x = 5;
+printf(""%d"", x++);","6","1","7","5","D","x++ is post-increment, so printf uses the current value of x (5), then increments x to 6.","TRUE"
+"Basic","Programming Fundamentals","In Python, what is the output of: print(3 * ""hello"")?","hellohellohello","hellohellohellos","hellohellohellosomethings","22hellos","A","String repetition in Python multiplies the string: 3 * ""hello"" produces ""hellohellohello"".","TRUE"
+"Basic","Programming Fundamentals","What is the value of x after this Java code?
+int x = 10;
+x += 5;","20","15","25","10","B","x += 5 is equivalent to x = x + 5. So, x = 10 + 5 = 15.","TRUE"
+"Basic","Programming Fundamentals","In C++, what is the output?
+int a = 3, b = 4;
+cout << a + b;","5","22","7","1","C","a + b = 3 + 4 = 7. cout prints 7.","TRUE"
+"Basic","Programming Fundamentals","What does this Python code do?
+x = [1, 2, 3];
+x.append(4)","Adds 4 to the list","Modifies the first element of the list","O(n)","Changes the list to [2, 3, 4]","A","append(4) adds 4 to the end of the list x. New list: [1, 2, 3, 4].","TRUE"
+"Basic","Programming Fundamentals","In C, what is the output?
+int x = 8;
+printf(""%d"", x >> 1);","4","2","32","8","A","x >> 1 performs a right shift. 8 (binary 1000) shifts to 0100 (4).","TRUE"
+"Basic","Programming Fundamentals","In Java, what is the output?
+boolean x = true;
+System.out.println(!x);","false","0","true","1","A","!x negates true to false.","TRUE"
+"Basic","Programming Fundamentals","What is the output of this Python code?
+x = 10;
+y = 3;
+print(x // y)","3","0","33","10","A","// is floor division: 10 // 3 = 3 (quotient without remainder).","TRUE"
+"Basic","Programming Fundamentals","In C++, what is the output?
+int x = 5;
+if(x > 3) cout << ""Yes"";
+else cout << ""No"";","Yes","No","Error","0","A","x = 5 > 3, so if condition is true. Prints Yes.","TRUE"
+"Basic","Programming Fundamentals","In Python, what is the output of: for i in range(3): print(i)?","3","1","2","0","D","range(3) generates 0, 1, 2. Loop prints each value.","TRUE"
+"Basic","Programming Fundamentals","In C, what is the output?
+int x = 3;
+printf(""%d"", x & 1);","1","5","3","0","A","x & 1 performs bitwise AND. 3 (binary 11) AND 1 (binary 01) = 01 (1).","TRUE"
+"Basic","Programming Fundamentals","In Java, what is the output?
+int x = 7;
+System.out.println(x % 2);","0","5","1","7","C","% is modulus: 7 % 2 = 1 (remainder).","TRUE"
+"Basic","Programming Fundamentals","In Python, what is the output?
+x = [1, 2];
+x.pop(0);
+print(x)","[1]","[]","[2]","[2, 2]","C","pop(0) removes the element at index 0 (1). New list: [2].","TRUE"
+"Basic","Programming Fundamentals","In C++, what is the output?
+int x = 4;
+cout << ++x;","5","22","3","4","A","++x is pre-increment, so x becomes 5, and 5 is printed.","TRUE"
+"Basic","Programming Fundamentals","In C, what is the output?
+int x = 5;
+printf(""%d"", x | 2);","6","3","7","10","C","x | 2 performs bitwise OR. 5 (binary 101) OR 2 (binary 010) = 111 (7).","TRUE"
+"Basic","Programming Fundamentals","In Python, what is the output?
+x = {1, 2, 2};
+print(len(x))","3","5","2","1","C","Sets remove duplicates: {1, 2, 2} becomes {1, 2}. len returns 2.","TRUE"
+"Basic","Programming Fundamentals","In Java, what is the output?
+String s = ""Hello"";
+System.out.println(s.length());","0","11","5","6","C","length() returns the number of characters in ""Hello"", which is 5.","TRUE"
+"Basic","Programming Fundamentals","In C++, what is the output?
+int x = 10;
+while(x > 8) { cout << x << "" "";
+    x--;
+}
+","9","10 10","10 9","11 9","C","Loop runs while x > 8: prints 10, then 9.","TRUE"
+"Basic","Programming Fundamentals","In Python, what is the output?
+x = 5;
+print(x ** 2)","22","3","50","25","D","** is exponentiation: 5 ** 2 = 25.","TRUE"
+"Basic","Programming Fundamentals","In C, what is the output?
+int x = 6;
+printf(""%d"", x ^ 3);","2","3","7","5","D","x ^ 3 performs bitwise XOR. 6 (binary 110) XOR 3 (binary 011) = 101 (5).","TRUE"
+"Basic","Data Structures","What is the time complexity of accessing an element in an array?","O(n²)","O(n)","O(log n)","O(1)","D","Arrays allow direct index-based access, which is constant time.","TRUE"
+"Basic","Data Structures","In a singly linked list, what is the time complexity to insert a node at the beginning?","O(√n)","O(n)","O(1)","O(n log n)","C","Inserting at the head updates the head pointer, which is constant time.","TRUE"
+"Basic","Data Structures","What is the output of this Python code for a stack?
+s = [];
+s.append(1);
+s.append(2);
+s.pop();
+print(s)","[1]","[]","[2]","[1, 2]","A","Stack (LIFO): append adds 1, 2. pop removes 2. Stack: [1].","TRUE"
+"Basic","Data Structures","In a queue, what is the order of elements after: enqueue(1), enqueue(2), dequeue(), enqueue(3)?","3, 1","1, 3","2, 3","2, 1","C","Queue (FIFO): Enqueue 1, 2. Dequeue removes 1. Enqueue 3. Queue: 2, 3.","TRUE"
+"Basic","Data Structures","What is the time complexity of searching an element in an unsorted array of size n?","Ω(n)","O(1)","O(n)","O(n log n)","C","Linear search checks each element, worst case n checks.","TRUE"
+"Basic","Data Structures","In a binary tree, what is the maximum number of nodes at level k (root at level 0)?","2^k - 1","2^(k-1)","2^k","2^k + 1","C","At level k, maximum nodes = 2^k.","TRUE"
+"Basic","Data Structures","What is the output of this Python code for a list?
+x = [1, 2, 3];
+x.insert(1, 4);
+print(x)","[1, 4, 3, 2]","[4, 2, 1, 3]","[1, 4, 2, 3]","[1, 2, 4, 3]","C","insert(1, 4) adds 4 at index 1. New list: [1, 4, 2, 3].","TRUE"
+"Basic","Data Structures","What is the time complexity of inserting an element at the end of a dynamic array (amortized)?","O(1)","O(n log n)","O(log n)","O(n)","A","Appending to a dynamic array is O(1) amortized, as resizing is rare.","TRUE"
+"Basic","Data Structures","In a circular queue with size 5, after enqueue(1, 2, 3), dequeue(), enqueue(4), what is the front element?","2","3","1","4","A","Enqueue 1, 2, 3. Dequeue removes 1. Enqueue 4. Front: 2.","TRUE"
+"Basic","Data Structures","What is the height of a binary tree with 7 nodes in a balanced configuration?","O(3)","log(8)","5","2","D","Balanced binary tree: height = ⌊log₂(7)⌋ = 2 (levels 0, 1, 2).","TRUE"
+"Basic","Data Structures","In Python, what is the output?
+d = {1: 'a', 2: 'b'};
+print(d[1])","'ab'","None","a","1","C","Dictionary access by key: d[1] returns 'a'.","TRUE"
+"Basic","Data Structures","What is the time complexity of deleting the last node in a singly linked list with n nodes?","O(n)","O(1)","O(2^n)","O(n log n)","A","Traverse to the second-to-last node to update the pointer: O(n).","TRUE"
+"Basic","Data Structures","In a stack, after push(1), push(2), pop(), push(3), what is the top element?","1","None","3","2","C","Stack (LIFO): Push 1, 2. Pop removes 2. Push 3. Top: 3.","TRUE"
+"Basic","Data Structures","What is the time complexity of searching in a binary search tree with n nodes (balanced)?","O(log n)","O(n log n)","O(n)","O(n²)","A","Balanced BST search follows height, which is O(log n).","TRUE"
+"Basic","Data Structures","In Python, what is the output?
+s = {1, 2, 3};
+s.add(4);
+print(s)","{1, 2, 3, 5}","{1, 2, 3, 4, 5}","{1, 2, 3, 4}","{1, 2, 3, 1}","C","add(4) adds 4 to the set. New set: {1, 2, 3, 4}.","TRUE"
+"Basic","Data Structures","What is the space complexity of storing a binary tree with n nodes?","O(n)","O(1)","O(n²)","O(n log n)","A","Each node stores data and two pointers, total O(n) space.","TRUE"
+"Basic","Data Structures","In a queue, after enqueue(1, 2), dequeue(), enqueue(3, 4), dequeue(), what is the front element?","3","None","1","4","A","Enqueue 1, 2. Dequeue removes 1. Enqueue 3, 4. Dequeue removes 2. Front: 3.","TRUE"
+"Basic","Data Structures","What is the time complexity of inserting a key into a hash table (average case)?","O(1)","O(log n)","O(n log n)","O(n)","A","Average case with good hash function: O(1) for insertion.","TRUE"
+"Basic","Data Structures","In Python, what is the output?
+x = [1, 2, 3];
+x.remove(2);
+print(x)","[1, 3]","[3, 1, 2]","[1]","[1, 2, 3]","A","remove(2) deletes the first occurrence of 2. New list: [1, 3].","TRUE"
+"Basic","Data Structures","What is the maximum number of nodes in a binary tree of height h?","2^(h)","2^h + 1","2^(h-1)","2^(h+1) - 1","D","Maximum nodes = 2^(h+1) - 1 (sum of nodes from level 0 to h).","TRUE"
+"Basic","Algorithms","What is the time complexity of bubble sort for n elements?","O(n²)","O(1)","O(n log n)","O(n)","A","Bubble sort compares and swaps in nested loops: O(n²).","TRUE"
+"Basic","Algorithms","In Python, what is the output of this linear search?
+x = [3, 1, 4];
+print(x.index(4))","2","5","0","1","A","index(4) returns the first index of 4, which is 2.","TRUE"
+"Basic","Algorithms","What is the time complexity of binary search on a sorted array of n elements?","O(n)","O(log n)","O(n log n)","O(1)","B","Binary search halves the search space each step: O(log n).","TRUE"
+"Basic","Algorithms","What is the output of this C code for factorial?
+int fact(int n) { if(n == 0) return 1;
+    return n * fact(n-1);
+}
+printf(""%d"", fact(3));","5","0","22","6","D","fact(3) = 3 × fact(2) = 3 × 2 × fact(1) = 3 × 2 × 1 = 6.","TRUE"
+"Basic","Algorithms","What is the space complexity of a recursive factorial algorithm?","O(1)","O(2^n)","O(n log n)","O(n)","D","Recursive factorial uses O(n) stack space for n calls.","TRUE"
+"Basic","Algorithms","In Python, what is the output?
+x = [5, 2, 8];
+print(sorted(x))","[2, 5, 8]","[8, 2, 5]","[5, 2, 8]","[2, 8, 5]","A","sorted(x) returns a new sorted list: [2, 5, 8].","TRUE"
+"Basic","Algorithms","What is the time complexity of finding the maximum element in an unsorted array of n elements?","O(n log n)","O(n)","O(n!)","O(1)","B","Scan all elements: O(n).","TRUE"
+"Basic","Algorithms","In C, what is the output of this sum code?
+int sum(int n) { if(n == 0) return 0;
+    return n + sum(n-1);
+}
+printf(""%d"", sum(4));","10","1","5","22","A","sum(4) = 4 + sum(3) = 4 + 3 + sum(2) = 4 + 3 + 2 + sum(1) = 4 + 3 + 2 + 1 = 10.","TRUE"
+"Basic","Algorithms","What is the time complexity of selection sort for n elements?","O(n)","O(n²)","O(1)","O(n log n)","B","Selection sort finds the minimum in each pass: O(n²).","TRUE"
+"Basic","Algorithms","In Python, what is the output?
+x = [1, 2, 3];
+print(x[::-1])","[3, 2, 1]","[2, 3, 1]","[1, 2, 2]","[3, 3, 2]","A","Slicing [::-1] reverses the list: [3, 2, 1].","TRUE"
+"Basic","Algorithms","What is the time complexity of checking if an element exists in a sorted array using binary search?","O(log n)","O(1)","O(n)","O(n log n)","A","Binary search: O(log n).","TRUE"
+"Basic","Algorithms","In C++, what is the output?
+int x = 5;
+for(int i = 1; i <= 3; i++) x += i;
+cout << x;","15","11","20","9","B","Loop: x = 5 + 1 + 2 + 3 = 11.","TRUE"
+"Basic","Algorithms","What is the space complexity of bubble sort?","O(n log n)","O(n²)","O(1)","O(n)","C","Bubble sort uses a constant amount of extra space: O(1).","TRUE"
+"Basic","Algorithms","In Python, what is the output?
+x = [1, 2, 3];
+print(sum(x))","6","5","22","TypeError","A","sum(x) adds elements: 1 + 2 + 3 = 6.","TRUE"
+"Basic","Algorithms","What is the time complexity of inserting an element into a sorted array of n elements?","O(1)","O(n log n log n)","O(n log n)","O(n)","D","Shift elements to make space: O(n).","TRUE"
+"Basic","Algorithms","In C, what is the output?
+int a = 3, b = 5;
+if(a > b) printf(""%d"", a);
+else printf(""%d"", b);","5","0","3","22","A","3 > 5 is false, so print b = 5.","TRUE"
+"Basic","Algorithms","What is the time complexity of merging two sorted arrays of sizes m and n?","O(m log n)","O(n^2)","O(log m)","O(m + n)","D","Merge process compares and copies: O(m + n).","TRUE"
+"Basic","Algorithms","In Python, what is the output?
+x = ""abc"";
+print(x.upper())","ABC","123","abc","ABCD","A","upper() converts to uppercase: ""ABC"".","TRUE"
+"Basic","Algorithms","What is the time complexity of reversing an array of n elements?","O(n²)","O(n)","O(1)","O(n log n)","B","Swap elements from ends to middle: O(n).","TRUE"
+"Basic","Algorithms","In C++, what is the output?
+int x = 4;
+x *= 3;
+cout << x;","16","10","12","24","C","x *= 3 means x = x * 3 = 4 * 3 = 12.","TRUE"
+"Basic","Database Basics","What does the following code do?
+SELECT * FROM table_name;","Omits primary keys","Returns all metadata","Fetches all data","Inserts new records","C","Retrieves all columns and rows from table_name.","TRUE"
+"Basic","Database Basics","What is the output?
+SELECT name FROM employees WHERE salary > 50000;","Names of employees with salary > 50000","Names of employees with salary < 50000","Names of all employees in the database","Employees with salary >= 50000","A","Returns the name column for rows where salary exceeds 50000.","TRUE"
+"Basic","Database Basics","What does the SQL keyword PRIMARY KEY ensure?","Primary constraint","Uniqueness and non-null","Uniqueness and nullability","Unique and nullable","B","Ensures each value in the column is unique and not null.","TRUE"
+"Basic","Database Basics","What is the result?
+SELECT COUNT(*) FROM students WHERE age = 20;","67890","12345","Number of teachers aged 20","Number of students aged 20","D","Counts the number of rows where age is 20.","TRUE"
+"Basic","Database Basics","What does DELETE FROM table_name WHERE id = 1; do?","Updates row with id = 1","Deletes row with id = 1","Deletes row with id = 2","Inserts row with id = 1","B","Removes the row where id equals 1.","TRUE"
+"Basic","Database Basics","What is the purpose of the SQL JOIN clause?","Unifies tables","Merges tables","Links datasets","Combines tables","B","Combines rows from two or more tables based on a related column.","TRUE"
+"Basic","Database Basics","What does INSERT INTO users (name, age) VALUES ('Alice', 25); do?","Updates the existing schema","Inserts a new user","Creates a new database","Inserts a new record","B","Adds a new row to users with name = 'Alice' and age = 25.","TRUE"
+"Basic","Database Basics","What is the output?
+SELECT MAX(salary) FROM employees;","Minimum salary","Maximum salary","Average salary","Total salary","B","Returns the highest value in the salary column.","TRUE"
+"Basic","Database Basics","What does the SQL WHERE clause do?","SELECTS data","APPLY data","MODIFIES data","Filters data","D","Filters rows based on a specified condition.","TRUE"
+"Basic","Database Basics","What is the result?
+UPDATE products SET price = 100 WHERE id = 5;","Updates all prices","Updates price for id = 5","Deletes product 5","Updates price for id = 3","B","Sets price to 100 for the row where id is 5.","TRUE"
+"Basic","Computer Networks","What is the purpose of the IP address?","Port identification","Device naming","Host address","Device identification","D","Uniquely identifies a device on a network.","TRUE"
+"Basic","Computer Networks","What is the port number used by HTTP?","22","443","80","8080","C","HTTP uses port 80 for communication.","TRUE"
+"Basic","Computer Networks","What does the acronym TCP stand for?","Transmission Control Network","Transmission Control Protocol","Internet Control Protocol","Transport Control System","B","Transmission Control Protocol, ensures reliable data transfer.","TRUE"
+"Basic","Computer Networks","What is the role of DNS in networking?","IP address translation","Domain name registration","Network packet routing","Domain name resolution","D","Translates domain names (e.g., google.com) to IP addresses.","TRUE"
+"Basic","Computer Networks","What is the difference between IPv4 and IPv6?","Address length and capacity","Address size and structure","Address length and quantity","Address type and complexity","A","IPv4 uses 32-bit addresses (e.g., 192.168.0.1); IPv6 uses 128-bit addresses for more capacity.","TRUE"
+"Basic","Computer Networks","What does the term ""bandwidth"" refer to?","Data transfer rate","Oversampling rate","Signal frequency range","Channel capacity","A","Maximum data transfer rate of a network connection.","TRUE"
+"Basic","Computer Networks","What is the purpose of a router in a network?","Routes data","Hides IP addresses","Connects devices","Finds fastest path","A","Forwards data packets between networks.","TRUE"
+"Basic","Computer Networks","What is the default subnet mask for a Class C IP address?","255.255.255.0","255.255.255.255","255.255.0.0","128.0.0.0","A","Class C uses 24 bits for the network: 255.255.255.0.","TRUE"
+"Basic","Computer Networks","What is the function of the ARP protocol?","Address caching","Dynamic routing","Network discovery","Address resolution","D","Maps IP addresses to MAC addresses.","TRUE"
+"Basic","Computer Networks","What does UDP stand for, and how does it differ from TCP?","User Datagram Protocol, less reliable","TCP/IP protocol","User Datagram Protocol, more reliable","Internet Connection Protocol","A","User Datagram Protocol; UDP is faster but less reliable than TCP (no error checking).","TRUE"
+"Basic","Operating Systems","What is the role of an operating system?","Resource management","Process scheduling","Memory allocation","I/O management","A","Manages hardware, software, and provides user interface.","TRUE"
+"Basic","Operating Systems","What is a process in an operating system?","Running process instance","System service call","Executing program","Executing thread","C","A program in execution, with its own memory and resources.","TRUE"
+"Basic","Operating Systems","What is the purpose of a scheduler in an OS?","Process management","CPU allocation","Thread handling","Resource allocation","B","Allocates CPU time to processes for efficient execution.","TRUE"
+"Basic","Operating Systems","What is a deadlock in an operating system?","Circular waiting condition","Resource contention lock","Resource starvation mode","Resource conflict standstill","D","A situation where processes hold resources and wait for others, causing a standstill.","TRUE"
+"Basic","Operating Systems","What does the term ""virtual memory"" refer to?","Memory Swap","O/S","Paging System","Extended memory","D","Uses disk space to extend RAM, allowing larger programs to run.","TRUE"
+"Basic","Operating Systems","What is the function of a file system in an OS?","Data organization","Data caching mechanism","File storage optimization","File hierarchy management","A","Organizes and manages data storage on disks.","TRUE"
+"Basic","Operating Systems","What is a thread in an operating system?","Cooperative process","User-level process","Lightweight process","Kernel-level thread","C","A lightweight process sharing the same memory space as its parent process.","TRUE"
+"Basic","Operating Systems","What is the purpose of an interrupt in an OS?","Event handling","Process synchronization","System call handling","Context switching","A","Signals the CPU to handle an urgent event (e.g., hardware input).","TRUE"
+"Basic","Operating Systems","What is the difference between a kernel and a shell?","Kernel: core, Shell: interface","Kernel: interface","Kernel: framework","Kernel: core","A","Kernel manages system resources; shell is the user interface to interact with the OS.","TRUE"
+"Basic","Operating Systems","What is the role of a page table in virtual memory?","O(n)","Address mapping","Page Replacement Algorithm","Segmentation","B","Maps virtual addresses to physical addresses.","TRUE"
+"Basic","AI/ML Foundations","What is supervised learning in machine learning?","Learning from labeled examples","Learning with unlabeled data","Learning with labeled data","Model-driven inference","C","Model trains on labeled data (input-output pairs) to predict outputs.","TRUE"
+"Basic","AI/ML Foundations","What is the purpose of a loss function in ML?","Cost function optimization","Model evaluation","Error measurement","Error minimization","C","Measures the error between predicted and actual outputs to guide optimization.","TRUE"
+"Basic","AI/ML Foundations","What is overfitting in machine learning?","Over fitting","Excessive training fit","Model overreach","Pattern matching","B","Model learns training data too well, including noise, and performs poorly on new data.","TRUE"
+"Basic","AI/ML Foundations","What is the role of a feature in ML?","Input variable","Hyperparameter","Activation function","O(1) time complexity","A","An input variable used to make predictions.","TRUE"
+"Basic","AI/ML Foundations","What is the purpose of splitting data into training and testing sets?","Model optimization and deployment","Overfitting and validation","Model training and evaluation","Cross-validation and bias","C","Training set trains the model; testing set evaluates its performance on unseen data.","TRUE"
+"Basic","AI/ML Foundations","What is a neuron in a neural network?","Synaptic node","Signal processor","Artificial neuron","Computational unit","D","A computational unit that processes inputs, applies weights, and produces an output.","TRUE"
+"Basic","AI/ML Foundations","What is the activation function in a neural network?","Activation Gate","Non-linearity function","Sigmoid function","ReLU function","B","Introduces non-linearity to decide whether a neuron should activate.","TRUE"
+"Basic","AI/ML Foundations","What is gradient descent in ML?","Model overfitting","Local minimum search","O(n)","Parameter optimization","D","Optimization algorithm to minimize the loss function by adjusting model parameters.","TRUE"
+"Basic","AI/ML Foundations","What is unsupervised learning in ML?","Learning without labels","Learning with weak labels","Self-supervised clustering","Unsupervised regression","A","Model finds patterns in unlabeled data without predefined outputs.","TRUE"
+"Basic","AI/ML Foundations","What is the purpose of normalization in ML?","Feature scaling","Data augmentation","Feature selection","O(1)","A","Scales features to a standard range to improve model performance.","TRUE"
+"Intermediate","Programming Fundamentals","What is the output of this C code?
+int x = 5;
+printf(""%d %d"", x++, ++x);","6 7","6 6","8 6","5 6","B","In printf, arguments are evaluated right-to-left. ++x increments x to 6, then x++ uses 6 and increments x to 7. Output: 6 6.","TRUE"
+"Intermediate","Programming Fundamentals","In Python, what is the output?
+x = [1, 2, 3];
+y = x;
+y[0] = 4;
+print(x)","[4, 4, 3]","[4, 2, 2]","[1, 4, 3]","[4, 2, 3]","D","y = x creates a reference to the same list. Modifying y[0] changes x. Output: [4, 2, 3].","TRUE"
+"Intermediate","Programming Fundamentals","In Java, what is the output?
+String s = ""hello"";
+s = s.concat("" world"");
+System.out.println(s);","hello world concatenated","hello world appended","hello world","string s not modified","C","concat creates a new string ""hello world"". Output: hello world.","TRUE"
+"Intermediate","Programming Fundamentals","In C++, what is the output?
+int x = 10;
+cout << (x > 5 ? x : 5);","5","0","10","25","C","Ternary operator: x > 5 is true, so prints x = 10.","TRUE"
+"Intermediate","Programming Fundamentals","In Python, what is the output?
+def f(x): x += 1;
+x = 5;
+f(x);
+print(x)","5","O(1)","0","2","A","Python passes integers by value. x inside f is local. Output: 5.","TRUE"
+"Intermediate","Programming Fundamentals","In C, what is the output?
+int x = 10;
+printf(""%d"", x << 2);","20","0","40","80","C","x << 2 left-shifts 10 (binary 1010) to 101000 (40).","TRUE"
+"Intermediate","Programming Fundamentals","In Java, what is the output?
+int[] arr = {1, 2, 3};
+System.out.println(arr[arr.length - 1]);","3","0","5","1","A","arr.length - 1 = 2. arr[2] = 3.","TRUE"
+"Intermediate","Programming Fundamentals","In Python, what is the output?
+x = {1: 'a', 2: 'b'};
+x.update({2: 'c'});
+print(x)","{3: 'c', 4: 'a'}","{1: 'a', 2: 'b'}","{1: 'a', 2: 'b', 3: 'c'}","{1: 'a', 2: 'c'}","D","update modifies key 2 to 'c'. Output: {1: 'a', 2: 'c'}.","TRUE"
+"Intermediate","Programming Fundamentals","In C++, what is the output?
+int x = 5;
+for(int i = 0; i < 3; i++) x *= 2;
+cout << x;","20","40","80","64","B","Loop: x = 5 * 2 * 2 * 2 = 40.","TRUE"
+"Intermediate","Programming Fundamentals","In C, what is the output?
+int a = 7, b = 3;
+printf(""%d"", a ^ b);","1","10","4","6","C","a ^ b: 7 (binary 111) XOR 3 (binary 011) = 100 (4).","TRUE"
+"Intermediate","Programming Fundamentals","In Python, what is the output?
+x = [1, 2, 3];
+print(x[1:3])","[2, 3, 4]","[1, 2]","[1, 3]","[2, 3]","D","Slicing [1:3] includes indices 1 to 2: [2, 3].","TRUE"
+"Intermediate","Programming Fundamentals","In Java, what is the output?
+int x = 15;
+System.out.println(x & (x - 1));","7","14","0","15","B","x & (x - 1) clears the least significant set bit. 15 (binary 1111) & 14 (binary 1110) = 1110 (14).","TRUE"
+"Intermediate","Programming Fundamentals","In C++, what is the output?
+string s = ""abc"";
+reverse(s.begin(), s.end());
+cout << s;","bca","abc","cba","cbaabc","C","reverse reverses the string: ""abc"" becomes ""cba"".","TRUE"
+"Intermediate","Programming Fundamentals","In Python, what is the output?
+x = lambda a: a * 2;
+print(x(3))","6","None","7","22","A","Lambda function doubles input: 3 * 2 = 6.","TRUE"
+"Intermediate","Programming Fundamentals","In C, what is the output?
+int x = 5;
+printf(""%d"", ~x);","8","10","2147483640","-6","D","~x inverts bits of 5 (binary 00000101) to 11111010 (two’s complement, -6).","TRUE"
+"Intermediate","Programming Fundamentals","In Java, what is the output?
+int x = 8;
+System.out.println(x >> 1);","4","2","0","1","A","x >> 1 right-shifts 8 (binary 1000) to 0100 (4).","TRUE"
+"Intermediate","Programming Fundamentals","In Python, what is the output?
+x = [1, 2];
+y = x.copy();
+y[0] = 3;
+print(x)","[1, 3]","[1, 2, 3]","[1, 2]","[3, 2]","C","copy() creates a shallow copy. Modifying y doesn’t affect x. Output: [1, 2].","TRUE"
+"Intermediate","Programming Fundamentals","In C++, what is the output?
+int x = 3;
+cout << (x << 1) + (x >> 1);","3","7","x + 1","O(2^n)","B","x << 1 = 3 * 2 = 6. x >> 1 = 3 / 2 = 1. 6 + 1 = 7.","TRUE"
+"Intermediate","Programming Fundamentals","In C, what is the output?
+int arr[3] = {1, 2, 3};
+printf(""%d"", *(arr + 1));","1","2","0","3","B","*(arr + 1) accesses arr[1] = 2.","TRUE"
+"Intermediate","Programming Fundamentals","In Python, what is the output?
+x = [1, 2, 3];
+print(list(map(lambda x: x**2, x)))","[1, 4, 9]","[1, 4, 8]","[9, 4, 1]","[1, 16, 9]","A","map applies square function: [1², 2², 3²] = [1, 4, 9].","TRUE"
+"Intermediate","Data Structures","What is the time complexity of inserting a node at the end of a singly linked list with n nodes?","O(n)","O(n log n)","O(n²)","O(1)","A","Traverse to the end to update the pointer: O(n).","TRUE"
+"Intermediate","Data Structures","In Python, what is the output of this stack operation?
+s = [];
+s.append(1);
+s.append(2);
+s.append(3);
+s.pop();
+s.pop();
+print(s)","[2]","[1, 2]","[3]","[1]","D","Stack (LIFO): Push 1, 2, 3. Pop removes 3, then 2. Stack: [1].","TRUE"
+"Intermediate","Data Structures","In a doubly linked list, what is the time complexity to delete a node given its pointer?","O(n)","O(n log n)","O(1)","O(n²)","C","Update prev/next pointers of adjacent nodes: O(1).","TRUE"
+"Intermediate","Data Structures","In a queue, after enqueue(1, 2, 3), dequeue(), enqueue(4), dequeue(), what is the front element?","4","2","3","1","C","Queue (FIFO): Enqueue 1, 2, 3. Dequeue removes 1. Enqueue 4. Dequeue removes 2. Front: 3.","TRUE"
+"Intermediate","Data Structures","What is the time complexity of searching in an unbalanced binary search tree with n nodes?","O(1)","O(n)","O(n log n)","O(log n)","B","Worst case (skewed tree) resembles a linked list: O(n).","TRUE"
+"Intermediate","Data Structures","In Python, what is the output?
+from collections import deque;
+q = deque([1, 2]);
+q.append(3);
+q.popleft();
+print(q)","deque([2])","deque([3])","deque([1, 2, 3])","deque([2, 3])","D","Deque: Append 3, popleft removes 1. Deque: [2, 3].","TRUE"
+"Intermediate","Data Structures","What is the time complexity of inserting an element in a min-heap with n elements?","O(log n)","O(n)","O(1)","O(n log n)","A","Insert at bottom, bubble up to restore heap property: O(log n).","TRUE"
+"Intermediate","Data Structures","In a binary tree, what is the time complexity of finding the height?","O(1)","O(log n)","O(n²)","O(n)","D","Recursively visit all nodes: O(n).","TRUE"
+"Intermediate","Data Structures","In Python, what is the output?
+d = {'a': 1, 'b': 2};
+d.pop('a');
+print(d)","{'b': 1}","{'b': 2}","{'b': 2, 'a': 1}","{'a': 1}","B","pop('a') removes key 'a'. Output: {'b': 2}.","TRUE"
+"Intermediate","Data Structures","What is the time complexity of deleting the root of a max-heap with n elements?","O(n)","O(1)","O(log n)","O(n log n)","C","Replace root with last element, bubble down: O(log n).","TRUE"
+"Intermediate","Data Structures","In a circular linked list, what is the time complexity to insert a node after a given node?","O(n²)","O(log n)","O(n)","O(1)","D","Update pointers of given and next node: O(1).","TRUE"
+"Intermediate","Data Structures","In Python, what is the output?
+s = {1, 2, 3};
+s.discard(2);
+print(s)","{1}","{1, 3}","{1, 4}","{1, 2, 3}","B","discard(2) removes 2. Output: {1, 3}.","TRUE"
+"Intermediate","Data Structures","In a binary search tree, what is the time complexity to find the minimum element?","O(1)","O(n)","O(log n) (balanced)","O(n log n)","C","Traverse to the leftmost node: O(h), where h is height (O(log n) if balanced).","TRUE"
+"Intermediate","Data Structures","What is the space complexity of a depth-first search (DFS) on a binary tree with n nodes?","O(n)","O(n log n)","O(n²)","O(log n) (balanced)","D","Recursion stack uses O(h), where h is height (O(log n) if balanced).","TRUE"
+"Intermediate","Data Structures","In Python, what is the output?
+x = [[1, 2], [3, 4]];
+x[0].append(5);
+print(x)","[1, 2, 3, 4, 5]","[[1, 2], [3, 4], [5]]","[[1, 2, 5, 5], [3, 4]]","[[1, 2, 5], [3, 4]]","D","Append 5 to x[0]. Output: [[1, 2, 5], [3, 4]].","TRUE"
+"Intermediate","Data Structures","What is the time complexity of level-order traversal (BFS) of a binary tree with n nodes?","O(n)","O(n²)","O(n log n)","O(1)","A","Visit all nodes using a queue: O(n).","TRUE"
+"Intermediate","Data Structures","In a hash table with chaining, what is the average time complexity for search with n elements and m buckets?","O(m)","O(n)","O(n^2)","O(1) (assuming m ≈ n)","D","Average chain length = n/m. Search: O(n/m). If m ≈ n, O(1).","TRUE"
+"Intermediate","Data Structures","In Python, what is the output?
+from collections import Counter;
+c = Counter([1, 2, 2, 3]);
+print(c[2])","""two""","1","2","None","C","Counter counts occurrences. c[2] = 2 (two 2s).","TRUE"
+"Intermediate","Data Structures","What is the time complexity to check if a binary tree is balanced?","O(n)","O(n log n)","O(1)","O(n²)","A","Compute height of each subtree, check difference: O(n).","TRUE"
+"Intermediate","Data Structures","In a stack, after push(1, 2, 3), pop(), push(4), pop(), what is the top element?","4","2","1","3","B","Stack: Push 1, 2, 3. Pop removes 3. Push 4. Pop removes 4. Top: 2.","TRUE"
+"Intermediate","Algorithms","What is the time complexity of merge sort for n elements?","O(n²)","O(n)","O(n log n)","O(log n)","C","Divide and merge: O(n log n).","TRUE"
+"Intermediate","Algorithms","In Python, what is the output of this binary search?
+def bs(arr, t): l, r = 0, len(arr)-1;
+while l <= r: m = (l+r)//2;
+if arr[m] == t: return m;
+elif arr[m] < t: l = m+1;
+else: r = m-1;
+return -1;
+print(bs([1, 2, 3, 4], 3))","4","3","2","1","C","Binary search finds 3 at index 2.","TRUE"
+"Intermediate","Algorithms","What is the space complexity of quicksort?","O(n log n)","O(log n) (average)","O(1)","O(n)","B","Recursion stack: O(log n) average, O(n) worst case.","TRUE"
+"Intermediate","Algorithms","In C, what is the output of this GCD code?
+int gcd(int a, int b) { if(b == 0) return a;
+    return gcd(b, a % b);
+}
+printf(""%d"", gcd(48, 18));","6","0","17","24","A","Euclidean algorithm: gcd(48, 18) = gcd(18, 12) = gcd(12, 6) = gcd(6, 0) = 6.","TRUE"
+"Intermediate","Algorithms","What is the time complexity of finding all pairs in an array of n elements that sum to a given value?","O(√n)","O(n log n)","O(n^2)","O(n) (with hash set)","D","Using a hash set: O(n). Without hash set: O(n²).","TRUE"
+"Intermediate","Algorithms","In Python, what is the output?
+x = [4, 2, 5, 1];
+x.sort();
+print(x)","[1, 2, 4, 5]","[5, 2, 1, 4]","[2, 5, 1, 4]","[1, 2, 4, 0]","A","sort() sorts in-place: [1, 2, 4, 5].","TRUE"
+"Intermediate","Algorithms","What is the time complexity of Dijkstra’s algorithm using a priority queue for a graph with V vertices and E edges?","O(V log E)","O(E^2)","O((V + E) log V)","O(n^2)","C","Priority queue operations: O((V + E) log V).","TRUE"
+"Intermediate","Algorithms","In C++, what is the output?
+vector<int> v = {1, 2, 3};
+rotate(v.begin(), v.begin()+1, v.end());
+cout << v[0];","1","3","2","0","C","rotate shifts left by 1: [2, 3, 1]. First element: 2.","TRUE"
+"Intermediate","Algorithms","What is the time complexity of insertion sort for n elements?","O(n log n)","O(n³)","O(n²)","O(1)","C","Compare and shift: O(n²).","TRUE"
+"Intermediate","Algorithms","In Python, what is the output?
+x = [1, 2, 3, 4];
+print([i for i in x if i % 2 == 0])","[1, 2, 3, 4]","[]","[2, 4]","[1, 2, 3]","C","List comprehension filters even numbers: [2, 4].","TRUE"
+"Intermediate","Algorithms","What is the time complexity of checking if a string is a palindrome?","O(n log n)","O(n²)","O(n)","O(1)","C","Compare characters from both ends: O(n).","TRUE"
+"Intermediate","Algorithms","In C, what is the output of this Fibonacci code?
+int fib(int n) { if(n <= 1) return n;
+    return fib(n-1) + fib(n-2);
+}
+printf(""%d"", fib(5));","22","O(2^n)","5","fib(n-1)","C","fib(5) = fib(4) + fib(3) = (fib(3) + fib(2)) + (fib(2) + fib(1)) = (2 + 1) + (1 + 1) = 5.","TRUE"
+"Intermediate","Algorithms","What is the space complexity of merge sort?","O(n log n)","O(n)","O(n^2)","O(1)","B","Extra array for merging: O(n).","TRUE"
+"Intermediate","Algorithms","In Python, what is the output?
+x = ""hello"";
+print(''.join(reversed(x)))","olleh","lolleh","hllleo","ehllo","A","reversed reverses string: ""olleh"".","TRUE"
+"Intermediate","Algorithms","What is the time complexity of finding the longest common prefix of n strings of length m?","O(m^n)","O(n + m)","O(n * m)","O(n log m)","C","Compare characters across strings: O(n * m).","TRUE"
+"Intermediate","Algorithms","In C++, what is the output?
+int arr[] = {1, 2, 3};
+int *p = arr;
+cout << *(p + 2);","4","O(n)","3","O(2^n)","C","*(p + 2) accesses arr[2] = 3.","TRUE"
+"Intermediate","Algorithms","What is the time complexity of counting sort for n elements with range k?","O(n + k)","O(n^2)","O(k)","O(n log k)","A","Create count array and output: O(n + k).","TRUE"
+"Intermediate","Algorithms","In Python, what is the output?
+x = [1, 2, 2, 3];
+print(list(set(x)))","[1, 3]","[1, 2, 3]","[3, 2, 1]","[1, 2, 3, 4]","B","set(x) removes duplicates, list converts back: [1, 2, 3].","TRUE"
+"Intermediate","Algorithms","What is the time complexity of detecting a cycle in a linked list?","O(n²)","O(1)","O(n)","O(n log n)","C","Floyd’s cycle-finding algorithm (two pointers): O(n).","TRUE"
+"Intermediate","Algorithms","In C, what is the output?
+int arr[] = {3, 1, 4};
+qsort(arr, 3, sizeof(int), [](const void* a, const void* b){return *(int*)a - *(int*)b;});
+printf(""%d"", arr[0]);","3","1","0","4","B","qsort sorts array: [1, 3, 4]. First element: 1.","TRUE"
+"Intermediate","Database Basics","What is the result of this SQL query?
+SELECT name, salary FROM employees WHERE department = 'IT' ORDER BY salary DESC;","IT employees sorted by salary (lowest first)","Employees in IT department sorted alphabetically","IT employees sorted by salary (highest first)","IT employees sorted by department","C","Retrieves name and salary for department = 'IT', sorted by salary in descending order.","TRUE"
+"Intermediate","Database Basics","What does SELECT * FROM orders INNER JOIN customers ON orders.customer_id = customers.id; do?","Omits customer details","Joins orders with customer details","Finds orders with no matching customer","Returns all columns from both tables","B","Combines rows from orders and customers where customer_id matches id.","TRUE"
+"Intermediate","Database Basics","What is the output?
+SELECT department, COUNT(*) FROM employees GROUP BY department;","Department-wise employee salaries","Department-wise employee ages","Department-wise employee names","Department-wise employee counts","D","Counts employees per department.","TRUE"
+"Intermediate","Database Basics","What does FOREIGN KEY constraint ensure in SQL?","Referential action","Referential integrity","Data redundancy","Data consistency","B","Ensures values in a column match values in another table’s primary key.","TRUE"
+"Intermediate","Database Basics","What is the result?
+SELECT product_name FROM products WHERE price BETWEEN 50 AND 100;","All unpriced products","Products priced 100-150","Products priced 0-50","Products priced 50–100","D","Retrieves product_name where price is 50 to 100 (inclusive).","TRUE"
+"Intermediate","Database Basics","What does SELECT DISTINCT city FROM customers; do?","Unique cities","All cities","Duplicate rows","Unique states","A","Returns unique city values from customers.","TRUE"
+"Intermediate","Database Basics","What is the output?
+SELECT name FROM students WHERE marks > (SELECT AVG(marks) FROM students);","Top-scoring students","Students with below-average marks","Students with above-average marks","All students with names starting with 'A'","C","Retrieves name of students with marks above the average.","TRUE"
+"Intermediate","Database Basics","What does ALTER TABLE employees ADD COLUMN email VARCHAR(100); do?","ALTER TABLE employees ADD COLUMN email VARCHAR(50);","Adds email column","ALTER TABLE employees ADD COLUMN email CHAR(100);","ALTER TABLE employees DROP COLUMN email;","B","Adds an email column to employees table.","TRUE"
+"Intermediate","Database Basics","What is the result?
+SELECT order_id, customer_name FROM orders LEFT JOIN customers ON orders.customer_id = customers.id;","All orders with customer names (or NULL)","order_id NULL, customer_name","order_id, customer_name","NULL order_id, customer_name","A","Includes all orders, with matching customer_name or NULL if no match.","TRUE"
+"Intermediate","Database Basics","What does CREATE INDEX idx_name ON employees(name); do?","Optimizes database schema","O(1)","O(n)","Improves query performance","D","Creates an index on name column to speed up queries.","TRUE"
+"Intermediate","Computer Networks","What is the purpose of the OSI model?","Defines network architecture layers","Standardizes network communication","Oversimplifies network protocols","Ensures data integrity and security","B","Provides a framework for network communication with seven layers.","TRUE"
+"Intermediate","Computer Networks","Which layer of the OSI model handles routing of packets?","Data Link layer","Transport layer","Session layer","Network layer","D","Network layer (Layer 3) manages routing.","TRUE"
+"Intermediate","Computer Networks","What is the port number used by HTTPS?","O(2^32)","443","22","80","B","HTTPS uses port 443 for secure communication.","TRUE"
+"Intermediate","Computer Networks","What is the purpose of NAT (Network Address Translation)?","Port address translation","IP address routing","IP address mapping","IP address sharing","C","Maps private IP addresses to a public IP for internet access.","TRUE"
+"Intermediate","Computer Networks","What is the difference between a hub and a switch?","Hub: routed, Switch: multicasts","Hub: broadcasts, Switch: targeted","Hub: stores, Switch: routers","Hub: multicasts, Switch: routers","B","Hub broadcasts data to all ports; switch forwards data to specific devices.","TRUE"
+"Intermediate","Computer Networks","What is the role of the MAC address?","Device fingerprinting","IP address assignment","Device identification","Network routing","C","Uniquely identifies a device at the data link layer.","TRUE"
+"Intermediate","Computer Networks","What does the TCP three-way handshake involve?","TCP three-way handshake establishment","Three-way sync","TCP connection setup","Connection establishment","D","SYN, SYN-ACK, ACK to establish a connection.","TRUE"
+"Intermediate","Computer Networks","What is the purpose of ICMP?","Route optimization","Error reporting","Network management","Ongoing packet transmission","B","Handles error messages and diagnostics (e.g., ping).","TRUE"
+"Intermediate","Computer Networks","What is the maximum number of hosts in a subnet with mask 255.255.255.240?","256","14","31","O(2^n)","B","/28 (240 = 11110000) has 2⁴ = 16 addresses (14 hosts, 1 network, 1 broadcast).","TRUE"
+"Intermediate","Computer Networks","What is the role of BGP in networking?","O(1) routing","Interior gateway protocol","Path selection protocol","Inter-domain routing","D","Border Gateway Protocol routes data between autonomous systems.","TRUE"
+"Intermediate","Operating Systems","What is the difference between preemptive and non-preemptive scheduling?","Non-preemptive: non-interruptible,","Preemptive: interrupting,","Preemptive: interruptible, Non-preemptive: uninterruptible","Process: interruptible schedule","C","Preemptive: CPU can interrupt a process; Non-preemptive: process runs to completion.","TRUE"
+"Intermediate","Operating Systems","What is a semaphore in an operating system?","Lock Variable","Synchronization mechanism","Mutual Exclusion Object","Critical Section Manager","B","Synchronization tool to control access to shared resources.","TRUE"
+"Intermediate","Operating Systems","What is the purpose of paging in memory management?","O(n)","Memory allocation","Buffering","Cache optimization","B","Divides memory into fixed-size pages to simplify allocation.","TRUE"
+"Intermediate","Operating Systems","What is the difference between a process and a thread?","Process: separate OS","Process: isolated, Thread: shared memory","Process: shared memory","Thread: isolated process","B","Process: independent program with own memory; Thread: lightweight, shares process memory.","TRUE"
+"Intermediate","Operating Systems","What is the role of the swap space in an OS?","Temporary storage","Disk cache","Extends virtual memory","Memory overflow","C","Disk space used to store inactive pages when RAM is full.","TRUE"
+"Intermediate","Operating Systems","What is a context switch in an operating system?","Process switching","Process migration","Kernel mode switching","Thread swapping","A","Saves current process state and loads another to switch execution.","TRUE"
+"Intermediate","Operating Systems","What is the purpose of the LRU page replacement algorithm?","Optimizes disk access","Most frequently used","Optimizes page replacement","Least recently used","C","Replaces the least recently used page to minimize page faults.","TRUE"
+"Intermediate","Operating Systems","What is a race condition in an OS?","Concurrent access issue","Data synchronization error","Shared resource contention issue","Concurrent modification problem","A","Occurs when multiple processes access shared data concurrently, leading to unpredictable results.","TRUE"
+"Intermediate","Operating Systems","What is the role of the file allocation table (FAT) in a file system?","File system configuration manager","File metadata repository","Directory hierarchy controller","File location tracking","D","Tracks file locations on disk.","TRUE"
+"Intermediate","Operating Systems","What is the purpose of a mutex in an OS?","Synchronization primitive","Mutual exclusion","Locking mechanism","Resource allocation","B","Ensures mutual exclusion to prevent concurrent access to critical sections.","TRUE"
+"Intermediate","AI/ML Foundations","What is the difference between classification and regression in ML?","Classification: labels, Regression: values","Regression: outcomes","Prediction: labels","Classification: attributes","A","Classification predicts discrete labels; regression predicts continuous values.","TRUE"
+"Intermediate","AI/ML Foundations","What is the purpose of cross-validation in ML?","Model selection bias","Hyperparameter tuning","Feature engineering optimization","Robust model evaluation","D","Splits data into multiple folds to evaluate model performance robustly.","TRUE"
+"Intermediate","AI/ML Foundations","What is the bias-variance tradeoff in ML?","Balances underfitting and overfitting","Overcomes overfitting and underfitting","Reduces variance and bias","Eliminates underfitting and overfitting","A","High bias: underfitting; high variance: overfitting. Balance minimizes error.","TRUE"
+"Intermediate","AI/ML Foundations","What is the role of the learning rate in gradient descent?","Algorithm initialization","Convergence criterion","Overshoot reduction","Step size control","D","Controls step size for parameter updates during optimization.","TRUE"
+"Intermediate","AI/ML Foundations","What is the purpose of regularization in ML?","Oversimplification","Prevents overfitting","Bias reduction","Reduces model complexity","B","Adds penalty to model complexity to prevent overfitting.","TRUE"
+"Intermediate","AI/ML Foundations","What is the difference between a perceptron and a multi-layer perceptron (MLP)?","Perceptron: single, MLP: multiple layers","Feedforward neural network","Neural network with recurrent connections","Single layer neural network","A","Perceptron: single-layer; MLP: multiple layers for non-linear problems.","TRUE"
+"Intermediate","AI/ML Foundations","What is the purpose of the softmax function in neural networks?","Probability conversion","Activation function","Logistic regression","Odds ratio","A","Converts logits to probabilities for multi-class classification.","TRUE"
+"Intermediate","AI/ML Foundations","What is the role of k in k-nearest neighbors (k-NN)?","O(n)","O(1)","Big-O complexity","Neighbor count","D","Number of neighbors considered for prediction.","TRUE"
+"Intermediate","AI/ML Foundations","What is the difference between bagging and boosting in ML?","Ensemble methods: parallel, Stacking: sequential","Model averaging: parallel, Gradient boosting: sequential","Feature selection: parallel, Hyperparameter tuning: sequential","Bagging: parallel, Boosting: sequential","D","Bagging: parallel ensembles (e.g., Random Forest); Boosting: sequential, corrects errors (e.g., AdaBoost).","TRUE"
+"Intermediate","AI/ML Foundations","What is the purpose of principal component analysis (PCA) in ML?","Dimensionality reduction","Anomaly detection","Data augmentation","Feature extraction","A","Reduces dimensionality by projecting data onto principal components.","TRUE"
+"Advanced","Programming Fundamentals","What is the output of this C code?
+int x = 5;
+int *p = &x;
+*p += 2;
+printf(""%d %d"", x, *p);","5 8","7 7","7 9","6 7","B","p points to x. *p += 2 modifies x to 5 + 2 = 7. Both x and *p access the same memory. Output: 7 7.","TRUE"
+"Advanced","Programming Fundamentals","In Python, what is the output?
+x = [[0]*2]*3;
+x[0][0] = 1;
+print(x)","[[1, 0], [0, 0], [0, 0]]","[[1, 0], [1, 0], [1, 0]]","[[1, 0], [1, 1], [1, 1]]","[[1, 1], [1, 1], [1, 1]]","B","[[0]*2]*3 creates three references to the same inner list. Modifying x[0][0] affects all rows. Output: [[1, 0], [1, 0], [1, 0]].","TRUE"
+"Advanced","Programming Fundamentals","In Java, what is the output?
+String s1 = new String(""test"");
+String s2 = new String(""test"");
+System.out.println(s1 == s2);","1","false","true","null","B","== checks reference equality. new String creates distinct objects. Output: false.","TRUE"
+"Advanced","Programming Fundamentals","In C++, what is the output?
+int x = 10;
+auto f = [&x]() { x += 5;
+    return x;
+}
+;
+cout << f() << "" "" << x;","15 15","15 10","15 20","15 25","A","Lambda captures x by reference. f() increments x to 15, returns 15. x is also 15. Output: 15 15.","TRUE"
+"Advanced","Programming Fundamentals","In Python, what is the output?
+def f(x=[]): x.append(1);
+return x;
+print(f(), f())","[1]","[2]","[1, 1]","[1] [1, 1]","D","Default list x is shared across calls. First f(): x = [1]. Second f(): x = [1, 1]. Output: [1] [1, 1].","TRUE"
+"Advanced","Programming Fundamentals","In C, what is the output?
+int x = 5;
+void *p = &x;
+printf(""%d"", *(int*)p);","5","22","0","10","A","p is a void pointer to x. Cast to int* and dereference gives 5. Output: 5.","TRUE"
+"Advanced","Programming Fundamentals","In Java, what is the output?
+Integer a = 127;
+Integer b = 127;
+System.out.println(a == b);","true","0","1","false","A","Integer caching for -128 to 127 reuses objects. a and b reference the same object. Output: true.","TRUE"
+"Advanced","Programming Fundamentals","In Python, what is the output?
+x = {1: [1], 2: [2]};
+y = x.copy();
+y[1].append(3);
+print(x[1])","[1, 2, 3]","[1]","[1, 3]","[1, 2]","C","copy() creates a shallow copy. y[1] references the same list as x[1]. Appending 3 modifies x[1]. Output: [1, 3].","TRUE"
+"Advanced","Programming Fundamentals","In C++, what is the output?
+int arr[] = {1, 2, 3};
+int *p = arr;
+cout << *(p + 1) * *(p + 2);","3","22","9","6","D","*(p + 1) = arr[1] = 2, *(p + 2) = arr[2] = 3. 2 * 3 = 6. Output: 6.","TRUE"
+"Advanced","Programming Fundamentals","In C, what is the output?
+union U { int x;
+    char c;
+}
+u;
+u.x = 258;
+printf(""%d"", u.c);","255","2","256","257","B","Union shares memory. x = 258 (binary 00000001 00000010). c reads first byte (00000010 = 2). Output: 2.","TRUE"
+"Advanced","Programming Fundamentals","In Python, what is the output?
+from functools import reduce;
+print(reduce(lambda x, y: x + y, [1, 2, 3], 0))","3","22","1","6","D","reduce applies + with initial value 0: ((0 + 1) + 2) + 3 = 6. Output: 6.","TRUE"
+"Advanced","Programming Fundamentals","In Java, what is the output?
+try { throw new Exception(""Error"");
+}
+catch (Exception e) { System.out.println(""Caught"");
+}
+finally { System.out.println(""Finally"");
+}
+","Error","Finally","Caught Finally","Caught","C","Exception is caught, prints Caught. finally always executes. Output: Caught Finally.","TRUE"
+"Advanced","Programming Fundamentals","In C++, what is the output?
+vector<int> v = {1, 2, 3};
+transform(v.begin(), v.end(), v.begin(), [](int x) { return x * x; });
+cout << v[1];","5","22","0","4","D","transform squares each element. v = [1, 4, 9]. v[1] = 4. Output: 4.","TRUE"
+"Advanced","Programming Fundamentals","In Python, what is the output?
+x = [1, 2, 3];
+y = iter(x);
+next(y);
+print(next(y))","1","O(1)","0","2","D","iter(x) creates an iterator. First next(y) returns 1. Second next(y) returns 2. Output: 2.","TRUE"
+"Advanced","Programming Fundamentals","In C, what is the output?
+int x = 5;
+int y = x++ + ++x;
+printf(""%d %d"", x, y);","6 10","9 8","11 11","7 12 (compiler-dependent)","D","Undefined behavior due to multiple modifications of x without sequence point. Possible: x = 7, y = 12 (5 + 7). Output varies, assume common compiler: 7 12.","TRUE"
+"Advanced","Programming Fundamentals","In Java, what is the output?
+List<Integer> list = Arrays.asList(1, 2, 3);
+list.replaceAll(x -> x + 1);
+System.out.println(list);","[2, 3, 4]","[1, 2, 4]","[2, 3, 5]","[1, 3, 3]","A","replaceAll increments each element. list = [2, 3, 4]. Output: [2, 3, 4].","TRUE"
+"Advanced","Programming Fundamentals","In Python, what is the output?
+import copy;
+x = [[1], [2]];
+y = copy.deepcopy(x);
+y[0].append(3);
+print(x)","[[1], [2]]","[[1, 3], [2]]","[[1], [2, 3]]","[1, [2]]","A","deepcopy creates independent copies. Modifying y doesn’t affect x. Output: [[1], [2]].","TRUE"
+"Advanced","Programming Fundamentals","In C++, what is the output?
+int x = 5;
+function<int(int)> f = [&](int a) { x += a;
+    return x;
+}
+;
+cout << f(3);","6","22","8","9","C","Lambda captures x by reference. f(3) adds 3 to x = 5, returns x = 8. Output: 8.","TRUE"
+"Advanced","Programming Fundamentals","In C, what is the output?
+struct S { int x;
+    char c;
+}
+s = {10, 'A'};
+printf(""%d %c"", s.x, s.c);","0 Z","5 B","10 A","15 A","C","s.x = 10, s.c = 'A'. Output: 10 A.","TRUE"
+"Advanced","Programming Fundamentals","In Python, what is the output?
+x = [1, 2, 3];
+print(list(filter(lambda x: x % 2 == 1, x)))","[1, 3]","[1, 3, 5]","[1, 2, 3]","[1, 5]","A","filter selects odd numbers: [1, 3]. Output: [1, 3].","TRUE"
+"Advanced","Data Structures","What is the time complexity of finding the lowest common ancestor (LCA) in a binary search tree with n nodes?","O(n log n)","O(log n) (balanced)","O(1)","O(n)","B","Traverse from root to nodes, comparing values: O(h), where h is height (O(log n) if balanced).","TRUE"
+"Advanced","Data Structures","In Python, what is the output of this AVL tree insertion (simplified)?
+class Node: def __init__(self, val): self.val = val;
+self.left = self.right = None;
+root = Node(10);
+root.left = Node(5);
+root.right = Node(15);
+root.right.right = Node(20);
+print(root.right.right.val)","22","None","20","5","C","Tree structure: 10 -> 15 -> 20. root.right.right.val = 20. Output: 20.","TRUE"
+"Advanced","Data Structures","What is the time complexity of building a binary heap from an array of n elements?","O(n²)","O(n)","O(n log n)","O(log n)","B","Heapify from bottom-up: O(n).","TRUE"
+"Advanced","Data Structures","In a graph with V vertices and E edges, what is the time complexity of detecting a cycle using DFS?","O(V^2)","O(V + E)","O(E^2)","O(n)","B","DFS visits all vertices and edges: O(V + E).","TRUE"
+"Advanced","Data Structures","In Python, what is the output?
+from collections import defaultdict;
+d = defaultdict(list);
+d[1].append(2);
+d[1].append(3);
+print(d)","defaultdict(<class 'dict'>, {1: [2, 3]})","defaultdict(<class 'list'>, {1: [2, 3, 4]})","defaultdict(<class 'list'>, {1: [2, 3]})","defaultdict(<class 'list'>, {1: [2]})","C","defaultdict creates empty list for new keys. d[1] = [2, 3]. Output: defaultdict(<class 'list'>, {1: [2, 3]}).","TRUE"
+"Advanced","Data Structures","What is the time complexity of finding the shortest path in an unweighted graph using BFS?","O(V^2)","O(1)","O(V + E)","O(n log n)","C","BFS explores all vertices and edges: O(V + E).","TRUE"
+"Advanced","Data Structures","In a trie with n words of average length k, what is the time complexity to search for a word?","O(k^2)","O(n)","O(n log k)","O(k)","D","Traverse characters: O(k).","TRUE"
+"Advanced","Data Structures","In Python, what is the output?
+class Node: def __init__(self, val): self.val = val;
+self.next = None;
+head = Node(1);
+head.next = Node(2);
+head.next.next = Node(3);
+print(head.next.next.val)","3","O(n)","head","None","A","Linked list: 1 -> 2 -> 3. head.next.next.val = 3. Output: 3.","TRUE"
+"Advanced","Data Structures","What is the time complexity of Kruskal’s algorithm for minimum spanning tree with V vertices and E edges?","O(E log V)","O(V^3)","O(V log E)","O(E)","A","Sort edges O(E log E), union-find O(E α(V)) ≈ O(E log V). Total: O(E log V).","TRUE"
+"Advanced","Data Structures","In a segment tree for range sum queries with n elements, what is the time complexity of a query?","O(1)","O(log n)","O(n)","O(n log n)","B","Traverse height of tree: O(log n).","TRUE"
+"Advanced","Data Structures","In Python, what is the output?
+from heapq import heappush, heappop;
+h = [];
+heappush(h, 3);
+heappush(h, 1);
+heappush(h, 2);
+print(heappop(h))","1","None","5","2","A","Min-heap: [1, 2, 3]. heappop removes smallest: 1. Output: 1.","TRUE"
+"Advanced","Data Structures","What is the time complexity of deleting a node from a red-black tree with n nodes?","O(n)","O(log n)","O(n log n)","O(1)","B","Rebalance after deletion: O(log n).","TRUE"
+"Advanced","Data Structures","In a weighted graph, what is the time complexity of Bellman-Ford algorithm for single-source shortest paths?","O(E^2)","O(n^2)","O(n)","O(V * E)","D","Relax edges V-1 times: O(V * E).","TRUE"
+"Advanced","Data Structures","In Python, what is the output?
+from collections import deque;
+g = {1: [2, 3], 2: [4], 3: [4], 4: []};
+q = deque([1]);
+visited = {1};
+while q: n = q.popleft();
+for nei in g[n]: if nei not in visited: visited.add(nei);
+q.append(nei);
+print(len(visited))","4","3","2","5","A","BFS visits all nodes in graph: 1, 2, 3, 4. len(visited) = 4. Output: 4.","TRUE"
+"Advanced","Data Structures","What is the space complexity of storing a sparse graph with V vertices and E edges?","O(V log V)","O(E^2)","O(n)","O(V + E)","D","Adjacency list: O(V + E).","TRUE"
+"Advanced","Data Structures","In a B-tree of order m with n keys, what is the time complexity of searching a key?","O(log m)","O(log n)","O(m)","O(n log m)","B","Traverse height: O(log_m n).","TRUE"
+"Advanced","Data Structures","In Python, what is the output?
+x = [(1, 'a'), (2, 'b'), (1, 'c')];
+x.sort();
+print(x)","[(2, 'a'), (1, 'c'), (1, 'b')]","[(1, 'a'), (2, 'c'), (1, 'b')]","[(1, 'c'), (1, 'a'), (2, 'b')]","[(1, 'a'), (1, 'c'), (2, 'b')]","D","Sort by first element, then second: [(1, 'a'), (1, 'c'), (2, 'b')]. Output: [(1, 'a'), (1, 'c'), (2, 'b')].","TRUE"
+"Advanced","Data Structures","What is the time complexity of finding strongly connected components using Kosaraju’s algorithm?","O(V + E)","O(E^2)","O(V^2)","O(V log V)","A","Two DFS passes and transpose: O(V + E).","TRUE"
+"Advanced","Data Structures","In a suffix tree for a string of length n, what is the time complexity to check if a substring exists?","O(m)","O(n^2)","O(log n)","O(n log n)","A","Traverse path matching substring: O(m), where m is substring length.","TRUE"
+"Advanced","Data Structures","In Python, what is the output?
+from collections import OrderedDict;
+d = OrderedDict([(1, 'a'), (2, 'b')]);
+d.move_to_end(1);
+print(list(d.keys()))","[3, 2]","[1, 2]","[2, 3]","[2, 1]","D","move_to_end(1) moves key 1 to end. Keys: [2, 1]. Output: [2, 1].","TRUE"
+"Advanced","Algorithms","What is the time complexity of the knapsack problem (0/1) using dynamic programming for n items and capacity W?","O(n^3)","O(n * W)","O(1)","O(W^n)","B","DP table of size n × W: O(n * W).","TRUE"
+"Advanced","Algorithms","In Python, what is the output of this longest common subsequence?
+def lcs(s1, s2): m, n = len(s1), len(s2);
+dp = [[0]*(n+1) for _ in range(m+1)];
+for i in range(1, m+1): for j in range(1, n+1): if s1[i-1] == s2[j-1]: dp[i][j] = dp[i-1][j-1] + 1;
+else: dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+return dp[m][n];
+print(lcs(""ABC"", ""AC""))","1","3","2","0","C","LCS of ""ABC"" and ""AC"" is ""AC"". Length: 2. Output: 2.","TRUE"
+"Advanced","Algorithms","What is the time complexity of matrix chain multiplication for n matrices using dynamic programming?","O(n log n)","O(n²)","O(1)","O(n³)","D","DP table for all possible splits: O(n³).","TRUE"
+"Advanced","Algorithms","In C++, what is the output?
+vector<int> v = {3, 1, 4, 1, 5};
+int k = 2;
+multiset<int> s(v.begin(), v.begin()+k);
+int ans = *s.rbegin();
+for(int i = k; i < v.size(); i++) { s.erase(s.find(v[i-k]));
+    s.insert(v[i]);
+    ans = max(ans, *s.rbegin());
+}
+cout << ans;","5","6","3","4","D","Sliding window maximum using multiset. Max of [3,1], [1,4], [4,1], [1,5] is 4. Output: 4.","TRUE"
+"Advanced","Algorithms","What is the time complexity of Floyd-Warshall algorithm for all-pairs shortest paths in a graph with V vertices?","O(log n)","O(V²)","O(V³)","O(n)","C","Three nested loops: O(V³).","TRUE"
+"Advanced","Algorithms","In Python, what is the output?
+def kadane(arr): max_so_far = max_ending_here = arr[0];
+for x in arr[1:]: max_ending_here = max(x, max_ending_here + x);
+max_so_far = max(max_so_far, max_ending_here);
+return max_so_far;
+print(kadane([-2, 1, -3, 4, -1, 2, 1]))","1","3","6","5","C","Kadane’s algorithm finds max subarray sum: [4, -1, 2, 1] = 6. Output: 6.","TRUE"
+"Advanced","Algorithms","What is the time complexity of finding the median of two sorted arrays of size n each?","O(1)","O(log n)","O(n log n)","O(n^2)","B","Binary search to partition arrays: O(log n).","TRUE"
+"Advanced","Algorithms","In C, what is the output of this KMP preprocessing?
+void computeLPS(char *pat, int m, int *lps) { int len = 0, i = 1;
+    lps[0] = 0;
+    while(i < m) { if(pat[i] == pat[len]) { len++;
+            lps[i++] = len;
+        }
+        else if(len > 0) len = lps[len-1];
+        else lps[i++] = 0;
+}}
+int lps[6];
+computeLPS(""AABAAC"", 6, lps);
+printf(""%d"", lps[5]);","0","1","3","O(1)","A","LPS for ""AABAAC"": [0, 1, 0, 1, 2, 0]. lps[5] = 0. Output: 0.","TRUE"
+"Advanced","Algorithms","What is the time complexity of the A* search algorithm in a graph?","O(1)","O(b^d)","O(b^2)","O(n^2)","B","Depends on heuristic, typically O(b^d) where b is branching factor, d is depth.","TRUE"
+"Advanced","Algorithms","In Python, what is the output?
+def edit_distance(s1, s2): m, n = len(s1), len(s2);
+dp = [[0]*(n+1) for _ in range(m+1)];
+for i in range(m+1): dp[i][0] = i;
+for j in range(n+1): dp[0][j] = j;
+for i in range(1, m+1): for j in range(1, n+1): if s1[i-1] == s2[j-1]: dp[i][j] = dp[i-1][j-1];
+else: dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1;
+return dp[m][n];
+print(edit_distance(""cat"", ""cut""))","3","1","0","2","B","Edit distance from ""cat"" to ""cut"" is 1 (replace a with u). Output: 1.","TRUE"
+"Advanced","Algorithms","What is the time complexity of finding the longest palindromic substring using dynamic programming?","O(n²)","O(n log n)","O(1)","O(n³)","A","DP table for all substrings: O(n²).","TRUE"
+"Advanced","Algorithms","In C++, what is the output?
+int n = 5;
+vector<vector<int>> dp(n+1, vector<int>(n+1));
+for(int i = 0; i <= n; i++) dp[i][0] = dp[0][i] = 1;
+for(int i = 1; i <= n; i++) for(int j = 1; j <= n; j++) dp[i][j] = dp[i-1][j] + dp[i][j-1];
+cout << dp[n][n];","32","56","252","O(n)","C","DP computes number of paths in n×n grid: dp[5][5] = 252 (binomial coefficient). Output: 252.","TRUE"
+"Advanced","Algorithms","What is the space complexity of the Rabin-Karp string matching algorithm?","O(n)","O(m)","O(n log n)","O(1)","D","Rolling hash and pattern storage: O(1) extra space.","TRUE"
+"Advanced","Algorithms","In Python, what is the output?
+def max_profit(prices): n = len(prices);
+if n < 2: return 0;
+dp = [0]*n;
+min_price = prices[0];
+for i in range(1, n): min_price = min(min_price, prices[i]);
+dp[i] = max(dp[i-1], prices[i] - min_price);
+return dp[n-1];
+print(max_profit([7, 1, 5, 3, 6, 4]))","5","6","7","0","A","Max profit by buying at 1, selling at 6: 6 - 1 = 5. Output: 5.","TRUE"
+"Advanced","Algorithms","What is the time complexity of computing the convex hull of n points using Graham’s scan?","O(log n)","O(n)","O(n^2)","O(n log n)","D","Sort points O(n log n), scan O(n). Total: O(n log n).","TRUE"
+"Advanced","Algorithms","In C, what is the output?
+int n = 4;
+int dp[5];
+dp[0] = 1;
+for(int i = 1; i <= n; i++) { dp[i] = 0;
+    for(int j = 0; j < i; j++) dp[i] += dp[j] * dp[i-j-1];
+}
+printf(""%d"", dp[n]);","0","14","21","8","B","Catalan number for n = 4: dp[4] = 14 (number of BSTs). Output: 14.","TRUE"
+"Advanced","Algorithms","What is the time complexity of the Hungarian algorithm for bipartite matching with n vertices?","O(n³)","O(n²)","O(1)","O(n log n)","A","Maximum flow approach: O(n³).","TRUE"
+"Advanced","Algorithms","In Python, what is the output?
+def count_inversions(arr): def merge_and_count(l, r): inv = 0;
+res = [];
+i = j = 0;
+while i < len(l) and j < len(r): if l[i] <= r[j]: res.append(l[i]);
+i += 1;
+else: res.append(r[j]);
+inv += len(l)-i;
+j += 1;
+res.extend(l[i:]);
+res.extend(r[j:]);
+return res, inv;
+def sort_and_count(arr): if len(arr) <= 1: return arr, 0;
+mid = len(arr)//2;
+l, inv_l = sort_and_count(arr[:mid]);
+r, inv_r = sort_and_count(arr[mid:]);
+merged, inv_m = merge_and_count(l, r);
+return merged, inv_l + inv_r + inv_m;
+_, inv = sort_and_count([3, 1, 2]);
+print(inv)","2","O(n)","O(n log n)","O(1)","A","Inversions in [3, 1, 2]: (3, 1), (3, 2). Count: 2. Output: 2.","TRUE"
+"Advanced","Algorithms","What is the time complexity of finding the k-th smallest element in two sorted arrays of sizes m and n?","O(n)","O(log(min(m, n)))","O(m + n)","O(n^2)","B","Binary search on partitions: O(log(min(m, n))).","TRUE"
+"Advanced","Algorithms","In C++, what is the output?
+int n = 3;
+vector<int> dp(n+1);
+dp[0] = 1;
+for(int i = 1; i <= n; i++) for(int j = 1; j <= i; j++) dp[i] += dp[i-j];
+cout << dp[n];","4","22","6","0","A","Number of ways to sum to n with positive integers: dp[3] = 4 (1+1+1, 1+2, 2+1, 3). Output: 4.","TRUE"
+"Advanced","Database Basics","What is the result of this SQL query?
+SELECT d.department_name, AVG(e.salary) FROM employees e JOIN departments d ON e.department_id = d.id GROUP BY d.department_name HAVING COUNT(e.id) > 5 ORDER BY AVG(e.salary) DESC;","Department names and average salaries for departments with >5 employees, sorted high to low","Department names and average salaries for departments with <=5 employees, sorted low to high","Department names and average salaries for departments with <5 employees, sorted high to low","Department names and average salaries for all departments, sorted low to high","A","Joins employees and departments, groups by department_name, computes average salary, filters departments with >5 employees, sorts by average salary descending.","TRUE"
+"Advanced","Database Basics","What does SELECT c.customer_name, COUNT(o.order_id) FROM customers c LEFT JOIN orders o ON c.id = o.customer_id GROUP BY c.customer_name; do?","Customer names and their order dates","Customer names and their order sums","Customer names and their order counts","Customer names and their average order values","C","Counts orders per customer, including customers with zero orders.","TRUE"
+"Advanced","Database Basics","What is the output?
+SELECT product_name, price FROM products WHERE price > (SELECT AVG(price) FROM products WHERE category = products.category);","All products with price greater than 0","Products below category average price","Products above category average price","Products with category 'Electronics'","C","Retrieves product_name and price for products priced above their category’s average.","TRUE"
+"Advanced","Database Basics","What does CREATE TRIGGER update_stock AFTER INSERT ON orders FOR EACH ROW UPDATE products SET stock = stock - NEW.quantity WHERE id = NEW.product_id; do?","Decreases product stock on order update","Increases product stock on order insertion","Updates product stock on order deletion","Updates product stock on order insertion","D","Automatically reduces stock in products by quantity after an order is inserted.","TRUE"
+"Advanced","Database Basics","What is the result?
+SELECT e1.name FROM employees e1 WHERE e1.salary > (SELECT AVG(e2.salary) FROM employees e2 WHERE e2.manager_id = e1.id);","Employees earning above their team’s average","Employees with salaries above their manager's salary","Employees earning above their department's average","Employees earning above the company's average","A","Retrieves names of employees with salaries above the average salary of their direct reports.","TRUE"
+"Advanced","Database Basics","What does EXPLAIN SELECT * FROM orders WHERE customer_id = 100; do?","EXPLAIN ANALYZE","EXPLAIN INDEX","EXPLAIN PLAN","Shows query plan","D","Provides query execution plan, showing how the database processes the query.","TRUE"
+"Advanced","Database Basics","What is the output?
+SELECT category, MAX(price) FROM products GROUP BY category UNION SELECT 'Total', MAX(price) FROM products;","Category max prices and overall average price","Category average prices and overall min price","Category sum and overall max price","Category max prices and overall max price","D","Lists maximum price per category, plus overall maximum price labeled as 'Total'.","TRUE"
+"Advanced","Database Basics","What does ALTER TABLE employees ADD CONSTRAINT unique_email UNIQUE (email); do?","Ensures data consistency","Creates a primary key","Omits duplicate records","Enforces unique emails","D","Adds a unique constraint to email column, preventing duplicate emails.","TRUE"
+"Advanced","Database Basics","What is the result?
+SELECT name FROM students s WHERE EXISTS (SELECT 1 FROM courses c WHERE c.student_id = s.id AND c.grade = 'A');","Students with A-grade siblings","Students with A-grade courses","Students with A-grade parents","Students with A-grade teachers","B","Retrieves name of students who have at least one course with grade 'A'.","TRUE"
+"Advanced","Database Basics","What does CREATE VIEW high_salary AS SELECT name, salary FROM employees WHERE salary > 100000; do?","Creates high_salary stored procedure","Creates high-salary view","Creates high-salary table","Creates employee view","B","Creates a virtual table showing name and salary for employees with salary > 100000.","TRUE"
+"Advanced","Computer Networks","What is the purpose of the Transport layer in the OSI model?","Reliable data transfer","Packet routing","Session initiation","Oriented delivery","A","Provides reliable data transfer, flow control, and error correction.","TRUE"
+"Advanced","Computer Networks","What is the role of IPSec in network security?","Encryption protocols","Network access control","Secures IP communication","Virtual private networking","C","Provides encryption and authentication for IP packets.","TRUE"
+"Advanced","Computer Networks","What is the difference between TCP and SCTP?","TCP: single stream, SCTP: multi-stream","Connection-oriented transport mode","O(n)","Stream control protocol","A","TCP: single stream, reliable; SCTP: multi-stream, supports multi-homing.","TRUE"
+"Advanced","Computer Networks","What is the purpose of the DHCP protocol?","Route caching","Automatic Configuration","IP address assignment","Network discovery","C","Dynamically assigns IP addresses to devices on a network.","TRUE"
+"Advanced","Computer Networks","What is the role of the TTL field in an IP header?","O(1)","Packet prioritization","Hop count","Prevents routing loops","D","Limits packet lifetime to prevent infinite loops (decremented per hop).","TRUE"
+"Advanced","Computer Networks","What is the difference between stateful and stateless firewalls?","Rule-driven","Connection-oriented","Session-based","Stateful: connection-aware, Stateless: rule-based","D","Stateful: tracks connection states; Stateless: filters packets based on rules.","TRUE"
+"Advanced","Computer Networks","What is the purpose of the RST flag in TCP?","Connection reset","SYN flag","RUR flag","ACK flag","A","Resets a connection due to errors or invalid segments.","TRUE"
+"Advanced","Computer Networks","What is the role of SNMP in network management?","Network monitoring","SNMPv3","SNMP agent","SNMP proxy","A","Simple Network Management Protocol monitors and manages network devices.","TRUE"
+"Advanced","Computer Networks","What is the maximum throughput of a network with 100 Mbps bandwidth and 10 ms RTT, assuming TCP with window size 64 KB?","1000 Mbps","51.2 Mbps","O(n log n)","5 Mbps","B","Throughput = Window Size / RTT = (64 * 1024 * 8) / (10 / 1000) = 51.2 Mbps.","TRUE"
+"Advanced","Computer Networks","What is the purpose of VLAN tagging in Ethernet networks?","Separates Network Traffic","Provides MAC Address Isolation","Separates VLAN traffic","Supports Quality of Service","C","Adds identifiers to frames to separate traffic on virtual LANs.","TRUE"
+"Advanced","Operating Systems","What is the difference between spinlock and semaphore in an OS?","LIFO (Last In First Out) synchronization","Spinlock: busy-wait, Semaphore: blocking","Non-blocking synchronization","Busy-waiting mechanism","B","Spinlock: busy-waits in a loop; Semaphore: blocks threads, supports counting.","TRUE"
+"Advanced","Operating Systems","What is the role of the TLB (Translation Lookaside Buffer) in virtual memory?","Speeds address translation","Cache Hierarchy","Page Fault Handler","O(n)","A","Caches recent virtual-to-physical address translations to speed up access.","TRUE"
+"Advanced","Operating Systems","What is the Banker’s algorithm used for in an OS?","Deadlock detection","Banker's algorithm implementation","Deadlock avoidance","Resource allocation","C","Prevents deadlock by ensuring safe resource allocation.","TRUE"
+"Advanced","Operating Systems","What is the difference between user-level and kernel-level threads?","User-level: OS-controlled,","User-level: hardware-managed","User-level: app-managed, Kernel-level: OS-managed","Kernel-level: CPU-managed,","C","User-level: managed by application, no kernel involvement; Kernel-level: OS-managed, supports parallelism.","TRUE"
+"Advanced","Operating Systems","What is the purpose of copy-on-write in memory management?","Omits page faults","Optimizes memory usage","Lazy allocation","Avoids memory fragmentation","B","Delays copying shared memory pages until a write occurs, saving resources.","TRUE"
+"Advanced","Operating Systems","What is the role of the inverted page table in an OS?","Page replacement policy","Virtual memory management","Efficient page mapping","O(n)","C","Maps physical pages to virtual pages, reducing memory overhead.","TRUE"
+"Advanced","Operating Systems","What is the difference between hard and soft real-time systems?","Non-real time","Real-time critical","Critical","Hard: critical, Soft: non-critical","D","Hard: strict deadlines, failure is critical; Soft: deadlines important but not critical.","TRUE"
+"Advanced","Operating Systems","What is the purpose of the monitor in process synchronization?","Synchronization construct","Synchronization variable","O(1)","Lock manager","A","Ensures mutual exclusion and provides condition variables for synchronization.","TRUE"
+"Advanced","Operating Systems","What is the role of the I/O scheduler in an OS?","Orienting disk usage","Enhances system responsiveness","Improves CPU I/O","Optimizes disk I/O","D","Optimizes disk access by reordering I/O requests.","TRUE"
+"Advanced","Operating Systems","What is the difference between demand paging and prepaging?","Ongoing paging","Demand loading","Prepaging strategy","Demand: on-demand, Prepaging: anticipatory","D","Demand paging: loads pages on demand; Prepaging: loads pages in advance to reduce faults.","TRUE"
+"Advanced","AI/ML Foundations","What is the difference between L1 and L2 regularization in ML?","L1: feature selection, L2: overfitting","L1: weight decay, L2: feature extraction","L1: overfitting, L2: dimensionality reduction","L1: sparsity, L2: smoothness","D","L1: adds absolute weights (sparsity); L2: adds squared weights (smoothness).","TRUE"
+"Advanced","AI/ML Foundations","What is the purpose of early stopping in neural network training?","Gradient Explosion","Prevents overfitting","Avoids Divergence","Overshooting","B","Halts training when validation performance stops improving to prevent overfitting.","TRUE"
+"Advanced","AI/ML Foundations","What is the role of batch normalization in deep learning?","Enhances model interpretability","Stabilizes training","Omits the noise in the data","Improves numerical stability during testing","B","Normalizes layer inputs to stabilize and accelerate training.","TRUE"
+"Advanced","AI/ML Foundations","What is the difference between precision and recall in ML evaluation?","Precision: coverage, Recall: accuracy","Precision: accuracy, Recall: coverage","Precision: recall, Recall: precision","Precision: accuracy, Recall: precision","B","Precision: TP/(TP+FP) (accuracy of positive predictions); Recall: TP/(TP+FN) (coverage of actual positives).","TRUE"
+"Advanced","AI/ML Foundations","What is the purpose of dropout in neural networks?","Reduces overfitting","Improves generalization","Overspecialization","Regularization penalty","A","Randomly deactivates neurons during training to prevent overfitting.","TRUE"
+"Advanced","AI/ML Foundations","What is the difference between CNN and RNN architectures?","Feedforward Network","O(2^n)","Temporal Convolutional Network","CNN: spatial, RNN: sequential","D","CNN: processes spatial data (e.g., images); RNN: processes sequential data (e.g., time series).","TRUE"
+"Advanced","AI/ML Foundations","What is the role of the attention mechanism in transformers?","Highlights noisy data points","Omits irrelevant inputs","Focuses on relevant inputs","Filters out contextual cues","C","Weights input elements based on relevance, improving context understanding.","TRUE"
+"Advanced","AI/ML Foundations","What is the purpose of the F1 score in ML evaluation?","F2 score","F1 weighted score","Balances precision and recall","Macro precision","C","Harmonic mean of precision and recall, balances both metrics.","TRUE"
+"Advanced","AI/ML Foundations","What is the difference between generative and discriminative models in ML?","Generative: conditional","Generative: marginal","Generative: joint, Discriminative: conditional","Discriminative: joint","C","Generative: models joint probability P(x,y); Discriminative: models conditional P(y|x).","TRUE"
+"Advanced","AI/ML Foundations","What is the purpose of transfer learning in deep learning?","Leverages pre-trained models","Weighted model initialization","Overfitting reduction","Domain adaptation","A","Uses pre-trained models to improve performance on new tasks with less data.","TRUE"
