@@ -1,4 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
+from pydantic import BaseModel
+import tempfile
+import subprocess
+import os
+
 from sqlalchemy import asc, desc
 from sqlalchemy.orm import Session
 
@@ -21,6 +26,79 @@ from app.modules.practice.schemas import (
 )
 
 router = APIRouter(prefix="/api", tags=["practice"])
+
+class ExecuteRequest(BaseModel):
+    language: str
+    code: str
+
+@router.post("/execute")
+def execute_code(body: ExecuteRequest):
+    lang = body.language.lower()
+    code = body.code
+    
+    with tempfile.TemporaryDirectory() as temp_dir:
+        if lang == "python":
+            file_path = os.path.join(temp_dir, "main.py")
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(code)
+            try:
+                result = subprocess.run(["python", file_path], capture_output=True, text=True, timeout=5)
+                return {"stdout": result.stdout, "stderr": result.stderr}
+            except subprocess.TimeoutExpired:
+                return {"stdout": "", "stderr": "Execution timed out."}
+        
+        elif lang == "javascript":
+            file_path = os.path.join(temp_dir, "main.js")
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(code)
+            try:
+                result = subprocess.run(["node", file_path], capture_output=True, text=True, timeout=5)
+                return {"stdout": result.stdout, "stderr": result.stderr}
+            except subprocess.TimeoutExpired:
+                return {"stdout": "", "stderr": "Execution timed out."}
+                
+        elif lang == "java":
+            file_path = os.path.join(temp_dir, "Main.java")
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(code)
+            try:
+                subprocess.run(["javac", file_path], capture_output=True, text=True, timeout=5, check=True)
+                result = subprocess.run(["java", "-cp", temp_dir, "Main"], capture_output=True, text=True, timeout=5)
+                return {"stdout": result.stdout, "stderr": result.stderr}
+            except subprocess.CalledProcessError as e:
+                return {"stdout": "", "stderr": e.stderr}
+            except subprocess.TimeoutExpired:
+                return {"stdout": "", "stderr": "Execution timed out."}
+                
+        elif lang == "cpp":
+            file_path = os.path.join(temp_dir, "main.cpp")
+            out_path = os.path.join(temp_dir, "main.exe")
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(code)
+            try:
+                subprocess.run(["gcc", file_path, "-lstdc++", "-o", out_path], capture_output=True, text=True, timeout=5, check=True)
+                result = subprocess.run([out_path], capture_output=True, text=True, timeout=5)
+                return {"stdout": result.stdout, "stderr": result.stderr}
+            except subprocess.CalledProcessError as e:
+                return {"stdout": "", "stderr": e.stderr}
+            except subprocess.TimeoutExpired:
+                return {"stdout": "", "stderr": "Execution timed out."}
+
+        elif lang == "c":
+            file_path = os.path.join(temp_dir, "main.c")
+            out_path = os.path.join(temp_dir, "main.exe")
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(code)
+            try:
+                subprocess.run(["gcc", file_path, "-o", out_path], capture_output=True, text=True, timeout=5, check=True)
+                result = subprocess.run([out_path], capture_output=True, text=True, timeout=5)
+                return {"stdout": result.stdout, "stderr": result.stderr}
+            except subprocess.CalledProcessError as e:
+                return {"stdout": "", "stderr": e.stderr}
+            except subprocess.TimeoutExpired:
+                return {"stdout": "", "stderr": "Execution timed out."}
+        else:
+            raise HTTPException(status_code=400, detail="Unsupported language")
 
 TIME_WINDOW_MAP = {
     "thirty_days": "THIRTY_DAYS",
@@ -252,3 +330,33 @@ def my_progress(
     ]
 
     return PaginatedProgress(items=items, total=total, limit=limit, offset=offset)
+
+
+@router.get("/assessments", response_model=list[dict])
+def get_assessments(db: Session = Depends(get_db)):
+    from app.modules.practice.models import Assessment
+    assessments = db.query(Assessment).all()
+    return [{"id": a.id, "title": a.title, "duration_minutes": a.duration_minutes} for a in assessments]
+
+
+@router.get("/assessments/{assessment_id}/questions", response_model=list[dict])
+def get_assessment_questions(assessment_id: int, db: Session = Depends(get_db)):
+    from app.modules.practice.models import AssessmentQuestion
+    questions = db.query(AssessmentQuestion).filter(AssessmentQuestion.assessment_id == assessment_id).all()
+    return [
+        {
+            "id": q.id,
+            "assessment_id": q.assessment_id,
+            "title": q.title,
+            "description_html": q.description_html,
+            "difficulty": q.difficulty,
+            "constraints": q.constraints,
+            "test_cases_json": q.test_cases_json,
+            "js_stub": q.js_stub,
+            "python_stub": q.python_stub,
+            "java_stub": q.java_stub,
+            "cpp_stub": q.cpp_stub,
+            "c_stub": q.c_stub,
+        }
+        for q in questions
+    ]

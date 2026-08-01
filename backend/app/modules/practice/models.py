@@ -58,3 +58,31 @@ class QuestionProgress(Base):
         UniqueConstraint("user_id", "question_id", name="uq_user_question"),
         Index("ix_qp_user_status", "user_id", "status"),
     )
+
+
+class Assessment(Base):
+    __tablename__ = "assessments"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    title = Column(String, nullable=False)
+    duration_minutes = Column(Integer, nullable=False)
+
+
+class AssessmentQuestion(Base):
+    __tablename__ = "assessment_questions"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    assessment_id = Column(Integer, ForeignKey("assessments.id", ondelete="CASCADE"), nullable=False, index=True)
+    
+    title = Column(String, nullable=False)
+    description_html = Column(String, nullable=False)
+    difficulty = Column(String, nullable=False)
+    constraints = Column(String, nullable=True)
+    
+    test_cases_json = Column(String, nullable=False)
+    
+    js_stub = Column(String, nullable=True)
+    python_stub = Column(String, nullable=True)
+    java_stub = Column(String, nullable=True)
+    cpp_stub = Column(String, nullable=True)
+    c_stub = Column(String, nullable=True)

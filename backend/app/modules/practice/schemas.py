@@ -52,3 +52,24 @@ class PaginatedProgress(BaseModel):
     total: int
     limit: int
     offset: int
+
+
+class AssessmentOut(BaseModel):
+    id: int
+    title: str
+    duration_minutes: int
+
+
+class AssessmentQuestionOut(BaseModel):
+    id: int
+    assessment_id: int
+    title: str
+    description_html: str
+    difficulty: str
+    constraints: str | None
+    test_cases_json: str
+    js_stub: str | None
+    python_stub: str | None
+    java_stub: str | None
+    cpp_stub: str | None
+    c_stub: str | None

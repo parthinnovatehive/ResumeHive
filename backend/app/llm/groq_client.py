@@ -10,7 +10,7 @@ class LLMServiceError(Exception):
     """Custom exception for LLM service failures."""
     pass
 
-async def call_groq(prompt: str, max_tokens: int = 300, temperature: float = 0.4) -> tuple[str, int]:
+async def call_groq(prompt: str, max_tokens: int = 300, temperature: float = 0.4, messages: list[dict] = None) -> tuple[str, int]:
     api_key = settings.GROQ_API_KEY or os.environ.get("GROQ_API_KEY")
     if not api_key:
         logger.error("GROQ_API_KEY environment variable is not set.")
@@ -20,11 +20,14 @@ async def call_groq(prompt: str, max_tokens: int = 300, temperature: float = 0.4
     
     client = AsyncGroq(api_key=api_key)
     
+    # Use provided messages history if available, else wrap the prompt
+    api_messages = messages if messages else [{"role": "user", "content": prompt}]
+    
     max_retries = 2
     for attempt in range(max_retries + 1):
         try:
             response = await client.chat.completions.create(
-                messages=[{"role": "user", "content": prompt}],
+                messages=api_messages,
                 model=model,
                 max_tokens=max_tokens,
                 temperature=temperature,

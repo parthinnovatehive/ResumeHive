@@ -19,6 +19,7 @@ const NAV_LINKS = [
   { href: "/interview", label: "Interview" },
   { href: "/linkedin", label: "LinkedIn" },
   { href: "/analytics", label: "Analytics" },
+  { href: "/test", label: "Test" },
 ];
 
 export function Navbar() {

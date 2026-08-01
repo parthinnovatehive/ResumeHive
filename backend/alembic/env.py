@@ -12,6 +12,7 @@ from app.modules.auth.models import User  # noqa: F401
 from app.modules.resumes.models import Resume  # noqa: F401
 from app.modules.linkedin.models import LinkedinAnalysis  # noqa: F401
 from app.modules.practice.models import Company, CompanyQuestionStat, Question  # noqa: F401
+from app.modules.interviews.models import InterviewCategory, InterviewSession, InterviewSessionFlag # noqa: F401
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
