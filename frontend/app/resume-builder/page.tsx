@@ -33,7 +33,6 @@ import { WysiwygPreview } from "@/components/resume-builder/WysiwygPreview";
 import { TemplateSelector } from "@/components/resume-builder/TemplateSelector";
 import { GapAnalysis } from "@/components/resume-builder/GapAnalysis";
 import { PremiumTemplateGallery } from "@/components/resume-builder/PremiumTemplateGallery";
-import { SettingsModal } from "@/components/resume-builder/SettingsModal";
 import { AtsScorePanel } from "@/components/resume-builder/AtsScorePanel";
 import { STEP_CONFIG, DEFAULT_SECTIONS, isTemplateName } from "@/types/resume";
 import type { Resume, SaveStatus, TemplateName } from "@/types/resume";
@@ -41,7 +40,7 @@ import { cn } from "@/lib/utils";
 import { 
   CheckCircle2, Circle, ArrowLeft, ArrowRight, 
   Download, Activity, Save, AlertCircle, Focus, Eye, Sparkles,
-  Settings, Undo, Redo, FileText, LayoutTemplate, Check, X, Loader2
+  Undo, Redo, FileText, LayoutTemplate, Check, X, Loader2
 } from "lucide-react";
 
 const LOCALSTORAGE_KEY = "resumehive_draft";
@@ -79,7 +78,6 @@ function ResumeBuilder() {
   const [showTemplates, setShowTemplates] = useState(false);
   const [showAtsPanel, setShowAtsPanel] = useState(false);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
   
   const initialLoadDone = useRef(false);
 
@@ -113,13 +111,8 @@ function ResumeBuilder() {
           e.preventDefault();
           document.getElementById('btn-print-ready')?.click();
         }
-        if (e.key === ',') {
-          e.preventDefault();
-          setShowSettings(true);
-        }
       }
       if (e.key === 'Escape') {
-        setShowSettings(false);
         setShowAtsPanel(false);
         setShowTemplates(false);
       }
@@ -472,8 +465,6 @@ function ResumeBuilder() {
               {downloading ? <Loader2 className="w-4 h-4 animate-spin"/> : <Download className="w-4 h-4"/>} 
               {downloading ? "Exporting..." : "Export PDF"}
             </button>
-            
-            <button type="button" onClick={() => setShowSettings(true)} className="p-2 hover:bg-slate-100 rounded-xl text-slate-400 transition-colors" title="Editor Settings"><Settings className="w-5 h-5"/></button>
           </div>
         </motion.header>
 
@@ -484,8 +475,8 @@ function ResumeBuilder() {
           <div className={`flex-1 md:w-1/2 flex flex-col transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isPreviewMode ? 'md:hidden' : 'flex'}`}>
             
             {/* Horizontal Smart Progress Navigation */}
-            <div className="shrink-0 p-4 bg-transparent">
-              <div className="flex gap-2 overflow-x-auto hide-scrollbar px-2 pb-2 scroll-smooth">
+            <div className="shrink-0 pt-4 px-4 bg-transparent border-b border-slate-200/50">
+              <div className="flex gap-2 overflow-x-auto snap-x snap-mandatory pb-3 scroll-smooth w-full custom-scrollbar-horizontal">
                 {STEP_CONFIG.map((s, i) => {
                   const isActive = i === step;
                   const isPast = i < step;
@@ -497,7 +488,7 @@ function ResumeBuilder() {
                         if (valid) setStep(i);
                       }}
                       className={cn(
-                        "relative shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-2xl text-[12px] font-bold tracking-wide uppercase transition-all duration-300 group",
+                        "snap-start relative shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-2xl text-[12px] font-bold tracking-wide uppercase transition-all duration-300 group",
                         isActive ? "bg-white shadow-[0_8px_24px_rgba(0,0,0,0.06)] text-indigo-600 border border-white" : 
                         isPast ? "bg-white/40 text-slate-600 hover:bg-white/80" : "bg-transparent text-slate-400 hover:bg-white/40"
                       )}
@@ -514,16 +505,15 @@ function ResumeBuilder() {
             </div>
 
             {/* Editor Area */}
-            <div className="flex-1 overflow-y-auto px-6 md:px-10 pb-24 scroll-smooth">
+            <div className="flex-1 overflow-y-auto px-6 md:px-10 py-6 scroll-smooth">
                {step === 0 && <div className="mb-6"><ImportResume onParsed={handleImportParsed} /></div>}
                <AnimatePresence mode="wait">
                   <motion.div key={step} initial={{ opacity: 0, y: 15, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -15, scale: 0.98 }} transition={{ duration: 0.3, type: "spring", bounce: 0.3 }} className="bg-white/80 backdrop-blur-xl rounded-[32px] p-8 shadow-[0_20px_80px_rgba(0,0,0,0.04)] border border-white relative group/editor">
                     <FormStep step={step} rewriteCallbacks={rewriteCallbacks} />
                   </motion.div>
                </AnimatePresence>
-
                {/* Editor Bottom Controls */}
-               <div className="flex items-center justify-between mt-8 sticky bottom-6 z-20">
+               <div className="flex items-center justify-between mt-8 mb-4">
                  <motion.button whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }} onClick={onPrev} disabled={step === 0} className="px-6 py-3 rounded-full font-bold text-sm bg-white border border-slate-200 text-slate-600 shadow-sm hover:shadow-md transition-all disabled:opacity-40 flex items-center gap-2">
                    <ArrowLeft className="w-4 h-4"/> Back
                  </motion.button>
@@ -547,19 +537,20 @@ function ResumeBuilder() {
               template={template} 
               activeSection={String(step)}
               onSectionClick={(section) => setStep(section as any)}
+              onInlineEdit={(path, value) => form.setValue(path as any, value, { shouldDirty: true })}
             />
           </div>
 
         </div>
 
         {/* ── ATS FLOATING PANEL ─────────────────────────────────── */}
-        <AnimatePresence>
-          {showAtsPanel && atsResult && (
-            <motion.div initial={{ opacity: 0, x: 50, scale: 0.95 }} animate={{ opacity: 1, x: 0, scale: 1 }} exit={{ opacity: 0, x: 50, scale: 0.95 }} className="absolute bottom-6 right-6 w-96 bg-white/90 backdrop-blur-2xl rounded-3xl shadow-[0_40px_100px_rgba(0,0,0,0.15)] border border-white/60 overflow-hidden z-50">
-               <AtsScorePanel result={atsResult} onClose={() => setShowAtsPanel(false)} onScoreWithJd={async () => {}} jdScoring={jdScoring} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <AtsScorePanel 
+          isOpen={showAtsPanel} 
+          result={atsResult} 
+          onClose={() => setShowAtsPanel(false)} 
+          onScoreWithJd={async () => {}} 
+          jdScoring={jdScoring} 
+        />
 
         {/* ── TEMPLATE GALLERY MODAL ──────────────────────────────── */}
         <AnimatePresence>
@@ -634,12 +625,7 @@ function ResumeBuilder() {
         </div>
       )}
       
-      <AnimatePresence>
-        {showSettings && (
-          <SettingsModal onClose={() => setShowSettings(false)} />
-        )}
-      </AnimatePresence>
-
+      {/* Settings Modal Removed */}
       <style dangerouslySetInnerHTML={{__html: `
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -647,6 +633,10 @@ function ResumeBuilder() {
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.3); border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.5); }
+        .custom-scrollbar-horizontal::-webkit-scrollbar { height: 6px; }
+        .custom-scrollbar-horizontal::-webkit-scrollbar-track { background: transparent; margin: 0 10px; }
+        .custom-scrollbar-horizontal::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.4); border-radius: 6px; }
+        .custom-scrollbar-horizontal::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
       `}} />
     </FormProvider>
   );

@@ -7,11 +7,7 @@ import { LinkedInOptimizerSection } from "@/components/landing/LinkedInOptimizer
 import { JobSearchSection } from "@/components/landing/JobSearchSection";
 import { MockInterviewSection } from "@/components/landing/MockInterviewSection";
 import { CodingPracticeSection } from "@/components/landing/CodingPracticeSection";
-import { Statistics } from "@/components/landing/Statistics";
-import { SuccessStories } from "@/components/landing/SuccessStories";
-import { Testimonials } from "@/components/landing/Testimonials";
 import { FAQ } from "@/components/landing/FAQ";
-import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 
 export default function HomePage() {
@@ -32,14 +28,8 @@ export default function HomePage() {
       <MockInterviewSection />
       <CodingPracticeSection />
       
-      {/* Social Proof */}
-      <Statistics />
-      <SuccessStories />
-      <Testimonials />
-      
       {/* Support & Conversion */}
       <FAQ />
-      <FinalCTA />
       
       {/* Footer */}
       <Footer />

@@ -3,16 +3,21 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, Bell, Search, User } from "lucide-react";
+import { Menu, X, Bell, Search, User, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { MagneticWrapper } from "./MagneticWrapper";
 
 const NAV_LINKS = [
   { href: "/dashboard", label: "Dashboard" },
-  { href: "/resumes", label: "My Resumes" },
-  { href: "/resume-builder", label: "Resume Builder" },
-  { href: "/ats-analyzer", label: "ATS Analyzer" },
+  { 
+    href: "/resume-builder", 
+    label: "Resume Builder",
+    children: [
+      { href: "/resumes", label: "My Resumes" },
+      { href: "/ats-analyzer", label: "ATS Score" }
+    ]
+  },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/practice", label: "Practice" },
   { href: "/jobs", label: "Jobs" },
@@ -31,6 +36,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
   useEffect(() => {
     setIsLoggedIn(Boolean(localStorage.getItem("access_token")));
@@ -42,7 +48,6 @@ export function Navbar() {
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     
-    // Intersection Observer for scroll spy
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -70,21 +75,7 @@ export function Navbar() {
     router.push("/login");
   };
 
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith("#") && pathname === "/") {
-      e.preventDefault();
-      const targetId = href.substring(1);
-      const element = document.getElementById(targetId);
-      if (element) {
-        window.scrollTo({
-          top: element.offsetTop - 100, // Offset for fixed navbar
-          behavior: "smooth"
-        });
-        setActiveSection(href);
-        setMobileOpen(false);
-      }
-    }
-  };
+  const isHeroTop = pathname === "/" && !scrolled;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-[100] pt-4 px-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
@@ -92,48 +83,107 @@ export function Navbar() {
         className={cn(
           "mx-auto flex items-center justify-between px-4 lg:px-6 2xl:px-8 rounded-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] relative",
           scrolled 
-            ? "h-[64px] w-[98%] max-w-[1600px] bg-white/40 dark:bg-slate-900/40 backdrop-blur-3xl border border-white/60 dark:border-white/10 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.1)]" 
+            ? "h-[64px] w-[98%] max-w-[1600px] bg-white/70 dark:bg-slate-950/70 backdrop-blur-3xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.15)] ring-1 ring-slate-900/5 dark:ring-white/10" 
             : "h-[80px] w-full max-w-[1800px] bg-transparent border border-transparent"
         )}
       >
-        {/* Glass Reflection Sweep (Only visible on scroll) */}
         {scrolled && (
           <div className="absolute inset-0 z-0 pointer-events-none opacity-50 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full animate-[shimmer_3s_infinite] rounded-full overflow-hidden" />
         )}
 
         <div className="flex items-center gap-4 2xl:gap-8 relative z-10">
           <Link href="/" className="group flex items-center text-xl font-extrabold tracking-tight shrink-0">
-            <span className="text-slate-900 dark:text-white transition-colors">Resume</span>
-            <span className="bg-gradient-to-r from-premium-blue to-premium-purple bg-[length:200%_auto] animate-shimmer bg-clip-text text-transparent ml-[1px]">
+            <span className={cn("transition-colors", isHeroTop ? "text-black" : "text-black dark:text-white")}>Resume</span>
+            <span className={cn("transition-colors ml-[1px]", isHeroTop ? "text-slate-700" : "text-blue-600 dark:text-blue-400")}>
               Hive
             </span>
           </Link>
           
-          <div className="hidden items-center gap-0.5 xl:flex">
+          <div className="hidden items-center gap-1 xl:flex">
             {NAV_LINKS.map((link) => {
               const active = pathname === link.href || (pathname.startsWith(link.href + "/") && link.href !== "/");
+              const isHovered = hoveredLink === link.href;
+              
               return (
-                <Link
+                <div 
                   key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "relative rounded-full px-2.5 2xl:px-3 py-1.5 2xl:py-2 text-[13px] 2xl:text-sm font-medium transition-colors duration-300 group whitespace-nowrap",
-                    active ? "text-slate-900 dark:text-white" : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-                  )}
+                  className="relative group"
+                  onMouseEnter={() => setHoveredLink(link.href)}
+                  onMouseLeave={() => setHoveredLink(null)}
                 >
-                  <span className="relative z-10">{link.label}</span>
-                  {active && (
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      "relative flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[14px] font-bold transition-all duration-300 whitespace-nowrap z-10",
+                      isHovered
+                        ? (isHeroTop ? "text-black" : "text-black dark:text-white") 
+                        : (isHeroTop 
+                            ? (active ? "text-black" : "text-black/70") 
+                            : (active ? "text-blue-600 dark:text-blue-400" : "text-slate-600 dark:text-slate-300"))
+                    )}
+                  >
+                    <span className="relative z-10">{link.label}</span>
+                    {link.children && (
+                      <ChevronDown className={cn(
+                        "w-3.5 h-3.5 relative z-10 transition-transform duration-300",
+                        isHovered ? "rotate-180" : ""
+                      )} />
+                    )}
+                  </Link>
+
+                  {/* Active Indicator */}
+                  {active && !isHovered && (
                     <motion.div
-                      layoutId="navbar-indicator"
-                      className="absolute inset-0 z-0 rounded-full bg-white/80 dark:bg-white/10 shadow-sm border border-slate-200/50 dark:border-slate-700/50 backdrop-blur-md"
+                      layoutId="navbar-active-indicator"
+                      className={cn(
+                        "absolute inset-0 z-0 rounded-full border",
+                        isHeroTop 
+                          ? "bg-black/5 border-black/10" 
+                          : "bg-slate-100/80 dark:bg-white/10 border-slate-200/50 dark:border-white/10"
+                      )}
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
-                  {/* Subtle hover background */}
-                  {!active && (
-                    <div className="absolute inset-0 z-0 rounded-full bg-slate-100/0 group-hover:bg-slate-100/50 dark:group-hover:bg-white/5 transition-colors duration-300" />
+
+                  {/* Premium Hover Pill Indicator */}
+                  {isHovered && !active && (
+                    <motion.div
+                      layoutId="navbar-hover-indicator"
+                      className={cn(
+                        "absolute inset-0 z-0 rounded-full",
+                        isHeroTop ? "bg-black/10 backdrop-blur-md" : "bg-gradient-to-r from-premium-blue/10 to-premium-purple/10 dark:from-premium-blue/20 dark:to-premium-purple/20 shadow-sm border border-premium-blue/20 dark:border-white/10"
+                      )}
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
                   )}
-                </Link>
+
+                  {/* Dropdown Menu */}
+                  {link.children && (
+                    <AnimatePresence>
+                      {isHovered && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 15, scale: 0.95, filter: "blur(8px)" }}
+                          animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                          exit={{ opacity: 0, y: 15, scale: 0.95, filter: "blur(8px)" }}
+                          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                          className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-52 rounded-2xl bg-white/90 dark:bg-slate-900/90 p-2 shadow-[0_30px_60px_rgba(15,82,186,0.15)] backdrop-blur-3xl border border-premium-blue/20 dark:border-white/10 ring-1 ring-black/5 dark:ring-white/10 origin-top z-50"
+                        >
+                          <div className="flex flex-col gap-1">
+                            {link.children.map((child) => (
+                              <Link
+                                key={child.href}
+                                href={child.href}
+                                className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-slate-800 dark:text-slate-200 transition-all hover:bg-slate-100 dark:hover:bg-white/10 hover:text-black dark:hover:text-white hover:translate-x-1 hover:shadow-sm"
+                              >
+                                {child.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
+                </div>
               );
             })}
           </div>
@@ -143,14 +193,14 @@ export function Navbar() {
           {isLoggedIn ? (
             <>
               <MagneticWrapper strength={10}>
-                <div className="relative group p-2 rounded-full hover:bg-slate-100/50 dark:hover:bg-white/10 cursor-pointer transition-colors">
-                  <Search className="h-5 w-5 text-slate-500 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors" />
+                <div className={cn("relative group p-2 rounded-full cursor-pointer transition-all", isHeroTop ? "hover:bg-black/10" : "hover:bg-slate-100 dark:hover:bg-white/10")}>
+                  <Search className={cn("h-5 w-5 transition-colors", isHeroTop ? "text-black/80 group-hover:text-black" : "text-slate-600 dark:text-slate-400 group-hover:text-black dark:group-hover:text-white")} />
                 </div>
               </MagneticWrapper>
               
               <MagneticWrapper strength={10}>
-                <div className="relative group p-2 rounded-full hover:bg-slate-100/50 dark:hover:bg-white/10 cursor-pointer transition-colors mr-2">
-                  <Bell className="h-5 w-5 text-slate-500 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors" />
+                <div className={cn("relative group p-2 rounded-full cursor-pointer transition-all mr-2", isHeroTop ? "hover:bg-black/10" : "hover:bg-slate-100 dark:hover:bg-white/10")}>
+                  <Bell className={cn("h-5 w-5 transition-colors", isHeroTop ? "text-black/80 group-hover:text-black" : "text-slate-600 dark:text-slate-400 group-hover:text-black dark:group-hover:text-white")} />
                 </div>
               </MagneticWrapper>
               
@@ -158,7 +208,7 @@ export function Navbar() {
                 <MagneticWrapper strength={15}>
                   <button
                      onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                     className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-premium-blue to-premium-purple text-white shadow-premium transition-all hover:shadow-premium-bloom"
+                     className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-lg transition-all hover:shadow-xl hover:scale-105"
                    >
                      <User size={16} />
                    </button>
@@ -171,17 +221,17 @@ export function Navbar() {
                       animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
                       exit={{ opacity: 0, y: 15, scale: 0.95, filter: "blur(4px)" }}
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                      className="absolute right-0 mt-3 w-56 rounded-2xl bg-white/80 dark:bg-slate-900/80 p-2 shadow-premium-hover backdrop-blur-3xl border border-white/60 dark:border-white/10 origin-top-right"
+                      className="absolute right-0 mt-3 w-56 rounded-2xl bg-white/90 dark:bg-slate-900/90 p-2 shadow-[0_30px_60px_rgba(15,82,186,0.15)] backdrop-blur-3xl border border-premium-blue/20 dark:border-white/10 ring-1 ring-black/5 dark:ring-white/10 origin-top-right z-50"
                     >
-                      <div className="px-3 py-2 border-b border-slate-100 dark:border-slate-800 mb-2">
-                        <p className="truncate text-sm font-medium text-slate-900 dark:text-white">{email}</p>
+                      <div className="px-3 py-2 border-b border-slate-200 dark:border-slate-800 mb-2">
+                        <p className="truncate text-sm font-semibold text-slate-900 dark:text-white">{email}</p>
                       </div>
-                      <Link href="/dashboard" className="block w-full rounded-xl px-3 py-2 text-left text-sm text-slate-600 dark:text-slate-300 transition-colors hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white">Dashboard</Link>
-                      <Link href="/profile" className="block w-full rounded-xl px-3 py-2 text-left text-sm text-slate-600 dark:text-slate-300 transition-colors hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white">My Profile</Link>
-                      <button className="w-full rounded-xl px-3 py-2 text-left text-sm text-slate-600 dark:text-slate-300 transition-colors hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white">Settings</button>
+                      <Link href="/dashboard" className="block w-full rounded-xl px-3 py-2 text-left text-sm font-semibold text-slate-700 dark:text-slate-300 transition-colors hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white">Dashboard</Link>
+                      <Link href="/profile" className="block w-full rounded-xl px-3 py-2 text-left text-sm font-semibold text-slate-700 dark:text-slate-300 transition-colors hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white">My Profile</Link>
+                      <button className="w-full rounded-xl px-3 py-2 text-left text-sm font-semibold text-slate-700 dark:text-slate-300 transition-colors hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white">Settings</button>
                       <button
                         onClick={handleLogout}
-                        className="w-full rounded-xl px-3 py-2 text-left text-sm text-premium-red transition-colors hover:bg-red-50 dark:hover:bg-red-500/10"
+                        className="w-full rounded-xl px-3 py-2 mt-1 text-left text-sm font-bold text-red-500 transition-colors hover:bg-red-50 dark:hover:bg-red-500/10"
                       >
                         Log out
                       </button>
@@ -194,16 +244,26 @@ export function Navbar() {
             <div className="flex items-center gap-2 xl:gap-3 shrink-0">
               <Link
                 href="/login"
-                className="rounded-full px-4 py-2 text-[13px] xl:text-sm font-medium text-slate-600 dark:text-slate-300 transition-all hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white whitespace-nowrap"
+                className={cn(
+                  "rounded-full px-5 py-2.5 text-[14px] font-bold transition-all whitespace-nowrap",
+                  isHeroTop 
+                    ? "text-black hover:bg-black/10" 
+                    : "text-black dark:text-white hover:bg-premium-blue/10 hover:text-premium-blue dark:hover:bg-white/10 hover:shadow-sm"
+                )}
               >
                 Sign in
               </Link>
               <MagneticWrapper strength={15}>
                 <Link
                   href="/signup"
-                  className="rounded-full bg-gradient-to-r from-premium-blue to-premium-purple px-5 py-2 xl:px-6 xl:py-2.5 text-[13px] xl:text-sm font-medium text-white shadow-premium transition-all hover:shadow-premium-bloom relative overflow-hidden group whitespace-nowrap shrink-0"
+                  className={cn(
+                    "rounded-full px-6 py-2.5 text-[14px] font-bold shadow-lg transition-all hover:scale-105 relative overflow-hidden group whitespace-nowrap shrink-0",
+                    isHeroTop 
+                      ? "bg-black text-white hover:shadow-[0_0_30px_rgba(0,0,0,0.3)]" 
+                      : "bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:shadow-[0_0_30px_rgba(15,23,42,0.3)] dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]"
+                  )}
                 >
-                  <span className="relative z-10 flex items-center gap-2">
+                  <span className="relative z-10 flex items-center gap-2 tracking-wide">
                     Get Started
                     <motion.span
                       initial={{ x: 0 }}
@@ -213,7 +273,10 @@ export function Navbar() {
                       →
                     </motion.span>
                   </span>
-                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                  <div className={cn(
+                    "absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 ease-out",
+                    isHeroTop ? "bg-white" : "bg-gradient-to-r from-blue-500 to-indigo-500"
+                  )} />
                 </Link>
               </MagneticWrapper>
             </div>
@@ -221,7 +284,10 @@ export function Navbar() {
         </div>
 
         <button
-          className="rounded-full p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-white/10 lg:hidden transition-colors relative z-10"
+          className={cn(
+            "rounded-full p-2 lg:hidden transition-colors relative z-10",
+            isHeroTop ? "text-black hover:bg-black/10" : "text-black dark:text-white hover:bg-slate-100 dark:hover:bg-white/10"
+          )}
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -236,37 +302,53 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
             exit={{ opacity: 0, y: -20, filter: "blur(10px)", scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            className="absolute top-[80px] left-4 right-4 rounded-3xl overflow-hidden border border-white/60 dark:border-white/10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-3xl lg:hidden shadow-premium-hover transform-gpu"
+            className="absolute top-[80px] left-4 right-4 rounded-3xl overflow-hidden border border-slate-200/50 dark:border-white/10 bg-white/95 dark:bg-slate-900/95 backdrop-blur-3xl lg:hidden shadow-[0_30px_60px_rgba(0,0,0,0.3)] transform-gpu z-[200]"
           >
             <div className="flex flex-col gap-1 px-4 py-4 max-h-[60vh] overflow-y-auto">
               {NAV_LINKS.map((link) => {
                 const active = pathname === link.href || (pathname.startsWith(link.href + "/") && link.href !== "/");
                 return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={cn(
-                      "rounded-xl px-4 py-3 text-sm font-medium transition-colors",
-                      active
-                        ? "bg-slate-50 dark:bg-white/10 text-slate-900 dark:text-white"
-                        : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
+                  <div key={link.href} className="flex flex-col gap-1">
+                    <Link
+                      href={link.href}
+                      onClick={() => !link.children && setMobileOpen(false)}
+                      className={cn(
+                        "rounded-xl px-4 py-3 text-[15px] font-bold transition-colors flex justify-between items-center",
+                        active
+                          ? "bg-blue-50 dark:bg-white/10 text-blue-600 dark:text-white"
+                          : "text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-white/5"
+                      )}
+                    >
+                      {link.label}
+                      {link.children && <ChevronDown className="w-4 h-4" />}
+                    </Link>
+                    {link.children && (
+                      <div className="flex flex-col gap-1 pl-4 border-l-2 border-slate-100 dark:border-slate-800 ml-4 mt-1">
+                        {link.children.map(child => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="rounded-xl px-4 py-2.5 text-[14px] font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
                     )}
-                  >
-                    {link.label}
-                  </Link>
+                  </div>
                 );
               })}
             </div>
-            <div className="border-t border-slate-100 dark:border-slate-800 px-4 py-4 bg-slate-50/50 dark:bg-slate-800/50">
+            <div className="border-t border-slate-200 dark:border-slate-800 px-4 py-5 bg-slate-50/80 dark:bg-slate-900/80">
               {isLoggedIn ? (
                 <div className="flex flex-col gap-3">
-                  {email && <span className="px-4 text-sm font-medium text-slate-900 dark:text-white truncate">{email}</span>}
-                  <Link href="/dashboard" className="w-full rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-3 text-center text-sm font-medium text-slate-900 dark:text-white transition-colors hover:bg-slate-100 dark:hover:bg-slate-700">Dashboard</Link>
-                  <Link href="/profile" className="w-full rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-3 text-center text-sm font-medium text-slate-900 dark:text-white transition-colors hover:bg-slate-100 dark:hover:bg-slate-700">My Profile</Link>
+                  {email && <span className="px-4 text-sm font-semibold text-slate-900 dark:text-white truncate">{email}</span>}
+                  <Link href="/dashboard" className="w-full rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-3.5 text-center text-[15px] font-bold text-slate-900 dark:text-white transition-colors shadow-sm">Dashboard</Link>
+                  <Link href="/profile" className="w-full rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-3.5 text-center text-[15px] font-bold text-slate-900 dark:text-white transition-colors shadow-sm">My Profile</Link>
                   <button
                     onClick={handleLogout}
-                    className="w-full rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-3 text-center text-sm font-medium text-slate-900 dark:text-white transition-colors hover:bg-slate-100 dark:hover:bg-slate-700"
+                    className="w-full rounded-xl bg-red-50 dark:bg-red-500/10 border border-red-100 dark:border-red-500/20 px-4 py-3.5 text-center text-[15px] font-bold text-red-600 dark:text-red-400 transition-colors mt-2"
                   >
                     Log out
                   </button>
@@ -275,13 +357,13 @@ export function Navbar() {
                 <div className="flex gap-3">
                   <Link
                     href="/login"
-                    className="flex-1 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-3 text-center text-sm font-medium text-slate-900 dark:text-white transition-colors hover:bg-slate-100 dark:hover:bg-slate-700"
+                    className="flex-1 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-3.5 text-center text-[15px] font-bold text-slate-900 dark:text-white transition-colors shadow-sm"
                   >
                     Sign in
                   </Link>
                   <Link
                     href="/signup"
-                    className="flex-1 rounded-xl bg-slate-900 dark:bg-white px-4 py-3 text-center text-sm font-medium text-white dark:text-slate-900 transition-colors hover:bg-slate-800 dark:hover:bg-slate-100"
+                    className="flex-1 rounded-xl bg-slate-900 dark:bg-white px-4 py-3.5 text-center text-[15px] font-bold text-white dark:text-slate-900 transition-colors shadow-md"
                   >
                     Get Started
                   </Link>

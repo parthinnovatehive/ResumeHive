@@ -44,10 +44,11 @@ export function ImportResume({ onParsed }: Props) {
       setResult(parsed);
       onParsed(parsed);
     } catch (err: unknown) {
-      const detail =
-        (err as { response?: { data?: { detail?: string } } })?.response?.data
-          ?.detail ?? "Failed to parse the file. Try a different PDF/DOCX.";
-      setError(detail);
+      let detail = (err as any)?.response?.data?.detail;
+      if (Array.isArray(detail)) {
+        detail = detail.map((d: any) => d.msg).join(", ");
+      }
+      setError(typeof detail === "string" && detail ? detail : "Failed to parse the file. Try a different PDF/DOCX.");
     } finally {
       setUploading(false);
       // Allow re-selecting the same file

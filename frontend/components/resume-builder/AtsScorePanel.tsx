@@ -1,22 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, ChevronDown, CheckCircle, FileText, Target, Zap, AlertCircle } from "lucide-react";
 import type { AtsScoreResult } from "@/lib/api/resumes";
 
 interface Props {
-  result: AtsScoreResult;
+  isOpen: boolean;
+  result: AtsScoreResult | null;
   onClose?: () => void;
-  /** When provided, shows the "match against a job description" box.
-   *  Called with the pasted JD text (or null to clear it) — the parent
-   *  re-scores and passes the fresh result back down. */
   onScoreWithJd?: (jdText: string | null) => Promise<void>;
-  /** True while the parent is re-scoring against a JD. */
   jdScoring?: boolean;
-  /** One-click add of a missing JD keyword to the Skills section. */
   onAddSkill?: (skill: string) => void;
-  /** Fork this resume for the current JD (duplicate-and-tailor). */
   onTailor?: (jdText: string) => Promise<void>;
-  /** Persisted JD from a tailored resume — pre-fills the paste box. */
   initialJd?: string;
 }
 
@@ -31,18 +27,25 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 function scoreColor(pct: number): string {
-  if (pct >= 80) return "text-green-600";
-  if (pct >= 50) return "text-amber-600";
-  return "text-red-600";
+  if (pct >= 80) return "text-green-500";
+  if (pct >= 50) return "text-amber-500";
+  return "text-red-500";
 }
 
-function barColor(pct: number): string {
-  if (pct >= 80) return "bg-green-500";
-  if (pct >= 50) return "bg-amber-500";
-  return "bg-red-500";
+function barGradient(pct: number): string {
+  if (pct >= 80) return "from-green-400 to-emerald-500";
+  if (pct >= 50) return "from-amber-400 to-orange-500";
+  return "from-red-400 to-rose-500";
+}
+
+function strokeColor(pct: number): string {
+  if (pct >= 80) return "#10b981";
+  if (pct >= 50) return "#f59e0b";
+  return "#ef4444";
 }
 
 export function AtsScorePanel({
+  isOpen,
   result,
   onClose,
   onScoreWithJd,
@@ -51,10 +54,28 @@ export function AtsScorePanel({
   onTailor,
   initialJd,
 }: Props) {
-  const { score, breakdown, max, suggestions, jd_match } = result;
   const [jdText, setJdText] = useState(initialJd ?? "");
   const [jdOpen, setJdOpen] = useState(!!initialJd);
   const [tailoring, setTailoring] = useState(false);
+  const [displayScore, setDisplayScore] = useState(0);
+
+  useEffect(() => {
+    if (!result) return;
+    let start = 0;
+    const end = result.score;
+    if (start === end) {
+      setDisplayScore(end);
+      return;
+    }
+    const totalDuration = 1500;
+    const incrementTime = totalDuration / end;
+    const timer = setInterval(() => {
+      start += 1;
+      setDisplayScore(start);
+      if (start === end) clearInterval(timer);
+    }, incrementTime);
+    return () => clearInterval(timer);
+  }, [result?.score, isOpen]);
 
   const handleMatchJd = async () => {
     if (!onScoreWithJd || !jdText.trim()) return;
@@ -63,7 +84,7 @@ export function AtsScorePanel({
 
   const handleClearJd = async () => {
     setJdText("");
-    if (onScoreWithJd && jd_match) await onScoreWithJd(null);
+    if (onScoreWithJd && result?.jd_match) await onScoreWithJd(null);
   };
 
   const handleTailor = async () => {
@@ -77,240 +98,269 @@ export function AtsScorePanel({
   };
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-      {/* Header: overall score */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-baseline gap-2">
-          <span className={`text-3xl font-bold ${scoreColor(score)}`}>
-            {score}
-          </span>
-          <span className="text-sm text-gray-500">/ 100 ATS Score</span>
-        </div>
-        {onClose && (
-          <button
-            onClick={onClose}
-            aria-label="Close score panel"
-            className="rounded p-1 text-gray-400 transition hover:bg-gray-100 hover:text-gray-600"
+    <AnimatePresence>
+      {isOpen && result && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 sm:p-6"
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.95, opacity: 0, y: 20 }}
+            transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
+            className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl overflow-hidden flex flex-col"
           >
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        )}
-      </div>
+            {/* Top Gradient Bar */}
+            <div className="h-2 w-full bg-gradient-to-r from-premium-blue via-purple-500 to-premium-purple" />
 
-      {/* Per-category progress bars */}
-      {breakdown && (
-        <div className="mt-4 space-y-2">
-          {(Object.entries(breakdown) as [string, number][]).map(
-            ([cat, val]) => {
-              const catMax = max[cat as keyof typeof max] ?? 1;
-              const pct = catMax > 0 ? Math.round((val / catMax) * 100) : 0;
-              return (
-                <div key={cat}>
-                  <div className="flex justify-between text-xs">
-                    <span className="text-gray-600">
-                      {CATEGORY_LABELS[cat] ?? cat}
-                    </span>
-                    <span className="font-medium text-gray-800">
-                      {val}/{catMax}
-                    </span>
-                  </div>
-                  <div className="mt-0.5 h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
-                    <div
-                      className={`h-full rounded-full transition-all ${barColor(pct)}`}
-                      style={{ width: `${pct}%` }}
+            {/* Close Button */}
+            {onClose && (
+              <button
+                onClick={onClose}
+                className="absolute right-4 top-6 rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition-colors z-10"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            )}
+
+            <div className="p-6 sm:p-10 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-10">
+              
+              {/* Left Column: Core Score & Breakdown */}
+              <div className="lg:col-span-5 flex flex-col items-center lg:items-start">
+                <div className="text-center lg:text-left w-full">
+                  <h2 className="text-3xl font-extrabold text-slate-800 tracking-tight flex items-center justify-center lg:justify-start gap-2">
+                    <Target className="h-8 w-8 text-premium-blue" /> ATS Score
+                  </h2>
+                  <p className="text-slate-500 mt-2 font-medium">How well your resume performs against Applicant Tracking Systems.</p>
+                </div>
+
+                {/* Animated Radial Chart */}
+                <div className="relative mt-8 flex items-center justify-center">
+                  <svg width="180" height="180" className="transform -rotate-90">
+                    <circle
+                      cx="90"
+                      cy="90"
+                      r={60}
+                      fill="transparent"
+                      stroke="#f1f5f9"
+                      strokeWidth="14"
                     />
+                    <motion.circle
+                      cx="90"
+                      cy="90"
+                      r={60}
+                      fill="transparent"
+                      stroke={strokeColor(result.score)}
+                      strokeWidth="14"
+                      strokeLinecap="round"
+                      strokeDasharray={2 * Math.PI * 60}
+                      initial={{ strokeDashoffset: 2 * Math.PI * 60 }}
+                      animate={{ strokeDashoffset: (2 * Math.PI * 60) - (result.score / 100) * (2 * Math.PI * 60) }}
+                      transition={{ duration: 1.5, ease: "easeOut" }}
+                    />
+                  </svg>
+                  <div className="absolute flex flex-col items-center justify-center">
+                    <span className={`text-5xl font-black tracking-tighter ${scoreColor(result.score)}`}>
+                      {displayScore}
+                    </span>
+                    <span className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-1">/ 100</span>
                   </div>
                 </div>
-              );
-            },
-          )}
-        </div>
-      )}
 
-      {/* ── JD paste box ─────────────────────────────────────────── */}
-      {onScoreWithJd && (
-        <div className="mt-4 rounded-lg border border-blue-100 bg-blue-50/50 p-3">
-          <button
-            onClick={() => setJdOpen(!jdOpen)}
-            className="flex w-full items-center justify-between text-left"
-          >
-            <span className="text-xs font-semibold uppercase tracking-wide text-blue-700">
-              {jd_match ? "Job Description Match" : "Match against a job description"}
-            </span>
-            <svg
-              className={`h-4 w-4 text-blue-600 transition-transform ${jdOpen ? "rotate-180" : ""}`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
+                {/* Breakdown Bars */}
+                {result.breakdown && (
+                  <div className="w-full mt-10 space-y-5">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">Category Breakdown</h3>
+                    {(Object.entries(result.breakdown) as [string, number][]).map(([cat, val], idx) => {
+                      if (cat === "jd_match") return null;
+                      const catMax = result.max[cat as keyof typeof result.max] ?? 1;
+                      const pct = catMax > 0 ? Math.round((val / catMax) * 100) : 0;
+                      return (
+                        <motion.div 
+                          key={cat}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.2 + idx * 0.1 }}
+                        >
+                          <div className="flex justify-between text-sm mb-1.5">
+                            <span className="font-semibold text-slate-700">{CATEGORY_LABELS[cat] ?? cat}</span>
+                            <span className="font-bold text-slate-500">{val}/{catMax}</span>
+                          </div>
+                          <div className="h-2.5 w-full rounded-full bg-slate-100 overflow-hidden shadow-inner">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: `${pct}%` }}
+                              transition={{ duration: 1, delay: 0.3 + idx * 0.1, ease: "easeOut" }}
+                              className={`h-full rounded-full bg-gradient-to-r ${barGradient(pct)}`}
+                            />
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
 
-          {jdOpen && (
-            <div className="mt-2">
-              <textarea
-                value={jdText}
-                onChange={(e) => setJdText(e.target.value)}
-                rows={5}
-                maxLength={20000}
-                placeholder="Paste the job description here to see which keywords your resume is missing…"
-                className="w-full rounded-md border border-gray-300 bg-white p-2 text-sm text-gray-800 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-              />
-              <div className="mt-2 flex gap-2">
-                <button
-                  onClick={handleMatchJd}
-                  disabled={jdScoring || !jdText.trim()}
-                  className="rounded-md bg-blue-600 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  {jdScoring ? "Matching…" : "Match JD"}
-                </button>
-                {jd_match && (
-                  <button
-                    onClick={handleClearJd}
-                    disabled={jdScoring}
-                    className="rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-600 transition hover:bg-gray-100 disabled:opacity-40"
+              {/* Right Column: JD Match & Insights */}
+              <div className="lg:col-span-7 flex flex-col gap-6">
+                
+                {/* JD Match Card */}
+                {onScoreWithJd && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="rounded-2xl border border-blue-100 bg-blue-50/30 p-6 shadow-sm relative overflow-hidden"
                   >
-                    Clear JD
-                  </button>
+                    <div className="absolute top-0 right-0 p-3 opacity-10 pointer-events-none">
+                      <Zap className="w-32 h-32 text-blue-600" />
+                    </div>
+                    
+                    <button
+                      onClick={() => setJdOpen(!jdOpen)}
+                      className="flex w-full items-center justify-between text-left group relative z-10"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-blue-600 group-hover:scale-110 transition-transform">
+                          <FileText className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-slate-800 text-lg group-hover:text-blue-700 transition-colors">
+                            {result.jd_match ? "Job Description Match" : "Tailor to a Job"}
+                          </h3>
+                          <p className="text-xs text-slate-500 mt-0.5">Paste a JD to reveal missing keywords.</p>
+                        </div>
+                      </div>
+                      <ChevronDown className={`h-5 w-5 text-slate-400 transition-transform duration-300 ${jdOpen ? "rotate-180" : ""}`} />
+                    </button>
+
+                    <AnimatePresence>
+                      {jdOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden relative z-10"
+                        >
+                          <div className="pt-5">
+                            <textarea
+                              value={jdText}
+                              onChange={(e) => setJdText(e.target.value)}
+                              rows={4}
+                              maxLength={20000}
+                              placeholder="Paste the full job description here..."
+                              className="w-full rounded-xl border border-slate-200 bg-white/80 p-4 text-sm text-slate-700 placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-inner resize-none"
+                            />
+                            <div className="mt-4 flex gap-3">
+                              <button
+                                onClick={handleMatchJd}
+                                disabled={jdScoring || !jdText.trim()}
+                                className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-blue-200 hover:bg-blue-700 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:hover:translate-y-0"
+                              >
+                                {jdScoring ? <span className="animate-pulse">Analyzing...</span> : "Match Keywords"}
+                              </button>
+                              {result.jd_match && (
+                                <button
+                                  onClick={handleClearJd}
+                                  disabled={jdScoring}
+                                  className="px-5 rounded-xl border-2 border-slate-200 bg-white text-sm font-bold text-slate-600 hover:bg-slate-50 hover:border-slate-300 transition-all"
+                                >
+                                  Clear
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* Results */}
+                    {result.jd_match && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-6 pt-6 border-t border-blue-100 relative z-10"
+                      >
+                        <div className="flex items-center gap-4 mb-6">
+                          <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-sm border border-slate-100">
+                            <svg width="64" height="64" className="absolute transform -rotate-90">
+                              <circle cx="32" cy="32" r="28" fill="transparent" stroke="#f1f5f9" strokeWidth="4" />
+                              <motion.circle cx="32" cy="32" r="28" fill="transparent" stroke={strokeColor(result.jd_match.match_pct)} strokeWidth="4" strokeLinecap="round" strokeDasharray={2 * Math.PI * 28} strokeDashoffset={(2 * Math.PI * 28) - (result.jd_match.match_pct / 100) * (2 * Math.PI * 28)} transition={{ duration: 1 }} />
+                            </svg>
+                            <span className={`text-lg font-black ${scoreColor(result.jd_match.match_pct)}`}>{result.jd_match.match_pct}%</span>
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-slate-800">Match Rate</h4>
+                            <p className="text-xs text-slate-500">of the top requested skills found in your resume</p>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                          {/* Found */}
+                          <div>
+                            <h5 className="text-xs font-bold uppercase tracking-wider text-green-700 mb-3 flex items-center gap-1.5">
+                              <CheckCircle className="h-4 w-4" /> Found
+                            </h5>
+                            <div className="flex flex-wrap gap-1.5">
+                              {result.jd_match.matched_keywords.length > 0 ? result.jd_match.matched_keywords.map((kw) => (
+                                <span key={kw} className="rounded-lg bg-green-100/80 px-2.5 py-1 text-[11px] font-bold text-green-800 border border-green-200/50">
+                                  {kw}
+                                </span>
+                              )) : <span className="text-xs text-slate-400">No matching keywords found.</span>}
+                            </div>
+                          </div>
+                          {/* Missing */}
+                          <div>
+                            <h5 className="text-xs font-bold uppercase tracking-wider text-red-700 mb-3 flex items-center gap-1.5">
+                              <AlertCircle className="h-4 w-4" /> Missing
+                            </h5>
+                            <div className="flex flex-wrap gap-1.5">
+                              {result.jd_match.missing_keywords.length > 0 ? result.jd_match.missing_keywords.map((mk) => (
+                                <button
+                                  key={mk.keyword}
+                                  onClick={() => onAddSkill && onAddSkill(mk.keyword)}
+                                  className="group flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-1 text-[11px] font-bold text-slate-600 border border-red-100 shadow-sm hover:border-red-300 hover:shadow transition-all"
+                                  title="Click to add to Skills"
+                                >
+                                  {mk.keyword}
+                                  {onAddSkill && <span className="opacity-0 group-hover:opacity-100 text-green-600 ml-0.5 transition-opacity">+</span>}
+                                </button>
+                              )) : <span className="text-xs text-slate-400">All key skills included!</span>}
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </motion.div>
+                )}
+
+                {/* Suggestions */}
+                {result.suggestions && result.suggestions.length > 0 && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="bg-slate-50 rounded-2xl p-6 border border-slate-100"
+                  >
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4">Improvement Suggestions</h3>
+                    <ul className="space-y-3">
+                      {result.suggestions.map((sug, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-slate-700 bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+                          <div className="mt-1 w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                          <span className="leading-relaxed font-medium">{sug}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
                 )}
               </div>
             </div>
-          )}
-
-          {/* ── JD match results ───────────────────────────────── */}
-          {jd_match && (
-            <div className="mt-3 space-y-3">
-              <div className="flex items-center gap-3">
-                <span className={`text-lg font-bold ${scoreColor(jd_match.match_pct)}`}>
-                  {jd_match.match_pct}%
-                </span>
-                <span className="text-xs text-gray-600">
-                  of the JD&apos;s top keywords found in your resume
-                </span>
-              </div>
-
-              {/* Matched keywords */}
-              {jd_match.matched_keywords.length > 0 && (
-                <div>
-                  <p className="text-xs font-semibold text-green-700">
-                    Found in your resume
-                  </p>
-                  <div className="mt-1 flex flex-wrap gap-1">
-                    {jd_match.matched_keywords.map((kw) => (
-                      <span
-                        key={kw}
-                        className="rounded-full bg-green-100 px-2 py-0.5 text-xs text-green-800"
-                      >
-                        ✓ {kw}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Missing-keyword checklist */}
-              {jd_match.missing_keywords.length > 0 && (
-                <div>
-                  <p className="text-xs font-semibold text-red-700">
-                    Missing from your resume
-                  </p>
-                  <p className="mt-0.5 text-[11px] text-gray-500">
-                    Add these only if they&apos;re genuinely true of you — never
-                    fabricate skills.
-                  </p>
-                  <ul className="mt-1.5 space-y-1">
-                    {jd_match.missing_keywords.map((mk) => (
-                      <li
-                        key={mk.keyword}
-                        className="flex items-center justify-between gap-2 rounded-md border border-red-100 bg-red-50/60 px-2 py-1"
-                      >
-                        <span className="text-xs text-gray-800">{mk.keyword}</span>
-                        <span className="flex shrink-0 items-center gap-2">
-                          <span
-                            className="h-1 w-12 overflow-hidden rounded-full bg-red-100"
-                            title={`Importance: ${Math.round(mk.weight * 100)}%`}
-                          >
-                            <span
-                              className="block h-full rounded-full bg-red-400"
-                              style={{ width: `${Math.round(mk.weight * 100)}%` }}
-                            />
-                          </span>
-                          {onAddSkill && (
-                            <button
-                              onClick={() => onAddSkill(mk.keyword)}
-                              title="Add to Skills (only if genuinely true of you)"
-                              className="rounded border border-green-300 bg-green-50 px-1.5 py-0.5 text-[10px] font-medium text-green-700 transition hover:bg-green-100"
-                            >
-                              + Add
-                            </button>
-                          )}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {jd_match.missing_keywords.length === 0 && (
-                <p className="text-xs text-green-700">
-                  Your resume covers all the top keywords from this JD. 🎉
-                </p>
-              )}
-
-              {/* Duplicate-and-tailor */}
-              {onTailor && jdText.trim() && (
-                <div className="border-t border-blue-100 pt-2">
-                  <button
-                    onClick={handleTailor}
-                    disabled={tailoring}
-                    className="rounded-md border border-blue-600 bg-white px-3 py-1.5 text-xs font-medium text-blue-700 transition hover:bg-blue-50 disabled:opacity-40"
-                  >
-                    {tailoring ? "Creating copy…" : "Create tailored copy for this job"}
-                  </button>
-                  <p className="mt-1 text-[11px] text-gray-500">
-                    Forks this resume with the JD attached — your master resume
-                    stays untouched.
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+          </motion.div>
+        </motion.div>
       )}
-
-      {/* Itemized fixes */}
-      {suggestions.length > 0 && (
-        <div className="mt-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-            How to improve
-          </p>
-          <ul className="mt-1.5 space-y-1.5">
-            {suggestions.map((s, i) => (
-              <li key={i} className="flex gap-2 text-sm text-gray-700">
-                <span className="mt-0.5 shrink-0 text-amber-500">
-                  <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </span>
-                {s}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {suggestions.length === 0 && (
-        <p className="mt-3 text-sm text-green-700">
-          No issues found — your resume looks ATS-ready.
-        </p>
-      )}
-    </div>
+    </AnimatePresence>
   );
 }

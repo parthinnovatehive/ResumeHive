@@ -36,12 +36,24 @@ export function CodingPracticeSection() {
   const typedCode = codeString.substring(0, typingStep);
 
   return (
-    <section id="practice" className="py-32 relative overflow-hidden bg-slate-50 dark:bg-slate-900/30" ref={containerRef}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="practice" className="pt-8 pb-16 relative overflow-hidden bg-slate-50 dark:bg-slate-900/30" ref={containerRef}>
+      {/* Background Theme Orbs */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-500/10 dark:bg-orange-500/5 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-lighten pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-green-500/10 dark:bg-green-500/5 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-lighten pointer-events-none translate-y-1/3 -translate-x-1/3"></div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col-reverse lg:flex-row items-center gap-16">
           
           {/* Left Showcase */}
-          <div className="flex-1 w-full max-w-2xl lg:max-w-none relative perspective-1000">
+          <div className="flex-1 w-full max-w-2xl lg:max-w-none relative perspective-1000 flex items-center justify-center">
+            
+            {/* Outer Animated Glow */}
+            <motion.div 
+              className="absolute -inset-[2px] rounded-3xl bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 opacity-70 blur-[8px] -z-10"
+              animate={{ opacity: [0.4, 0.9, 0.4], scale: [1, 1.01, 1] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+
             <motion.div 
               initial={{ opacity: 0, rotateY: -20, scale: 0.9 }}
               whileInView={{ opacity: 1, rotateY: 0, scale: 1 }}

@@ -16,7 +16,7 @@ export const linkedinApi = {
     formData.append("file", file);
     return api
       .post<ApiResponse<LinkedinAnalysis>>("/linkedin/parse-upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: { "Content-Type": undefined },
       })
       .then((r) => r.data.data!);
   },

@@ -251,7 +251,7 @@ export const resumesApi = {
     formData.append("file", file);
     return api
       .post<ApiResponse<ParseUploadResult>>("/resumes/parse-upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: { "Content-Type": undefined },
       })
       .then((r) => r.data.data);
   },

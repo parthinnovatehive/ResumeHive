@@ -19,7 +19,7 @@ export function Testimonials() {
   const scrollItems = [...TESTIMONIALS, ...TESTIMONIALS];
 
   return (
-    <section id="testimonials" className="py-32 relative overflow-hidden bg-slate-900" ref={containerRef}>
+    <section id="testimonials" className="pt-8 pb-16 relative overflow-hidden bg-slate-900" ref={containerRef}>
       
       {/* Background Decorators */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

@@ -7,6 +7,7 @@ import { ModernTemplate } from './ModernTemplate';
 import { ProfessionalTemplate } from './ProfessionalTemplate';
 import { MinimalTemplate } from './MinimalTemplate';
 import { CompactTemplate } from './CompactTemplate';
+import { SiliconTemplate } from './SiliconTemplate';
 
 interface TemplateRendererProps {
   data: ResumeFormData;
@@ -23,6 +24,8 @@ export function TemplateRenderer({ data, template }: TemplateRendererProps) {
       return <MinimalTemplate data={data} />;
     case 'compact':
       return <CompactTemplate data={data} />;
+    case 'silicon':
+      return <SiliconTemplate data={data} />;
     case 'classic':
     default:
       return <ClassicTemplate data={data} />;

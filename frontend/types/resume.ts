@@ -63,14 +63,15 @@ export interface PaginatedData<T> {
 
 export type SaveStatus = "idle" | "saving" | "saved" | "error";
 
-export type TemplateName = "classic" | "modern" | "minimal" | "professional" | "compact";
+export type TemplateName = "classic" | "modern" | "minimal" | "professional" | "compact" | "silicon";
 
 export const TEMPLATE_CONFIG: Record<TemplateName, { label: string; description: string }> = {
-  classic: { label: "Classic", description: "Clean traditional layout" },
-  modern: { label: "Modern", description: "Blue accents, contemporary type" },
-  minimal: { label: "Minimal", description: "Whitespace-optimized, elegant serif" },
-  professional: { label: "Professional", description: "Navy executive style" },
-  compact: { label: "Compact", description: "Dense — fits more per page" },
+  classic: { label: "Harvard Standard", description: "Traditional, highly readable, perfect for finance and academia." },
+  modern: { label: "Tech Lead", description: "Sleek sans-serif with subtle accents for software engineers." },
+  minimal: { label: "Creative Minimalist", description: "Whitespace-optimized, extreme clarity for designers." },
+  professional: { label: "Executive Elite", description: "Elegant serif fonts, strong divider lines for management." },
+  compact: { label: "High-Density Compact", description: "Engineered to fit maximum content onto a single page." },
+  silicon: { label: "Silicon Valley", description: "Bold, tech-focused layout with highly scannable sections." },
 };
 
 export const TEMPLATE_NAMES = Object.keys(TEMPLATE_CONFIG) as TemplateName[];

@@ -4,13 +4,17 @@ import React, { useState, useRef, useEffect, useMemo, useCallback } from "react"
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Upload, Briefcase, GraduationCap, Wrench, User, FileText, Loader2, Trash2, Clock, 
+  Upload, ArrowDown, Briefcase, GraduationCap, Wrench, User, FileText, Loader2, Trash2, Clock, 
   AlertCircle, Target, Sparkles, Check, X, RotateCcw, ChevronRight, ChevronLeft, 
   Search, CheckCircle2, Save, Copy, Download, Undo2, Redo2, ShieldCheck, 
   Activity, Award, SearchCode, Edit3, Eye
 } from "lucide-react";
 import { linkedinApi } from "@/lib/api/linkedin";
 import * as diff from "diff";
+
+import { LinkedInOnboarding } from "@/components/linkedin/LinkedInOnboarding";
+import { AiWorkflowNodes } from "@/components/linkedin/AiWorkflowNodes";
+
 
 import type {
   LinkedinAnalysis, LinkedinAnalysisListItem, LinkedinRewriteResult,
@@ -42,6 +46,18 @@ export default function LinkedinPage() {
   
   // Mounted Check for Portal
   const [mounted, setMounted] = useState(false);
+
+  // Onboarding States
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [uploadPulse, setUploadPulse] = useState(false);
+
+  useEffect(() => {
+    const isCompleted = localStorage.getItem("linkedinTutorialCompleted");
+    if (!isCompleted) {
+      setShowTutorial(true);
+    }
+  }, []);
+
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -94,11 +110,12 @@ export default function LinkedinPage() {
       loadProfileFields(result.id);
       loadHistory();
       
+      // The upload finished in backend, but we keep the visual flow active for a few seconds to let animations complete
       setTimeout(() => {
         setUploading(false);
         setUploadStage(0);
         setShowReviewModal(true);
-      }, 1500);
+      }, 7000); // Wait for the workflow nodes to finish
 
     } catch (err: unknown) {
       clearInterval(stageInterval);
@@ -164,14 +181,69 @@ export default function LinkedinPage() {
       <div className="relative z-10 mx-auto max-w-5xl px-4 pt-16">
         <AnimatedHero />
 
-        {/* V2 Premium Upload Dropzone */}
-        <PremiumUploadDropzone 
-          onUpload={handleUpload} 
-          uploading={uploading} 
-          uploadStage={uploadStage} 
-          error={error} 
-          inputRef={inputRef} 
+        {/* Onboarding Wizard */}
+        <LinkedInOnboarding 
+          isOpen={showTutorial} 
+          setIsOpen={setShowTutorial} 
+          onComplete={() => {
+            const uploadEl = document.getElementById("upload-section");
+            if (uploadEl) {
+              uploadEl.scrollIntoView({ behavior: "smooth", block: "center" });
+              setUploadPulse(true);
+              setTimeout(() => setUploadPulse(false), 5000);
+            }
+          }} 
         />
+
+        {/* AI Workflow Nodes (Shows while uploading) */}
+        <AnimatePresence mode="wait">
+          {uploading ? (
+            <motion.div
+              key="workflow"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+            >
+              <AiWorkflowNodes active={uploading} onComplete={() => {}} />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="dropzone"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              id="upload-section"
+              className="relative"
+            >
+              <AnimatePresence>
+                {uploadPulse && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute -inset-4 z-0 rounded-[40px] border-4 border-blue-500 shadow-[0_0_50px_rgba(59,130,246,0.6)] pointer-events-none"
+                  >
+                    <motion.div 
+                      animate={{ opacity: [0, 0.4, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5 }}
+                      className="absolute inset-0 bg-blue-500/10 rounded-[36px]"
+                    />
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-2 rounded-full font-bold shadow-xl flex items-center gap-2 animate-bounce">
+                      <ArrowDown className="w-4 h-4" /> Upload Here
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              <PremiumUploadDropzone 
+                onUpload={handleUpload} 
+                uploading={uploading} 
+                uploadStage={uploadStage} 
+                error={error} 
+                inputRef={inputRef} 
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* History */}
         {!loadingHistory && history.length > 0 && (
@@ -197,6 +269,25 @@ export default function LinkedinPage() {
             </div>
           </motion.div>
         )}
+
+      {/* Floating AI Assistant */}
+      <motion.button
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setShowTutorial(true)}
+        className="fixed bottom-6 right-6 z-40 flex items-center gap-3 bg-white/80 backdrop-blur-xl border border-white/40 shadow-2xl px-5 py-3 rounded-full group hover:bg-white transition-colors"
+      >
+        <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-600 flex items-center justify-center text-white">
+          <Sparkles className="w-4 h-4" />
+        </div>
+        <div className="text-left">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Need Help?</p>
+          <p className="text-[13px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">Watch Tutorial Again</p>
+        </div>
+      </motion.button>
+
       </div>
 
       

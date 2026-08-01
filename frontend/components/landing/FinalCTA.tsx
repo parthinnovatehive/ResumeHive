@@ -7,7 +7,7 @@ import { MagneticWrapper } from "../ui/MagneticWrapper";
 
 export function FinalCTA() {
   return (
-    <section className="relative py-40 overflow-hidden z-20">
+    <section className="relative pt-8 pb-32 overflow-hidden z-20">
       <div className="absolute inset-0 bg-slate-900 dark:bg-black">
         {/* Animated Mesh Background for CTA */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
