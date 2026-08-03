@@ -74,55 +74,103 @@ export default function TestPage() {
   };
 
   const buildHarness = (lang: string, userCode: string, q: any) => {
-    const testCasesStr = q.test_cases_json;
+    const testCasesStr = q.test_cases_json || '[]';
 
     if (lang === 'javascript') {
-      const match = q.js_stub.match(/var\s+([a-zA-Z0-9_]+)\s*=\s*function/);
-      const fnName = match ? match[1] : 'twoSum';
-      
+      const fnMatch = (q.js_stub || '').match(/(?:function\s+([a-zA-Z0-9_]+)|var\s+([a-zA-Z0-9_]+)\s*=|const\s+([a-zA-Z0-9_]+)\s*=)/);
+      const fnName = fnMatch ? (fnMatch[1] || fnMatch[2] || fnMatch[3]) : 'solution';
+
       return `
 ${userCode}
 const testCases = ${testCasesStr};
 for (const tc of testCases) {
-  const inputs = Object.values(tc.input);
-  const res = typeof ${fnName} !== 'undefined' ? ${fnName}(...inputs) : null;
+  let res = null;
+  if (tc.input && tc.input.operations && tc.input.args) {
+    const ops = tc.input.operations;
+    const args = tc.input.args;
+    let obj = null;
+    const opResults = [];
+    for (let i = 0; i < ops.length; i++) {
+      if (i === 0) {
+        try {
+          const Cls = eval(ops[0]);
+          obj = new Cls(...args[i]);
+          opResults.push(null);
+        } catch (e) {
+          opResults.push(null);
+        }
+      } else {
+        const method = ops[i];
+        if (obj && typeof obj[method] === 'function') {
+          const r = obj[method](...args[i]);
+          opResults.push(r !== undefined ? r : null);
+        } else {
+          opResults.push(null);
+        }
+      }
+    }
+    res = opResults;
+  } else {
+    try {
+      const fn = eval('${fnName}');
+      const inputs = Object.values(tc.input || {});
+      res = typeof fn === 'function' ? fn(...inputs) : null;
+    } catch (e) {
+      res = null;
+    }
+  }
   console.log("===TEST===");
   console.log(JSON.stringify(res));
 }
 `;
     } else if (lang === 'python') {
-      const match = q.python_stub.match(/def\s+([a-zA-Z0-9_]+)\s*\(/);
-      const fnName = match ? match[1] : 'twoSum';
-      
+      const fnMatch = (q.python_stub || '').match(/def\s+([a-zA-Z0-9_]+)\s*\(/);
+      const fnName = fnMatch ? fnMatch[1] : 'solution';
+
       return `
 import json
+from typing import List, Dict, Any, Optional
+
 ${userCode}
+
 if __name__ == '__main__':
-    sol = Solution()
     test_cases = ${testCasesStr}
     for tc in test_cases:
-        inputs = list(tc['input'].values())
-        res = getattr(sol, '${fnName}')(*inputs)
+        res = None
+        inp = tc.get('input', {})
+        if isinstance(inp, dict) and 'operations' in inp and 'args' in inp:
+            ops = inp['operations']
+            args = inp['args']
+            cls_name = ops[0]
+            cls_type = globals().get(cls_name)
+            obj = None
+            op_results = []
+            for i, op in enumerate(ops):
+                if i == 0:
+                    obj = cls_type(*args[i]) if cls_type else None
+                    op_results.append(None)
+                else:
+                    if obj and hasattr(obj, op):
+                        method = getattr(obj, op)
+                        r = method(*args[i])
+                        op_results.append(r)
+                    else:
+                        op_results.append(None)
+            res = op_results
+        else:
+            inputs = list(inp.values()) if isinstance(inp, dict) else []
+            if 'Solution' in globals():
+                sol = globals()['Solution']()
+                fn = getattr(sol, '${fnName}', None)
+            else:
+                fn = globals().get('${fnName}')
+            
+            if fn:
+                res = fn(*inputs)
+            else:
+                res = None
         print("===TEST===")
         print(json.dumps(res))
-`;
-    } 
-    else if (lang === 'java' && q.title === "Two Sum") {
-      return `
-import java.util.*;
-${userCode}
-public class Main {
-    public static void main(String[] args) {
-        Solution sol = new Solution();
-        int[][] numsList = {{2,7,11,15}, {3,2,4}, {3,3}};
-        int[] targets = {9, 6, 6};
-        for(int i = 0; i < 3; i++) {
-            int[] res = sol.twoSum(numsList[i], targets[i]);
-            System.out.println("===TEST===");
-            System.out.println(Arrays.toString(res));
-        }
-    }
-}
 `;
     }
     return userCode;
@@ -160,7 +208,7 @@ public class Main {
         return;
       }
 
-      const stdout = data.stdout;
+      const stdout = data.stdout || '';
       const outputs = stdout.split('===TEST===').map((s: string) => s.trim()).filter((s: string) => s);
       
       const runResults = parsedTestCases.map((tc: any, idx: number) => {
@@ -168,6 +216,7 @@ public class Main {
         let actualOutputStr = outputs[idx] || 'null';
         let err = null;
         let parsedOutput: any = null;
+        const expectedVal = tc.expected !== undefined ? tc.expected : tc.output;
         
         try {
           if (language === 'java') {
@@ -175,12 +224,12 @@ public class Main {
           }
           parsedOutput = JSON.parse(actualOutputStr);
           
-          if (Array.isArray(parsedOutput) && Array.isArray(tc.expected)) {
-             const sortedActual = [...parsedOutput].sort((a,b)=>a-b);
-             const sortedExpected = [...tc.expected].sort((a,b)=>a-b);
-             passed = sortedActual.length === sortedExpected.length && sortedActual.every((val, index) => val === sortedExpected[index]);
+          if (Array.isArray(parsedOutput) && Array.isArray(expectedVal)) {
+             const sortedActual = [...parsedOutput].sort((a,b)=> (typeof a === 'number' && typeof b === 'number') ? a - b : String(a).localeCompare(String(b)));
+             const sortedExpected = [...expectedVal].sort((a,b)=> (typeof a === 'number' && typeof b === 'number') ? a - b : String(a).localeCompare(String(b)));
+             passed = sortedActual.length === sortedExpected.length && sortedActual.every((val, index) => JSON.stringify(val) === JSON.stringify(sortedExpected[index]));
           } else {
-             passed = parsedOutput === tc.expected;
+             passed = JSON.stringify(parsedOutput) === JSON.stringify(expectedVal);
           }
         } catch (e: any) {
           err = 'Failed to parse output: ' + actualOutputStr;
@@ -189,7 +238,7 @@ public class Main {
         return {
           testcase: idx + 1,
           input: tc.input,
-          expected: tc.expected,
+          expected: expectedVal,
           actualOutput: parsedOutput !== null ? parsedOutput : actualOutputStr,
           passed,
           error: err

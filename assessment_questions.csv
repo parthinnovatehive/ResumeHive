@@ -1,0 +1,269 @@
+"id","assessment_id","title","description_html","difficulty","constraints","test_cases_json","js_stub","python_stub","java_stub","cpp_stub","c_stub"
+"1","1","Warehouse Restock Pairs","<p><b>Warehouse Restock Pairs</b></p>
+<p>You manage inventory for a warehouse. You are given a list <code>itemWeights</code>
+representing the weight (in kg) of each box currently on a shelf, and an integer
+<code>truckCapacity</code> representing the exact weight a delivery truck can carry in a
+single trip.</p>
+<p>You want to find the indices of the <b>two boxes</b> whose combined weight is exactly
+equal to <code>truckCapacity</code>, so both can be loaded together on one trip.</p>
+<p>Return the two indices (0-based) as an array, in any order. You may assume exactly one
+valid pair exists for each input.</p>
+<p><b>Example:</b><br>
+Input: itemWeights = [4, 7, 11, 2], truckCapacity = 6<br>
+Output: [0, 3] &nbsp;(because itemWeights[0] + itemWeights[3] = 4 + 2 = 6)</p>","EASY","- 2 <= itemWeights.length <= 10^4
+- -10^9 <= itemWeights[i] <= 10^9
+- -10^9 <= truckCapacity <= 10^9
+- Exactly one valid pair of indices exists
+- Time limit: aim for O(n) or O(n log n) solution","[{""input"": {""itemWeights"": [4, 7, 11, 2], ""truckCapacity"": 9}, ""output"": [0, 3]}, {""input"": {""itemWeights"": [3, 2, 4], ""truckCapacity"": 6}, ""output"": [1, 2]}, {""input"": {""itemWeights"": [3, 3], ""truckCapacity"": 6}, ""output"": [0, 1]}, {""input"": {""itemWeights"": [10, -2, 5, 8, 1], ""truckCapacity"": 6}, ""output"": [1, 3]}, {""input"": {""itemWeights"": [0, 0, 3, 5], ""truckCapacity"": 0}, ""output"": [0, 1]}]","/**
+ * @param {number[]} itemWeights
+ * @param {number} truckCapacity
+ * @return {number[]}
+ */
+function findRestockPair(itemWeights, truckCapacity) {
+    // Write your solution here
+}
+
+module.exports = findRestockPair;","from typing import List
+
+def find_restock_pair(item_weights: List[int], truck_capacity: int) -> List[int]:
+    # Write your solution here
+    pass","import java.util.*;
+
+class Solution {
+    public int[] findRestockPair(int[] itemWeights, int truckCapacity) {
+        // Write your solution here
+        return new int[]{};
+    }
+}","#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> findRestockPair(vector<int>& itemWeights, int truckCapacity) {
+        // Write your solution here
+        return {};
+    }
+};","#include <stdlib.h>
+
+/**
+ * Return an array of size 2 containing the indices.
+ * Set *returnSize = 2 before returning.
+ */
+int* findRestockPair(int* itemWeights, int itemWeightsSize, int truckCapacity, int* returnSize) {
+    // Write your solution here
+    *returnSize = 0;
+    return NULL;
+}"
+"2","1","Server Session Merge","<p><b>Server Session Merge</b></p>
+<p>A monitoring tool logs user sessions on a backend server. Each session is recorded as
+<code>[startMinute, endMinute]</code>, representing when a session began and ended
+(in minutes since server start). Sessions may overlap or touch each other, in which
+case they should be treated as a single continuous session for billing purposes.</p>
+<p>Given a list of session intervals (not necessarily sorted), merge all overlapping or
+touching intervals and return the resulting list of merged sessions, sorted by start
+time.</p>
+<p><b>Example:</b><br>
+Input: sessions = [[1,3],[2,6],[8,10],[15,18]]<br>
+Output: [[1,6],[8,10],[15,18]]</p>","MEDIUM","- 1 <= sessions.length <= 10^4
+- sessions[i].length == 2
+- 0 <= startMinute <= endMinute <= 10^6
+- Intervals that merely touch (e.g. [1,3] and [3,5]) must be merged into one
+- Expected complexity: O(n log n)","[{""input"": {""sessions"": [[1, 3], [2, 6], [8, 10], [15, 18]]}, ""output"": [[1, 6], [8, 10], [15, 18]]}, {""input"": {""sessions"": [[1, 4], [4, 5]]}, ""output"": [[1, 5]]}, {""input"": {""sessions"": [[5, 10]]}, ""output"": [[5, 10]]}, {""input"": {""sessions"": [[1, 2], [3, 4], [5, 6]]}, ""output"": [[1, 2], [3, 4], [5, 6]]}, {""input"": {""sessions"": [[10, 20], [1, 5], [6, 9], [4, 7]]}, ""output"": [[1, 9], [10, 20]]}]","/**
+ * @param {number[][]} sessions
+ * @return {number[][]}
+ */
+function mergeSessions(sessions) {
+    // Write your solution here
+}
+
+module.exports = mergeSessions;","from typing import List
+
+def merge_sessions(sessions: List[List[int]]) -> List[List[int]]:
+    # Write your solution here
+    pass","import java.util.*;
+
+class Solution {
+    public int[][] mergeSessions(int[][] sessions) {
+        // Write your solution here
+        return new int[][]{};
+    }
+}","#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    vector<vector<int>> mergeSessions(vector<vector<int>>& sessions) {
+        // Write your solution here
+        return {};
+    }
+};","#include <stdlib.h>
+
+/**
+ * Returns a 2D array of merged sessions.
+ * Set *returnSize to the number of merged sessions.
+ * Set *returnColumnSizes[i] = 2 for every row.
+ */
+int** mergeSessions(int** sessions, int sessionsSize, int* sessionsColSize,
+                     int* returnSize, int** returnColumnSizes) {
+    // Write your solution here
+    *returnSize = 0;
+    return NULL;
+}"
+"3","1","Balanced Config Blocks","<p><b>Balanced Config Blocks</b></p>
+<p>You are building a validator for a configuration file format that uses three kinds of
+bracket pairs to define nested blocks: <code>()</code>, <code>{}</code> and <code>[]</code>.</p>
+<p>Given a string <code>config</code> containing only these six bracket characters, determine
+whether every opening bracket has a matching closing bracket of the same type, and whether
+brackets are properly nested (i.e. the most recently opened block must be the first one
+closed).</p>
+<p>Return <code>true</code> if the configuration string is valid, otherwise
+<code>false</code>.</p>
+<p><b>Example:</b><br>
+Input: config = ""{[()()]}""<br>
+Output: true</p>
+<p>Input: config = ""{[(])}""<br>
+Output: false</p>","MEDIUM","- 0 <= config.length <= 10^4
+- config consists only of the characters '(', ')', '{', '}', '[', ']'
+- An empty string is considered valid","[{""input"": {""config"": ""{[()()]}""}, ""output"": true}, {""input"": {""config"": ""{[(])}""}, ""output"": false}, {""input"": {""config"": ""()""}, ""output"": true}, {""input"": {""config"": ""(((""}, ""output"": false}, {""input"": {""config"": """"}, ""output"": true}, {""input"": {""config"": ""]""}, ""output"": false}]","/**
+ * @param {string} config
+ * @return {boolean}
+ */
+function isValidConfig(config) {
+    // Write your solution here
+}
+
+module.exports = isValidConfig;","def is_valid_config(config: str) -> bool:
+    # Write your solution here
+    pass","class Solution {
+    public boolean isValidConfig(String config) {
+        // Write your solution here
+        return false;
+    }
+}","#include <string>
+using namespace std;
+
+class Solution {
+public:
+    bool isValidConfig(string config) {
+        // Write your solution here
+        return false;
+    }
+};","#include <stdbool.h>
+
+bool isValidConfig(char* config) {
+    // Write your solution here
+    return false;
+}"
+"4","1","Design an LFU-Style Cache Evictor","<p><b>Design an LFU-Style Cache Evictor</b></p>
+<p>You are designing a small in-memory cache module for a backend service. The cache has a
+fixed positive capacity. Implement a class <code>FrequencyCache</code> that supports the
+following operations, each in O(1) average time:</p>
+<ul>
+<li><code>get(key)</code> - Return the value of the key if it exists in the cache,
+otherwise return -1. Accessing a key counts as one use.</li>
+<li><code>put(key, value)</code> - Insert or update the value of the key. If inserting a
+new key causes the cache to exceed its capacity, evict the <b>least frequently used</b>
+key. If there is a tie in usage frequency, evict the <b>least recently used</b> key among
+those tied.</li>
+</ul>
+<p>Both <code>get</code> and successful <code>put</code> operations should increase the
+usage count of that key by 1.</p>
+<p><b>Example:</b><br>
+Operations: FrequencyCache(2), put(1,10), put(2,20), get(1), put(3,30), get(2), get(3)<br>
+Expected results: [null, null, 10, null, -1, 30]<br>
+(Explanation: capacity is 2. After put(1,10) and put(2,20), get(1) makes key 1 used twice.
+put(3,30) must evict the least frequently used key among {1,2}; key 2 has frequency 1 so it
+is evicted. get(2) then returns -1 since it was evicted. get(3) returns 30.)</p>","HARD","- 1 <= capacity <= 10^4
+- 0 <= key, value <= 10^9
+- At most 2 * 10^5 calls total will be made to get and put
+- Aim for O(1) average time complexity per operation","[{""input"": {""operations"": [""FrequencyCache"", ""put"", ""put"", ""get"", ""put"", ""get"", ""get""], ""args"": [[2], [1, 10], [2, 20], [1], [3, 30], [2], [3]]}, ""output"": [null, null, null, 10, null, -1, 30]}, {""input"": {""operations"": [""FrequencyCache"", ""put"", ""put"", ""put"", ""get"", ""get"", ""get""], ""args"": [[1], [1, 1], [2, 2], [3, 3], [1], [2], [3]]}, ""output"": [null, null, null, null, -1, -1, 3]}, {""input"": {""operations"": [""FrequencyCache"", ""put"", ""get"", ""put"", ""get"", ""get""], ""args"": [[1], [2, 2], [2], [3, 3], [2], [3]]}, ""output"": [null, null, 2, null, -1, 3]}]","/**
+ * @param {number} capacity
+ */
+class FrequencyCache {
+    constructor(capacity) {
+        // Write your initialization here
+    }
+
+    /**
+     * @param {number} key
+     * @return {number}
+     */
+    get(key) {
+        // Write your solution here
+    }
+
+    /**
+     * @param {number} key
+     * @param {number} value
+     * @return {void}
+     */
+    put(key, value) {
+        // Write your solution here
+    }
+}
+
+module.exports = FrequencyCache;","class FrequencyCache:
+    def __init__(self, capacity: int):
+        # Write your initialization here
+        pass
+
+    def get(self, key: int) -> int:
+        # Write your solution here
+        pass
+
+    def put(self, key: int, value: int) -> None:
+        # Write your solution here
+        pass","import java.util.*;
+
+class FrequencyCache {
+    public FrequencyCache(int capacity) {
+        // Write your initialization here
+    }
+
+    public int get(int key) {
+        // Write your solution here
+        return -1;
+    }
+
+    public void put(int key, int value) {
+        // Write your solution here
+    }
+}","#include <unordered_map>
+using namespace std;
+
+class FrequencyCache {
+public:
+    FrequencyCache(int capacity) {
+        // Write your initialization here
+    }
+
+    int get(int key) {
+        // Write your solution here
+        return -1;
+    }
+
+    void put(int key, int value) {
+        // Write your solution here
+    }
+};","typedef struct {
+    int capacity;
+    // Add your fields here
+} FrequencyCache;
+
+FrequencyCache* frequencyCacheCreate(int capacity) {
+    // Write your initialization here
+    return NULL;
+}
+
+int frequencyCacheGet(FrequencyCache* obj, int key) {
+    // Write your solution here
+    return -1;
+}
+
+void frequencyCachePut(FrequencyCache* obj, int key, int value) {
+    // Write your solution here
+}
+
+void frequencyCacheFree(FrequencyCache* obj) {
+    // Free allocated memory
+}"
