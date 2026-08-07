@@ -31,9 +31,22 @@ export default function LoginPage() {
       const res = await authApi().login(data.email, data.password);
       localStorage.setItem("access_token", res.access_token);
       localStorage.setItem("user_email", res.email);
-      // Return to the page the user was trying to visit, if any
-      const from = new URLSearchParams(window.location.search).get("from");
-      router.push(from && from.startsWith("/") ? from : "/dashboard");
+      if (res.role) {
+        localStorage.setItem("user_role", res.role);
+      }
+      
+      const role = res.role || "student";
+      if (role === "superadmin" || res.email === "superadmin@gmail.com") {
+        router.push("/superadmin");
+      } else if (role === "college_hod") {
+        router.push("/college-hod");
+      } else if (role === "college_teacher") {
+        router.push("/college-teacher");
+      } else {
+        // Student role: Redirect to where they left from if from parameter exists, otherwise /dashboard
+        const from = new URLSearchParams(window.location.search).get("from");
+        router.push(from && from.startsWith("/") ? from : "/dashboard");
+      }
     } catch (err: any) {
       setServerError(
         err?.response?.data?.detail ??

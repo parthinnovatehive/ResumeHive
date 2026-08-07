@@ -21,7 +21,14 @@ const NAV_LINKS = [
   { href: "/portfolio", label: "Portfolio" },
   { href: "/practice", label: "Practice" },
   { href: "/jobs", label: "Jobs" },
-  { href: "/interview", label: "Interview" },
+  { 
+    href: "/interview", 
+    label: "Interview",
+    children: [
+      { href: "/interview", label: "Mock Interviews" },
+      { href: "/interview/history", label: "Interview History & Reports" }
+    ]
+  },
   { href: "/linkedin", label: "LinkedIn" },
   { href: "/analytics", label: "Analytics" },
   { href: "/test", label: "Test" },
@@ -32,6 +39,8 @@ export function Navbar() {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState<string | null>(null);
+  const [userRole, setUserRole] = useState<string | null>(null);
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
@@ -40,7 +49,11 @@ export function Navbar() {
 
   useEffect(() => {
     setIsLoggedIn(Boolean(localStorage.getItem("access_token")));
-    setEmail(localStorage.getItem("user_email"));
+    const uEmail = localStorage.getItem("user_email");
+    const uRole = localStorage.getItem("user_role");
+    setEmail(uEmail);
+    setUserRole(uRole);
+    setIsSuperAdmin(uRole === "superadmin" || uEmail === "superadmin@gmail.com");
     setMobileOpen(false);
     
     const handleScroll = () => {
@@ -74,6 +87,10 @@ export function Navbar() {
     setEmail(null);
     router.push("/login");
   };
+
+  if (pathname?.startsWith("/superadmin") || pathname?.startsWith("/college-")) {
+    return null;
+  }
 
   const isHeroTop = pathname === "/" && !scrolled;
 
@@ -228,6 +245,21 @@ export function Navbar() {
                       </div>
                       <Link href="/dashboard" className="block w-full rounded-xl px-3 py-2 text-left text-sm font-semibold text-slate-700 dark:text-slate-300 transition-colors hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white">Dashboard</Link>
                       <Link href="/profile" className="block w-full rounded-xl px-3 py-2 text-left text-sm font-semibold text-slate-700 dark:text-slate-300 transition-colors hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white">My Profile</Link>
+                      {(isSuperAdmin || email === "superadmin@gmail.com") && (
+                        <Link href="/superadmin" className="block w-full rounded-xl px-3 py-2 text-left text-sm font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40 transition-colors hover:bg-indigo-100 my-1">
+                          🛡️ Super Admin Portal
+                        </Link>
+                      )}
+                      {userRole === "college_hod" && (
+                        <Link href="/college-hod" className="block w-full rounded-xl px-3 py-2 text-left text-sm font-bold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/40 transition-colors hover:bg-teal-100 my-1">
+                          🏛️ HOD Portal
+                        </Link>
+                      )}
+                      {userRole === "college_teacher" && (
+                        <Link href="/college-teacher" className="block w-full rounded-xl px-3 py-2 text-left text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 transition-colors hover:bg-blue-100 my-1">
+                          🎓 Teacher Portal
+                        </Link>
+                      )}
                       <button className="w-full rounded-xl px-3 py-2 text-left text-sm font-semibold text-slate-700 dark:text-slate-300 transition-colors hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white">Settings</button>
                       <button
                         onClick={handleLogout}

@@ -4,6 +4,8 @@ import { AuthGuard } from "@/components/AuthGuard";
 import { ToastProvider } from "@/components/ui/Toast";
 import "./globals.css";
 
+import { MainLayoutContainer } from "@/components/MainLayoutContainer";
+
 export const metadata: Metadata = {
   title: "ResumeHive",
   description: "AI Powered Resume & Career Platform",
@@ -21,9 +23,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
         <ToastProvider>
           <Navbar />
-          <div className="pt-28">
+          <MainLayoutContainer>
             <AuthGuard>{children}</AuthGuard>
-          </div>
+          </MainLayoutContainer>
         </ToastProvider>
       </body>
     </html>

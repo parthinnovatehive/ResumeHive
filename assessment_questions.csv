@@ -1,269 +1,415 @@
-"id","assessment_id","title","description_html","difficulty","constraints","test_cases_json","js_stub","python_stub","java_stub","cpp_stub","c_stub"
-"1","1","Warehouse Restock Pairs","<p><b>Warehouse Restock Pairs</b></p>
-<p>You manage inventory for a warehouse. You are given a list <code>itemWeights</code>
-representing the weight (in kg) of each box currently on a shelf, and an integer
-<code>truckCapacity</code> representing the exact weight a delivery truck can carry in a
-single trip.</p>
-<p>You want to find the indices of the <b>two boxes</b> whose combined weight is exactly
-equal to <code>truckCapacity</code>, so both can be loaded together on one trip.</p>
-<p>Return the two indices (0-based) as an array, in any order. You may assume exactly one
-valid pair exists for each input.</p>
-<p><b>Example:</b><br>
-Input: itemWeights = [4, 7, 11, 2], truckCapacity = 6<br>
-Output: [0, 3] &nbsp;(because itemWeights[0] + itemWeights[3] = 4 + 2 = 6)</p>","EASY","- 2 <= itemWeights.length <= 10^4
-- -10^9 <= itemWeights[i] <= 10^9
-- -10^9 <= truckCapacity <= 10^9
-- Exactly one valid pair of indices exists
-- Time limit: aim for O(n) or O(n log n) solution","[{""input"": {""itemWeights"": [4, 7, 11, 2], ""truckCapacity"": 9}, ""output"": [0, 3]}, {""input"": {""itemWeights"": [3, 2, 4], ""truckCapacity"": 6}, ""output"": [1, 2]}, {""input"": {""itemWeights"": [3, 3], ""truckCapacity"": 6}, ""output"": [0, 1]}, {""input"": {""itemWeights"": [10, -2, 5, 8, 1], ""truckCapacity"": 6}, ""output"": [1, 3]}, {""input"": {""itemWeights"": [0, 0, 3, 5], ""truckCapacity"": 0}, ""output"": [0, 1]}]","/**
- * @param {number[]} itemWeights
- * @param {number} truckCapacity
+"Test_ID","Test_Title","Target_Role","Question_ID","Question_Title","Difficulty","Category","Problem_Description","Input_Format","Output_Format","Constraints","Sample_Test_Cases","Hidden_Test_Cases","Starter_Code_Python","Starter_Code_JS","Optimal_Time_Complexity","Optimal_Space_Complexity"
+"T01","Junior Developer Screening - Round 1","Entry-Level Software Developer","Q1","Warehouse Pair Finder","Easy","Arrays, Hash Map","A warehouse inventory system logs item weights in an array. Given an array of item weights and a target combined weight, find the indices of the two items whose weights add up exactly to the target. You may assume each input has exactly one valid pair, and you cannot use the same item twice.","An integer array nums, and an integer target.","An array of two integers: the indices of the two numbers that add up to target, in ascending order.","2 <= nums.length <= 10^4
+-10^9 <= nums[i] <= 10^9
+-10^9 <= target <= 10^9
+Exactly one valid answer exists.
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""nums = [2, 7, 11, 15], target = 9"", ""output"": ""[0, 1]"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""nums = [3, 2, 4], target = 6"", ""output"": ""[1, 2]"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""nums = [3, 3], target = 6"", ""output"": ""[0, 1]""}, {""input"": ""nums = [-1, -3, 4, 7], target = 1"", ""output"": ""[1, 2]""}, {""input"": ""nums = [0, 0, 3, 4], target = 0"", ""output"": ""[0, 1]""}]","from typing import List
+
+def pair_finder(nums: List[int], target: int) -> List[int]:
+    """"""Return indices [i, j] such that nums[i] + nums[j] == target.""""""
+    pass","/**
+ * @param {number[]} nums
+ * @param {number} target
  * @return {number[]}
  */
-function findRestockPair(itemWeights, truckCapacity) {
-    // Write your solution here
-}
-
-module.exports = findRestockPair;","from typing import List
-
-def find_restock_pair(item_weights: List[int], truck_capacity: int) -> List[int]:
-    # Write your solution here
-    pass","import java.util.*;
-
-class Solution {
-    public int[] findRestockPair(int[] itemWeights, int truckCapacity) {
-        // Write your solution here
-        return new int[]{};
-    }
-}","#include <vector>
-using namespace std;
-
-class Solution {
-public:
-    vector<int> findRestockPair(vector<int>& itemWeights, int truckCapacity) {
-        // Write your solution here
-        return {};
-    }
-};","#include <stdlib.h>
-
-/**
- * Return an array of size 2 containing the indices.
- * Set *returnSize = 2 before returning.
- */
-int* findRestockPair(int* itemWeights, int itemWeightsSize, int truckCapacity, int* returnSize) {
-    // Write your solution here
-    *returnSize = 0;
-    return NULL;
-}"
-"2","1","Server Session Merge","<p><b>Server Session Merge</b></p>
-<p>A monitoring tool logs user sessions on a backend server. Each session is recorded as
-<code>[startMinute, endMinute]</code>, representing when a session began and ended
-(in minutes since server start). Sessions may overlap or touch each other, in which
-case they should be treated as a single continuous session for billing purposes.</p>
-<p>Given a list of session intervals (not necessarily sorted), merge all overlapping or
-touching intervals and return the resulting list of merged sessions, sorted by start
-time.</p>
-<p><b>Example:</b><br>
-Input: sessions = [[1,3],[2,6],[8,10],[15,18]]<br>
-Output: [[1,6],[8,10],[15,18]]</p>","MEDIUM","- 1 <= sessions.length <= 10^4
-- sessions[i].length == 2
-- 0 <= startMinute <= endMinute <= 10^6
-- Intervals that merely touch (e.g. [1,3] and [3,5]) must be merged into one
-- Expected complexity: O(n log n)","[{""input"": {""sessions"": [[1, 3], [2, 6], [8, 10], [15, 18]]}, ""output"": [[1, 6], [8, 10], [15, 18]]}, {""input"": {""sessions"": [[1, 4], [4, 5]]}, ""output"": [[1, 5]]}, {""input"": {""sessions"": [[5, 10]]}, ""output"": [[5, 10]]}, {""input"": {""sessions"": [[1, 2], [3, 4], [5, 6]]}, ""output"": [[1, 2], [3, 4], [5, 6]]}, {""input"": {""sessions"": [[10, 20], [1, 5], [6, 9], [4, 7]]}, ""output"": [[1, 9], [10, 20]]}]","/**
- * @param {number[][]} sessions
- * @return {number[][]}
- */
-function mergeSessions(sessions) {
-    // Write your solution here
-}
-
-module.exports = mergeSessions;","from typing import List
-
-def merge_sessions(sessions: List[List[int]]) -> List[List[int]]:
-    # Write your solution here
-    pass","import java.util.*;
-
-class Solution {
-    public int[][] mergeSessions(int[][] sessions) {
-        // Write your solution here
-        return new int[][]{};
-    }
-}","#include <vector>
-using namespace std;
-
-class Solution {
-public:
-    vector<vector<int>> mergeSessions(vector<vector<int>>& sessions) {
-        // Write your solution here
-        return {};
-    }
-};","#include <stdlib.h>
-
-/**
- * Returns a 2D array of merged sessions.
- * Set *returnSize to the number of merged sessions.
- * Set *returnColumnSizes[i] = 2 for every row.
- */
-int** mergeSessions(int** sessions, int sessionsSize, int* sessionsColSize,
-                     int* returnSize, int** returnColumnSizes) {
-    // Write your solution here
-    *returnSize = 0;
-    return NULL;
-}"
-"3","1","Balanced Config Blocks","<p><b>Balanced Config Blocks</b></p>
-<p>You are building a validator for a configuration file format that uses three kinds of
-bracket pairs to define nested blocks: <code>()</code>, <code>{}</code> and <code>[]</code>.</p>
-<p>Given a string <code>config</code> containing only these six bracket characters, determine
-whether every opening bracket has a matching closing bracket of the same type, and whether
-brackets are properly nested (i.e. the most recently opened block must be the first one
-closed).</p>
-<p>Return <code>true</code> if the configuration string is valid, otherwise
-<code>false</code>.</p>
-<p><b>Example:</b><br>
-Input: config = ""{[()()]}""<br>
-Output: true</p>
-<p>Input: config = ""{[(])}""<br>
-Output: false</p>","MEDIUM","- 0 <= config.length <= 10^4
-- config consists only of the characters '(', ')', '{', '}', '[', ']'
-- An empty string is considered valid","[{""input"": {""config"": ""{[()()]}""}, ""output"": true}, {""input"": {""config"": ""{[(])}""}, ""output"": false}, {""input"": {""config"": ""()""}, ""output"": true}, {""input"": {""config"": ""(((""}, ""output"": false}, {""input"": {""config"": """"}, ""output"": true}, {""input"": {""config"": ""]""}, ""output"": false}]","/**
- * @param {string} config
+function pairFinder(nums, target) {
+  // your code here
+}","O(n)","O(n)"
+"T01","Junior Developer Screening - Round 1","Entry-Level Software Developer","Q2","Palindrome Product Code","Easy","Strings","A factory prints product codes that must be verified as palindromic identifiers, ignoring case, spaces, and punctuation. Given a string, determine whether it reads the same forwards and backwards after removing all non-alphanumeric characters and normalizing case.","A string s containing letters, digits, spaces, and punctuation.","A boolean: true if s is a valid palindrome under the given rules, false otherwise.","1 <= s.length <= 2 * 10^5
+s consists of printable ASCII characters.
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""s = \""A man a plan a canal Panama\"""", ""output"": ""true"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""s = \""race a car\"""", ""output"": ""false"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""s = \""\"""", ""output"": ""true""}, {""input"": ""s = \""0P\"""", ""output"": ""false""}, {""input"": ""s = \"".,\"""", ""output"": ""true""}, {""input"": ""s = \""Was it a car or a cat I saw?\"""", ""output"": ""true""}]","def is_palindrome(s: str) -> bool:
+    """"""Return True if s is a palindrome ignoring case and non-alphanumerics.""""""
+    pass","/**
+ * @param {string} s
  * @return {boolean}
  */
-function isValidConfig(config) {
-    // Write your solution here
-}
+function isPalindrome(s) {
+  // your code here
+}","O(n)","O(n)"
+"T02","Junior Developer Screening - Round 2","Entry-Level Software Developer","Q3","Rotate Delivery Queue","Easy","Arrays","A delivery dispatch queue processes stops in array order, but the depot occasionally needs to rotate the queue to the right by k positions so the driver starts from a different point in the route without changing stop order otherwise. Given an array of stop IDs and an integer k, rotate the array to the right by k steps in place logically and return the result.","An integer array nums, and a non-negative integer k.","The array after being rotated right by k positions.","1 <= nums.length <= 10^5
+-2^31 <= nums[i] <= 2^31 - 1
+0 <= k <= 10^5
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""nums = [1, 2, 3, 4, 5, 6, 7], k = 3"", ""output"": ""[5, 6, 7, 1, 2, 3, 4]"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""nums = [-1, -100, 3, 99], k = 2"", ""output"": ""[3, 99, -1, -100]"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""nums = [1], k = 0"", ""output"": ""[1]""}, {""input"": ""nums = [1, 2], k = 5"", ""output"": ""[2, 1]""}, {""input"": ""nums = [1, 2, 3, 4, 5], k = 0"", ""output"": ""[1, 2, 3, 4, 5]""}]","from typing import List
 
-module.exports = isValidConfig;","def is_valid_config(config: str) -> bool:
-    # Write your solution here
-    pass","class Solution {
-    public boolean isValidConfig(String config) {
-        // Write your solution here
-        return false;
-    }
-}","#include <string>
-using namespace std;
-
-class Solution {
-public:
-    bool isValidConfig(string config) {
-        // Write your solution here
-        return false;
-    }
-};","#include <stdbool.h>
-
-bool isValidConfig(char* config) {
-    // Write your solution here
-    return false;
-}"
-"4","1","Design an LFU-Style Cache Evictor","<p><b>Design an LFU-Style Cache Evictor</b></p>
-<p>You are designing a small in-memory cache module for a backend service. The cache has a
-fixed positive capacity. Implement a class <code>FrequencyCache</code> that supports the
-following operations, each in O(1) average time:</p>
-<ul>
-<li><code>get(key)</code> - Return the value of the key if it exists in the cache,
-otherwise return -1. Accessing a key counts as one use.</li>
-<li><code>put(key, value)</code> - Insert or update the value of the key. If inserting a
-new key causes the cache to exceed its capacity, evict the <b>least frequently used</b>
-key. If there is a tie in usage frequency, evict the <b>least recently used</b> key among
-those tied.</li>
-</ul>
-<p>Both <code>get</code> and successful <code>put</code> operations should increase the
-usage count of that key by 1.</p>
-<p><b>Example:</b><br>
-Operations: FrequencyCache(2), put(1,10), put(2,20), get(1), put(3,30), get(2), get(3)<br>
-Expected results: [null, null, 10, null, -1, 30]<br>
-(Explanation: capacity is 2. After put(1,10) and put(2,20), get(1) makes key 1 used twice.
-put(3,30) must evict the least frequently used key among {1,2}; key 2 has frequency 1 so it
-is evicted. get(2) then returns -1 since it was evicted. get(3) returns 30.)</p>","HARD","- 1 <= capacity <= 10^4
-- 0 <= key, value <= 10^9
-- At most 2 * 10^5 calls total will be made to get and put
-- Aim for O(1) average time complexity per operation","[{""input"": {""operations"": [""FrequencyCache"", ""put"", ""put"", ""get"", ""put"", ""get"", ""get""], ""args"": [[2], [1, 10], [2, 20], [1], [3, 30], [2], [3]]}, ""output"": [null, null, null, 10, null, -1, 30]}, {""input"": {""operations"": [""FrequencyCache"", ""put"", ""put"", ""put"", ""get"", ""get"", ""get""], ""args"": [[1], [1, 1], [2, 2], [3, 3], [1], [2], [3]]}, ""output"": [null, null, null, null, -1, -1, 3]}, {""input"": {""operations"": [""FrequencyCache"", ""put"", ""get"", ""put"", ""get"", ""get""], ""args"": [[1], [2, 2], [2], [3, 3], [2], [3]]}, ""output"": [null, null, 2, null, -1, 3]}]","/**
- * @param {number} capacity
+def rotate_queue(nums: List[int], k: int) -> List[int]:
+    """"""Return nums rotated right by k positions.""""""
+    pass","/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
  */
-class FrequencyCache {
-    constructor(capacity) {
-        // Write your initialization here
-    }
+function rotateQueue(nums, k) {
+  // your code here
+}","O(n)","O(n)"
+"T02","Junior Developer Screening - Round 2","Entry-Level Software Developer","Q4","Longest Uniform Temperature Streak","Medium","Arrays, Sliding Window","A weather station logs hourly rounded temperature readings as integers. Find the length of the longest streak of consecutive hours where the temperature reading stayed exactly the same.","An integer array arr representing hourly temperature readings.","An integer: the length of the longest run of consecutive equal values.","1 <= arr.length <= 10^5
+-100 <= arr[i] <= 150
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""arr = [1, 1, 2, 2, 2, 3]"", ""output"": ""3"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""arr = [5, 5, 5, 5]"", ""output"": ""4"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""arr = [1]"", ""output"": ""1""}, {""input"": ""arr = [1, 2, 3, 4]"", ""output"": ""1""}, {""input"": ""arr = [-5, -5, -5, 2, 2]"", ""output"": ""3""}]","from typing import List
 
-    /**
-     * @param {number} key
-     * @return {number}
-     */
-    get(key) {
-        // Write your solution here
-    }
+def longest_streak(arr: List[int]) -> int:
+    """"""Return the length of the longest run of consecutive equal values.""""""
+    pass","/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+function longestStreak(arr) {
+  // your code here
+}","O(n)","O(1)"
+"T03","Junior Developer Screening - Round 3","Entry-Level Software Developer","Q5","Missing Invoice Number","Easy","Arrays, Math","An accounting system stores invoice sequence numbers from 0 to n, but exactly one invoice number is missing from the array due to a data entry error. Given an array containing n distinct numbers in the range [0, n], find the one number missing from the sequence.","An integer array nums of length n containing n distinct numbers from the range [0, n].","An integer: the missing number.","1 <= n <= 10^4
+0 <= nums[i] <= n
+All numbers in nums are unique.
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""nums = [3, 0, 1]"", ""output"": ""2"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""nums = [0, 1]"", ""output"": ""2"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""nums = [9, 6, 4, 2, 3, 5, 7, 0, 1]"", ""output"": ""8""}, {""input"": ""nums = [0]"", ""output"": ""1""}, {""input"": ""nums = [1]"", ""output"": ""0""}]","from typing import List
 
-    /**
-     * @param {number} key
-     * @param {number} value
-     * @return {void}
-     */
-    put(key, value) {
-        // Write your solution here
-    }
-}
+def missing_invoice(nums: List[int]) -> int:
+    """"""Return the missing number in range [0, n].""""""
+    pass","/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+function missingInvoice(nums) {
+  // your code here
+}","O(n)","O(1)"
+"T03","Junior Developer Screening - Round 3","Entry-Level Software Developer","Q6","Balanced Bracket Validator for Config Files","Easy","Strings, Stack","A config-file linter needs to check that all brackets in a snippet are correctly matched and nested. Given a string containing only the characters '(', ')', '{', '}', '[' and ']', determine if the brackets are valid: every opening bracket must be closed by the same type in the correct order.","A string s consisting only of bracket characters.","A boolean: true if the brackets are valid, false otherwise.","1 <= s.length <= 10^4
+s consists only of the characters '()[]{}'.
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""s = \""({[]})\"""", ""output"": ""true"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""s = \""(]\"""", ""output"": ""false"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""s = \""()\"""", ""output"": ""true""}, {""input"": ""s = \""((\"""", ""output"": ""false""}, {""input"": ""s = \""]\"""", ""output"": ""false""}, {""input"": ""s = \""{[()]}\"""", ""output"": ""true""}]","def valid_brackets(s: str) -> bool:
+    """"""Return True if brackets in s are balanced and correctly nested.""""""
+    pass","/**
+ * @param {string} s
+ * @return {boolean}
+ */
+function validBrackets(s) {
+  // your code here
+}","O(n)","O(n)"
+"T03","Junior Developer Screening - Round 3","Entry-Level Software Developer","Q7","First Unique Visitor ID","Medium","Arrays, Hash Map","A website analytics log records visitor IDs in the order they arrived. Find the index of the first visitor ID that appears exactly once in the log. If every ID repeats, return -1.","An integer array nums representing visitor IDs in arrival order.","An integer: the index of the first non-repeating value, or -1 if none exists.","1 <= nums.length <= 10^5
+-10^9 <= nums[i] <= 10^9
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""nums = [2, 3, 2, 4, 3]"", ""output"": ""3"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""nums = [1, 1, 2, 2]"", ""output"": ""-1"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""nums = [5]"", ""output"": ""0""}, {""input"": ""nums = [7, 7, 8, 8, 9]"", ""output"": ""4""}, {""input"": ""nums = [1, 2, 3, 1, 2]"", ""output"": ""2""}]","from typing import List
 
-module.exports = FrequencyCache;","class FrequencyCache:
+def first_unique(nums: List[int]) -> int:
+    """"""Return the index of the first value that appears exactly once, or -1.""""""
+    pass","/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+function firstUnique(nums) {
+  // your code here
+}","O(n)","O(n)"
+"T04","Mid-Level Backend Engineer - Round 1","Mid-Level Backend Engineer","Q8","Two Pointer Traffic Merge","Medium","Two Pointers, Arrays","Two traffic sensors each report vehicle counts sorted by timestamp in ascending order as arrays. Merge the two sorted arrays into a single sorted array representing the combined, time-ordered vehicle count log.","Two integer arrays a and b, each sorted in non-decreasing order.","A single merged, sorted integer array containing all elements from a and b.","0 <= a.length, b.length <= 10^5
+-10^9 <= a[i], b[i] <= 10^9
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""a = [1, 3, 5], b = [2, 4, 6]"", ""output"": ""[1, 2, 3, 4, 5, 6]"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""a = [1, 2, 3], b = []"", ""output"": ""[1, 2, 3]"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""a = [], b = []"", ""output"": ""[]""}, {""input"": ""a = [1, 1, 1], b = [1, 1]"", ""output"": ""[1, 1, 1, 1, 1]""}, {""input"": ""a = [-5, 0, 5], b = [-3, 3, 10]"", ""output"": ""[-5, -3, 0, 3, 5, 10]""}]","from typing import List
+
+def merge_sorted(a: List[int], b: List[int]) -> List[int]:
+    """"""Return a and b merged into one sorted array.""""""
+    pass","/**
+ * @param {number[]} a
+ * @param {number[]} b
+ * @return {number[]}
+ */
+function mergeSorted(a, b) {
+  // your code here
+}","O(n + m)","O(n + m)"
+"T04","Mid-Level Backend Engineer - Round 1","Mid-Level Backend Engineer","Q9","Longest Substring Without Repeating Session Tokens","Medium","Sliding Window, Hash Map","A server log records a stream of single-character session tokens as a string. Find the length of the longest contiguous substring in which no session token character repeats.","A string s of session token characters.","An integer: the length of the longest substring without repeating characters.","0 <= s.length <= 5 * 10^4
+s consists of English letters, digits, symbols, and spaces.
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""s = \""abcabcbb\"""", ""output"": ""3"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""s = \""bbbbb\"""", ""output"": ""1"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""s = \""\"""", ""output"": ""0""}, {""input"": ""s = \""pwwkew\"""", ""output"": ""3""}, {""input"": ""s = \""abba\"""", ""output"": ""2""}, {""input"": ""s = \""dvdf\"""", ""output"": ""3""}]","def longest_unique_substr(s: str) -> int:
+    """"""Return the length of the longest substring with no repeated characters.""""""
+    pass","/**
+ * @param {string} s
+ * @return {number}
+ */
+function longestUniqueSubstr(s) {
+  // your code here
+}","O(n)","O(min(n, alphabet size))"
+"T05","Mid-Level Full Stack Engineer - Round 2","Mid-Level Full Stack Engineer","Q10","Detect Cycle in Task Dependency List","Medium","Linked List, Two Pointers","A task scheduler represents chained task dependencies as a singly linked list, where each task's 'next' pointer references the following dependent task. Due to a bug, the list may accidentally loop back to a previous task, creating a cycle. Given the list (represented as an array of values plus the index the last node's next pointer connects to, or -1 for no cycle), determine whether a cycle exists.","An integer array values representing node values in order, and an integer pos: the zero-indexed position in values that the tail node connects back to (-1 means no cycle).","A boolean: true if the linked list has a cycle, false otherwise.","0 <= values.length <= 10^4
+-10^9 <= values[i] <= 10^9
+-1 <= pos < values.length
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""values = [3, 2, 0, -4], pos = 1"", ""output"": ""true"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""values = [1, 2], pos = -1"", ""output"": ""false"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""values = [1], pos = -1"", ""output"": ""false""}, {""input"": ""values = [1], pos = 0"", ""output"": ""true""}, {""input"": ""values = [1, 2, 3, 4, 5], pos = -1"", ""output"": ""false""}]","from typing import List
+
+def has_cycle(values: List[int], pos: int) -> bool:
+    """"""Return True if the linked list built from values (tail connecting to index pos) has a cycle.""""""
+    pass","/**
+ * @param {number[]} values
+ * @param {number} pos
+ * @return {boolean}
+ */
+function hasCycle(values, pos) {
+  // your code here
+}","O(n)","O(1)"
+"T05","Mid-Level Full Stack Engineer - Round 2","Mid-Level Full Stack Engineer","Q11","Group Anagram Product SKUs","Medium","Hash Map, Strings","An e-commerce catalog contains product SKU codes that are considered duplicates if they are anagrams of each other (same letters, different order). Group the given SKU codes into sets of anagrams. Each group should be sorted alphabetically internally, and the overall list of groups should be sorted for deterministic ordering.","A string array strs of SKU codes.","A list of lists of strings: SKUs grouped by anagram, each group sorted alphabetically, groups sorted for determinism.","1 <= strs.length <= 10^4
+0 <= strs[i].length <= 100
+strs[i] consists of lowercase English letters.
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""strs = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat']"", ""output"": ""[[\""ate\"", \""eat\"", \""tea\""], [\""bat\""], [\""nat\"", \""tan\""]]"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""strs = ['']"", ""output"": ""[[\""\""]]"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""strs = ['a']"", ""output"": ""[[\""a\""]]""}, {""input"": ""strs = ['abc', 'bca', 'cab', 'xyz']"", ""output"": ""[[\""abc\"", \""bca\"", \""cab\""], [\""xyz\""]]""}, {""input"": ""strs = ['ab', 'ba', 'ab']"", ""output"": ""[[\""ab\"", \""ab\"", \""ba\""]]""}]","from typing import List
+
+def group_anagrams(strs: List[str]) -> List[List[str]]:
+    """"""Return SKUs grouped by anagram, each group and the group list sorted for determinism.""""""
+    pass","/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+function groupAnagrams(strs) {
+  // your code here
+}","O(n * k log k)","O(n * k)"
+"T06","Mid-Level Backend Engineer - Round 3","Mid-Level Backend Engineer","Q12","Validate Binary Search Tree of Employee IDs","Medium","Trees, Recursion","An HR system stores employee IDs in a binary tree structure meant to satisfy binary search tree ordering (left subtree strictly less, right subtree strictly greater than the node). Given the tree in level-order array form (null marks a missing child, LeetCode convention), determine whether it is a valid binary search tree.","A level-order array tree representing a binary tree, where null marks an absent child.","A boolean: true if the tree is a valid BST, false otherwise.","0 <= number of nodes <= 10^4
+-2^31 <= node values <= 2^31 - 1
+All node values are unique.
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""tree = [2, 1, 3]"", ""output"": ""true"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""tree = [5, 1, 4, None, None, 3, 6]"", ""output"": ""false"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""tree = []"", ""output"": ""true""}, {""input"": ""tree = [1]"", ""output"": ""true""}, {""input"": ""tree = [5, 4, 6, None, None, 3, 7]"", ""output"": ""false""}]","from typing import List, Optional
+
+def is_valid_bst(tree: List[Optional[int]]) -> bool:
+    """"""Return True if the level-order tree array represents a valid BST.""""""
+    pass","/**
+ * @param {(number|null)[]} tree
+ * @return {boolean}
+ */
+function isValidBst(tree) {
+  // your code here
+}","O(n)","O(h)"
+"T06","Mid-Level Backend Engineer - Round 3","Mid-Level Backend Engineer","Q13","Level Order Traversal of Org Chart","Medium","Trees, BFS","A company's org chart is stored as a binary tree, where each node is a manager and its children are direct reports. Return the org chart's employee IDs grouped level by level (breadth-first), representing each rung of the reporting hierarchy.","A level-order array tree representing a binary tree, where null marks an absent child.","A list of lists of integers: node values grouped by tree level, top to bottom.","0 <= number of nodes <= 2000
+-1000 <= node values <= 1000
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""tree = [3, 9, 20, None, None, 15, 7]"", ""output"": ""[[3], [9, 20], [15, 7]]"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""tree = [1]"", ""output"": ""[[1]]"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""tree = []"", ""output"": ""[]""}, {""input"": ""tree = [1, 2, 3, 4, 5, 6, 7]"", ""output"": ""[[1], [2, 3], [4, 5, 6, 7]]""}, {""input"": ""tree = [1, None, 2, None, 3]"", ""output"": ""[[1], [2], [3]]""}]","from typing import List, Optional
+
+def level_order(tree: List[Optional[int]]) -> List[List[int]]:
+    """"""Return node values grouped by level, top to bottom.""""""
+    pass","/**
+ * @param {(number|null)[]} tree
+ * @return {number[][]}
+ */
+function levelOrder(tree) {
+  // your code here
+}","O(n)","O(n)"
+"T06","Mid-Level Backend Engineer - Round 3","Mid-Level Backend Engineer","Q14","Lowest Common Manager","Medium","Trees, Recursion","Given a company's org chart as a binary tree and the IDs of two employees, find the ID of their lowest common manager: the deepest node in the tree that has both employees as descendants (a node can be considered a descendant of itself).","A level-order array tree, and two integers p and q representing employee IDs guaranteed to exist in the tree.","An integer: the value of the lowest common ancestor node of p and q.","2 <= number of nodes <= 10^4
+All node values are unique.
+p != q, and both exist in the tree.
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""tree = [3, 5, 1, 6, 2, 0, 8, None, None, 7, 4], p = 5, q = 1"", ""output"": ""3"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""tree = [3, 5, 1, 6, 2, 0, 8, None, None, 7, 4], p = 5, q = 4"", ""output"": ""5"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""tree = [1, 2], p = 1, q = 2"", ""output"": ""1""}, {""input"": ""tree = [6, 2, 8, 0, 4, 7, 9, None, None, 3, 5], p = 2, q = 8"", ""output"": ""6""}, {""input"": ""tree = [6, 2, 8, 0, 4, 7, 9, None, None, 3, 5], p = 0, q = 5"", ""output"": ""2""}]","from typing import List, Optional
+
+def lowest_common_manager(tree: List[Optional[int]], p: int, q: int) -> int:
+    """"""Return the value of the lowest common ancestor of nodes p and q.""""""
+    pass","/**
+ * @param {(number|null)[]} tree
+ * @param {number} p
+ * @param {number} q
+ * @return {number}
+ */
+function lowestCommonManager(tree, p, q) {
+  // your code here
+}","O(n)","O(h)"
+"T07","Mid-Level Full Stack Engineer - Round 4","Mid-Level Full Stack Engineer","Q15","Container With Most Water Tanks","Medium","Two Pointers, Greedy","A row of storage tanks of varying heights sits along a pipeline. Given an array where each element is a tank's height, choose two tanks such that, together with the pipeline floor between them, they form a container holding the maximum possible amount of water. Return the maximum area.","An integer array heights of tank heights.","An integer: the maximum water area achievable between any two tanks.","2 <= heights.length <= 10^5
+0 <= heights[i] <= 10^4
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""heights = [1, 8, 6, 2, 5, 4, 8, 3, 7]"", ""output"": ""49"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""heights = [1, 1]"", ""output"": ""1"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""heights = [4, 3, 2, 1, 4]"", ""output"": ""16""}, {""input"": ""heights = [1, 2, 1]"", ""output"": ""2""}, {""input"": ""heights = [2, 3, 4, 5, 18, 17, 6]"", ""output"": ""17""}]","from typing import List
+
+def max_area(heights: List[int]) -> int:
+    """"""Return the maximum water-holding area between any two tanks.""""""
+    pass","/**
+ * @param {number[]} heights
+ * @return {number}
+ */
+function maxArea(heights) {
+  // your code here
+}","O(n)","O(1)"
+"T07","Mid-Level Full Stack Engineer - Round 4","Mid-Level Full Stack Engineer","Q16","Serialize Binary File Tree","Hard","Trees, Design","A file system directory structure is modeled as a binary tree for a specialized backup tool. Implement a serialization function that converts the tree into a single comma-separated string using preorder traversal, marking absent children with the literal 'null', so the structure can be reconstructed exactly later.","A level-order array tree representing a binary tree, where null marks an absent child.","A string: the comma-separated preorder serialization of the tree, using 'null' for absent children.","0 <= number of nodes <= 10^4
+-1000 <= node values <= 1000
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""tree = [1, 2, 3, None, None, 4, 5]"", ""output"": ""\""1,2,null,null,3,4,null,null,5,null,null\"""", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""tree = []"", ""output"": ""\""null\"""", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""tree = [1]"", ""output"": ""\""1,null,null\""""}, {""input"": ""tree = [1, 2, None, 3, None, 4, None]"", ""output"": ""\""1,2,3,4,null,null,null,null,null\""""}, {""input"": ""tree = [5, 4, 7, 3, None, 2, None, -1, None, 9]"", ""output"": ""\""5,4,3,-1,null,null,null,null,7,2,9,null,null,null,null\""""}]","from typing import List, Optional
+
+def serialize(tree: List[Optional[int]]) -> str:
+    """"""Return the preorder, comma-separated serialization of the tree ('null' for missing children).""""""
+    pass","/**
+ * @param {(number|null)[]} tree
+ * @return {string}
+ */
+function serialize(tree) {
+  // your code here
+}","O(n)","O(n)"
+"T08","Senior Software Engineer - Round 1","Senior Software Engineer","Q17","Longest Increasing Stock Price Subsequence","Medium","Dynamic Programming, Binary Search","Given an array of a stock's daily closing prices, find the length of the longest subsequence of days (not necessarily consecutive) during which the price was strictly increasing.","An integer array nums of daily closing prices.","An integer: the length of the longest strictly increasing subsequence.","1 <= nums.length <= 2500
+-10^4 <= nums[i] <= 10^4
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""nums = [10, 9, 2, 5, 3, 7, 101, 18]"", ""output"": ""4"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""nums = [0, 1, 0, 3, 2, 3]"", ""output"": ""4"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""nums = [7, 7, 7, 7]"", ""output"": ""1""}, {""input"": ""nums = [1]"", ""output"": ""1""}, {""input"": ""nums = [1, 2, 3, 4, 5]"", ""output"": ""5""}]","from typing import List
+
+def longest_increasing_subsequence(nums: List[int]) -> int:
+    """"""Return the length of the longest strictly increasing subsequence.""""""
+    pass","/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+function longestIncreasingSubsequence(nums) {
+  // your code here
+}","O(n log n)","O(n)"
+"T08","Senior Software Engineer - Round 1","Senior Software Engineer","Q18","Minimum Coins for Vending Machine Change","Hard","Dynamic Programming","A vending machine stocks a limited set of coin denominations and must dispense exact change for a purchase using the fewest coins possible. Given an array of available coin denominations and a target amount, return the minimum number of coins needed to make that amount exactly. If it cannot be made, return -1.","An integer array coins of available denominations, and an integer amount.","An integer: the minimum number of coins needed to make amount, or -1 if impossible.","1 <= coins.length <= 12
+1 <= coins[i] <= 2^31 - 1
+0 <= amount <= 10^4
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""coins = [1, 2, 5], amount = 11"", ""output"": ""3"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""coins = [2], amount = 3"", ""output"": ""-1"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""coins = [1], amount = 0"", ""output"": ""0""}, {""input"": ""coins = [1], amount = 2"", ""output"": ""2""}, {""input"": ""coins = [1, 3, 4], amount = 6"", ""output"": ""2""}]","from typing import List
+
+def min_coins(coins: List[int], amount: int) -> int:
+    """"""Return the minimum number of coins to make amount exactly, or -1.""""""
+    pass","/**
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+function minCoins(coins, amount) {
+  // your code here
+}","O(amount * coins.length)","O(amount)"
+"T09","Senior Software Engineer - Round 2","Senior Software Engineer","Q19","Number of Connected Server Clusters","Medium","Graphs, Union-Find","A data center has n servers, and a list of direct network links between pairs of servers. Two servers are in the same cluster if they are connected directly or indirectly through other links. Given n and the list of links, return the number of distinct server clusters.","An integer n (number of servers, 0-indexed), and a 2D array edges of [u, v] pairs representing direct links.","An integer: the number of connected clusters.","1 <= n <= 2000
+0 <= edges.length <= 5000
+0 <= u, v < n, u != v
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""n = 5, edges = [[0, 1], [1, 2], [3, 4]]"", ""output"": ""2"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""n = 4, edges = [[0, 1], [2, 3], [1, 2]]"", ""output"": ""1"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""n = 1, edges = []"", ""output"": ""1""}, {""input"": ""n = 5, edges = []"", ""output"": ""5""}, {""input"": ""n = 6, edges = [[0, 1], [1, 2], [2, 0], [3, 4]]"", ""output"": ""3""}]","from typing import List
+
+def count_clusters(n: int, edges: List[List[int]]) -> int:
+    """"""Return the number of connected components among n servers given edges.""""""
+    pass","/**
+ * @param {number} n
+ * @param {number[][]} edges
+ * @return {number}
+ */
+function countClusters(n, edges) {
+  // your code here
+}","O(n + e * alpha(n))","O(n)"
+"T09","Senior Software Engineer - Round 2","Senior Software Engineer","Q20","Shortest Path in Weighted Delivery Network","Hard","Graphs, Dijkstra","A logistics company models its delivery hubs as a weighted undirected graph, where edge weights represent travel time in minutes between hubs. Given the network, a source hub, and a destination hub, find the minimum total travel time from source to destination. If unreachable, return -1.","An integer n (number of hubs, 0-indexed), a 2D array edges of [u, v, weight], an integer src, and an integer dst.","An integer: the shortest travel time from src to dst, or -1 if unreachable.","1 <= n <= 1000
+0 <= edges.length <= 10^4
+1 <= weight <= 1000
+0 <= src, dst < n
+Time Limit: 1.5s, Memory: 256MB","[{""input"": ""n = 5, edges = [[0, 1, 4], [0, 2, 1], [2, 1, 2], [1, 3, 1], [2, 3, 5]], src = 0, dst = 3"", ""output"": ""4"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""n = 3, edges = [[0, 1, 1]], src = 0, dst = 2"", ""output"": ""-1"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""n = 1, edges = [], src = 0, dst = 0"", ""output"": ""0""}, {""input"": ""n = 4, edges = [[0, 1, 10], [0, 2, 3], [2, 1, 4], [1, 3, 2], [2, 3, 8]], src = 0, dst = 3"", ""output"": ""9""}, {""input"": ""n = 2, edges = [[0, 1, 5]], src = 1, dst = 0"", ""output"": ""5""}]","from typing import List
+
+def shortest_path(n: int, edges: List[List[int]], src: int, dst: int) -> int:
+    """"""Return the shortest weighted path distance from src to dst, or -1.""""""
+    pass","/**
+ * @param {number} n
+ * @param {number[][]} edges
+ * @param {number} src
+ * @param {number} dst
+ * @return {number}
+ */
+function shortestPath(n, edges, src, dst) {
+  // your code here
+}","O((V + E) log V)","O(V + E)"
+"T10","Senior Software Engineer - Round 3","Senior Software Engineer","Q21","Next Higher Stock Price","Medium","Monotonic Stack","Given an array of a stock's prices over consecutive days, for each day find the next future day's price that is strictly higher than the current day's price. If no such future day exists, use -1 for that day.","An integer array nums of daily prices.","An integer array of the same length: for each index, the next greater value to its right, or -1.","1 <= nums.length <= 10^5
+-10^9 <= nums[i] <= 10^9
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""nums = [2, 1, 2, 4, 3]"", ""output"": ""[4, 2, 4, -1, -1]"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""nums = [1, 2, 3, 4]"", ""output"": ""[2, 3, 4, -1]"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""nums = [5]"", ""output"": ""[-1]""}, {""input"": ""nums = [5, 4, 3, 2, 1]"", ""output"": ""[-1, -1, -1, -1, -1]""}, {""input"": ""nums = [1, 3, 2, 4]"", ""output"": ""[3, 4, 4, -1]""}]","from typing import List
+
+def next_greater(nums: List[int]) -> List[int]:
+    """"""Return, for each index, the next strictly greater value to its right, or -1.""""""
+    pass","/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+function nextGreater(nums) {
+  // your code here
+}","O(n)","O(n)"
+"T10","Senior Software Engineer - Round 3","Senior Software Engineer","Q22","Largest Rectangle in Server Rack Histogram","Hard","Monotonic Stack","A data center's server rack utilization is visualized as a histogram, where each bar's height represents the number of active servers in that rack slot, all bars having equal width. Find the area of the largest rectangle that can be formed within the histogram's outline.","An integer array heights representing histogram bar heights, each of width 1.","An integer: the area of the largest rectangle in the histogram.","1 <= heights.length <= 10^5
+0 <= heights[i] <= 10^4
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""heights = [2, 1, 5, 6, 2, 3]"", ""output"": ""10"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""heights = [2, 4]"", ""output"": ""4"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""heights = [1]"", ""output"": ""1""}, {""input"": ""heights = [0, 0, 0]"", ""output"": ""0""}, {""input"": ""heights = [6, 7, 5, 2, 4, 5, 9, 3]"", ""output"": ""16""}]","from typing import List
+
+def largest_rectangle(heights: List[int]) -> int:
+    """"""Return the area of the largest rectangle in the histogram.""""""
+    pass","/**
+ * @param {number[]} heights
+ * @return {number}
+ */
+function largestRectangle(heights) {
+  // your code here
+}","O(n)","O(n)"
+"T10","Senior Software Engineer - Round 3","Senior Software Engineer","Q23","LRU Cache for Session Store","Hard","Design, Hash Map, Doubly Linked List","Design a Least Recently Used (LRU) cache for a session store with a fixed capacity. It should support get(key), returning the value if present (and marking it as recently used) or -1 if absent, and put(key, value), inserting or updating a value (marking it recently used), evicting the least recently used entry if capacity is exceeded. Both operations must run in O(1) average time.","A sequence of operations (""LRUCache"", ""put"", ""get"") with corresponding arguments, applied in order to a single cache instance.","A list of return values, one per operation (null for LRUCache/put, the value or -1 for get).","1 <= capacity <= 3000
+0 <= key, value <= 10^4
+At most 2 * 10^4 calls total to get and put.
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""operations = ['LRUCache', 'put', 'put', 'get', 'put', 'get', 'put', 'get', 'get', 'get'], arguments = [[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]"", ""output"": ""[null, null, null, 1, null, -1, null, -1, 3, 4]"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""operations = ['LRUCache', 'put', 'get'], arguments = [[1], [2, 1], [2]]"", ""output"": ""[null, null, 1]""}, {""input"": ""operations = ['LRUCache', 'put', 'put', 'put', 'get'], arguments = [[1], [1, 1], [2, 2], [3, 3], [1]]"", ""output"": ""[null, null, null, null, -1]""}]","class LRUCache:
     def __init__(self, capacity: int):
-        # Write your initialization here
         pass
 
     def get(self, key: int) -> int:
-        # Write your solution here
         pass
 
     def put(self, key: int, value: int) -> None:
-        # Write your solution here
-        pass","import java.util.*;
+        pass","/**
+ * @param {number} capacity
+ */
+var LRUCache = function(capacity) {
+  
+};
 
-class FrequencyCache {
-    public FrequencyCache(int capacity) {
-        // Write your initialization here
-    }
+LRUCache.prototype.get = function(key) {
+  
+};
 
-    public int get(int key) {
-        // Write your solution here
-        return -1;
-    }
+LRUCache.prototype.put = function(key, value) {
+  
+};","O(1) average per operation","O(capacity)"
+"T11","FAANG Hard Tech Assessment - Round 1","SDE II / FAANG Onsite","Q24","Word Search Autocomplete Trie","Hard","Trie, Design","Implement an autocomplete engine's core data structure: a Trie (prefix tree). It should support insert(word) to add a word, search(word) to check if the exact word was inserted, and startsWith(prefix) to check if any inserted word begins with the given prefix.","A sequence of operations (""Trie"", ""insert"", ""search"", ""startsWith"") with corresponding arguments, applied in order to a single Trie instance.","A list of return values, one per operation (null for Trie/insert, boolean for search/startsWith).","1 <= word.length, prefix.length <= 2000
+word and prefix consist of lowercase English letters.
+At most 3 * 10^4 calls total to insert, search, and startsWith.
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""operations = ['Trie', 'insert', 'search', 'search', 'startsWith', 'insert', 'search'], arguments = [[], ['apple'], ['apple'], ['app'], ['app'], ['app'], ['app']]"", ""output"": ""[null, null, true, false, true, null, true]"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""operations = ['Trie', 'search', 'startsWith'], arguments = [[], ['a'], ['a']]"", ""output"": ""[null, false, false]""}, {""input"": ""operations = ['Trie', 'insert', 'insert', 'search', 'startsWith'], arguments = [[], ['cat'], ['car'], ['cat'], ['ca']]"", ""output"": ""[null, null, null, true, true]""}]","class Trie:
+    def __init__(self):
+        pass
 
-    public void put(int key, int value) {
-        // Write your solution here
-    }
-}","#include <unordered_map>
-using namespace std;
+    def insert(self, word: str) -> None:
+        pass
 
-class FrequencyCache {
-public:
-    FrequencyCache(int capacity) {
-        // Write your initialization here
-    }
+    def search(self, word: str) -> bool:
+        pass
 
-    int get(int key) {
-        // Write your solution here
-        return -1;
-    }
+    def starts_with(self, prefix: str) -> bool:
+        pass","var Trie = function() {
+  
+};
 
-    void put(int key, int value) {
-        // Write your solution here
-    }
-};","typedef struct {
-    int capacity;
-    // Add your fields here
-} FrequencyCache;
+Trie.prototype.insert = function(word) {
+  
+};
 
-FrequencyCache* frequencyCacheCreate(int capacity) {
-    // Write your initialization here
-    return NULL;
-}
+Trie.prototype.search = function(word) {
+  
+};
 
-int frequencyCacheGet(FrequencyCache* obj, int key) {
-    // Write your solution here
-    return -1;
-}
+Trie.prototype.startsWith = function(prefix) {
+  
+};","O(L) per operation (L = word length)","O(total characters inserted)"
+"T11","FAANG Hard Tech Assessment - Round 1","SDE II / FAANG Onsite","Q25","Course Schedule Dependency Resolution","Hard","Graphs, Topological Sort","A university's course catalog has numCourses courses labeled 0 to numCourses-1, and a list of prerequisite pairs [course, prerequisite] meaning prerequisite must be completed before course. Determine whether it is possible to complete all courses given these prerequisites (i.e., the dependency graph contains no cycle).","An integer numCourses, and a 2D array prerequisites of [course, prerequisite] pairs.","A boolean: true if all courses can be completed, false if a circular dependency makes it impossible.","1 <= numCourses <= 2000
+0 <= prerequisites.length <= 5000
+0 <= course, prerequisite < numCourses
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""numCourses = 2, prerequisites = [[1, 0]]"", ""output"": ""true"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""numCourses = 2, prerequisites = [[1, 0], [0, 1]]"", ""output"": ""false"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""numCourses = 1, prerequisites = []"", ""output"": ""true""}, {""input"": ""numCourses = 3, prerequisites = [[1, 0], [2, 1]]"", ""output"": ""true""}, {""input"": ""numCourses = 4, prerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]"", ""output"": ""true""}]","from typing import List
 
-void frequencyCachePut(FrequencyCache* obj, int key, int value) {
-    // Write your solution here
-}
+def can_finish(num_courses: int, prerequisites: List[List[int]]) -> bool:
+    """"""Return True if all courses can be completed given the prerequisite constraints.""""""
+    pass","/**
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {boolean}
+ */
+function canFinish(numCourses, prerequisites) {
+  // your code here
+}","O(V + E)","O(V + E)"
+"T12","FAANG Hard Tech Assessment - Round 2","SDE II / FAANG Onsite","Q26","Edit Distance for Document Diff","Hard","Dynamic Programming","A document version control tool needs to measure how different two text snippets are. Given two words, compute the minimum number of single-character insertions, deletions, or substitutions required to transform the first word into the second.","Two strings word1 and word2.","An integer: the minimum edit distance between word1 and word2.","0 <= word1.length, word2.length <= 500
+word1 and word2 consist of lowercase English letters.
+Time Limit: 1.5s, Memory: 256MB","[{""input"": ""word1 = \""horse\"", word2 = \""ros\"""", ""output"": ""3"", ""explanation"": ""Computed by executing the reference solution on this input.""}, {""input"": ""word1 = \""intention\"", word2 = \""execution\"""", ""output"": ""5"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""word1 = \""\"", word2 = \""\"""", ""output"": ""0""}, {""input"": ""word1 = \""\"", word2 = \""abc\"""", ""output"": ""3""}, {""input"": ""word1 = \""abc\"", word2 = \""abc\"""", ""output"": ""0""}]","def edit_distance(word1: str, word2: str) -> int:
+    """"""Return the minimum number of edits to transform word1 into word2.""""""
+    pass","/**
+ * @param {string} word1
+ * @param {string} word2
+ * @return {number}
+ */
+function editDistance(word1, word2) {
+  // your code here
+}","O(m * n)","O(m * n)"
+"T12","FAANG Hard Tech Assessment - Round 2","SDE II / FAANG Onsite","Q27","Range Sum Query with Updates","Hard","Segment Tree, Design","A financial dashboard tracks an array of account balances that can be updated in real time. Implement a data structure that supports updating a single balance at a given index and querying the sum of balances over an inclusive index range, both efficiently.","A sequence of operations (""NumArray"", ""update"", ""sumRange"") with corresponding arguments, applied in order to a single instance built from an initial array.","A list of return values, one per operation (null for NumArray/update, integer sum for sumRange).","1 <= nums.length <= 3 * 10^4
+-100 <= nums[i] <= 100
+0 <= index < nums.length
+-100 <= val <= 100
+0 <= left <= right < nums.length
+At most 3 * 10^4 calls total to update and sumRange.
+Time Limit: 1.0s, Memory: 256MB","[{""input"": ""operations = ['NumArray', 'sumRange', 'update', 'sumRange'], arguments = [[[1, 3, 5]], [0, 2], [1, 2], [0, 2]]"", ""output"": ""[null, 9, null, 8]"", ""explanation"": ""Computed by executing the reference solution on this input.""}]","[{""input"": ""operations = ['NumArray', 'sumRange'], arguments = [[[-1]], [0, 0]]"", ""output"": ""[null, -1]""}, {""input"": ""operations = ['NumArray', 'update', 'update', 'sumRange'], arguments = [[[0, 0, 0, 0, 0]], [1, 5], [3, -2], [0, 4]]"", ""output"": ""[null, null, null, 3]""}]","from typing import List
 
-void frequencyCacheFree(FrequencyCache* obj) {
-    // Free allocated memory
-}"
+class NumArray:
+    def __init__(self, nums: List[int]):
+        pass
+
+    def update(self, index: int, val: int) -> None:
+        pass
+
+    def sum_range(self, left: int, right: int) -> int:
+        pass","/**
+ * @param {number[]} nums
+ */
+var NumArray = function(nums) {
+  
+};
+
+NumArray.prototype.update = function(index, val) {
+  
+};
+
+NumArray.prototype.sumRange = function(left, right) {
+  
+};","O(log n) per update/query","O(n)"

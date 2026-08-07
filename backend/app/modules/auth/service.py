@@ -8,6 +8,27 @@ from app.modules.auth.models import User
 from app.modules.auth.schemas import SignupRequest, LoginRequest, AuthResponse, LinkedInProfileUpdate, LinkedInProfileResponse, UserProfileResponse, ProfileUpdateRequest
 
 
+def seed_superadmin_user(db: Session):
+    admin_email = "superadmin@gmail.com"
+    admin_pass = "Test@123"
+    admin = db.query(User).filter(User.email == admin_email).first()
+    if not admin:
+        admin = User(
+            email=admin_email,
+            hashed_password=hash_password(admin_pass),
+            college_name="ResumeHive Admin HQ",
+            role="superadmin",
+        )
+        db.add(admin)
+        db.commit()
+        print("[Auth] Seeded Super Admin: superadmin@gmail.com")
+    else:
+        admin.role = "superadmin"
+        admin.hashed_password = hash_password(admin_pass)
+        db.commit()
+        print("[Auth] Verified Super Admin: superadmin@gmail.com")
+
+
 def signup(req: SignupRequest, db: Session) -> AuthResponse:
     existing = db.query(User).filter(User.email == req.email).first()
     if existing:
@@ -17,13 +38,14 @@ def signup(req: SignupRequest, db: Session) -> AuthResponse:
         email=req.email,
         hashed_password=hash_password(req.password),
         college_name=req.college_name,
+        role="student",
     )
     db.add(user)
     db.commit()
     db.refresh(user)
 
     token = create_access_token(user.id)
-    return AuthResponse(access_token=token, user_id=user.id, email=user.email)
+    return AuthResponse(access_token=token, user_id=user.id, email=user.email, role=user.role or "student")
 
 
 def login(req: LoginRequest, db: Session) -> AuthResponse:
@@ -32,7 +54,7 @@ def login(req: LoginRequest, db: Session) -> AuthResponse:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
 
     token = create_access_token(user.id)
-    return AuthResponse(access_token=token, user_id=user.id, email=user.email)
+    return AuthResponse(access_token=token, user_id=user.id, email=user.email, role=user.role or "student")
 
 
 def get_user_profile(user_id: int, db: Session) -> LinkedInProfileResponse:
@@ -62,6 +84,7 @@ def get_full_user_profile(user_id: int, db: Session) -> UserProfileResponse:
         id=user.id,
         email=user.email,
         college_name=user.college_name or "",
+        role=user.role or "student",
         created_at=user.created_at.isoformat() if user.created_at else "",
         linkedin_url=user.linkedin_url,
         linkedin_id=user.linkedin_id,
@@ -106,6 +129,7 @@ def update_user_profile(user_id: int, req: ProfileUpdateRequest, db: Session) ->
         id=user.id,
         email=user.email,
         college_name=user.college_name or "",
+        role=user.role or "student",
         created_at=user.created_at.isoformat() if user.created_at else "",
         linkedin_url=user.linkedin_url,
         linkedin_id=user.linkedin_id,

@@ -4,6 +4,7 @@ export interface UserProfile {
   id: number;
   email: string;
   college_name: string;
+  role: string;
   created_at: string;
   linkedin_url: string | null;
   linkedin_id: string | null;
@@ -40,5 +41,7 @@ export function authApi() {
       api.get("/auth/me/profile").then((r) => r.data),
     updateProfile: (payload: ProfileUpdatePayload): Promise<UserProfile> =>
       api.put("/auth/me/profile", payload).then((r) => r.data),
+    getSubscriptionPlan: () =>
+      api.get("/subscriptions/my-plan").then((r) => r.data),
   };
 }

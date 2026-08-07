@@ -6,7 +6,7 @@ import {
   User, GraduationCap, Calendar, Briefcase, Wrench, Award, ExternalLink,
   Loader2, AlertCircle, FileText, ChevronDown, Pencil, Save, X,
   ShieldCheck, Activity, Target, Download, LayoutTemplate, 
-  GitBranch, Globe, Plus, Trash2, Camera
+  GitBranch, Globe, Plus, Trash2, Camera, CreditCard, Sparkles
 } from "lucide-react";
 import { authApi, type ProfileUpdatePayload, type UserProfile } from "@/lib/api/auth";
 
@@ -78,9 +78,23 @@ export default function ProfileDashboard() {
   // Avatar Modal State
   const [showAvatarModal, setShowAvatarModal] = useState(false);
 
+  // Subscription Plan State
+  const [subData, setSubData] = useState<any>(null);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+
   useEffect(() => {
     loadProfile();
+    loadSubscription();
   }, []);
+
+  const loadSubscription = async () => {
+    try {
+      const res = await authApi().getSubscriptionPlan();
+      setSubData(res);
+    } catch {
+      // Fallback
+    }
+  };
 
   const loadProfile = async () => {
     setLoading(true);
@@ -457,12 +471,65 @@ export default function ProfileDashboard() {
                </div>
              </CarouselCard>
 
-             {/* 6. Settings & Security */}
+              {/* 6. Subscription & License */}
+              <CarouselCard 
+                 id="subscription"
+                 title="Subscription & Plan" 
+                 icon={<CreditCard/>} 
+                 isActive={activeCardIndex === 5}
+                 isEditing={false}
+              >
+                <div className="space-y-4">
+                  <div className="p-4 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-200/50 flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] font-extrabold uppercase text-indigo-600 tracking-wider block">Active Plan</span>
+                      <h3 className="text-base font-black text-slate-900 flex items-center gap-1.5">
+                        {subData?.plan?.name || "Free Basic Plan"}
+                      </h3>
+                      {subData?.college_name && (
+                        <span className="text-xs text-teal-600 font-bold block mt-0.5">
+                          🏛️ Licensed by {subData.college_name}
+                        </span>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => setShowUpgradeModal(true)}
+                      className="px-3.5 py-2 bg-indigo-600 text-white font-bold text-xs rounded-xl shadow-md hover:bg-indigo-700 transition-all flex items-center gap-1"
+                    >
+                      <Sparkles size={14} /> Upgrade
+                    </button>
+                  </div>
+
+                  <div className="space-y-3 pt-2 text-xs">
+                    <div>
+                      <div className="flex justify-between font-bold mb-1">
+                        <span className="text-slate-600">Resumes Created</span>
+                        <span className="text-slate-900">{subData?.usage?.resumes_used || 0} / {subData?.plan?.max_resumes === -1 ? "Unlimited" : (subData?.plan?.max_resumes || 1)}</span>
+                      </div>
+                      <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                        <div className="bg-blue-500 h-full" style={{ width: `${Math.min(100, ((subData?.usage?.resumes_used || 0) / (subData?.plan?.max_resumes || 1)) * 100)}%` }} />
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between font-bold mb-1">
+                        <span className="text-slate-600">Monthly AI Mock Interviews</span>
+                        <span className="text-purple-600">{subData?.usage?.interviews_used || 0} / {subData?.plan?.max_mock_interviews_per_month === -1 ? "Unlimited" : (subData?.plan?.max_mock_interviews_per_month || 2)}</span>
+                      </div>
+                      <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                        <div className="bg-purple-500 h-full" style={{ width: `${Math.min(100, ((subData?.usage?.interviews_used || 0) / (subData?.plan?.max_mock_interviews_per_month || 2)) * 100)}%` }} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CarouselCard>
+
+             {/* 7. Settings & Security */}
              <CarouselCard 
                 id="security"
                 title="Security & Status" 
                 icon={<ShieldCheck/>} 
-                isActive={activeCardIndex === 5}
+                isActive={activeCardIndex === 6}
                 isEditing={false}
              >
                <div className="space-y-4">
@@ -522,6 +589,63 @@ export default function ProfileDashboard() {
                  </button>
                </div>
                <p className="text-xs text-slate-400 mt-6 text-center">Images are automatically cropped to 1:1 ratio. Max size 2MB.</p>
+             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── UPGRADE PLAN MODAL ────────────────────────────────────────── */}
+      <AnimatePresence>
+        {showUpgradeModal && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+             <motion.div initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }} className="bg-white rounded-[32px] p-8 max-w-xl w-full shadow-2xl flex flex-col">
+               <div className="flex justify-between items-center mb-6">
+                 <div>
+                   <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
+                     <Sparkles className="text-indigo-600" size={24} /> Upgrade Subscription Tier
+                   </h2>
+                   <p className="text-xs text-slate-500">Unlock unlimited ATS resumes, AI mock interviews, and advanced campus analytics.</p>
+                 </div>
+                 <button onClick={() => setShowUpgradeModal(false)} className="p-2 rounded-xl bg-slate-100 text-slate-400 hover:text-slate-900">
+                   <X size={18} />
+                 </button>
+               </div>
+
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                 <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex flex-col justify-between">
+                   <div>
+                     <span className="text-[10px] font-extrabold text-indigo-600 uppercase">Individual Pro</span>
+                     <h3 className="text-lg font-black text-slate-900">Pro Student</h3>
+                     <p className="text-2xl font-black text-slate-900 my-2">₹499 <span className="text-xs font-normal text-slate-500">/ mo</span></p>
+                     <ul className="space-y-1.5 text-slate-600 font-medium">
+                       <li>✓ Up to 5 Tailored ATS Resumes</li>
+                       <li>✓ 15 AI Mock Interviews / mo</li>
+                       <li>✓ 20 Deep ATS Score Audits</li>
+                       <li>✓ Full Question Bank Access</li>
+                     </ul>
+                   </div>
+                   <button onClick={() => alert("Redirecting to Razorpay Payment Gateway...")} className="mt-4 w-full py-2.5 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-md">
+                     Upgrade to Pro
+                   </button>
+                 </div>
+
+                 <div className="bg-gradient-to-br from-indigo-900 to-slate-900 p-5 rounded-2xl text-white flex flex-col justify-between">
+                   <div>
+                     <span className="text-[10px] font-extrabold text-teal-400 uppercase">B2B Campus Tier</span>
+                     <h3 className="text-lg font-black text-white">College Enterprise</h3>
+                     <p className="text-2xl font-black text-white my-2">Custom <span className="text-xs font-normal text-slate-400">/ Campus</span></p>
+                     <ul className="space-y-1.5 text-slate-300 font-medium">
+                       <li>✓ Unlimited Campus Students</li>
+                       <li>✓ Unlimited AI Mock Interviews</li>
+                       <li>✓ HOD &amp; Teacher Analytics Portal</li>
+                       <li>✓ Domain Auto-Verification</li>
+                     </ul>
+                   </div>
+                   <button onClick={() => alert("Contacting Enterprise Sales & HOD Licensing...")} className="mt-4 w-full py-2.5 bg-teal-500 text-slate-950 font-bold rounded-xl hover:bg-teal-400 transition-all shadow-md">
+                     Contact Campus Sales
+                   </button>
+                 </div>
+               </div>
              </motion.div>
           </motion.div>
         )}

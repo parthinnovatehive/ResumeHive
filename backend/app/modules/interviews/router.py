@@ -16,6 +16,7 @@ from app.modules.interviews.schemas import (
     InterviewSessionMessage,
     InterviewSessionOut,
     InterviewSessionFlagCreate,
+    InterviewSessionEnd,
     InterviewReportOut,
     CategoryProgress,
     ProgressAttempt
@@ -57,6 +58,9 @@ async def create_session(
                 pass
         
         system_prompt = system_prompt.replace("{RESUME_JSON}", json.dumps(resume_data, indent=2))
+
+    if data.custom_instructions:
+        system_prompt += f"\n\nCandidate's Custom Instructions:\n{data.custom_instructions}\nEnsure you incorporate these specific requests into your questioning and persona."
 
     # Initialize transcript with system prompt
     transcript = [{"role": "system", "message": system_prompt, "timestamp": datetime.now().isoformat()}]
@@ -140,8 +144,7 @@ async def respond_to_session_audio(
     db: Session = Depends(get_db),
     user_id: int = Depends(get_current_user_id)
 ):
-    # Validate file size (max 25MB, though FastAPI handles larger streams, we check content length if possible or just rely on Groq to reject)
-    # Whisper requires a filename ending in an audio extension.
+    # Validate file size (max 25MB)
     if not file.filename:
         file.filename = "audio.wav"
         
@@ -191,7 +194,6 @@ async def flag_session(
     if session.status != "in_progress":
         raise HTTPException(status_code=400, detail="Cannot flag a completed session")
         
-    # timestamp from frontend could be parsed or we just use server time. Server time is safer.
     flag = InterviewSessionFlag(
         session_id=session.id,
         flag_type=data.flag_type,
@@ -200,11 +202,25 @@ async def flag_session(
     db.add(flag)
     db.commit()
     
-    return {"status": "ok"}
+    tab_switches = db.query(InterviewSessionFlag).filter(
+        InterviewSessionFlag.session_id == session.id,
+        InterviewSessionFlag.flag_type.in_(["TAB_SWITCH", "WINDOW_BLUR"])
+    ).count()
+    
+    total_flags = db.query(InterviewSessionFlag).filter(
+        InterviewSessionFlag.session_id == session.id
+    ).count()
+    
+    return {
+        "status": "ok",
+        "tab_switches": tab_switches,
+        "total_flags": total_flags
+    }
 
 @router.post("/sessions/{session_id}/end")
 async def end_session(
     session_id: int,
+    data: InterviewSessionEnd = None,
     db: Session = Depends(get_db),
     user_id: int = Depends(get_current_user_id)
 ):
@@ -214,21 +230,104 @@ async def end_session(
     if session.status == "completed":
         return session.report
 
+    # Check for disqualification due to cheating
+    if data and data.is_disqualified:
+        reason = data.disqualification_reason or "Session terminated due to multiple tab-switch / anti-cheating violations."
+        report_json = {
+            "overall_score": 0,
+            "integrity_status": "DISQUALIFIED",
+            "disqualification_reason": reason,
+            "summary": f"DISQUALIFIED FOR CHEATING: {reason} The candidate switched tabs or navigated away from the active interview session multiple times.",
+            "parameters": {
+                "session_integrity": {
+                    "score": 0,
+                    "feedback": f"Integrity check failed: {reason}"
+                },
+                "communication_clarity": {"score": 0, "feedback": "Assessment cancelled due to proctoring disqualification."},
+                "structure_of_answers": {"score": 0, "feedback": "Assessment cancelled due to proctoring disqualification."},
+                "technical_accuracy": {"score": 0, "feedback": "Assessment cancelled due to proctoring disqualification."}
+            },
+            "strengths": [],
+            "areas_to_improve": [
+                "Strictly adhere to interview guidelines: do not switch tabs, minimize windows, or use external aids during proctored sessions."
+            ],
+            "suggested_focus_areas": [
+                "Practice answering questions without switching windows or consulting external notes."
+            ]
+        }
+        session.status = "completed"
+        session.completed_at = datetime.now()
+        session.report = report_json
+        db.commit()
+        return report_json
+
+    # Normal report evaluation
+    flags = session.flags
+    tab_switches = sum(1 for f in flags if f.flag_type in ["TAB_SWITCH", "WINDOW_BLUR"])
+    
     transcript = session.transcript
     
-    # Format transcript for evaluator
+    # Check for candidate participation
+    candidate_turns = [
+        entry for entry in transcript 
+        if entry.get("role") == "candidate" and entry.get("message") and entry.get("message").strip() and entry.get("message").strip() != "..."
+    ]
+    
+    if len(candidate_turns) == 0:
+        # User started and immediately ended the interview without answering anything
+        report_json = {
+            "overall_score": 0,
+            "integrity_status": "INCOMPLETE",
+            "tab_switches_count": tab_switches,
+            "summary": "Incomplete Interview Session: The interview was ended immediately without any candidate responses or answers. No score or performance evaluation could be awarded.",
+            "parameters": {
+                "participation_and_effort": {
+                    "score": 0,
+                    "feedback": "0 responses provided. The interview was started and exited without answering any questions."
+                },
+                "communication_clarity": {
+                    "score": 0,
+                    "feedback": "No candidate responses provided to evaluate."
+                },
+                "technical_depth_accuracy": {
+                    "score": 0,
+                    "feedback": "No technical or conceptual answers submitted."
+                },
+                "structure_of_answers": {
+                    "score": 0,
+                    "feedback": "No structured responses provided."
+                }
+            },
+            "strengths": [],
+            "areas_to_improve": [
+                "Engage in the conversation and answer the interviewer's questions thoroughly.",
+                "Complete a full mock session (at least 4-6 questions) to receive comprehensive performance analysis."
+            ],
+            "suggested_focus_areas": [
+                "Practice speaking or typing answers to each question thoroughly before ending the session."
+            ],
+            "turn_evaluations": []
+        }
+        session.status = "completed"
+        session.completed_at = datetime.now()
+        session.report = report_json
+        db.commit()
+        return report_json
+
     formatted_transcript = ""
     for entry in transcript:
         if entry["role"] == "system": continue
         formatted_transcript += f"{entry['role'].capitalize()}: {entry['message']}\n\n"
 
     report_prompt = REPORT_GENERATION_PROMPT.replace("{TRANSCRIPT}", formatted_transcript)
+    if tab_switches > 0:
+        report_prompt += f"\n\nNOTE FOR EVALUATOR: The candidate triggered {tab_switches} tab switch/window unfocus warning(s) during the session. Note this in integrity and areas to improve if relevant."
     
     # Call evaluator
     report_json = None
     for attempt in range(2):
         try:
-            raw_report, _ = await call_groq(prompt=report_prompt, max_tokens=1500)
+            raw_report, _ = await call_groq(prompt=report_prompt, max_tokens=3000)
             parsed_raw = json.loads(raw_report)
             validated = InterviewReportOut(**parsed_raw)
             report_json = validated.model_dump() if hasattr(validated, 'model_dump') else validated.dict()
@@ -246,7 +345,8 @@ async def end_session(
                     "parameters": partial.get("parameters", {}),
                     "strengths": partial.get("strengths", []),
                     "areas_to_improve": partial.get("areas_to_improve", []),
-                    "suggested_focus_areas": partial.get("suggested_focus_areas", [])
+                    "suggested_focus_areas": partial.get("suggested_focus_areas", []),
+                    "turn_evaluations": partial.get("turn_evaluations", [])
                 }
             except Exception:
                 pass
@@ -262,8 +362,39 @@ async def end_session(
             "strengths": [],
             "areas_to_improve": [],
             "suggested_focus_areas": [],
+            "turn_evaluations": [],
             "summary": "Failed to generate report due to an AI error."
         }
+
+    # Strict penalty caps for very few turns or very low word counts
+    raw_score = report_json.get("overall_score", 0)
+    total_words = sum(len(turn.get("message", "").split()) for turn in candidate_turns)
+    avg_words = total_words / max(len(candidate_turns), 1)
+
+    if len(candidate_turns) == 1:
+        # Capped strictly at 30
+        report_json["overall_score"] = min(raw_score, 30)
+        report_json["summary"] = f"{report_json.get('summary', '')} [Incomplete Session: Only 1 response provided (score capped at 30)]."
+    elif len(candidate_turns) == 2:
+        # Capped strictly at 50
+        report_json["overall_score"] = min(raw_score, 50)
+        report_json["summary"] = f"{report_json.get('summary', '')} [Incomplete Session: Only 2 responses provided (score capped at 50)]."
+    elif len(candidate_turns) == 3:
+        # Capped strictly at 65
+        report_json["overall_score"] = min(raw_score, 65)
+    elif avg_words < 8:
+        # Extremely brief / one-word answers
+        report_json["overall_score"] = min(raw_score, 35)
+        report_json["summary"] = f"{report_json.get('summary', '')} [Answers were extremely brief and lacked necessary technical or behavioral detail]."
+
+    # If tab switches occurred, record integrity info in report_json
+    report_json["tab_switches_count"] = tab_switches
+    if tab_switches > 2:
+        report_json["integrity_status"] = "HIGH_RISK"
+    elif tab_switches > 0:
+        report_json["integrity_status"] = "WARNING"
+    else:
+        report_json["integrity_status"] = "VERIFIED_AUTHENTIC"
 
     session.status = "completed"
     session.completed_at = datetime.now()
@@ -308,10 +439,41 @@ def get_progress(
         if s.report and isinstance(s.report, dict):
             score = s.report.get("overall_score", 0)
             
-        grouped[cat_id]["attempts"].append({
-            "session_id": s.id,
-            "date": s.completed_at.isoformat() if s.completed_at else s.started_at.isoformat(),
-            "overall_score": score
+    return list(grouped.values())
+
+
+@router.get("/history")
+def get_interview_history(
+    db: Session = Depends(get_db),
+    user_id: int = Depends(get_current_user_id)
+):
+    sessions = db.query(InterviewSession).filter(
+        InterviewSession.user_id == user_id
+    ).order_by(InterviewSession.started_at.desc()).all()
+    
+    history = []
+    for s in sessions:
+        report = s.report or {}
+        transcript = s.transcript or []
+        candidate_turns = [
+            t for t in transcript 
+            if isinstance(t, dict) and t.get("role") == "candidate" and t.get("message") and t.get("message").strip() and t.get("message").strip() != "..."
+        ]
+        
+        history.append({
+            "id": s.id,
+            "category_id": s.category_id,
+            "category_name": s.category.name if s.category else "Technical Round",
+            "category_slug": s.category.slug if s.category else "hr-behavioral",
+            "status": s.status,
+            "started_at": s.started_at.isoformat() if s.started_at else None,
+            "completed_at": s.completed_at.isoformat() if s.completed_at else None,
+            "overall_score": report.get("overall_score", 0) if isinstance(report, dict) else 0,
+            "integrity_status": report.get("integrity_status", "VERIFIED_AUTHENTIC") if isinstance(report, dict) else "VERIFIED_AUTHENTIC",
+            "tab_switches_count": report.get("tab_switches_count", 0) if isinstance(report, dict) else 0,
+            "summary": report.get("summary", "") if isinstance(report, dict) else "",
+            "candidate_turns_count": len(candidate_turns),
+            "disqualification_reason": report.get("disqualification_reason") if isinstance(report, dict) else None
         })
         
-    return list(grouped.values())
+    return history

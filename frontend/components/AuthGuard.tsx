@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 // Routes accessible without login. Everything else requires a token.
-const PUBLIC_PATHS = ["/", "/login", "/signup"];
+const PUBLIC_PATHS = ["/", "/login", "/signup", "/interview"];
 
 function isPublic(pathname: string): boolean {
   return PUBLIC_PATHS.includes(pathname);

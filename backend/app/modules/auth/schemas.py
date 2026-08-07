@@ -19,6 +19,7 @@ class AuthResponse(BaseModel):
     access_token: str
     user_id: int
     email: str
+    role: str = "student"
 
 
 class LinkedInProfileUpdate(BaseModel):
@@ -52,6 +53,7 @@ class UserProfileResponse(BaseModel):
     id: int
     email: EmailStr
     college_name: str = ""
+    role: str = "student"
     created_at: str
     linkedin_url: Opt[str] = None
     linkedin_id: Opt[str] = None
